@@ -1,0 +1,26 @@
+inputly = prompt("Nhap diem vat ly:");
+inputhoa = prompt("Nhap diem hoa hoc:");
+inputsinh = prompt("Nhap diem sinh hoc:");
+nhietdo=prompt("Nhap nhiet do theo do C");
+bankinh=prompt("Nhap ban kinh hinh tron");
+var l = parseInt(inputly);
+var h = parseInt(inputhoa);
+var s = parseInt(inputsinh);
+var tb;
+var t;
+let r=parseInt(bankinh);
+let c=parseInt(nhietdo);
+let f;
+let p;
+let ss;
+const pi=3.14159;
+t = l + h + s;
+tb = t / 3;
+f=(c/5)*9+32
+p=r*2*pi;
+ss=r*r*pi;
+document.getElementById("tong").innerHTML = "<b>Diem tong la:</b>" + t;
+document.getElementById("dtb").innerHTML = "<b>Diem trung binh la:</b>" + tb;
+document.getElementById("f").innerHTML = "<b>Nhiet do theo do F la:</b>" + f;
+document.getElementById("p").innerHTML = "<b>Chu vi hinh tron la:</b>" + p;
+document.getElementById("ss").innerHTML = "<b>Dien tich hinh tron la:</b>" + ss;

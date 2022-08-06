@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ỨNG DỤNG CHUYỂN ĐỔI TIỀN TỆ</title>
+</head>
+<style>
+    table {
+        width: 50%;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    .kt {
+        width: 200px;
+    }
+</style>
+<body>
+<table>
+    <tr>
+        <th>Amount</th>
+        <th>From Currency</th>
+        <th>To Currency</th>
+        <th></th>
+    </tr>
+    <tr>
+
+        <td>
+            <form>
+                <label>
+                    <input id="money" type="text" name="sotien" placeholder="Input your amount money"
+                           class="kt">
+                </label>
+            </form>
+        </td>
+        <td>
+            <form>
+                <label>
+                    <select id="tiennhap">
+                        <option value="vnd">VND</option>
+                        <option value="usd">USD</option>
+                    </select>
+                </label>
+            </form>
+        </td>
+        <td>
+            <form>
+                <label>
+                    <select id="tiencandoi">
+                        <option value="vnd">VND</option>
+                        <option value="usd">USD</option>
+                    </select>
+                </label>
+            </form>
+        </td>
+
+        <td>
+            <button type="button" onclick="doitien();">Convert!</button>
+        </td>
+    </tr>
+</table>
+<p id="kq"></p>
+</body>
+<script>
+    function doitien() {
+        const d = 25000;
+        let a = document.getElementById("tiennhap").value;
+        let b = document.getElementById("tiencandoi").value;
+        let c = parseFloat(document.getElementById("money").value);
+        let e;
+        if (a === b) {
+            e = c;
+        } else if (a === "usd") {
+            e = c * d;
+        } else {
+            e = c / d;
+        }
+        document.getElementById('kq').innerText = "Result is:" + e + b;
+    }
+</script>
+</html>
