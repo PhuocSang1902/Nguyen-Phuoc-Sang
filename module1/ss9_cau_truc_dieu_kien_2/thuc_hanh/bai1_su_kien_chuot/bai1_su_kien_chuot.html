@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sự kiện chuột</title>
+</head>
+<body>
+<form>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Football_%28soccer_ball%29.svg" id="anh"
+         style="width: 30%">
+    <p>Click vào nút bấm bên dưới để di chuyển ảnh qua phải</p>
+    <input type="button" value="Nút bấm" onclick=nhanvao()>
+<!--    <button type="button" onclick=nhanvao()>Nút bấm</button>-->
+</form>
+</body>
+<script>
+    var anhdichuyen = null;
+    anhdichuyen = document.getElementById("anh");
+
+    function inp() {
+        anhdichuyen.style.position = "relative";
+        anhdichuyen.style.left = "0px";
+    }
+
+    function nhanvao() {
+        anhdichuyen.style.left = parseInt(anhdichuyen.style.left) + 100 + "px";
+    }
+
+    window.onload = inp;
+</script>
+</html>

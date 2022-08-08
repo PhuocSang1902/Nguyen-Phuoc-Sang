@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sự kiện bàn phím</title>
+</head>
+<body onload="chaytrinhduyet()">
+<img id="anh" src="anh-doremon-dang-yeu_083128950.png" height="500" width="400"
+     style="position: absolute;left: 0;top: 0">
+</body>
+<script>
+    function nhanphimmuitentrai() {
+        let anhdong = document.getElementById("anh");
+        anhdong.style.left = parseInt(anhdong.style.left) - 100 + "px";
+    }
+
+    function nhanphimmuitenphai() {
+        let anhdong = document.getElementById("anh");
+        anhdong.style.left = parseInt(anhdong.style.left) + 100 + "px";
+    }
+
+    function nhanphimmuitenlen() {
+        let anhdong = document.getElementById("anh");
+        anhdong.style.top = parseInt(anhdong.style.top) - 100 + "px";
+    }
+
+    function nhanphimmuitenxuong() {
+        let anhdong = document.getElementById("anh");
+        anhdong.style.top = parseInt(anhdong.style.top) + 100 + "px";
+    }
+
+    function dichuyendoituong(evt) {
+        switch (evt.keyCode) {
+            case 37:
+                nhanphimmuitentrai();
+                break;
+            case 39:
+                nhanphimmuitenphai();
+                break;
+            case 38:
+                nhanphimmuitenlen();
+                break;
+            case 40:
+                nhanphimmuitenxuong();
+                break;
+        }
+    }
+
+    function chaytrinhduyet() {
+        window.addEventListener("keydown", dichuyendoituong);
+    }
+</script>
+</html>
