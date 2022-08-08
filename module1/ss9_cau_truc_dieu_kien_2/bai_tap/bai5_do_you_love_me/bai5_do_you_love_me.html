@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Do you love me</title>
+</head>
+<style>
+    td {
+        width: 150px;
+        height: 150px;
+        padding: 50px;
+    }
+</style>
+<body>
+<table>
+    <tr>
+        <th colspan="2"><h1>DO YOU LOVE ME?</h1></th>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" onclick="anwser()" id="yes" style="height: 50px;width: 50px">Yes</button>
+        </td>
+        <td>
+            <button type="button" onmousemove="move()" id="no"
+                    style="height: 50px;width: 50px; position: relative; left: 0px; top: 0px">No
+            </button>
+        </td>
+    </tr>
+</table>
+</body>
+<script>
+    function anwser() {
+        alert("You are right!");
+    }
+
+    function move() {
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        document.getElementById("no").style.left = x + "px";
+        document.getElementById("no").style.top = y + "px";
+
+    }
+</script>
+</html>
