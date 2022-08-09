@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JNKKKK/MoreToggles.css@0.2.1/output/moretoggles.min.css">
+</head>
+<body>
+<div class="mt-ios">
+    <input class="mt-ios" id="myCheckBox" type="checkbox" onclick="cLick()" />
+    <label for="myCheckBox"></label></div>
+<p id="vanban" style="display: none">ban da tat</p>
+<script>
+    function cLick(){
+        let checkBox = document.getElementById("myCheckBox");
+        let text = document.getElementById("vanban");
+        if (checkBox.checked == true){
+            text.style.display = "block";
+        }else {
+            text.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>
