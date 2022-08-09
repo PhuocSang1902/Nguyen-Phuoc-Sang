@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice 1</title>
+</head>
+<body>
+<script>
+    let soPhutThoai = parseInt(prompt("Hãy nhập số phút gọi điện thoại của bạn:"));
+    const mucCuoc1 = 1000;
+    const mucCuoc2 = 1500;
+    const mucCuoc3 = 2000;
+    if (soPhutThoai <= 100){
+        let chiPhi = soPhutThoai * mucCuoc1;
+        alert (chiPhi);
+    }else if (soPhutThoai <= 300){
+        let chiPhi = soPhutThoai * mucCuoc2;
+        alert (chiPhi);
+    }else{
+        let chiPhi = soPhutThoai * mucCuoc3;
+        alert (chiPhi);
+    }
+
+</script>
+</body>
+</html>
