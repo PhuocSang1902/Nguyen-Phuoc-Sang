@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice 1</title>
+</head>
+<body>
+<script>
+    let diemKiemTra = parseInt(prompt("Hãy nhập điểm kiểm tra:"));
+    let diemGiuaKy = parseInt(prompt("Hãy nhập điểm giữa kỳ:"));
+    let diemCuoiKy = parseInt(prompt("Hãy nhập điểm cuối kỳ:"));
+    let diemTong = diemKiemTra + diemGiuaKy + diemCuoiKy * 2;
+    let diemTrungBinh = diemTong / 4;
+    if (diemTrungBinh > 8 && diemTrungBinh === 8) {
+        alert("Học sinh giỏi.");
+    } else if (diemTrungBinh > 7) {
+        alert("Học sinh khá.");
+    } else if (diemTrungBinh > 5) {
+        alert("Học sinh trung bình.");
+    } else if (diemTrungBinh > 3) {
+        alert("Học sinh yếu.");
+    } else {
+        alert("Học lại.");
+    }
+</script>
+</body>
+</html>
