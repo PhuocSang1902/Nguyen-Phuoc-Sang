@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice 1</title>
+</head>
+<body>
+<p id="text"></p>
+<p id="text1"></p>
+
+</body>
+<script>
+    let a = 0;
+    let b = 1;
+    let c = 1;
+    let textNum = a + "," + b + "," + c + ",";
+    let total = a + b + c;
+    for (let i = 1; i < 18; i++) {
+        a = b;
+        b = c;
+        c = a + b;
+        textNum += c + ",";
+        total += c;
+    }
+    document.getElementById("text").innerHTML = textNum;
+    document.getElementById("text1").innerHTML = total;
+</script>
+</html>

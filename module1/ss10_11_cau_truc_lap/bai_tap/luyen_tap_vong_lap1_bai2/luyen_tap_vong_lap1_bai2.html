@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice 1</title>
+</head>
+<body>
+<p id="text"></p>
+
+</body>
+<script>
+    let nhietDoHienTai;
+    do {
+        nhietDoHienTai = parseInt(prompt("Hay nhap nhiet do hien tai: "));
+        if (nhietDoHienTai > 100) {
+            alert("Hay giam nhiet do");
+        } else if (nhietDoHienTai < 20) {
+            alert("Hay tang nhiet do");
+        }
+    } while (nhietDoHienTai < 20 || nhietDoHienTai > 100);
+    alert("Nhiet do ok")
+</script>
+</html>
