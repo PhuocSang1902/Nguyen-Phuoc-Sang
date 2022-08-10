@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THực hành vòng lập while</title>
+</head>
+<body>
+<script>
+    let bang;
+    bang = "<table>";
+    for (let i = 1; i < 11; i++) {
+        bang = bang + "<tr>";
+        for (let j = 1; j < 11; j++) {
+            bang = bang + "<td>"+i*j+"</td>";
+        }
+        bang = bang + "</tr>";
+    }
+    bang = bang + "</table>";
+document.write(bang)
+</script>
+</body>
+</html>
