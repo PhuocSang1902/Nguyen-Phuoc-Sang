@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice 1</title>
+</head>
+<body>
+<label>
+    <button type="button" onclick="theButton()">Chơi</button>
+</label>
+
+</body>
+<script>
+    function theButton() {
+        let maxNum = parseInt(prompt("Khoảng các số để đoán, số lớn: "));
+        let minNum = parseInt(prompt("Khoảng các số để đoán, số bé: "));
+        let rightNum = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
+        let num;
+        let count = 0;
+        do {
+            num = parseInt(prompt("Hãy nhập một số trong khoảng đã chọn"));
+            if (num > maxNum || num < minNum) {
+                alert("Hãy nhập lại số trong khoảng đã chọn.");
+            }else if (num === rightNum) {
+                alert("Chúc mừng");
+            } else if (num > rightNum) {
+                alert("Lớn hơn. Hãy nhập lại.");
+            } else if (num < rightNum) {
+                alert("Nhỏ hơn. Hãy nhập lại.");
+            }
+            count++;
+            if (count>3){
+                alert("Bạn đã hết lượt.")
+                break;
+            }
+        } while (num !== rightNum);
+    }
+</script>
+</html>
