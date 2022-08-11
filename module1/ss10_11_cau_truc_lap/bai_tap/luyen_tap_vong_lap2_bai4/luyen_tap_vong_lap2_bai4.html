@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice 2</title>
+</head>
+<body>
+<p id="text"></p>
+
+</body>
+<script>
+    let text = "";
+    for (let i = 1; i <= 20; i++) {
+        text += "*";
+    }
+    text += "<br>";
+    for (let j = 1; j <= 5; j++) {
+        text += "*";
+        for (let i = 1; i <= 20 - 2; i++) {
+            text += "&nbsp&nbsp";
+        }
+        text += "*<br>";
+    }
+    for (let i = 1; i <= 20; i++) {
+        text += "*";
+    }
+    document.write(text);
+</script>
+</html>
