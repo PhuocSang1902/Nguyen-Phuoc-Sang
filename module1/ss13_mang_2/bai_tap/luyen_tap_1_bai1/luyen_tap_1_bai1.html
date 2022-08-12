@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PRACTICE 1</title>
+</head>
+<body>
+<p id="display"></p>
+<p id="display1"></p>
+</body>
+<script>
+    let arr = [1,5,9,11,25,63,4,9,0,18];
+    let arrGreaterThan10 = [];
+    let total = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 10){
+            arrGreaterThan10.push(arr[i]);
+            total += arr[i];
+        }
+    }
+    document.getElementById("display").innerHTML = arrGreaterThan10.join(";");
+    document.getElementById("display1").innerHTML = total;
+</script>
+</html>
