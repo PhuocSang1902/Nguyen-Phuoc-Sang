@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sử dụng hàm có sẵn của mảng</title>
+</head>
+<body>
+<p id="display"></p>
+<p id="display1"></p>
+</body>
+<script>
+    let str = prompt("Input a string");
+    let upPer = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let loWer = "acbdefghijklmnopqrstuvwxyz"
+    let arr = [];
+    for (let i = 0; i < str.length; i++) {
+        if (upPer.indexOf(str[i]) !== -1){
+            arr.push(str[i].toLowerCase());
+        }else if ((loWer.indexOf(str[i]) !== -1)) {
+            arr.push(str[i].toUpperCase());
+        }else {
+            arr.push(str[i]);
+        }
+    }
+    document.getElementById("display").innerHTML = arr.join('');
+
+</script>
+</html>

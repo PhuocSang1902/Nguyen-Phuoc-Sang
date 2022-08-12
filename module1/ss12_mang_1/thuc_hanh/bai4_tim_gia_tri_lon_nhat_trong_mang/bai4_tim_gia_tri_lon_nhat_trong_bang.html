@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo và thao tác với mảng</title>
+</head>
+<body>
+<label><input type="text" id="input"></label>
+<label><input type="text" id="input2"></label>
+<button type="button" onclick="puSh()">PUSH</button>
+<button type="button" onclick="priNt()">PRINT</button>
+<button type="button" onclick="deleTe()">DELETE</button>
+<button type="button" onclick="reverSe()">REVERSE</button>
+<button type="button" onclick="maxNum()">MAX</button>
+<hr>
+<p id="display"></p><br>
+<p id="display2"></p>
+</body>
+<script>
+    let array = [];
+
+    function puSh() {
+        let name = document.getElementById("input").value;
+        array.push(name);
+    }
+
+    function priNt() {
+        let text = "";
+        for (let i = 0; i < array.length; i++) {
+            text += "Element" + i + " : " + array[i] + "<br>";
+        }
+        document.getElementById("display").innerHTML = text
+    }
+    function reverSe(){
+        array.reverse();
+    }
+    function maxNum() {
+        let max = array[0];
+        let index = 0;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] > max){
+                max = array[i];
+                index = i;
+            }
+        }
+        document.getElementById("display2").innerHTML = "Max: " + max + " at position " + index;
+    }
+</script>
+</html>
