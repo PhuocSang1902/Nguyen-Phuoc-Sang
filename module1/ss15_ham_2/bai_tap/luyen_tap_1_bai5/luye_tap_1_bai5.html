@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<input type="button" onclick="starReference()" value="Click me">
+</body>
+<script>
+    let star = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+    let constellation = ["Ursa Minor", "Taurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+    let theStar = prompt("Hãy nhập tên ngôi sao:");
+
+    function starReference() {
+        let count = 0;
+        for (let i = 1; i < star.length; i++) {
+            if (star.indexOf(theStar) !== -1) {
+                count = star.indexOf(theStar);
+            }
+        }
+        if (count === 0) {
+            alert("Không tìm thấy ngôi sao.");
+        } else {
+            alert("Ngôi sao " + star[count] + " nằm trong chòm sao " + constellation[count]);
+        }
+    }
+</script>
+</html>

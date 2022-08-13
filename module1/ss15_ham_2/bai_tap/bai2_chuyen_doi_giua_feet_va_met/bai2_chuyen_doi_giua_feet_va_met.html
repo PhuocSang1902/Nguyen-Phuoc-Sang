@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển đổi giữa Feet và Met</title>
+</head>
+<body>
+<label>Hãy nhập chiều dài cần chuyển đổi <input type="text" id="valueInput"></label><br>
+<label><input type="button" value="Meter to Feet" onclick="metFeet()"></label><br>
+<label><input type="button" value="Feet to Meter" onclick="feetMet()"></label><br>
+<label>Kết quả là: <input type="text" id="valueResult"></label>
+</body>
+<script>
+    function feetMet(x) {
+        x = parseFloat(document.getElementById("valueInput").value);
+        let y;
+        y = x * 0.305;
+        return document.getElementById("valueResult").value = y;
+    }
+
+    function metFeet(a) {
+        a = parseFloat(document.getElementById("valueInput").value);
+        let b;
+        b = a * 3.279;
+        return document.getElementById("valueResult").value = b;
+    }
+</script>
+</html>
