@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<label>
+    Hãy nhập số cần tính bình phương:
+    <input type="number" id="input" oninput="tinhBinhPhuong()" onchange="tinhBinhPhuong()">
+</label>
+<p id="result"></p>
+</body>
+<script>
+function tinhBinhPhuong(x) {
+    x = parseFloat(document.getElementById("input").value);
+    let y;
+    y = x * x;
+    return document.getElementById("result").innerHTML = y;
+}
+</script>
+</html>

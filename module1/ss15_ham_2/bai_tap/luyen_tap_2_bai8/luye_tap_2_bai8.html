@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<input type="number" id="input" placeholder="Input the number of array!">
+<input type="button" onclick="push()" value="Push!">
+<p id="firstNum"></p>
+<p id="secondNum"></p>
+</body>
+<script>
+    function push() {
+        let num = parseInt(document.getElementById("input").value);
+        let arr = [];
+        let val;
+        for (let i = 0; i < num; i++) {
+            val = parseInt(prompt("input value of array"));
+            arr.push(val);
+        }
+        document.getElementById("firstNum").innerHTML = arr.join(",");
+        let first = 0;
+        let last = arr.length - 1;
+        while (first < last) {
+            b = arr[first];
+            arr[first] = arr[last];
+            arr[last] = b;
+            first ++;
+            last --;
+        }
+        document.getElementById("secondNum").innerHTML = arr.join(",");
+    }
+</script>
+</html>

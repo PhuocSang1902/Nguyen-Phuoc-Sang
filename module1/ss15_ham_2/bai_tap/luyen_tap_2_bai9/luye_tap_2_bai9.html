@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<input type="button" onclick="checkString()" value="Push!">
+<p id="firstNum"></p>
+<p id="secondNum"></p>
+</body>
+<script>
+    function checkString() {
+        let text = prompt("Hay nhap 1 chuoi ky tu:");
+        let cha = prompt("Hay nhap 1 ky tu can kiem tra");
+        let arr = [];
+        for (let i = 0; i < text.length; i++) {
+            arr.push(text[i]);
+        }
+        for (let j = 0; j < arr.length; j++) {
+            if (arr.indexOf(cha) === -1) {
+                document.getElementById("firstNum").innerHTML = "-1";
+            } else {
+                let count = 0;
+                for (j = 0; j < arr.length; j++) {
+                    if (arr[j] === cha) {
+                        count++;
+                    }
+                    document.getElementById("firstNum").innerHTML = "" + count;
+                }
+            }
+        }
+    }
+</script>
+</html>

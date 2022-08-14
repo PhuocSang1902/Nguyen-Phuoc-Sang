@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<input type="text" id="input" placeholder="Hãy nhập ký tự cần kiểm tra." onchange="kiemTraSo()">
+</body>
+<script>
+   function kiemTraSo(x) {
+       x = document.getElementById("input").value;
+       if (isNaN(x)) {
+           return alert(false);
+       }else {
+           return alert(true);
+       }
+   }
+</script>
+</html>

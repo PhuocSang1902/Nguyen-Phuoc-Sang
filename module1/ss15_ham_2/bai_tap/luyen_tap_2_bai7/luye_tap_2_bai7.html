@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<input type="number" id="input" placeholder="Input the first number!">
+<input type="number" id="input1" placeholder="Input the second number!">
+<input type="button" onclick="check()" value="Check!">
+<p id="firstNum"></p>
+<p id="secondNum"></p>
+</body>
+<script>
+    function check(a, b) {
+        a = document.getElementById("input").value;
+        b = document.getElementById("input1").value;
+        let c = a;
+        a = b;
+        b = c;
+        document.getElementById("firstNum").innerHTML = a;
+        document.getElementById("secondNum").innerHTML = b;
+    }
+</script>
+</html>

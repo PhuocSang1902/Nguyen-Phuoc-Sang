@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<label>
+    <input id="input" type="text" placeholder="Hãy nhập số cần tính giai thừa">
+    <input type="button" value="Tính giai thừa" onclick="giaiThua()">
+</label>
+<p id="result"></p>
+</body>
+<script>
+   function giaiThua(x) {
+       x = parseFloat(document.getElementById("input").value);
+       let result = 1;
+       for (let i = 1; i <= x; i++) {
+           result *= i;
+       }
+       return document.getElementById("result").innerHTML = "Giai thừa của " + x + " là: " + result;
+   }
+</script>
+</html>

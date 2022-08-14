@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<input type="button" onclick="findMin()" value="Click me!">
+</body>
+<script>
+   function findMin(a,b,c){
+       a = parseFloat(prompt("Hay nhap so thu nhat:"));
+       b = parseFloat(prompt("Hay nhap so thu hai:"));
+       c = parseFloat(prompt("Hay nhap so thu ba:"));
+       if (a >= b && a >=c){
+           return alert("So lon nhat la: " + a);
+       }else if (b >=c){
+           return alert("So lon nhat la: " + b);
+       }else {
+           return alert("So lon nhat la: " + c);
+       }
+   }
+</script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập</title>
+</head>
+<body>
+<input type="text" id="input" placeholder="Input a number!">
+<input type="button" onclick="check()" value="Check!">
+</body>
+<script>
+   function check(a){
+       a = parseFloat(document.getElementById("input").value);
+       let checkNum = false;
+       if (a > 0) {
+           checkNum = true;
+       }
+       return alert(checkNum);
+   }
+</script>
+</html>
