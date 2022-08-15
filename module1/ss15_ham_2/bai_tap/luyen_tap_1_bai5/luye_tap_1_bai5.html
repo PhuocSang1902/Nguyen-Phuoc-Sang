@@ -12,24 +12,28 @@
 <!--Đừng quên xử lý trong trường hợp không tìm thấy ngôi sao nào. -->
 <!--Cho kết quả hiển thị trên màn hình.-->
 <body>
-<input type="button" onclick="starReference()" value="Click me">
+<input type="button" onclick="find()" value="Click me">
 </body>
 <script>
     let star = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
     let constellation = ["Ursa Minor", "Taurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
-    let theStar = prompt("Hãy nhập tên ngôi sao:");
 
-    function starReference() {
+    function find() {
+        let theStar = prompt("Hãy nhập tên ngôi sao:");
+        alert(starReference(theStar));
+    }
+
+    function starReference(st) {
         let count = 0;
         for (let i = 1; i < star.length; i++) {
-            if (star.indexOf(theStar) !== -1) {
-                count = star.indexOf(theStar);
+            if (star.indexOf(st) !== -1) {
+                count = star.indexOf(st);
             }
         }
         if (count === 0) {
-            alert("Không tìm thấy ngôi sao.");
+            return "Không tìm thấy ngôi sao.";
         } else {
-            alert("Ngôi sao " + star[count] + " nằm trong chòm sao " + constellation[count]);
+            return "Ngôi sao " + star[count] + " nằm trong chòm sao " + constellation[count];
         }
     }
 </script>

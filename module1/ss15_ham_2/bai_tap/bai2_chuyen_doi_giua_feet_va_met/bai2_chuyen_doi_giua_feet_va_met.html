@@ -6,23 +6,30 @@
 </head>
 <body>
 <label>Hãy nhập chiều dài cần chuyển đổi <input type="text" id="valueInput"></label><br>
-<label><input type="button" value="Meter to Feet" onclick="metFeet()"></label><br>
-<label><input type="button" value="Feet to Meter" onclick="feetMet()"></label><br>
+<label><input type="button" value="Meter to Feet" onclick="doitumet()"></label><br>
+<label><input type="button" value="Feet to Meter" onclick="doitufeet()"></label><br>
 <label>Kết quả là: <input type="text" id="valueResult"></label>
 </body>
 <script>
-    function feetMet(x) {
-        x = parseFloat(document.getElementById("valueInput").value);
+    function doitumet() {
+        let m = parseFloat(document.getElementById("valueInput").value);
+        document.getElementById("valueResult").value = metFeet(m);
+    }
+    function doitufeet() {
+        let m = parseFloat(document.getElementById("valueInput").value);
+        document.getElementById("valueResult").value = feetMet(m);
+    }
+    function metFeet(x) {
         let y;
         y = x * 0.305;
-        return document.getElementById("valueResult").value = y;
+        return y;
     }
 
-    function metFeet(a) {
+    function feetMet(a) {
         a = parseFloat(document.getElementById("valueInput").value);
         let b;
         b = a * 3.279;
-        return document.getElementById("valueResult").value = b;
+        return b;
     }
 </script>
 </html>

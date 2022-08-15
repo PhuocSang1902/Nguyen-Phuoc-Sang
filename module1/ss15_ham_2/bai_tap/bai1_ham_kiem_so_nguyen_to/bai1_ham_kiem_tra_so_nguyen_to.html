@@ -9,19 +9,12 @@
 </body>
 <script>
     function soNguyen(number) {
-        let yesNo = false;
-        let dem = 0;
         for (let i = 2; i < number; i++) {
             if (number % i === 0) {
-                dem += 1;
+               return false;
             }
         }
-        if (dem === 0) {
-            // return alert(number + " là số nguyên tố");
-            yesNo = true;}
-        // }else
-        //     return alert(number + " không là số nguyên tố");
-        return yesNo;
+        return true;
     }
 
     let find;
@@ -33,6 +26,5 @@
     } else {
         alert(find + " không phải là số nguyên tố.");
     }
-    // soNguyen(find);
 </script>
 </html>

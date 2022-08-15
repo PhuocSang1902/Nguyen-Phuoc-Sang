@@ -13,14 +13,17 @@
 <p id="secondNum"></p>
 </body>
 <script>
-    function check(a, b) {
-        a = document.getElementById("input").value;
-        b = document.getElementById("input1").value;
+    function check() {
+        let a = document.getElementById("input").value;
+        let b = document.getElementById("input1").value;
+        alert(hoanDoi(a, b))
+    }
+
+    function hoanDoi(a, b) {
         let c = a;
         a = b;
         b = c;
-        document.getElementById("firstNum").innerHTML = a;
-        document.getElementById("secondNum").innerHTML = b;
+        return "Số a là " + a + ". Số b là " + b;
     }
 </script>
 </html>

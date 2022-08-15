@@ -13,25 +13,32 @@
 </body>
 <script>
     function checkString() {
-        let text = prompt("Hay nhap 1 chuoi ky tu:");
-        let cha = prompt("Hay nhap 1 ky tu can kiem tra");
+        let num = prompt("Hay nhap số ký tự trong mảng:");
+        let text = [];
+        for (let i = 0; i < num; i++) {
+            let a = prompt("Hãy nhập vào ký tự trong mảng");
+            text.push(a);
+        }
+        let char = prompt("Hay nhap 1 ky tu can kiem tra");
+        document.getElementById("firstNum").innerHTML = check(text, char);
+    }
+    function check(text, char) {
         let arr = [];
         for (let i = 0; i < text.length; i++) {
             arr.push(text[i]);
         }
+        let count = 0
         for (let j = 0; j < arr.length; j++) {
-            if (arr.indexOf(cha) === -1) {
-                document.getElementById("firstNum").innerHTML = "-1";
-            } else {
-                let count = 0;
-                for (j = 0; j < arr.length; j++) {
-                    if (arr[j] === cha) {
-                        count++;
-                    }
-                    document.getElementById("firstNum").innerHTML = "" + count;
-                }
+            if (arr[j] === char) {
+                count++;
             }
         }
+        if (count === 0) {
+            return -1;
+        } else {
+            return count;
+        }
+
     }
 </script>
 </html>

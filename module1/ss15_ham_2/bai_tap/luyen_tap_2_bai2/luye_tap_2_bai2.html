@@ -8,27 +8,37 @@
 <body>
 <label>
     <input id="input" type="text" placeholder="Hãy nhập bán kính hình tròn">
-    <input type="button" value="Tính diện tích" onclick="dienTich()">
-    <input type="button" value="Tính chu vi" onclick="chuVi()">
-    <p id="result"></p>
-    <p id="result2"></p>
+    <input type="button" value="Tính diện tích" onclick="tinhDienTich()">
+    <input type="button" value="Tính chu vi" onclick="tinhChuVi()">
 </label>
+<p id="result"></p>
+<p id="result2"></p>
 </body>
 <script>
+    function tinhDienTich() {
+        let rInput;
+        rInput = parseFloat(document.getElementById("input").value);
+        document.getElementById("result").innerHTML = "Diện tích hình tròn bán kính " + rInput + " là " + dienTich(rInput);
+    }
+
+    function tinhChuVi() {
+        let rInput;
+        rInput = parseFloat(document.getElementById("input").value);
+        document.getElementById("result").innerHTML = "Chu vi hình tròn bán kính " + rInput + " là " + chuVi(rInput);
+    }
+
     function dienTich(r) {
         const pi = Math.PI;
-        r = parseFloat(document.getElementById("input").value);
         let s;
         s = pi * r * r;
-        return document.getElementById("result").innerHTML = "Diện tích hình tròn là: " + s.toFixed(2);
+        return s.toFixed(2);
     }
 
     function chuVi(r) {
         const pi = Math.PI;
-        r = parseFloat(document.getElementById("input").value);
         let p;
         p = pi * r * 2;
-        return document.getElementById("result2").innerHTML = "Chu vi hình tròn là: " + p.toFixed(2);
+        return p.toFixed(2);
     }
 </script>
 </html>

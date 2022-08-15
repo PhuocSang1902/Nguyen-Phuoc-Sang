@@ -11,13 +11,17 @@
 <input type="button" onclick="check()" value="Check!">
 </body>
 <script>
-   function check(a){
-       a = parseFloat(document.getElementById("input").value);
-       let checkNum = false;
-       if (a > 0) {
-           checkNum = true;
-       }
-       return alert(checkNum);
-   }
+    function kiemTraSoNguyenDuong(a) {
+        let checkNum = false;
+        if (a > 0) {
+            checkNum = true;
+        }
+        return checkNum;
+    }
+
+    function check() {
+        let x = document.getElementById("input").value;
+        alert(kiemTraSoNguyenDuong(x));
+    }
 </script>
 </html>

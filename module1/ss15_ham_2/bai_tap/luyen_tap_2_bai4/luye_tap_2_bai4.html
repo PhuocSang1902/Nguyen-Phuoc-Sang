@@ -6,16 +6,18 @@
 </head>
 <!--Viết hàm kiểm tra xem ký tự nhập vào có phải là ký tự số không. Nếu là ký tự số hàm trả về true, ngược lại trả về false.-->
 <body>
-<input type="text" id="input" placeholder="Hãy nhập ký tự cần kiểm tra." onchange="kiemTraSo()">
+<label>
+    <input type="text" id="input" placeholder="Hãy nhập ký tự cần kiểm tra." onchange="kiemTraSo()">
+</label>
 </body>
 <script>
-   function kiemTraSo(x) {
-       x = document.getElementById("input").value;
-       if (isNaN(x)) {
-           return alert(false);
-       }else {
-           return alert(true);
-       }
-   }
+    function kiemTraSo() {
+        let num = document.getElementById("input").value;
+        alert(coPhaiSo(num));
+    }
+
+    function coPhaiSo(x) {
+        return !isNaN(x);
+    }
 </script>
 </html>

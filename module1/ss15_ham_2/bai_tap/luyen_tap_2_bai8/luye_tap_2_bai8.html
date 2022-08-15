@@ -20,17 +20,22 @@
             val = parseInt(prompt("input value of array"));
             arr.push(val);
         }
-        document.getElementById("firstNum").innerHTML = arr.join(",");
+        document.getElementById("firstNum").innerHTML = arr.toString();
+        document.getElementById("secondNum").innerHTML = daoNguocMangSo(arr).toString();
+    }
+
+    function daoNguocMangSo(arr) {
         let first = 0;
         let last = arr.length - 1;
         while (first < last) {
             b = arr[first];
             arr[first] = arr[last];
             arr[last] = b;
-            first ++;
-            last --;
+            first++;
+            last--;
         }
-        document.getElementById("secondNum").innerHTML = arr.join(",");
+        return arr;
     }
+
 </script>
 </html>
