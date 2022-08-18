@@ -21,7 +21,8 @@
             arr.push(val);
         }
         document.getElementById("firstNum").innerHTML = arr.toString();
-        document.getElementById("secondNum").innerHTML = daoNguocMangSo(arr).toString();
+        daoNguocMangSo(arr)
+        document.getElementById("secondNum").innerHTML = arr.toString();
     }
 
     function daoNguocMangSo(arr) {
@@ -34,7 +35,6 @@
             first++;
             last--;
         }
-        return arr;
     }
 
 </script>

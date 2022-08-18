@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Điện thoại</title>
+</head>
+<body>
+
+</body>
+<script>
+    class DienThoaiDiDong {
+        constructor(trangThaiPin, tinNhanDangSoan, tinNhanDaGui, tinNhanDen) {
+            if (trangThaiPin >= 100 && trangThaiPin <= 0) {
+                this.trangThaiPin = trangThaiPin;
+            } else if (trangThaiPin > 100) {
+                this.trangThaiPin = "Pin lỗi";
+            } else {
+                this.trangThaiPin = "Hết pin";
+            }
+            this.tinNhanDangSoan = tinNhanDangSoan;
+            this.tinNhanDaGui = tinNhanDaGui;
+            this.tinNhanDen = tinNhanDen;
+            this.tinhTrang = tinhTrang;
+        }
+
+        batTat(tinhTrang) {
+            if (this.trangThaiPin <= 0) {
+                tinhTrang = false
+                return this.tinhTrang = tinhTrang;
+            } else {
+                tinhTrang = true
+                return this.tinhTrang = tinhTrang;
+            }
+        }
+
+        xacPin() {
+            this.trangThaiPin = 100;
+        }
+        soanTinNhan (tinNhanDangSoan){
+            if (this.tinhTrang) {
+                tinNhanDangSoan = prompt("Nội Dung:")
+                this.tinNhanDangSoan = tinNhanDangSoan;
+                this.trangThaiPin -= 1;
+            }
+        }
+        nhanTinNhan(){
+            if (this.tinhTrang){
+
+                this.trangThaiPin -= 1;
+            }
+
+        }
+        guiTinNhan(){
+            if (this.tinhtrang){
+
+                this.trangThaiPin -= 1;
+            }
+
+        }
+        xemHopThuDen(){
+            if (this.tinhTrang) {
+                return this.tinNhanDen
+                this.trangThaiPin -= 1;
+            }
+        }
+        xemHopThuDi(){
+            if (this.tinhTrang) {
+                return this.tinNhanDaGui
+                this.trangThaiPin -=1
+            }
+        }
+    }
+</script>
+</html>

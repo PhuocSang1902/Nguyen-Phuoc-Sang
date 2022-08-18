@@ -12,15 +12,15 @@
 <script>
     let arr = [1, 5, 9, 11, 25, 63, 4, 9, 0, 18];
     let arrMax = arr[0];
-    let poSiTion;
+    let position;
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] > arrMax) {
             arrMax = arr[i];
-            poSiTion = arr.indexOf(arrMax);
+            position = arr.indexOf(arrMax);
         }
     }
     document.getElementById("display").innerHTML = arr.join(",");
     document.getElementById("display1").innerHTML = "" +arrMax;
-    document.getElementById("display2").innerHTML = poSiTion;
+    document.getElementById("display2").innerHTML = position;
 </script>
 </html>

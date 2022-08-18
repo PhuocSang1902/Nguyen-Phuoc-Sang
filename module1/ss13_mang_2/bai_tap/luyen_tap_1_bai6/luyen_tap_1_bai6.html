@@ -12,12 +12,10 @@
 <script>
     let arr = [1, 5, -9, 11, -25, -63, 4, -9, 0, 18];
     let num = parseInt(prompt("Input a number:"));
-    for (let i = 0; i < arr.length; i++) {
-        if (arr.indexOf(num) !== -1) {
-            document.getElementById("display1").innerHTML = "Number is in the array";
-        }else {
-            document.getElementById("display1").innerHTML = "Number is not in the array";
-        }
+    if (arr.indexOf(num) !== -1) {
+        document.getElementById("display1").innerHTML = "Number is in the array";
+    } else {
+        document.getElementById("display1").innerHTML = "Number is not in the array";
     }
     document.getElementById("display").innerHTML = arr.join(",");
 </script>

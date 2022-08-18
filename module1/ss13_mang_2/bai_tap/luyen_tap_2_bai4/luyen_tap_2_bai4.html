@@ -13,7 +13,7 @@
    let count = 0;
    let arr = [];
    for (let i = 0; i < text.length; i++) {
-       if (text[i] !== ""){
+       if (!isNaN(text[i])){
            count += 1;
        }
    }

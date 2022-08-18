@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mô tả hình chữ nhật</title>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="300" style="border: 1px solid black;"></canvas>
+<p id="display"></p>
+<p id="display1"></p>
+<p id="display2"></p>
+<p id="display3"></p>
+</body>
+<script>
+    class HinhChuNhat {
+        constructor(dai, rong) {
+            this.dai = dai;
+            this.rong = rong;
+        }
+
+        tinhDienTich() {
+            return this.dai * this.rong;
+        }
+
+        tinhChuVi() {
+            return (this.dai + this.rong) * 2;
+        }
+
+        setDai(dai) {
+            return this.dai = dai;
+        }
+
+        setRong(rong) {
+            return this.rong = rong;
+        }
+
+        info() {
+            return "hinh chu nhat co chieu dai la " + this.dai + " chieu rong la " + this.rong;
+        }
+
+        paint() {
+            document.getElementById("myCanvas").getContext("2d").fillRect(50, 50, this.dai, this.rong);
+        }
+    }
+
+    let hinhChuNhat = new HinhChuNhat(200, 150);
+    document.getElementById("display").innerHTML = (hinhChuNhat.info() + "<br>");
+    hinhChuNhat.setDai(300);
+    hinhChuNhat.setRong(100);
+    document.getElementById("display1").innerHTML = (hinhChuNhat.info() + "<br>");
+    document.getElementById("display2").innerHTML = (hinhChuNhat.tinhChuVi() + "<br>");
+    document.getElementById("display3").innerHTML = (hinhChuNhat.tinhDienTich());
+    hinhChuNhat.paint();
+</script>
+</html>
