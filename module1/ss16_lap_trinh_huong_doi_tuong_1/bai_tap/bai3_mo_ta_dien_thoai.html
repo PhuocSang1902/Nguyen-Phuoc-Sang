@@ -8,67 +8,116 @@
 
 </body>
 <script>
-    class DienThoaiDiDong {
-        constructor(trangThaiPin, tinNhanDangSoan, tinNhanDaGui, tinNhanDen) {
-            if (trangThaiPin >= 100 && trangThaiPin <= 0) {
-                this.trangThaiPin = trangThaiPin;
-            } else if (trangThaiPin > 100) {
-                this.trangThaiPin = "Pin lỗi";
-            } else {
-                this.trangThaiPin = "Hết pin";
-            }
-            this.tinNhanDangSoan = tinNhanDangSoan;
-            this.tinNhanDaGui = tinNhanDaGui;
-            this.tinNhanDen = tinNhanDen;
-            this.tinhTrang = tinhTrang;
+    // class DienThoaiDiDong {
+    //     constructor(tenDienThoai, trangThaiPin, tinNhanDangSoan, tinNhanDaGui, tinNhanDen) {
+    //         if (trangThaiPin >= 100 && trangThaiPin <= 0) {
+    //             this.trangThaiPin = trangThaiPin;
+    //         } else if (trangThaiPin > 100) {
+    //             this.trangThaiPin = "Pin lỗi";
+    //         } else {
+    //             this.trangThaiPin = "Hết pin";
+    //         }
+    //         this.tenDienThoai = tenDienThoai;
+    //         this.tinNhanDangSoan = tinNhanDangSoan;
+    //         this.tinNhanDaGui = tinNhanDaGui;
+    //         this.tinNhanDen = tinNhanDen;
+    //         this.tinhTrang = tinhTrang;
+    //     }
+    //
+    //     batTat(tinhTrang) {
+    //         if (this.trangThaiPin <= 0) {
+    //             tinhTrang = false
+    //             return this.tinhTrang = tinhTrang;
+    //         } else {
+    //             tinhTrang = true
+    //             return this.tinhTrang = tinhTrang;
+    //         }
+    //     }
+    //
+    //     xacPin() {
+    //         this.trangThaiPin = 100;
+    //     }
+    //
+    //     soanTinNhan(tinNhanDangSoan) {
+    //         if (this.tinhTrang) {
+    //             tinNhanDangSoan = prompt("Nội Dung:")
+    //             this.tinNhanDangSoan = tinNhanDangSoan;
+    //             this.trangThaiPin -= 1;
+    //         }
+    //     }
+    //
+    //     nhanTinNhan() {
+    //         if (this.tinhTrang) {
+    //
+    //             this.trangThaiPin -= 1;
+    //         }
+    //
+    //     }
+    //
+    //     guiTinNhan(dienThoai) {
+    //         if (this.tinhTrang) {
+    //
+    //             this.trangThaiPin -= 1;
+    //         }
+    //
+    //     }
+    //
+    //     xemHopThuDen() {
+    //         if (this.tinhTrang) {
+    //             return this.tinNhanDen
+    //             this.trangThaiPin -= 1;
+    //         }
+    //     }
+    //
+    //     xemHopThuDi() {
+    //         if (this.tinhTrang) {
+    //             return this.tinNhanDaGui
+    //             this.trangThaiPin -= 1
+    //         }
+    //     }
+    // }
+    class DienThoai {
+        constructor(tenDienThoai) {
+            this.tenDienThoai = tenDienThoai;
+            this.tinNhan = "";
+            this.hopThuDen = [];
+            this.tinhTrangPin = 100;
+            this.tinhTrangMay = true
         }
 
-        batTat(tinhTrang) {
-            if (this.trangThaiPin <= 0) {
-                tinhTrang = false
-                return this.tinhTrang = tinhTrang;
-            } else {
-                tinhTrang = true
-                return this.tinhTrang = tinhTrang;
-            }
+        hienTenDienThoai() {
+            return this.tenDienThoai;
         }
 
-        xacPin() {
-            this.trangThaiPin = 100;
+        suaTenDienThoai(tenDienThoai) {
+            this.tenDienThoai = tenDienThoai;
         }
-        soanTinNhan (tinNhanDangSoan){
-            if (this.tinhTrang) {
-                tinNhanDangSoan = prompt("Nội Dung:")
-                this.tinNhanDangSoan = tinNhanDangSoan;
-                this.trangThaiPin -= 1;
-            }
+
+        vietTinNhan(tinNhan) {
+            this.tinNhan = tinNhan;
         }
-        nhanTinNhan(){
-            if (this.tinhTrang){
 
-                this.trangThaiPin -= 1;
-            }
-
+        docTinNhan() {
+            return this.tinNhan
         }
-        guiTinNhan(){
-            if (this.tinhtrang){
 
-                this.trangThaiPin -= 1;
-            }
+        guiTinNhan(tenDienThoai, tinNhan) {
+            tenDienThoai.vietTinNhan(tinNhan);
+            tenDienThoai.hopThuDen.push(tinNhan)
 
         }
-        xemHopThuDen(){
-            if (this.tinhTrang) {
-                return this.tinNhanDen
-                this.trangThaiPin -= 1;
-            }
-        }
-        xemHopThuDi(){
-            if (this.tinhTrang) {
-                return this.tinNhanDaGui
-                this.trangThaiPin -=1
-            }
+
+        kiemTraHopThuDen() {
+            return this.hopThuDen;
         }
     }
+
+    let
+        iphone = new DienThoai("Dien Thoai 1");
+    let
+        androi = new DienThoai("Dien Thoai 2");
+    iphone.guiTinNhan(androi,"tin nhan thu nghiem");
+    iphone.guiTinNhan(androi,"tin nhan thu nghiem 2");
+    document.write(androi.hopThuDen.join("<br>"));
 </script>
 </html>

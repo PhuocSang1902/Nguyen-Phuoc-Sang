@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CÔNG TẮC BÓNG ĐÈN</title>
+</head>
+<body>
+
+</body>
+<script>
+    class BongDenDien {
+        constructor(trangThai) {
+            this.trangThai = trangThai;
+        }
+
+        thongTinBongDen = function () {
+            return "Trang thai bong den: " + this.trangThai;
+        }
+    }
+
+    class CongTac {
+        constructor(trangThai, bongDen) {
+            this.trangThai = trangThai;
+            this.bongDen = bongDen;
+        }
+
+        congTacBat() {
+            this.trangThai = true;
+            this.bongDen.trangThai = true;
+        }
+
+        congTacTat() {
+            this.trangThai = false;
+            this.bongDen.trangThai = false;
+        }
+
+        thongTin() {
+            return "Trang thai cong tac là: " + this.trangThai;
+        }
+    }
+
+    let bongDen1 = new BongDenDien(false);
+    let congTac1 = new CongTac(false, bongDen1);
+    document.write(bongDen1.thongTinBongDen() + "<br>");
+    congTac1.congTacBat();
+    document.write(congTac1.thongTin() + "<br>");
+    document.write(bongDen1.thongTinBongDen() + "<br>");
+    congTac1.congTacTat();
+    document.write(congTac1.thongTin() + "<br>");
+    document.write(bongDen1.thongTinBongDen());
+
+</script>
+</html>
