@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài lyện tập 3</title>
+</head>
+<body>
+<!--3. Viết 1 hàm nhận vào 1 số nguyên duy nhất hàm trả về mảng số nguyên từ 0 đến số được truyền vào và phải thỏa mãn 2 yêu cầu: thứ nhất số đó thuộc dãy fibonacci , thứ 2 số đó phải là số nguyên tố. In ra mảng đấy.-->
+</body>
+<script>
+    function isPrime(value) {
+        if (value === 0 || value === 1) {
+            return false
+        }
+        for (let i = 2; i < value; i++) {
+            if (value % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function printNumber(num) {
+        let num1 = 0;
+        let num2 = 1;
+        let num3;
+        let array = [];
+        for (let i = 0; i <= num; i++) {
+            array.push(num1);
+            num3 = num1 + num2;
+            num1 = num2;
+            num2 = num3;
+        }
+        for (let i = 0; i < array.length; i++) {
+            if (!isPrime(array[i])) {
+                array.splice(i, 1);
+                // array.length -= 1;
+                i--;
+            }
+        }
+        return array;
+    }
+
+    document.write(printNumber(20).toString());
+</script>
+</html>
