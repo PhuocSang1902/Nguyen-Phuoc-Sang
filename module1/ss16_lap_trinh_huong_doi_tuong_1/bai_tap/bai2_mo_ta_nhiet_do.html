@@ -8,7 +8,7 @@
 
 </body>
 <script>
-    class temperature {
+    class Temperature {
         constructor(c) {
             if (c > -273) {
                 this.c = c;
@@ -26,7 +26,7 @@
         }
     }
 
-    let temperature1 = new temperature(25);
+    let temperature1 = new Temperature(25);
     document.write(temperature1.changeToF().toFixed(2) + "<br>");
     document.write(temperature1.changeToK().toFixed(2));
 </script>
