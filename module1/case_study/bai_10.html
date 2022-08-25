@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viết chương trình nhập vào bằng số và in ra bằng chữ</title>
+</head>
+<body>
+
+</body>
+<script>
+    let numString = prompt("Input a number");
+    let text = "";
+    while(isNaN(numString)) {
+            alert("khong phai so hay nhap lai")
+            numString = prompt("Hay nhap lai so")
+        }
+        for (let i = 0; i < numString.length; i++) {
+            switch (numString[i]) {
+                case "0":
+                    text += "khong ";
+                    break;
+                case "1":
+                    text += "mot ";
+                    break;
+                case "2":
+                    text += "hai ";
+                    break;
+                case "3":
+                    text += "ba ";
+                    break;
+                case "4":
+                    text += "bon ";
+                    break;
+                case "5":
+                    text += "nam ";
+                    break;
+                case "6":
+                    text += "sau ";
+                    break;
+                case "7":
+                    text += "bay ";
+                    break;
+                case "8":
+                    text += "tam ";
+                    break;
+                case "9":
+                    text += "chin ";
+                    break;
+            }
+        }
+    document.write(text);
+</script>
+</html>

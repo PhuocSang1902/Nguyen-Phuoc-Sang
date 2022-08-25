@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tìm mảng đã được sắp xếp chưa các phần tử trong B nhưng không có trong A</title>
+</head>
+<body>
+
+</body>
+<script>
+    let A = [1,2,3,4,7,8,9];
+    let B = [1,2,3,4,5,6,7,8,9];
+    let C = [];
+    let count = 0;
+    for (let i = 0; i < B.length; i++) {
+        for (let j = 0; j < A.length; j++) {
+            if(B[i] === A[j]){
+                count ++;
+                break
+            }
+        }
+        if (count === 0){
+            C.push(B[i]);
+        }
+        count = 0;
+    }
+    document.write(C.toString());
+</script>
+</html>

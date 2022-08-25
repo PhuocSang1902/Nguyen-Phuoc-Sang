@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ỨNG DỤNG QUẢN LÝ SẢN PHẨM</title>
+</head>
+<body>
+<label>
+    <input type="text" id="tenSanPham" placeholder="Nhập tên sản phẩm">
+    <input type="text" id="giaTienSanPham" placeholder="Nhập giá tiền sản phẩm">
+    <input type="button" onclick="themSP()" value="Thêm Sản Phẩm">
+</label>
+<p id="display"></p>
+</body>
+<script>
+    let danhSachSP = [["iphone", 8000000], ["nokia", 9000000], ["samsung", 7500000], ["sony", 8500000]];
+
+    function quanLySanPham(array) {
+        let text = "<table><tr><th>SAN PHAM</th><th>GIA TIEN</th></tr>";
+        for (let i = 0; i < array.length; i++) {
+            text += "<tr>";
+            for (let j = 0; j < array[i].length; j++) {
+                text += "<td>" + array[i][j] + "</td>";
+            }
+            text += "<td><button type='button' onclick='suaSP(" + i + ")'>sua</button></td>" +
+                "<td><button type='button' onclick='xoa(" + i + ")'>xoa</button></td></tr>";
+        }
+        text += "</table>";
+        document.getElementById("display").innerHTML = text;
+    }
+
+    function themSP() {
+        let sp = document.getElementById("tenSanPham").value;
+        let gia = document.getElementById("giaTienSanPham").value;
+        danhSachSP.push([sp, gia]);
+        quanLySanPham(danhSachSP);
+    }
+    function suaSP(index){
+        let sp = prompt("Nhập tên sản phẩm sau sửa");
+        let gia = prompt("Nhập giá sản phẩm sau sửa");
+        danhSachSP[index] = [sp, gia];
+        quanLySanPham(danhSachSP);
+    }
+    function xoa(index){
+        danhSachSP.splice(index,1);
+        quanLySanPham(danhSachSP);
+    }
+
+    quanLySanPham(danhSachSP);
+</script>
+</html>

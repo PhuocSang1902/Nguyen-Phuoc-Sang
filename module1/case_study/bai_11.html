@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+</head>
+<body>
+<h1>MENU GOI MON</h1>
+<label><input type="checkbox" id="1" value="Cafe" onclick="chon(1)">Cafe 10,000</label><br>
+<label><input type="checkbox" id="2" value="Cam vat" onclick="chon(2)">Cam vat 20,000</label><br>
+<label><input type="checkbox" id="3" value="Nuoc ep ca rot" onclick="chon(3)">Nuoc ep ca rot 20,000</label><br>
+<label><input type="checkbox" id="4" value="Nuoc ep ca chua" onclick="chon(4)">Nuoc ep ca chua 20,000</label><br>
+<label><input type="checkbox" id="5" value="Nuoc loc" onclick="chon(5)">Nuoc loc 5,000</label><br>
+<label><input type="checkbox" id="6" value="Nuoc dua" onclick="chon(6)">Nuoc dua 15,000</label><br>
+<label><input type="button" id="7" value="Thoat goi mon" onclick="chon(7)"></label><br>
+</body>
+<script>
+    let arr = [];
+    let text = "";
+    function chon(num) {
+        if (num <= 6){
+            let soLuong = prompt("Hay nhap so luong");
+            arr.push([num, soLuong]);
+        }else{
+            for (let i = 0; i < arr.length; i++) {
+                    switch (arr[i][0]) {
+                        case 1:
+                            text += "Cafe " + arr[i][1] + " ly " + arr[i][1]*10000 + " đồng.";
+                            break;
+                        case 2:
+                            text += "Cam vat " + arr[i][1] + " ly " + arr[i][1]*20000 + " đồng.";
+                            break;
+                        case 3:
+                            text += "Nuoc ep ca rot " + arr[i][1] + " ly " + arr[i][1]*20000 + " đồng.";
+                            break;
+                        case 4:
+                            text += "Nuoc ep ca chua " + arr[i][1] + " ly " + arr[i][1]*20000 + " đồng.";
+                            break;
+                        case 5:
+                            text += "Nuoc loc " + arr[i][1] + " ly " + arr[i][1]*5000 + " đồng.";
+                            break;
+                        case 6:
+                            text += "Nuoc dua " + arr[i][1] + " ly " + arr[i][1]*15000 + " đồng.";
+                            break;
+                    }
+                    text += "<br>";
+                }
+            document.write(text);
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đêm số ký tự trong sâu ký tự</title>
+</head>
+<body>
+
+</body>
+<script>
+    let str = prompt("Input a String");
+
+    function string(str) {
+        let count = 0;
+        let arrStr = [];
+        let arrDifferentSymbol=[];
+        for (let i = 0; i <str.length; i++) {
+            arrStr.push(str[i]);
+            arrDifferentSymbol.push(str[i]);
+        }
+        for (let i = 0; i < arrDifferentSymbol.length; i++) {
+            for (let j = 0; j < arrStr.length; j++) {
+                if (arrStr[j] === arrDifferentSymbol[i]) {
+                    count++;
+                }
+            }
+            if (count > 1) {
+                arrStr.splice(i, 1);
+                arrDifferentSymbol.splice(i, 1);
+                i--;
+            }
+            count = 0;
+        }
+        alert(arrStr);
+        alert("There is(are) " + arrStr.length + " symbol(s) different.That is(are): " + arrStr.toString());
+    }
+
+    string(str);
+</script>
+</html>

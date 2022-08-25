@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p id="display"></p>
+<button type="button" onclick="chon()">Chọn vé</button>
+
+</body>
+<script>
+    window.onload = function () {
+        let text = "";
+        let select;
+        do{
+            select = parseInt(prompt("Bạn có 2 lựa chọn:\n1. Bạn muốn tự chọn số.\n2. Hệ thống tự Random."));
+        }while (select !== 1 && select !== 2);
+        if (select === 1) {
+            for (let j = 0; j < 6; j++) {
+                text += "<select name='chon so thu " + j + "' id='" + j + "'>";
+                for (let i = 0; i < 100; i++) {
+                    text += "<option value='" + i + "'>" + i + "</option>";
+                }
+                text += "</select>";
+            }
+            document.getElementById("display").innerHTML = text;
+        } else if (select === 2) {
+            for (let i = 0; i < 6; i++) {
+                let num = Math.floor(Math.random() * 100);
+                text += "<input type='number' id='" + i + "' value='" + num + "' style='width: 30px'>"
+            }
+            document.getElementById("display").innerHTML = text;
+        }
+    }
+    let veSoHeThong = [];
+    for (let i = 0; i < 6; i++) {
+        veSoHeThong.push(Math.floor(Math.random() * 100))
+    }
+
+    function chon() {
+        let array = new Array(6);
+        for (let i = 0; i < 6; i++) {
+            i = i.toString();
+            array[i] = parseInt(document.getElementById(i).value);
+        }
+        alert(array.toString());
+    }
+
+    let count = 0;
+    for (let i = array.length - 1; i <= 0; i++) {
+        if (array[i] === veSoHeThong[i]) {
+            count++;
+        } else {
+            break;
+        }
+    }
+    if (count === 6) {
+        alert("Ban da trung giai nhat")
+    } else if (count === 5) {
+        alert("Ban da trung giai nhi")
+    } else if (count === 3) {
+        alert("Ban da trung giai khuyen khich")
+    } else {
+        alert("Chuc ban may man lan sau")
+    }
+</script>
+</html>
