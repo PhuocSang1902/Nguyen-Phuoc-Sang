@@ -46,24 +46,23 @@
             array[i] = parseInt(document.getElementById(i).value);
         }
         alert(array.toString());
-    }
-
-    let count = 0;
-    for (let i = array.length - 1; i <= 0; i++) {
-        if (array[i] === veSoHeThong[i]) {
-            count++;
-        } else {
-            break;
+        let count = 0;
+        for (let i = array.length - 1; i <= 0; i++) {
+            if (array[i] === veSoHeThong[i]) {
+                count++;
+            } else {
+                break;
+            }
         }
-    }
-    if (count === 6) {
-        alert("Ban da trung giai nhat")
-    } else if (count === 5) {
-        alert("Ban da trung giai nhi")
-    } else if (count === 3) {
-        alert("Ban da trung giai khuyen khich")
-    } else {
-        alert("Chuc ban may man lan sau")
+        if (count === 6) {
+            alert("Ban da trung giai nhat")
+        } else if (count === 5) {
+            alert("Ban da trung giai nhi")
+        } else if (count === 3) {
+            alert("Ban da trung giai khuyen khich")
+        } else {
+            alert("Chuc ban may man lan sau")
+        }
     }
 </script>
 </html>

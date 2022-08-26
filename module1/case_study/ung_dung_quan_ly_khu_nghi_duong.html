@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý khu nghỉ dưởng</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        border: black 1px solid;
+        width: 100%;
+    }
+
+    th, td {
+        border: black 1px solid;
+    }
+
+    td {
+        text-align: right;
+    }
+</style>
+<body>
+<label>
+    <button type="button" onclick="viewTable(arrayInfo)">Show the list customer</button>
+</label>
+<label>
+    <button type="button" onclick="viewTableEmployee(arrEmployee)">Show the list employee</button>
+</label>
+<label>
+    <button type="button" onclick="findCustomer()">Find customer information</button>
+</label>
+<label>
+    <button type="button" onclick="findEmployee()">Find customer information</button>
+</label>
+<label>
+    <button type="button" onclick="hideTable()">Hide the list</button>
+</label>
+<label>
+    <button type="button" onclick="showFormInputInfoCustomer()">Show the form to input customer information</button>
+</label>
+<label>
+    <button type="button" onclick="showFormInputInfoEmployee()">Show the form to input employee information</button>
+</label>
+<label>
+    <button type="button" onclick="hideForm()">Hide the form</button>
+</label>
+<p id="form"></p>
+<br>
+<br>
+<p id="display"></p>
+</body>
+<script>
+    class Customer {
+        constructor(name, id, dateOfBirth, email, addr, typeOfCustomer, percentOfSaleOff, dayOfRent, typeOfService, typeOfRoom,) {
+            this.name = name;
+            this.id = id;
+            this.dateOfBirth = dateOfBirth;
+            this.email = email;
+            this.addr = addr;
+            this.typeOfCustomer = typeOfCustomer;
+            this.percentOfSaleOff = percentOfSaleOff;
+            this.dayOfRent = dayOfRent;
+            this.typeOfService = typeOfService;
+            this.typeOfRoom = typeOfRoom;
+            this.price = 0;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getId() {
+            return this.id;
+        }
+
+        getDateOfBirth() {
+            return this.dateOfBirth;
+        }
+
+        getEmail() {
+            return this.email;
+        }
+
+        getAddr() {
+            return this.addr;
+        }
+
+        getTypeOfCustomer() {
+            return this.typeOfCustomer;
+        }
+
+        getPercentOfSaleOff() {
+            return this.percentOfSaleOff;
+        }
+
+        getDayOfRent() {
+            return this.dayOfRent;
+        }
+
+        getTypeOfService() {
+            return this.typeOfService;
+        }
+
+        getTypeOfRoom() {
+            return this.typeOfRoom;
+        }
+
+        getPrice() {
+            return this.price;
+        }
+
+        setName(name) {
+            this.name = name;
+        }
+
+        setId(id) {
+            this.id = id;
+        }
+
+        setDateOfBirth(dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+
+        setEmail(email) {
+            this.email = email;
+        }
+
+        setAddr(addr) {
+            this.addr = addr;
+        }
+
+        setTypeOfCustomer(typeOfCustomer) {
+            this.typeOfCustomer = typeOfCustomer;
+        }
+
+        setPercentOfSaleOff(percentOfSaleOff) {
+            this.percentOfSaleOff = percentOfSaleOff;
+        }
+
+        setDayOfRent(dayOfRent) {
+            this.dayOfRent = dayOfRent;
+        }
+
+        setTypeOfService(typeOfService) {
+            this.typeOfService = typeOfService;
+        }
+
+        setTypeOfRoom(typeOfRoom) {
+            this.typeOfRoom = typeOfRoom;
+        }
+
+        setPrice(price) {
+            this.price = price;
+        }
+
+        calculateThePrice() {
+            if (this.typeOfService === "Villa") {
+                this.price = 500 * this.dayOfRent * (1 - this.percentOfSaleOff / 100);
+            } else if (this.typeOfService === "House") {
+                this.price = 300 * this.dayOfRent * (1 - this.percentOfSaleOff / 100);
+            } else if (this.typeOfService === "Room") {
+                this.price = 100 * this.dayOfRent * (1 - this.percentOfSaleOff / 100);
+            }
+            if (this.addr === "Da Nang") {
+                this.price = this.price - 20;
+            } else if (this.addr === "Hue") {
+                this.price = this.price - 10;
+            }
+            if (this.addr === "Quang Nam") {
+                this.price = this.price - 5;
+            }
+            if (this.dayOfRent >= 7) {
+                this.price = this.price - 30;
+            } else if (this.dayOfRent >= 5) {
+                this.price = this.price - 20;
+            }
+            if (this.dayOfRent >= 2) {
+                this.price = this.price - 10;
+            }
+            switch (this.typeOfCustomer) {
+                case "Diamond":
+                    this.price = this.price - 15;
+                    break;
+                case "Platinum":
+                    this.price = this.price - 10;
+                    break;
+                case "Gold":
+                    this.price = this.price - 5;
+                    break;
+                case "Silver":
+                    this.price = this.price - 2;
+                    break;
+            }
+            let currentDay = new Date().getFullYear();
+            let birthday = new Date(this.dateOfBirth).getFullYear();
+            let age = currentDay - birthday;
+            if (age > 30 && this.addr === "Da Nang") {
+                this.price = this.price - 2;
+            } else if (age >= 20 && age <= 30 && this.addr === "Da Nang") {
+                this.price = this.price - 1;
+            }
+            return this.price;
+        }
+    }
+
+    let arrayInfo = [];
+    let customer1 = new Customer("Nguyen Van A", 123456789, "1997-05-12", "jfklajf@gmail.com", "Ha Noi", "Silver", 10, 5, "Villa", "Vip");
+    let customer2 = new Customer("Nguyen Van B", 412341235, "1990-10-01", "dfsadfsd@gmail.com", "Da Nang", "Gold", 15, 2, "House", "Business");
+    let customer3 = new Customer("Nguyen Van C", 758476547, "1989-02-29", "jgwrqwef@gmail.com", "Ho Chi Minh", "Platinum", 20, 7, "Room", "Vip");
+    arrayInfo.push(customer1);
+    arrayInfo.push(customer2);
+    arrayInfo.push(customer3);
+
+    class Employee {
+        constructor(name, id, email, position) {
+            this.name = name;
+            this.id = id;
+            this.email = email;
+            this.position = position;
+            this.salary = 0;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getID() {
+            return this.id;
+        }
+
+        getEmail() {
+            return this.email;
+        }
+
+        getPosition() {
+            return this.position;
+        }
+
+        CalculatorSalary() {
+            if (this.position === "Manager") {
+                this.salary = 500;
+            } else if (this.position === "Sale") {
+                this.salary = 300;
+            } else if (this.position === "Marketing") {
+                this.salary = 200;
+            }
+            return this.salary;
+        }
+    }
+
+    let arrEmployee = [];
+    let employee1 = new Employee("Banh Thi No", 123456789, "fdsaf@kjk.sas", "Manager");
+    let employee2 = new Employee("Ngo Thi Ngheo", 123456789, "fdsaf@kjk.sas", "Sale");
+    let employee3 = new Employee("Mai Van Kho", 123456789, "fdsaf@kjk.sas", "Marketing");
+    arrEmployee.push(employee1);
+    arrEmployee.push(employee2);
+    arrEmployee.push(employee3);
+
+    function viewTableEmployee(array) {
+        let text = "";
+        text += '<h1 style="text-align: center">EMPLOYEE INFORMATION MANAGEMENT TABLE </h1><br><table>\n' +
+            '    <tr>\n' +
+            '        <th>Full name</th>\n' +
+            '        <th>ID</th>\n' +
+            '        <th>Email</th>\n' +
+            '        <th>Position</th>\n' +
+            '        <th>Salary</th>\n' +
+            '        <th>Edit</th>\n' +
+            '        <th>Remove</th>\n' +
+            '    </tr>'
+        for (let i = 0; i < array.length; i++) {
+            text += '<tr>\n' +
+                '        <td style="text-align: left">' + array[i].getName() + '</td>\n' +
+                '        <td>' + array[i].getID() + '</td>\n' +
+                '        <td>' + array[i].getEmail() + '</td>\n' +
+                '        <td style="width: 80px; text-align: center">' + array[i].getPosition() + '</td>\n' +
+                '        <td style="width: 100px">' + array[i].CalculatorSalary() + '</td>\n' +
+                '        <td style="text-align: center; width: 80px"><button type="button" onclick="editEmploy(' + i + ')" value="Edit">Edit</button></td>\n' +
+                '        <td style="text-align: center; width: 80px"><button type="button" onclick="removeEmployee(' + i + ')" value="Remove">Remove</button></td>\n' +
+                '    </tr>'
+        }
+        text += '</table>';
+        document.getElementById("display").innerHTML = text;
+    }
+
+    function viewTable(arrayInfo) {
+        let text = "";
+        text += '<h1 style="text-align: center">CUSTOM INFORMATION MANAGEMENT TABLE </h1><br><table>\n' +
+            '    <tr>\n' +
+            '        <th>Full name</th>\n' +
+            '        <th>ID</th>\n' +
+            '        <th>Date of birth</th>\n' +
+            '        <th>Email</th>\n' +
+            '        <th>Address</th>\n' +
+            '        <th>Type of customer</th>\n' +
+            '        <th>Percent sale off</th>\n' +
+            '        <th>Days of rent</th>\n' +
+            '        <th>Type of service</th>\n' +
+            '        <th>Type of room</th>\n' +
+            '        <th>Price</th>\n' +
+            '        <th>Edit</th>\n' +
+            '        <th>Remove</th>\n' +
+            '    </tr>'
+        for (let i = 0; i < arrayInfo.length; i++) {
+            text += '<tr>\n' +
+                '        <td style="text-align: left">' + arrayInfo[i].getName() + '</td>\n' +
+                '        <td>' + arrayInfo[i].getId() + '</td>\n' +
+                '        <td>' + arrayInfo[i].getDateOfBirth() + '</td>\n' +
+                '        <td>' + arrayInfo[i].getEmail() + '</td>\n' +
+                '        <td>' + arrayInfo[i].getAddr() + '</td>\n' +
+                '        <td style="width: 80px; text-align: center">' + arrayInfo[i].getTypeOfCustomer() + '</td>\n' +
+                '        <td style="width: 80px; text-align: center">' + arrayInfo[i].getPercentOfSaleOff() + '</td>\n' +
+                '        <td style="width: 80px; text-align: center">' + arrayInfo[i].getDayOfRent() + '</td>\n' +
+                '        <td style="width: 80px; text-align: center">' + arrayInfo[i].getTypeOfService() + '</td>\n' +
+                '        <td style="width: 80px; text-align: center">' + arrayInfo[i].getTypeOfRoom() + '</td>\n' +
+                '        <td style="width: 100px">' + arrayInfo[i].calculateThePrice() + '</td>\n' +
+                '        <td style="text-align: center; width: 80px"><button type="button" onclick="edit(' + i + ')" value="Edit">Edit</button></td>\n' +
+                '        <td style="text-align: center; width: 80px"><button type="button" onclick="remove(' + i + ')" value="Remove">Remove</button></td>\n' +
+                '    </tr>'
+        }
+        text += '</table>';
+        document.getElementById("display").innerHTML = text;
+    }
+
+    function hideTable() {
+        document.getElementById("display").innerHTML = "";
+    }
+
+    function findCustomer(name) {
+        name = prompt("Input name customer");
+        let arrFind = [];
+        for (let i = 0; i < arrayInfo.length; i++) {
+            let count = 0;
+            if (name === arrayInfo[i].getName()) {
+                count++;
+                arrFind.push(arrayInfo[i]);
+            }
+        }
+        viewTable(arrFind)
+    }
+
+    function findEmployee(name) {
+        name = prompt("Input name employee");
+        let arrFind = [];
+        for (let i = 0; i < arrEmployee.length; i++) {
+            let count = 0;
+            if (name === arrEmployee[i].getName()) {
+                count++;
+                arrFind.push(arrEmployee[i]);
+            }
+        }
+        viewTableEmployee(arrFind)
+    }
+
+    function remove(num) {
+        arrayInfo.splice(num, 1);
+        viewTable(arrayInfo);
+    }
+
+    function removeEmployee(num) {
+        arrEmployee.splice(num, 1);
+        viewTableEmployee(arrEmployee);
+    }
+
+    function input() {
+        let name = document.getElementById("customerName").value;
+        let id = document.getElementById("id").value;
+        let dateOfBirth = document.getElementById("dateOfBirth").value;
+        let email = document.getElementById("email").value;
+        let addr = document.getElementById("address").value;
+        let typeOfCustomer = document.getElementById("typeOfCustomer").value;
+        let percentOfSaleOff = document.getElementById("saleOff").value;
+        let dayOfRent = document.getElementById("rentDay").value;
+        let typeOfService = document.getElementById("typeOfService").value;
+        let typeOfRoom = document.getElementById("typeOfRoom").value;
+        if (checkFormatEmail() && checkFormatID() && chetFormatNumber()) {
+            let newCustomer = new Customer(name, id, dateOfBirth, email, addr, typeOfCustomer, percentOfSaleOff, dayOfRent, typeOfService, typeOfRoom);
+            newCustomer.setName(repaidWrongName(newCustomer.getName()));
+            newCustomer.setAddr(repaidWrongAddr(newCustomer.getAddr()));
+            arrayInfo.push(newCustomer);
+            viewTable(arrayInfo);
+            document.getElementById("customerName").value = "";
+            document.getElementById("id").value = "";
+            document.getElementById("dateOfBirth").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("typeOfCustomer").value = "";
+            document.getElementById("saleOff").value = "";
+            document.getElementById("rentDay").value = "";
+            document.getElementById("typeOfService").value = "";
+            document.getElementById("typeOfRoom").value = "";
+            hideForm();
+        } else if (!chetFormatNumber()) {
+            alert("Input number in date of rent and percent sale off");
+        } else if (!checkFormatEmail()) {
+            alert("Input right email");
+        } else if (!checkFormatID()) {
+            alert("Input nine ID number");
+        }
+    }
+
+    function inputEmployee() {
+        let name = document.getElementById("employee").value;
+        let id = document.getElementById("idEmploy").value;
+        let email = document.getElementById("emailEployy").value;
+        let position = document.getElementById("position").value;
+        if (checkFormatEmailEmploy() && checkFormatIDEmploy()) {
+            let newEmployee = new Employee(name, id, email, position);
+            newEmployee.setName(repaidWrongName(newEmployee.getName()));
+            arrEmployee.push(newEmployee);
+            viewTableEmployee(arrEmployee);
+            document.getElementById("employee").value = "";
+            document.getElementById("idEmploy").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("position").value = "";
+            hideForm();
+        } else if (!checkFormatEmailEmploy()) {
+            alert("Input right email");
+        } else if (!checkFormatIDEmploy()) {
+            alert("Input nine ID number");
+        }
+    }
+
+    function edit(num) {
+        showFormInputInfoCustomer()
+        document.getElementById("customerName").value = arrayInfo[num].getName();
+        document.getElementById("id").value = arrayInfo[num].getId();
+        document.getElementById("dateOfBirth").value = arrayInfo[num].getDateOfBirth();
+        document.getElementById("email").value = arrayInfo[num].getEmail();
+        document.getElementById("address").value = arrayInfo[num].getAddr();
+        document.getElementById("typeOfCustomer").value = arrayInfo[num].getTypeOfCustomer();
+        document.getElementById("saleOff").value = arrayInfo[num].getPercentOfSaleOff();
+        document.getElementById("rentDay").value = arrayInfo[num].getDayOfRent();
+        document.getElementById("typeOfService").value = arrayInfo[num].getTypeOfService();
+        document.getElementById("typeOfRoom").value = arrayInfo[num].getTypeOfRoom();
+        remove(num);
+        viewTable(arrayInfo);
+    }
+
+    function editEmploy(num) {
+        showFormInputInfoEmployee()
+        document.getElementById("employee").value = arrEmployee[num].getName();
+        document.getElementById("idEmploy").value = arrEmployee[num].getId();
+        document.getElementById("emailEployy").value = arrEmployee[num].getDateOfBirth();
+        document.getElementById("position").value = arrEmployee[num].getEmail();
+        removeEmployee(num);
+        viewTableEmployee(arrEmployee);
+    }
+
+    function checkFormatID() {
+        let id = document.getElementById("id").value;
+        let myRegexp = new RegExp(/\d{9}/);
+        let check = true;
+        if (!myRegexp.test(id)) {
+            check = false;
+        }
+        return check;
+    }
+
+    function checkFormatIDEmploy() {
+        let id = document.getElementById("idEmploy").value;
+        let myRegexp = new RegExp(/\d{9}/);
+        let check = true;
+        if (!myRegexp.test(id)) {
+            check = false;
+        }
+        return check;
+    }
+
+    function checkFormatEmail() {
+        let email = document.getElementById("email").value;
+        let myRegexp = new RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/);
+        let check = true;
+        if (!myRegexp.test(email)) {
+            check = false;
+        }
+        return check;
+    }
+
+    function checkFormatEmailEmploy() {
+        let email = document.getElementById("emailEployy").value;
+        let myRegexp = new RegExp(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/);
+        let check = true;
+        if (!myRegexp.test(email)) {
+            check = false;
+        }
+        return check;
+    }
+
+    function chetFormatNumber() {
+        let num1 = document.getElementById("saleOff").value;
+        let myRegexp1 = new RegExp(/\d{0,2}/);
+        let check = true;
+        if (!myRegexp1.test(num1)) {
+            check = false;
+        }
+        let num2 = document.getElementById("rentDay").value;
+        let myRegexp2 = new RegExp(/\d{0,4}/);
+        if (!myRegexp2.test(num2)) {
+            check = false;
+        }
+        return check;
+    }
+
+    function repaidWrongName(name) {
+        name = name.toLowerCase();
+        let arrName = [];
+        let index = 0;
+        for (let i = 0; i < name.length; i++) {
+            arrName.push(name[i]);
+        }
+        for (let i = 0; i < arrName.length; i++) {
+            if (arrName[i] !== " ") {
+                index = i;
+                break;
+            }
+        }
+        if (index !== 0) {
+            arrName.splice(0, index);
+        }
+        for (let i = 0; i < arrName.length; i++) {
+            if (arrName[i] === " ") {
+                if (arrName[i + 1] === " ") {
+                    arrName.splice(i, 1);
+                    i--;
+                } else {
+                    arrName[i + 1] = arrName[i + 1].toUpperCase();
+                }
+
+            }
+        }
+        arrName[0] = arrName[0].toUpperCase();
+        return arrName.join("");
+    }
+
+    function repaidWrongAddr(name) {
+        name = name.toLowerCase();
+        let arrName = [];
+        let index = 0;
+        for (let i = 0; i < name.length; i++) {
+            arrName.push(name[i]);
+        }
+        for (let i = 0; i < arrName.length; i++) {
+            if (arrName[i] !== " ") {
+                index = i;
+                break;
+            }
+        }
+        for (let i = 0; i < arrName.length; i++) {
+            if (arrName[i] === " ") {
+                if (arrName[i + 1] === " ") {
+                    arrName.splice(i, 1);
+                    i--;
+                } else {
+                    arrName[i + 1] = arrName[i + 1].toUpperCase();
+                }
+
+            }
+        }
+        if (index !== 0) {
+            arrName.splice(0, index);
+        }
+        arrName[0] = arrName[0].toUpperCase();
+        return arrName.join("");
+    }
+
+    function showFormInputInfoCustomer() {
+        document.getElementById("form").innerHTML = '<label><input type="text" id="customerName" placeholder="Input customer name"></label>\n' +
+            '<label><input type="number" id="id" placeholder="Input customer ID"></label>\n' +
+            '<label><input type="date" id="dateOfBirth" placeholder="Input date of bỉth"></label>\n' +
+            '<label><input type="email" id="email" placeholder="Input email"></label>\n' +
+            '<label><input type="text" id="address" placeholder="Input address"></label>\n' +
+            '<label>\n' +
+            '    <select name="Type of customer" id="typeOfCustomer">\n' +
+            '        <option value="Diamond">Diamond</option>\n' +
+            '        <option value="Platinum">Platinum</option>\n' +
+            '        <option value="Gold">Gold</option>\n' +
+            '        <option value="Silver">Silver</option>\n' +
+            '        <option value="Member">Member</option>\n' +
+            '    </select>\n' +
+            '</label>\n' +
+            '<label><input type="number" id="saleOff" placeholder="Input percent sale off"></label>\n' +
+            '<label><input type="number" id="rentDay" placeholder="Input days of rent"></label>\n' +
+            '<label>\n' +
+            '    <select name="Type of service" id="typeOfService">\n' +
+            '        <option value="Villa">Villa</option>\n' +
+            '        <option value="House">House</option>\n' +
+            '        <option value="Room">Room</option>\n' +
+            '    </select>\n' +
+            '</label>\n' +
+            '<label>\n' +
+            '    <select name="Type of room" id="typeOfRoom">\n' +
+            '        <option value="Vip">Vip</option>\n' +
+            '        <option value="Business">Business</option>\n' +
+            '        <option value="Normal">Normal</option>\n' +
+            '    </select>\n' +
+            '</label>\n' +
+            '<label>\n' +
+            '    <input type="button" onclick="input()" value="Input">\n' +
+            '</label>';
+    }
+
+    function showFormInputInfoEmployee() {
+        document.getElementById("form").innerHTML = '<label><input type="text" id="employee" placeholder="Input employee name"></label>\n' +
+            '<label><input type="number" id="idEmploy" placeholder="Input employee ID"></label>\n' +
+            '<label><input type="email" id="emailEployy" placeholder="Input email"></label>\n' +
+            '<label>\n' +
+            '    <select name="Position" id="position">\n' +
+            '        <option value="Manager">Diamond</option>\n' +
+            '        <option value="Sale">Platinum</option>\n' +
+            '        <option value="Marketing">Gold</option>\n' +
+            '    </select>\n' +
+            '<label>\n' +
+            '<label>\n' +
+            '    <input type="button" onclick="inputEmployee()" value="Input">\n' +
+            '</label>';
+    }
+
+    function hideForm() {
+        document.getElementById("form").innerHTML = "";
+    }
+
+</script>
+</html>
