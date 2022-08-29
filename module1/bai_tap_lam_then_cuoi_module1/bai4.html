@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Tạo một lớp Máy tính  có:-->
+<!-- - Thuộc tính:-->
+<!--+ Mã máy (string)-->
+<!--+ Tên máy(string)-->
+<!--+ Tên Hãng sản xuất (string)-->
+<!--+ Giá bán (number).-->
+<!-- - Các phương thức getter và setter cho các thuộc tính-->
+<!-- - Phương thức  toString() : phương thức lấy các thông tin của đối tượng.-->
+<!-- -Yêu cầu: Viết chương trình quản lý  Máy tính    với các chức năng sau;-->
+<!--+ Thêm mới 1 máy tính-->
+<!--+ Hiển thị được danh sách máytinhs-->
+
+</body>
+<script>
+    class CalculationMachine{
+        constructor(id, name, producer, price) {
+            this.id = id;
+            this.name = name;
+            this.producer = producer;
+            this.price = price;
+        }
+        getId(){
+            return this.id;
+        }
+        getName(){
+            return this.name;
+        }
+        getProducer(){
+            return this.producer;
+        }
+        getPrice(){
+            return this.price;
+        }
+        setId(id){
+            this.id = id;
+        }
+        setName(name){
+            this.name = name;
+        }
+        setProduct(producer){
+            this.producer = producer;
+        }
+        setPrice(price){
+            this.price = price;
+        }
+        toString(){
+            alert("This machine has id " + this.getId() + ", name is " + this.getName() + ", product is " + this.getProducer() + ", and price is " + this.getPrice());
+        }
+    }
+    let dell = new CalculationMachine(123,"Vostrol", "Dell", 12000000 );
+    let asus = new CalculationMachine(123,"Gaming", "Asus", 15000000 );
+    let hp = new CalculationMachine(123,"Zbook", "HP", 20000000 );
+    let arr = [dell, asus, hp];
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].toString();
+    }
+</script>
+</html>

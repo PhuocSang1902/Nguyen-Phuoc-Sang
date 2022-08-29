@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Bài 1: Nhập từ bàn phím mảng số nguyên gồm n phần tử (n<=50). Hiển thị ra màn hình danh sách các phần tử của mảng, hiện thị giá trị trung bình của các phần tử chia hết cho 5 ở vị trí chia hết cho 3 ( phần tử có index chia hết cho 3)-->
+<!--Ví dụ: [15,2,3,5,10,15,7,8,9,10]. Kết quả sau khi thực hiện là: (15+5+10)/3) = 10-->
+<!--Thang điểm-->
+<!--Thêm được phần tử vào mảng	8-->
+<!--Hiển thị ra được mảng	5-->
+<!--Kiểm tra được số lượng phần tử nhập vào <=50	5-->
+<!--Hiển thị được : kết quả trung bình của các phần tử chia hết cho 5 ở vị trí chia hết cho 3	10-->
+<!--Viết mã sạch	2-->
+</body>
+<script>
+    let n;
+    do {
+        n = parseInt(prompt("Input n is array length"));
+    } while (n > 50 || n < 0);
+    let arr = [];
+    for (let i = 0; i < n; i++) {
+        let num = parseInt(prompt("Input an element of array"));
+        arr.push(num);
+    }
+    alert(arr);
+    let arr2 = [];
+    for (let i = 0; i < arr.length; i++){
+        if (i % 3 === 0){
+            if (arr[i] % 5 === 0){
+                arr2.push(arr[i]);
+            }
+        }
+    }
+    let total = 0;
+    for (let i = 0; i < arr2.length; i++) {
+        total += arr2[i];
+    }
+    alert(total/arr2.length);
+
+</script>
+</html>

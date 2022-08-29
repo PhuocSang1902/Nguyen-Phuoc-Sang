@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thao tac voi chuoi</title>
+</head>
+<body>
+<!--10.	Nhập một chuổi ký tự tuỳ ý, sau đó thực hiện công việc sau:-->
+<!--a. In mỗi từ trên mỗi dòng-->
+<!--b. Đếm số từ có trong chuổi đã cho.-->
+<!--b. Đưa ra bảng tần số xuất hiện của các từ-->
+
+</body>
+<script>
+    let text = "aBcdEfa";
+    text = text.split("");
+    let print= "";
+    let print2= "";
+    let element = [];
+    for (let i = 0; i < text.length; i++) {
+        print += text[i] + "<br>";
+        element.push(text[i]);
+    }
+    // document.write(print);
+    // document.write(text.length.toString());
+    let countChar = [];
+    for (let i = 0; i < text.length; i++) {
+        let count = 0;
+        for (let j = 0; j < text.length; j++) {
+            if (text[i] === text[j]){
+                count ++;
+            }
+        }
+        countChar.push(count);
+    }
+    for (let i = 0; i < text.length; i++) {
+        let check = 0;
+        for (let j = 0; j < element.length; j++) {
+            if (text[i] === element[j]){
+                check ++;
+            }
+        }
+        if (check >= 2){
+            element.splice(i,1);
+            countChar.splice(i,1);
+            i --;
+        }
+    }
+    for (let i = 0; i < element.length; i++) {
+        print2 += element[i] +" xuat hien " + countChar[i] + " lan.";
+    }
+    document.write(print2);
+</script>
+</html>
