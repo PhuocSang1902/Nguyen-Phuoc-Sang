@@ -19,45 +19,56 @@
 
 </body>
 <script>
-    class CalculationMachine{
+    class CalculationMachine {
         constructor(id, name, producer, price) {
             this.id = id;
             this.name = name;
             this.producer = producer;
             this.price = price;
         }
-        getId(){
+
+        getId() {
             return this.id;
         }
-        getName(){
+
+        getName() {
             return this.name;
         }
-        getProducer(){
+
+        getProducer() {
             return this.producer;
         }
-        getPrice(){
+
+        getPrice() {
             return this.price;
         }
-        setId(id){
+
+        setId(id) {
             this.id = id;
         }
-        setName(name){
+
+        setName(name) {
             this.name = name;
         }
-        setProduct(producer){
+
+        setProduct(producer) {
             this.producer = producer;
         }
-        setPrice(price){
+
+        setPrice(price) {
             this.price = price;
         }
-        toString(){
+
+        toString() {
             alert("This machine has id " + this.getId() + ", name is " + this.getName() + ", product is " + this.getProducer() + ", and price is " + this.getPrice());
         }
     }
-    let dell = new CalculationMachine(123,"Vostrol", "Dell", 12000000 );
-    let asus = new CalculationMachine(123,"Gaming", "Asus", 15000000 );
-    let hp = new CalculationMachine(123,"Zbook", "HP", 20000000 );
+
+    let dell = new CalculationMachine(123, "Vostrol", "Dell", 12000000);
+    let asus = new CalculationMachine(123, "Gaming", "Asus", 15000000);
+    let hp = new CalculationMachine(123, "Zbook", "HP", 20000000);
     let arr = [dell, asus, hp];
+
     for (let i = 0; i < arr.length; i++) {
         arr[i].toString();
     }

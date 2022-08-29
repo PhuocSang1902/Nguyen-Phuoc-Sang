@@ -411,12 +411,14 @@
             viewTableEmployee(arrEmployee);
             document.getElementById("employee").value = "";
             document.getElementById("idEmploy").value = "";
-            document.getElementById("email").value = "";
+            document.getElementById("emailEployy").value = "";
             document.getElementById("position").value = "";
             hideForm();
-        } else if (!checkFormatEmailEmploy()) {
+        }
+        else if (!checkFormatEmailEmploy()) {
             alert("Input right email");
-        } else if (!checkFormatIDEmploy()) {
+        }
+        else if (!checkFormatIDEmploy()) {
             alert("Input nine ID number");
         }
     }
@@ -440,9 +442,9 @@
     function editEmploy(num) {
         showFormInputInfoEmployee()
         document.getElementById("employee").value = arrEmployee[num].getName();
-        document.getElementById("idEmploy").value = arrEmployee[num].getId();
-        document.getElementById("emailEployy").value = arrEmployee[num].getDateOfBirth();
-        document.getElementById("position").value = arrEmployee[num].getEmail();
+        document.getElementById("idEmploy").value = arrEmployee[num].getID();
+        document.getElementById("emailEployy").value = arrEmployee[num].getEmail();
+        document.getElementById("position").value = arrEmployee[num].getPosition();
         removeEmployee(num);
         viewTableEmployee(arrEmployee);
     }
@@ -606,9 +608,9 @@
             '<label><input type="email" id="emailEployy" placeholder="Input email"></label>\n' +
             '<label>\n' +
             '    <select name="Position" id="position">\n' +
-            '        <option value="Manager">Diamond</option>\n' +
-            '        <option value="Sale">Platinum</option>\n' +
-            '        <option value="Marketing">Gold</option>\n' +
+            '        <option value="Manager">Manager</option>\n' +
+            '        <option value="Sale">Sale</option>\n' +
+            '        <option value="Marketing">Marketing</option>\n' +
             '    </select>\n' +
             '<label>\n' +
             '<label>\n' +
