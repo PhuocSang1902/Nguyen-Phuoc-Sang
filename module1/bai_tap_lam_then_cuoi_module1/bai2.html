@@ -15,16 +15,20 @@
 </body>
 <script>
     let text = prompt("Input a String");
-    text = text.split(" ");
-    let arrResult = [];
-    if(text.length <= 1){
-        alert("The string just has 1 or less word");
-    }else {
-        for (let i = 0; i < text.length; i++) {
-            arrResult.push(text[i][0].toUpperCase());
+
+    function abbraviate(text) {
+        text = text.split(" ");
+        let arrResult = [];
+        if (text.length <= 1) {
+            alert("The string just has 1 or less word");
+        } else {
+            for (let i = 0; i < text.length; i++) {
+                arrResult.push(text[i][0].toUpperCase());
+            }
+            alert(arrResult.join(""));
         }
-        alert(arrResult.join(""));
     }
+    abbraviate(text);
 
 </script>
 </html>
