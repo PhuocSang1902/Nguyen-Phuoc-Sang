@@ -2,7 +2,7 @@ package ss1_introduction_java.exercise;
 
 import java.util.Scanner;
 
-public class Lesson3AppToReadNumberIntoLetters {
+public class Lesson2AppToReadNumberIntoLetters {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the number you want to read: ");
