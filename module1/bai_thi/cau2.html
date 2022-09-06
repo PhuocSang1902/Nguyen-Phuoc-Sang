@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Int</title>
+</head>
+<body>
+
+</body>
+<script>
+    function indexOfMaxMin(array) {
+        let max = array[0];
+        let min = array[1];
+        let index_min;
+        let index_max;
+
+        for (let i = 0; i < array.length; i++) {
+
+            if (array[i] >= max) {
+                max = array[i];
+            }
+
+            if (array[i] <= min) {
+                min = array[i];
+            }
+        }
+        index_max = array.indexOf(max);
+        index_min = array.indexOf(min);
+        return [index_min, index_max];
+    }
+
+    let lengthArray;
+
+    do {
+        lengthArray = parseInt(prompt("Input length of array:"))
+    } while (lengthArray < 0 || isNaN(lengthArray));
+
+    let arrayOfInt = [];
+
+    for (let i = 0; i < lengthArray; i++) {
+        let element = parseInt(prompt("Input element of array:"));
+        arrayOfInt.push(element);
+    }
+
+    document.write(indexOfMaxMin(arrayOfInt).toString());
+
+</script>
+</html>
