@@ -7,13 +7,18 @@ public class Lesson7SumOfElementOnMainDiagonalOfMatrix {
         int[][] array = creat2DimensionalIntArray();
         System.out.println("Total of element on matrix main diagonal is: " + sumOnMainMatrixDiagonal(array));
     }
-    static int sumOnMainMatrixDiagonal (int[][] array){
+
+    static int sumOnMainMatrixDiagonal(int[][] array) {
         int total = 0;
         for (int i = 0; i < array.length; i++) {
             total += array[i][i];
         }
+        for (int i = 0; i < array.length; i++) {
+            total += array[i][array.length - 1 - i];
+        }
         return total;
     }
+
     static int[][] creat2DimensionalIntArray() {
         Scanner scanner = new Scanner(System.in);
         int size;
