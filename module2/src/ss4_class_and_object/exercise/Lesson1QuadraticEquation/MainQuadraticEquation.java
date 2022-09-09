@@ -19,4 +19,5 @@ public class MainQuadraticEquation {
             System.out.println("Quadratic equation is not have really root.");
         }
     }
+
 }
