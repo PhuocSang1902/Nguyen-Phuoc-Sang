@@ -13,9 +13,6 @@ public class Lesson7SumOfElementOnMainDiagonalOfMatrix {
         for (int i = 0; i < array.length; i++) {
             total += array[i][i];
         }
-        for (int i = 0; i < array.length; i++) {
-            total += array[i][array.length - 1 - i];
-        }
         return total;
     }
 
