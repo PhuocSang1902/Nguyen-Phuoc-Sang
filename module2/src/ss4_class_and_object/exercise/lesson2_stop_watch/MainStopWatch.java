@@ -1,4 +1,4 @@
-package ss4_class_and_object.exercise.Lesson2StopWatch;
+package ss4_class_and_object.exercise.lesson2_stop_watch;
 
 import java.util.Arrays;
 

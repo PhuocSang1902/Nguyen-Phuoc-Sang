@@ -1,6 +1,4 @@
-package ss4_class_and_object.exercise.Lesson1QuadraticEquation;
-
-import java.util.Scanner;
+package ss4_class_and_object.exercise.lesson1_quadratic_equation;
 
 public class QuadraticEquation {
     private double a;

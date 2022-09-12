@@ -1,4 +1,4 @@
-package ss4_class_and_object.exercise.Lesson1QuadraticEquation;
+package ss4_class_and_object.exercise.lesson1_quadratic_equation;
 
 import java.util.Scanner;
 
