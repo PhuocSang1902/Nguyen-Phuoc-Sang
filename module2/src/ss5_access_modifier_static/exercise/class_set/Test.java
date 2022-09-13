@@ -1,4 +1,4 @@
-package ss5_access_modifier_static_method_static_property.exercise.class_set;
+package ss5_access_modifier_static.exercise.class_set;
 
 public class Test {
     public static void main(String[] args) {

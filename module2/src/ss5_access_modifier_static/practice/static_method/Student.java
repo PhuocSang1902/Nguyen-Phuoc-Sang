@@ -1,4 +1,4 @@
-package ss5_access_modifier_static_method_static_property.practice.static_method;
+package ss5_access_modifier_static.practice.static_method;
 
 public class Student {
     private final int rollno;
