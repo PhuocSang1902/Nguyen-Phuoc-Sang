@@ -37,7 +37,7 @@ public class Rectangular extends Shape implements Resizeable {
         this.length = length;
     }
 
-    public double getAre() {
+    public double getArea() {
         return this.width * this.length;
     }
 

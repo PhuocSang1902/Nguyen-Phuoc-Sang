@@ -14,6 +14,8 @@ public abstract class Shape {
         this.filled = filled;
     }
 
+    public abstract double getArea();
+
     public String getColor() {
         return color;
     }

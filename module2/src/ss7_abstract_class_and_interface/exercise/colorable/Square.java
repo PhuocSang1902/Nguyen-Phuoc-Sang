@@ -19,12 +19,6 @@ public class Square extends Rectangular implements Colorable {
         setWidth(side);
     }
     @Override
-    public void setWidth(double side){
-        this.setSide(side);
-    }
-    public void setLength(double side){
-        this.setSide(side);
-    }
     public String toString() {
         return "A Square with side= " + getSide();
     }

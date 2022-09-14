@@ -49,19 +49,4 @@ public class Rectangular extends Shape {
     public String toString() {
         return "A Rectangular with width= " + this.width + ", length= " + this.length;
     }
-
-    public static class Main {
-        public static void main(String[] args) {
-            Shape[] shapes = new Shape[3];
-            shapes[0] = new Circle(4);
-            shapes[0] = new Square(4);
-            shapes[0] = new Rectangular(4,8);
-            for(Shape shape: shapes){
-                System.out.println(shape);
-                if(shape instanceof Square){
-                    System.out.println(shape);
-                }
-            }
-        }
-    }
 }
