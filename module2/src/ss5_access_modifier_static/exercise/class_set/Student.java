@@ -13,7 +13,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "StudentService{" +
                 "name='" + name + '\'' +
                 ", classes='" + classes + '\'' +
                 '}';
