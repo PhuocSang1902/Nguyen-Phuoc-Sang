@@ -28,7 +28,7 @@ public class MyList<E> {
     }
 
     public void add(E element, int index) {
-        if (index>this.element.length){
+        if (index>this.element.length || index < 0){
             System.out.println("Enter index again");
         }else if (this.element.length == size){
             this.ensureCapacity(5);
