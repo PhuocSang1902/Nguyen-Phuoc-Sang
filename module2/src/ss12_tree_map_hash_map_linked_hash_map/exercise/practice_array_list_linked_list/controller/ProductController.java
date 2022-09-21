@@ -29,6 +29,7 @@ public class ProductController {
             System.out.println("4.Display all product follow id");
             System.out.println("5.Short product follow price");
             System.out.println("6.Exit");
+            System.out.print("Enter your choice: ");
             int choice = Integer.parseInt(sc.nextLine());
 
             switch (choice) {
