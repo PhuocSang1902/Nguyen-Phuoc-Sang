@@ -28,7 +28,8 @@ public class ProductController {
             System.out.println("3.Remove product follow id");
             System.out.println("4.Display all product follow id");
             System.out.println("5.Short product follow price");
-            System.out.println("6.Exit");
+            System.out.println("6.Find product follow name");
+            System.out.println("7.Exit");
             System.out.print("Enter your choice: ");
             int choice = Integer.parseInt(sc.nextLine());
 
@@ -49,15 +50,14 @@ public class ProductController {
                     productService.sort();
                     break;
                 case 6:
+                    productService.find();
+                    break;
+                case 7:
                     System.exit(0);
 
             }
         }
     }
-
-
-
-
 
 
 }

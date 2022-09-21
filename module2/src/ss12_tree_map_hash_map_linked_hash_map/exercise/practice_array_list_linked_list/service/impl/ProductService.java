@@ -12,8 +12,21 @@ public class ProductService implements IProductService {
     public static ArrayList<Product> productArrayList = new ArrayList<>();
 
     public Product infoProduct() {
-        System.out.print("Enter id of product: ");
-        Integer id = Integer.parseInt(sc.nextLine());
+        Integer id;
+        while (true) {
+            boolean flagFind = true;
+            System.out.print("Enter id of product: ");
+            id = Integer.parseInt(sc.nextLine());
+            for (Product product : productArrayList) {
+                if (product.getId().equals(id)) {
+                    System.out.println("This id existed.Enter again.");
+                    flagFind = false;
+                }
+            }
+            if (flagFind){
+                break;
+            }
+        }
         System.out.print("Enter name of product: ");
         String name = sc.nextLine();
         System.out.print("Enter price of product: ");
@@ -90,5 +103,18 @@ public class ProductService implements IProductService {
                 return o2.getPrice() - o1.getPrice();
             }
         });
+    }
+
+    @Override
+    public void find() {
+        System.out.print("Enter product name:");
+        String productName = sc.nextLine();
+        for (Product product : productArrayList) {
+            if (product.getProductName().equals(productName)) {
+                System.out.println(product.toString());
+            } else {
+                System.out.println("There is not product.");
+            }
+        }
     }
 }

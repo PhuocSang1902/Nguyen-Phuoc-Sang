@@ -5,10 +5,10 @@ public class Product {
     private String productName;
     private Integer id;
 
-    public Product(){
+    public Product() {
     }
 
-    public Product(Integer id, String name, Integer price){
+    public Product(Integer id, String name, Integer price) {
         this.id = id;
         this.productName = name;
         this.price = price;
@@ -43,7 +43,7 @@ public class Product {
         return "Product{" +
                 ", id=" + id +
                 ", productName='" + productName + '\'' +
-                "price=" + price +
+                ", price=" + price +
                 '}';
     }
 
