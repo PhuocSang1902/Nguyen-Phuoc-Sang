@@ -4,12 +4,10 @@ import ss12_tree_map_hash_map_linked_hash_map.exercise.practice_array_list_linke
 import ss12_tree_map_hash_map_linked_hash_map.exercise.practice_array_list_linked_list.service.IProductService;
 import ss12_tree_map_hash_map_linked_hash_map.exercise.practice_array_list_linked_list.service.impl.ProductService;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductController {
     public static Scanner sc = new Scanner(System.in);
-    public static ArrayList<Product> productsList = new ArrayList<>();
     public static IProductService productService = new ProductService();
 
     public static void menu() {
