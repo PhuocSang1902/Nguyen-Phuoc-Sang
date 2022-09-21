@@ -11,11 +11,11 @@ public class ProductController {
     public static IProductService productService = new ProductService();
 
     public static void menu() {
-        Product product1 = new Product(1, "iphong 14 pro max", 30000);
-        Product product2 = new Product(2, "iphong 14 pro", 25000);
-        Product product3 = new Product(3, "iphong 14", 15000);
-        Product product4 = new Product(4, "iphong 14 plus", 20000);
-        Product product5 = new Product(5, "iphong 13", 10000);
+        Product product1 = new Product(1, "iphone 14 pro max", 30000);
+        Product product2 = new Product(2, "iphone 14 pro", 25000);
+        Product product3 = new Product(3, "iphone 14", 15000);
+        Product product4 = new Product(4, "iphone 14 plus", 20000);
+        Product product5 = new Product(5, "iphone 13", 10000);
         ProductService.productArrayList.add(product1);
         ProductService.productArrayList.add(product2);
         ProductService.productArrayList.add(product3);
