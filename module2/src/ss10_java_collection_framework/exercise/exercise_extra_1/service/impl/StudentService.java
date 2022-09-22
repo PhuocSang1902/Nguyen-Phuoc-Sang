@@ -92,4 +92,38 @@ public class StudentService implements IStudentService {
         studentsList.add(student4);
         studentsList.add(student5);
     }
+
+    @Override
+    public int find() {
+        System.out.println("Do you want to find student follow exact code or approximate name.");
+        System.out.println("1 exact code / 2 approximate name");
+        int choice = Integer.parseInt(scanner.nextLine());
+        switch (choice){
+            case 1:
+                System.out.print("Enter the code of student:");
+                String code = scanner.nextLine();
+                for (int i = 0; i < studentsList.size(); i++) {
+
+                    if (code.equals(studentsList.get(i).getCode())) {
+                        System.out.println(studentsList.get(i).toString());
+                        return i;
+                    }
+                }
+                break;
+            case 2:
+                System.out.print("Enter the approximate name of student:");
+                String name = scanner.nextLine();
+                for (int i = 0; i < studentsList.size(); i++) {
+
+                    if (studentsList.get(i).getName().contains(name)) {
+                        System.out.println(studentsList.get(i).toString());
+                        return i;
+                    }
+                }
+
+
+                break;
+        }
+        return -1;
+    }
 }

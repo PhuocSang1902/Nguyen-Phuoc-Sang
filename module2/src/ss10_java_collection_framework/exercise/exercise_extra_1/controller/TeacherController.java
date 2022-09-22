@@ -16,9 +16,10 @@ public class TeacherController {
             System.out.println("1.Add new teacher.");
             System.out.println("2.Remove teacher.");
             System.out.println("3.Show teacher list.");
-            System.out.println("4.Return main menu.");
-            System.out.println("5.Exit.");
-            System.out.println("6.Creat temp to test.");
+            System.out.println("4.Find teacher.");
+            System.out.println("5.Return main menu.");
+            System.out.println("6.Exit.");
+            System.out.println("7.Creat temp to test.");
             System.out.print("Choose the function: ");
 
             int choice = Integer.parseInt(scanner.nextLine());
@@ -34,11 +35,14 @@ public class TeacherController {
                     iTeacherService.showList();
                     break;
                 case 4:
-                    PersonController.menuPerson();
+                    iTeacherService.find();
                     break;
                 case 5:
-                    System.exit(0);
+                    PersonController.menuPerson();
+                    break;
                 case 6:
+                    System.exit(0);
+                case 7:
                     iTeacherService.creatTemp();
                     break;
             }

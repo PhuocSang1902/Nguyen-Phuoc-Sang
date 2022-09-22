@@ -8,4 +8,6 @@ public interface ITeacherService {
     void showList();
 
     void creatTemp();
+
+    int find();
 }

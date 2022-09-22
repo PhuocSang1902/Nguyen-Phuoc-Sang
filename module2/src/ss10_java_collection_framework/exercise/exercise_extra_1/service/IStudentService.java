@@ -9,4 +9,6 @@ public interface IStudentService {
     void showList();
 
     void creatTemp();
+
+    int find();
 }

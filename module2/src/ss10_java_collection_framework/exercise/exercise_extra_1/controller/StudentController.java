@@ -17,9 +17,10 @@ public class StudentController {
             System.out.println("1.Add new student.");
             System.out.println("2.Remove student.");
             System.out.println("3.Show student list.");
-            System.out.println("4.Return main menu.");
-            System.out.println("5.Exit.");
-            System.out.println("6.Creat temp to test.");
+            System.out.println("4.Find student.");
+            System.out.println("5.Return main menu.");
+            System.out.println("6.Exit.");
+            System.out.println("7.Creat temp to test.");
             System.out.print("Choose the function: ");
 
             int choice = Integer.parseInt(scanner.nextLine());
@@ -35,10 +36,16 @@ public class StudentController {
                     iStudentService.showList();
                     break;
                 case 4:
-                    PersonController.menuPerson();
+                    if (iStudentService.find() == -1){
+                        System.out.println("There is not student in the list.");
+                    }
+                    iStudentService.find();
+                    break;
                 case 5:
-                    System.exit(0);
+                    PersonController.menuPerson();
                 case 6:
+                    System.exit(0);
+                case 7:
                     iStudentService.creatTemp();
                     break;
             }
