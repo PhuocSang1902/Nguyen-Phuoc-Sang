@@ -1,15 +1,49 @@
 package ss13_searching_agorithm.exercise.set_up_binary_search_use_recursion;
 
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Main {
+    static void sort(int[] array) {
+        int min;
+        for (int i = 0; i < array.length - 1; i++) {
+            min = i;
+            for (int j = i + 1; j < array.length; j++)
+                if (array[j] < array[min])
+                    min = j;
+            int temp = array[min];
+            array[min] = array[i];
+            array[i] = temp;
+        }
+    }
+
     public static void main(String[] args) {
-        BinarySearch Search = new BinarySearch();
-        int[] list = {2, 4, 7, 10, 11, 45, 50, 59, 60, 66, 69, 70, 79};
-        System.out.println(Search.binarySearch(list, 2, 0, list.length));  /* 0 */
-        System.out.println(Search.binarySearch(list, 11, 0, list.length)); /* 4 */
-        System.out.println(Search.binarySearch(list, 79, 0, list.length)); /*12 */
-        System.out.println(Search.binarySearch(list, 1, 0, list.length));  /*-1 */
-        System.out.println(Search.binarySearch(list, 5, 0, list.length));  /*-1 */
-        System.out.println(Search.binarySearch(list, 80, 0, list.length)); /*-1 */
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter size of array: ");
+        int size = Integer.parseInt(scanner.nextLine());
+        int[] array = new int[size];
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("Enter element " + (i + 1));
+            array[i] = Integer.parseInt(scanner.nextLine());
+        }
+
+        sort(array);
+        System.out.println(Arrays.toString(array));
+
+        System.out.println("Enter key you want to find");
+        int key = Integer.parseInt(scanner.nextLine());
+
+        int value = BinarySearch.binarySearch(array, key, 0, array.length);
+
+        if (value != -1) {
+            System.out.println("Position of " + key + " is: " + value);
+        } else {
+            System.out.println("The key is not exist.");
+        }
+
+
     }
 }

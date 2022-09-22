@@ -11,7 +11,7 @@ public class Main {
         Student student3 = new Student(1,"Hung", 29);
 
 
-        List<Student> lists = new ArrayList<Student>();
+        ArrayList<Student> lists = new ArrayList<Student>();
         lists.add(student);
         lists.add(student1);
         lists.add(student2);
