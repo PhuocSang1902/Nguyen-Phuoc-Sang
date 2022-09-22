@@ -10,7 +10,7 @@ public class Main {
             System.out.print("Enter string: ");
             String string = sc.nextLine();
 
-            LinkedList<Character> max = new LinkedList<>();
+            LinkedList<Character> maxList = new LinkedList<>();
 
 
             for (int i = 0; i < string.length(); i++) {
@@ -24,13 +24,13 @@ public class Main {
                     }
                 }
 
-                if (list.size() > max.size()) {
-                    max.clear();
-                    max.addAll(list);
+                if (list.size() > maxList.size()) {
+                    maxList.clear();
+                    maxList.addAll(list);
                 }
             }
 
-            for(Character cha : max){
+            for(Character cha : maxList){
                 System.out.print(cha);
             }
     }

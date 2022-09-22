@@ -1,6 +1,6 @@
 package ss10_java_collection_framework.exercise.exercise_extra_2.model;
 
-public abstract class Transport {
+public class Transport {
     private String licensePlates;
     private String producer;
     private int yearOfProduce;
