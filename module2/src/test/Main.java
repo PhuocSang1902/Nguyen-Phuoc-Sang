@@ -1,25 +1,31 @@
 package test;
 
+import java.util.ArrayList;
+
 public class Main {
-    public static boolean solution(int[] arr) {
-        for (int i = 1; i < arr.length - 1; i++) {
-            int check = arr[i];
-            int total1 = 0;
-            int total2 = 0;
-            for (int j = 0; j < check; j++) {
-                total1 += arr[j];
-            }
-            for (int j = check + 1; j < arr.length; j++) {
-                total2 += arr[j];
-            }
-            if(total1 == total2){
-                return true;
+    public static void main(String[] args) {
+        String str = "NguyenPhuocSang";
+        System.out.println(solution(str));
+    }
+    static String solution(String str) {
+        ArrayList<Character> charList = new ArrayList<>();
+        for (int i = 0; i < str.length(); i++) {
+            charList.add(str.charAt(i));
+        }
+        for (int i = 0; i < charList.size(); i++) {
+            if(charList.get(i).equals(Character.toUpperCase(charList.get(i)))){
+                if(i != 0) {
+                    charList.set(i,Character.toLowerCase(charList.get(i)));
+                    charList.add(i, ' ');
+                }else {
+                    charList.set(i,Character.toLowerCase(charList.get(i)));
+                }
             }
         }
-        return false;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(solution(new int[]{1,2,3,3}));
+        String str2 = "";
+        for (Character character : charList) {
+            str2 += character;
+        }
+        return str2;
     }
 }
