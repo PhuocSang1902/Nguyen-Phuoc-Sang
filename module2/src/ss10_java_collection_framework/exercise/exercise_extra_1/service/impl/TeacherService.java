@@ -1,5 +1,6 @@
 package ss10_java_collection_framework.exercise.exercise_extra_1.service.impl;
 
+import ss10_java_collection_framework.exercise.exercise_extra_1.model.Student;
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Teacher;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.ITeacherService;
 
@@ -8,7 +9,7 @@ import java.util.Scanner;
 
 public class TeacherService implements ITeacherService {
     public static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<Teacher> TeachersList = new ArrayList<>();
+    public static ArrayList<Teacher> teachersList = new ArrayList<>();
 
     public Teacher enterInfoTeacher() {
         System.out.print("Enter code of teacher: ");
@@ -42,7 +43,7 @@ public class TeacherService implements ITeacherService {
     @Override
     public void add() {
         Teacher teacher = this.enterInfoTeacher();
-        TeachersList.add(teacher);
+        teachersList.add(teacher);
         System.out.println("Successfully add new.");
     }
 
@@ -51,12 +52,12 @@ public class TeacherService implements ITeacherService {
         System.out.print("Enter the code of teacher that you want to remove: ");
         String code = scanner.nextLine();
         boolean flagDelete = false;
-        for (int i = 0; i < TeachersList.size(); i++) {
-            if (TeachersList.get(i).getCode().equals(code)){
+        for (int i = 0; i < teachersList.size(); i++) {
+            if (teachersList.get(i).getCode().equals(code)){
                 System.out.println("Are you certain to remove this student? Enter y: yes, n: no: ");
                 String choice = scanner.nextLine();
                 if (choice.equals("y")){
-                    TeachersList.remove(i);
+                    teachersList.remove(i);
                     System.out.println("Successfully remove.");
                 }
                 flagDelete = true;
@@ -70,7 +71,7 @@ public class TeacherService implements ITeacherService {
 
     @Override
     public void showList() {
-        for(Teacher teacher : TeachersList){
+        for(Teacher teacher : teachersList){
             System.out.println(teacher.toString());
         }
     }
@@ -85,14 +86,14 @@ public class TeacherService implements ITeacherService {
         Teacher teacher6 = new Teacher("a06", "Tuan", true, "Literature");
         Teacher teacher7 = new Teacher("a07", "Huong", false, "Biology");
         Teacher teacher8 = new Teacher("a08", "Thy", false, "Physical Education");
-        TeachersList.add(teacher1);
-        TeachersList.add(teacher2);
-        TeachersList.add(teacher3);
-        TeachersList.add(teacher4);
-        TeachersList.add(teacher5);
-        TeachersList.add(teacher6);
-        TeachersList.add(teacher7);
-        TeachersList.add(teacher8);
+        teachersList.add(teacher1);
+        teachersList.add(teacher2);
+        teachersList.add(teacher3);
+        teachersList.add(teacher4);
+        teachersList.add(teacher5);
+        teachersList.add(teacher6);
+        teachersList.add(teacher7);
+        teachersList.add(teacher8);
     }
 
     @Override
@@ -104,10 +105,10 @@ public class TeacherService implements ITeacherService {
             case 1:
                 System.out.print("Enter the code of student:");
                 String code = scanner.nextLine();
-                for (int i = 0; i < TeachersList.size(); i++) {
+                for (int i = 0; i < teachersList.size(); i++) {
 
-                    if (code.equals(TeachersList.get(i).getCode())) {
-                        System.out.println(TeachersList.get(i).toString());
+                    if (code.equals(teachersList.get(i).getCode())) {
+                        System.out.println(teachersList.get(i).toString());
                         return i;
                     }
                 }
@@ -115,10 +116,10 @@ public class TeacherService implements ITeacherService {
             case 2:
                 System.out.print("Enter the approximate name of student:");
                 String name = scanner.nextLine();
-                for (int i = 0; i < TeachersList.size(); i++) {
+                for (int i = 0; i < teachersList.size(); i++) {
 
-                    if (TeachersList.get(i).getName().contains(name)) {
-                        System.out.println(TeachersList.get(i).toString());
+                    if (teachersList.get(i).getName().contains(name)) {
+                        System.out.println(teachersList.get(i).toString());
                         return i;
                     }
                 }
@@ -127,5 +128,25 @@ public class TeacherService implements ITeacherService {
                 break;
         }
         return -1;
+    }
+
+    @Override
+    public void sort() {
+        for (int i = 0; i < teachersList.size(); i++) {
+
+            for (int j = 0; j < teachersList.size() - i - 1; j++) {
+
+                Teacher teacher1 = teachersList.get(j);
+                Teacher teacher2 = teachersList.get(j + 1);
+
+                int compare = teacher1.compareTo(teacher2);
+
+                if (compare > 0) {
+                    Teacher temp = teachersList.get(j);
+                    teachersList.set(j, teachersList.get(j + 1));
+                    teachersList.set(j + 1, temp);
+                }
+            }
+        }
     }
 }

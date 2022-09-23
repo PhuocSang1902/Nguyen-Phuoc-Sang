@@ -11,4 +11,6 @@ public interface IStudentService {
     void creatTemp();
 
     int find();
+
+    void sort();
 }

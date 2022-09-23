@@ -18,17 +18,17 @@ public class StudentService implements IStudentService {
         String name = scanner.nextLine();
         System.out.print("Enter gender of student: ");
         Boolean gender;
-        while (true){
+        while (true) {
             String tempGender = scanner.nextLine();
-            if (tempGender.equals("male")){
+            if (tempGender.equals("male")) {
                 gender = true;
                 break;
             }
-            if (tempGender.equals("female")){
+            if (tempGender.equals("female")) {
                 gender = false;
                 break;
             }
-            if (tempGender.equals("other")){
+            if (tempGender.equals("other")) {
                 gender = null;
                 break;
             }
@@ -55,10 +55,10 @@ public class StudentService implements IStudentService {
         String code = scanner.nextLine();
         boolean flagDelete = false;
         for (int i = 0; i < studentsList.size(); i++) {
-            if (studentsList.get(i).getCode().equals(code)){
+            if (studentsList.get(i).getCode().equals(code)) {
                 System.out.print("Are you certain to remove this student? Enter y: yes, n: no: ");
                 String choice = scanner.nextLine();
-                if (choice.equals("y")){
+                if (choice.equals("y")) {
                     studentsList.remove(i);
                     System.out.println("Successfully remove.");
                 }
@@ -66,7 +66,7 @@ public class StudentService implements IStudentService {
                 break;
             }
         }
-        if(!flagDelete){
+        if (!flagDelete) {
             System.out.println("The student you want to remove does not exist");
         }
 
@@ -74,18 +74,18 @@ public class StudentService implements IStudentService {
 
     @Override
     public void showList() {
-        for(Student student : studentsList){
+        for (Student student : studentsList) {
             System.out.println(student.toString());
         }
     }
 
     @Override
     public void creatTemp() {
-        Student student1 = new Student("a01", "Hoang", true, "9a", 5);
+        Student student1 = new Student("a01", "Hoa", true, "9a", 5);
         Student student2 = new Student("a02", "Thang", true, "9a", 2);
         Student student3 = new Student("a03", "Hoa", false, "9a", 6.5);
-        Student student4 = new Student("a04", "Thao", false, "9a", 8);
-        Student student5 = new Student("a05", "Hung", true, "9a", 10);
+        Student student4 = new Student("a04", "Bao", false, "9a", 8);
+        Student student5 = new Student("a05", "Anh", true, "9a", 10);
         studentsList.add(student1);
         studentsList.add(student2);
         studentsList.add(student3);
@@ -98,7 +98,7 @@ public class StudentService implements IStudentService {
         System.out.println("Do you want to find student follow exact code or approximate name.");
         System.out.println("1 exact code / 2 approximate name");
         int choice = Integer.parseInt(scanner.nextLine());
-        switch (choice){
+        switch (choice) {
             case 1:
                 System.out.print("Enter the code of student:");
                 String code = scanner.nextLine();
@@ -126,4 +126,24 @@ public class StudentService implements IStudentService {
         }
         return -1;
     }
+
+    @Override
+    public void sort() {
+        for (int i = 0; i < studentsList.size(); i++) {
+            for (int j = 0; j < studentsList.size() - i - 1; j++) {
+
+                Student student1 = studentsList.get(j);
+                Student student2 = studentsList.get(j + 1);
+
+                int compare = student1.compareTo(student2);
+
+                if (compare > 0) {
+                    Student temp = studentsList.get(j);
+                    studentsList.set(j, studentsList.get(j + 1));
+                    studentsList.set(j + 1, temp);
+                }
+            }
+        }
+    }
+
 }

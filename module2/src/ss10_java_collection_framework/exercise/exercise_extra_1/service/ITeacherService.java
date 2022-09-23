@@ -10,4 +10,6 @@ public interface ITeacherService {
     void creatTemp();
 
     int find();
+
+    void sort();
 }

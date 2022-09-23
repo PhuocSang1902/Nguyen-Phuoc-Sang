@@ -17,9 +17,10 @@ public class TeacherController {
             System.out.println("2.Remove teacher.");
             System.out.println("3.Show teacher list.");
             System.out.println("4.Find teacher.");
-            System.out.println("5.Return main menu.");
-            System.out.println("6.Exit.");
-            System.out.println("7.Creat temp to test.");
+            System.out.println("5.Sort teachers list.");
+            System.out.println("6.Return main menu.");
+            System.out.println("7.Exit.");
+            System.out.println("8.Creat temp to test.");
             System.out.print("Choose the function: ");
 
             int choice = Integer.parseInt(scanner.nextLine());
@@ -27,23 +28,33 @@ public class TeacherController {
             switch (choice){
                 case 1:
                     iTeacherService.add();
+                    System.out.println();
                     break;
                 case 2:
                     iTeacherService.remove();
+                    System.out.println();
                     break;
                 case 3:
                     iTeacherService.showList();
+                    System.out.println();
                     break;
                 case 4:
                     iTeacherService.find();
+                    System.out.println();
                     break;
                 case 5:
-                    PersonController.menuPerson();
+                    iTeacherService.sort();
+                    System.out.println();
                     break;
                 case 6:
-                    System.exit(0);
+                    PersonController.menuPerson();
+                    System.out.println();
+                    break;
                 case 7:
+                    System.exit(0);
+                case 8:
                     iTeacherService.creatTemp();
+                    System.out.println();
                     break;
             }
         }

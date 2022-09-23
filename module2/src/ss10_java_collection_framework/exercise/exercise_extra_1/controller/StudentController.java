@@ -18,9 +18,10 @@ public class StudentController {
             System.out.println("2.Remove student.");
             System.out.println("3.Show student list.");
             System.out.println("4.Find student.");
-            System.out.println("5.Return main menu.");
-            System.out.println("6.Exit.");
-            System.out.println("7.Creat temp to test.");
+            System.out.println("5.Sort students list.");
+            System.out.println("6.Return main menu.");
+            System.out.println("7.Exit.");
+            System.out.println("8.Creat temp to test.");
             System.out.print("Choose the function: ");
 
             int choice = Integer.parseInt(scanner.nextLine());
@@ -28,25 +29,35 @@ public class StudentController {
             switch (choice){
                 case 1:
                     iStudentService.add();
+                    System.out.println();
                     break;
                 case 2:
                     iStudentService.remove();
+                    System.out.println();
                     break;
                 case 3:
                     iStudentService.showList();
+                    System.out.println();
                     break;
                 case 4:
                     if (iStudentService.find() == -1){
                         System.out.println("There is not student in the list.");
                     }
                     iStudentService.find();
+                    System.out.println();
                     break;
                 case 5:
-                    PersonController.menuPerson();
+                    iStudentService.sort();
+                    System.out.println();
+                    break;
                 case 6:
-                    System.exit(0);
+                    System.out.println();
+                    PersonController.menuPerson();
                 case 7:
+                    System.exit(0);
+                case 8:
                     iStudentService.creatTemp();
+                    System.out.println();
                     break;
             }
         }

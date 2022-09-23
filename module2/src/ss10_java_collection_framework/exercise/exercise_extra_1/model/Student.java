@@ -1,6 +1,6 @@
 package ss10_java_collection_framework.exercise.exercise_extra_1.model;
 
-public class Student extends Person {
+public class Student extends Person implements Comparable<Student> {
     private String nameClass;
     private double point;
 
@@ -37,5 +37,16 @@ public class Student extends Person {
     @Override
     public String toString() {
         return super.toString() + ", name class is " + this.nameClass + ", point is " + this.point;
+    }
+
+
+    @Override
+    public int compareTo(Student o) {
+        if (this.getName().compareTo(o.getName()) != 0) {
+            return this.getName().compareTo(o.getName());
+        }
+
+            return this.getCode().compareTo(o.getCode());
+
     }
 }
