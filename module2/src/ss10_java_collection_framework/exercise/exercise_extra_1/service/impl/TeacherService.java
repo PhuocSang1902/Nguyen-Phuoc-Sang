@@ -3,6 +3,8 @@ package ss10_java_collection_framework.exercise.exercise_extra_1.service.impl;
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Student;
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Teacher;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.ITeacherService;
+import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
+import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFormatException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,8 +16,17 @@ public class TeacherService implements ITeacherService {
     public Teacher enterInfoTeacher() {
         System.out.print("Enter code of teacher: ");
         String code = scanner.nextLine();
-        System.out.print("Enter name of teacher: ");
-        String name = scanner.nextLine();
+        String name;
+        while (true){
+            try{
+                System.out.print("Enter name of teacher: ");
+                name = scanner.nextLine();
+                Check.checkName(name);
+                break;
+            }catch (IncorrectFormatException e){
+                System.out.println("Enter again!");
+            }
+        }
         System.out.print("Enter gender of teacher: ");
         String tempGender;
         Boolean gender;
@@ -35,8 +46,18 @@ public class TeacherService implements ITeacherService {
             }
             System.out.println("Gender is male, female or other ");
         }
-        System.out.print("Enter speciality: ");
-        String speciality = scanner.nextLine();
+        String speciality;
+        while (true){
+            try{
+                System.out.print("Enter speciality: ");
+                speciality = scanner.nextLine();
+                Check.checkName(speciality);
+                break;
+            }catch (IncorrectFormatException e){
+                System.out.println("Enter again!");
+            }
+        }
+
         return new Teacher(code, name, gender, speciality);
     }
 

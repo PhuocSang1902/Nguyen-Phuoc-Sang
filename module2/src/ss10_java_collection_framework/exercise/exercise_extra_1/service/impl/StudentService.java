@@ -2,6 +2,8 @@ package ss10_java_collection_framework.exercise.exercise_extra_1.service.impl;
 
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Student;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.IStudentService;
+import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
+import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFormatException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,8 +16,17 @@ public class StudentService implements IStudentService {
     public Student enterInfoStudent() {
         System.out.print("Enter code of student: ");
         String code = scanner.nextLine();
-        System.out.print("Enter name of student: ");
-        String name = scanner.nextLine();
+        String name;
+        while (true){
+            try{
+                System.out.print("Enter name of student: ");
+                name = scanner.nextLine();
+                Check.checkName(name);
+                break;
+            }catch (IncorrectFormatException e){
+                System.out.println("Enter again!");
+            }
+        }
         System.out.print("Enter gender of student: ");
         Boolean gender;
         while (true) {
@@ -36,8 +47,19 @@ public class StudentService implements IStudentService {
         }
         System.out.print("Enter class of student:");
         String nameClass = scanner.nextLine();
-        System.out.println("Enter point of student: ");
-        double point = Double.parseDouble(scanner.nextLine());
+        double point;
+        while (true){
+           try{
+               System.out.println("Enter point of student: ");
+               point = Double.parseDouble(scanner.nextLine());
+               Check.checkPoint(point);
+               break;
+           }catch (NumberFormatException e){
+               System.out.println("Enter again!");
+           }catch (IncorrectFormatException e){
+               System.out.println("Point is greater than 0 or less than 10!");
+           }
+        }
 
         return new Student(code, name, gender, nameClass, point);
     }
@@ -81,11 +103,11 @@ public class StudentService implements IStudentService {
 
     @Override
     public void creatTemp() {
-        Student student1 = new Student("a01", "Hoa", true, "9a", 5);
-        Student student2 = new Student("a02", "Thang", true, "9a", 2);
-        Student student3 = new Student("a03", "Hoa", false, "9a", 6.5);
-        Student student4 = new Student("a04", "Bao", false, "9a", 8);
-        Student student5 = new Student("a05", "Anh", true, "9a", 10);
+        Student student1 = new Student("01", "Hoa", true, "9a", 5);
+        Student student2 = new Student("02", "Thang", true, "9a", 2);
+        Student student3 = new Student("03", "Hoa", false, "9a", 6.5);
+        Student student4 = new Student("04", "Bao", false, "9a", 8);
+        Student student5 = new Student("05", "Anh", true, "9a", 10);
         studentsList.add(student1);
         studentsList.add(student2);
         studentsList.add(student3);
