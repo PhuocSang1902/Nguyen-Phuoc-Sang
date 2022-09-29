@@ -28,6 +28,10 @@ public class Teacher extends Person implements Comparable<Teacher> {
         return super.toString() + ", speciality is " + this.speciality;
     }
 
+    public String info() {
+        return super.info() + "," + this.speciality;
+    }
+
     @Override
     public int compareTo(Teacher o) {
         if (this.getName().compareTo(o.getName()) != 0) {

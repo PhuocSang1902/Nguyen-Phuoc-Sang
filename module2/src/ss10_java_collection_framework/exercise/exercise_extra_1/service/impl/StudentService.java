@@ -7,7 +7,6 @@ import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFo
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class StudentService implements IStudentService {
@@ -67,7 +66,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void add() throws IOException {
+    public void add() {
         studentsList = readFile();
         Student student = this.enterInfoStudent();
         studentsList.add(student);
@@ -76,7 +75,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void remove() throws IOException {
+    public void remove() {
         studentsList = readFile();
         System.out.print("Enter the code of student that you want to remove: ");
         String code = scanner.nextLine();
@@ -100,29 +99,16 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void showList() throws IOException {
+    public void showList() {
         studentsList = readFile();
         for (Student student : studentsList) {
             System.out.println(student.toString());
         }
     }
 
-    @Override
-    public void creatTemp() {
-        Student student1 = new Student("01", "Hoa", true, "9a", 5);
-        Student student2 = new Student("02", "Thang", true, "9a", 2);
-        Student student3 = new Student("03", "Hoa", false, "9a", 6.5);
-        Student student4 = new Student("04", "Bao", false, "9a", 8);
-        Student student5 = new Student("05", "Anh", true, "9a", 10);
-        studentsList.add(student1);
-        studentsList.add(student2);
-        studentsList.add(student3);
-        studentsList.add(student4);
-        studentsList.add(student5);
-    }
 
     @Override
-    public int find() throws IOException {
+    public int find() {
         studentsList = readFile();
         System.out.println("Do you want to find student follow exact code or approximate name.");
         System.out.println("1 exact code / 2 approximate name");
@@ -157,7 +143,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void sort() throws IOException {
+    public void sort() {
         studentsList = readFile();
         for (int i = 0; i < studentsList.size(); i++) {
             for (int j = 0; j < studentsList.size() - i - 1; j++) {
@@ -177,41 +163,50 @@ public class StudentService implements IStudentService {
         writeFile(studentsList);
     }
 
-    public ArrayList<Student> readFile() throws IOException {
-        File file = new File("src\\ss10_java_collection_framework\\exercise\\exercise_extra_1\\data\\students_list.csv");
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
+    public ArrayList<Student> readFile() {
         ArrayList<Student> studentList = new ArrayList<>();
-        String line;
-        String[] studentInfo;
 
-
-        while((line = bufferedReader.readLine()) != null){
-            studentInfo = line.split(",");
-            Student student = new Student();
-            student.setCode(studentInfo[0]);
-            student.setName(studentInfo[1]);
-            student.setGender(studentInfo[2]);
-            student.setNameClass(studentInfo[3]);
-            student.setPoint(Double.parseDouble(studentInfo[4]));
-            studentList.add(student);
-
-        }
-        bufferedReader.close();
-        return studentList;
-
-    }
-    public void writeFile(ArrayList<Student> studentsList) throws IOException {
         File file = new File("src\\ss10_java_collection_framework\\exercise\\exercise_extra_1\\data\\students_list.csv");
-        FileWriter fileWriter = new FileWriter(file);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        try {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        for (Student student : studentsList) {
-            bufferedWriter.write(student.info());
-            bufferedWriter.newLine();
+            String line;
+            String[] studentInfo;
+
+
+            while ((line = bufferedReader.readLine()) != null) {
+                studentInfo = line.split(",");
+                Student student = new Student();
+                student.setCode(studentInfo[0]);
+                student.setName(studentInfo[1]);
+                student.setGender(studentInfo[2]);
+                student.setNameClass(studentInfo[3]);
+                student.setPoint(Double.parseDouble(studentInfo[4]));
+                studentList.add(student);
+
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            System.out.println("File is not exist or data is corrupted.");
         }
-        bufferedWriter.close();
+        return studentList;
+    }
+
+    public void writeFile(ArrayList<Student> studentsList) {
+        File file = new File("src\\ss10_java_collection_framework\\exercise\\exercise_extra_1\\data\\students_list.csv");
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (Student student : studentsList) {
+                bufferedWriter.write(student.info());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        } catch (Exception e) {
+            System.out.println("File is not exist or data is corrupted.");
+        }
 
     }
 }

@@ -3,7 +3,6 @@ package ss10_java_collection_framework.exercise.exercise_extra_1.controller;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.IStudentService;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.impl.StudentService;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class StudentController {
@@ -11,8 +10,8 @@ public class StudentController {
     public static Scanner scanner = new Scanner(System.in);
     public static IStudentService iStudentService = new StudentService();
 
-    public static void menuStudent() throws IOException {
-        while (true){
+    public static void menuStudent() {
+        while (true) {
             System.out.println("STUDENT MANAGEMENT PROGRAM");
             System.out.println("choose function follow number:");
             System.out.println("1.Add new student.");
@@ -22,12 +21,11 @@ public class StudentController {
             System.out.println("5.Sort students list.");
             System.out.println("6.Return main menu.");
             System.out.println("7.Exit.");
-            System.out.println("8.Creat temp to test.");
             System.out.print("Choose the function: ");
 
             int choice = Integer.parseInt(scanner.nextLine());
 
-            switch (choice){
+            switch (choice) {
                 case 1:
                     iStudentService.add();
                     System.out.println();
@@ -41,7 +39,7 @@ public class StudentController {
                     System.out.println();
                     break;
                 case 4:
-                    if (iStudentService.find() == -1){
+                    if (iStudentService.find() == -1) {
                         System.out.println("There is not student in the list.");
                     }
                     iStudentService.find();
@@ -56,10 +54,7 @@ public class StudentController {
                     PersonController.menuPerson();
                 case 7:
                     System.exit(0);
-                case 8:
-                    iStudentService.creatTemp();
-                    System.out.println();
-                    break;
+
             }
         }
     }

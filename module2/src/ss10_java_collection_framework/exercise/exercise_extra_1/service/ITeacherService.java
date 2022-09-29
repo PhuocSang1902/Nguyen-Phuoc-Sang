@@ -1,17 +1,13 @@
 package ss10_java_collection_framework.exercise.exercise_extra_1.service;
 
-import java.io.IOException;
-
 public interface ITeacherService {
-    void add() throws IOException;
+    void add();
 
-    void remove() throws IOException;
+    void remove();
 
-    void showList() throws IOException;
+    void showList();
 
-    void creatTemp();
+    int find();
 
-    int find() throws IOException;
-
-    void sort() throws IOException;
+    void sort();
 }
