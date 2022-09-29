@@ -1,5 +1,6 @@
 package ss10_java_collection_framework.exercise.exercise_extra_1.service.impl;
 
+import ss10_java_collection_framework.exercise.exercise_extra_1.model.Person;
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Student;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.IStudentService;
 import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
@@ -7,6 +8,8 @@ import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFo
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class StudentService implements IStudentService {
@@ -76,7 +79,6 @@ public class StudentService implements IStudentService {
 
     @Override
     public void remove() {
-        studentsList = readFile();
         System.out.print("Enter the code of student that you want to remove: ");
         String code = scanner.nextLine();
         boolean flagDelete = false;
@@ -109,7 +111,6 @@ public class StudentService implements IStudentService {
 
     @Override
     public int find() {
-        studentsList = readFile();
         System.out.println("Do you want to find student follow exact code or approximate name.");
         System.out.println("1 exact code / 2 approximate name");
         int choice = Integer.parseInt(scanner.nextLine());
@@ -144,22 +145,37 @@ public class StudentService implements IStudentService {
 
     @Override
     public void sort() {
-        studentsList = readFile();
-        for (int i = 0; i < studentsList.size(); i++) {
-            for (int j = 0; j < studentsList.size() - i - 1; j++) {
+        System.out.println("Do you want to sort follow name or code?");
+        System.out.println("1.Follow name");
+        System.out.println("2.Id");
+        System.out.println("3.Return");
+        int choice = Integer.parseInt(scanner.nextLine());
+        switch (choice){
+            case 1:
+                for (int i = 0; i < studentsList.size(); i++) {
+                    for (int j = 0; j < studentsList.size() - i - 1; j++) {
 
-                Student student1 = studentsList.get(j);
-                Student student2 = studentsList.get(j + 1);
+                        Student student1 = studentsList.get(j);
+                        Student student2 = studentsList.get(j + 1);
 
-                int compare = student1.compareTo(student2);
+                        int compare = student1.compareTo(student2);
 
-                if (compare > 0) {
-                    Student temp = studentsList.get(j);
-                    studentsList.set(j, studentsList.get(j + 1));
-                    studentsList.set(j + 1, temp);
+                        if (compare > 0) {
+                            Student temp = studentsList.get(j);
+                            studentsList.set(j, studentsList.get(j + 1));
+                            studentsList.set(j + 1, temp);
+                        }
+                    }
                 }
-            }
+                break;
+            case 2:
+                studentsList.sort((o1, o2) -> o1.getCode().compareTo(o2.getCode()));
+
+                break;
+            case 3:
+                return;
         }
+
         writeFile(studentsList);
     }
 

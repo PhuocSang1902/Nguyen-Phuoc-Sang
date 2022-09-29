@@ -1,5 +1,6 @@
 package ss10_java_collection_framework.exercise.exercise_extra_1.service.impl;
 
+import ss10_java_collection_framework.exercise.exercise_extra_1.model.Student;
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Teacher;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.ITeacherService;
 import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
@@ -7,6 +8,7 @@ import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFo
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class TeacherService implements ITeacherService {
@@ -138,22 +140,38 @@ public class TeacherService implements ITeacherService {
 
     @Override
     public void sort() {
-        for (int i = 0; i < teachersList.size(); i++) {
+        System.out.println("Do you want to sort follow name or code?");
+        System.out.println("1.Follow name");
+        System.out.println("2.Id");
+        System.out.println("3.Return");
+        int choice = Integer.parseInt(scanner.nextLine());
+        switch (choice){
+            case 1:
+                for (int i = 0; i < teachersList.size(); i++) {
 
-            for (int j = 0; j < teachersList.size() - i - 1; j++) {
+                    for (int j = 0; j < teachersList.size() - i - 1; j++) {
 
-                Teacher teacher1 = teachersList.get(j);
-                Teacher teacher2 = teachersList.get(j + 1);
+                        Teacher teacher1 = teachersList.get(j);
+                        Teacher teacher2 = teachersList.get(j + 1);
 
-                int compare = teacher1.compareTo(teacher2);
+                        int compare = teacher1.compareTo(teacher2);
 
-                if (compare > 0) {
-                    Teacher temp = teachersList.get(j);
-                    teachersList.set(j, teachersList.get(j + 1));
-                    teachersList.set(j + 1, temp);
+                        if (compare > 0) {
+                            Teacher temp = teachersList.get(j);
+                            teachersList.set(j, teachersList.get(j + 1));
+                            teachersList.set(j + 1, temp);
+                        }
+                    }
                 }
-            }
+                break;
+            case 2:
+                teachersList.sort((o1, o2) -> o1.getCode().compareTo(o2.getCode()));
+
+                break;
+            case 3:
+                return;
         }
+
         writeFile(teachersList);
     }
 
