@@ -1,11 +1,12 @@
 package ss10_java_collection_framework.exercise.exercise_extra_1.controller;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class PersonController {
 
     public static Scanner scanner = new Scanner(System.in);
-    public static void menuPerson(){
+    public static void menuPerson() throws IOException {
         while (true){
             System.out.println("PERSONNEL LIST:");
             System.out.println("Choose the management program follow number.");

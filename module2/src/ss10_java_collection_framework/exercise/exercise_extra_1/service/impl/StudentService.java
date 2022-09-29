@@ -5,7 +5,9 @@ import ss10_java_collection_framework.exercise.exercise_extra_1.service.IStudent
 import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
 import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFormatException;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentService implements IStudentService {
@@ -17,13 +19,13 @@ public class StudentService implements IStudentService {
         System.out.print("Enter code of student: ");
         String code = scanner.nextLine();
         String name;
-        while (true){
-            try{
+        while (true) {
+            try {
                 System.out.print("Enter name of student: ");
                 name = scanner.nextLine();
                 Check.checkName(name);
                 break;
-            }catch (IncorrectFormatException e){
+            } catch (IncorrectFormatException e) {
                 System.out.println("Enter again!");
             }
         }
@@ -48,31 +50,34 @@ public class StudentService implements IStudentService {
         System.out.print("Enter class of student:");
         String nameClass = scanner.nextLine();
         double point;
-        while (true){
-           try{
-               System.out.println("Enter point of student: ");
-               point = Double.parseDouble(scanner.nextLine());
-               Check.checkPoint(point);
-               break;
-           }catch (NumberFormatException e){
-               System.out.println("Enter again!");
-           }catch (IncorrectFormatException e){
-               System.out.println("Point is greater than 0 or less than 10!");
-           }
+        while (true) {
+            try {
+                System.out.println("Enter point of student: ");
+                point = Double.parseDouble(scanner.nextLine());
+                Check.checkPoint(point);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Enter again!");
+            } catch (IncorrectFormatException e) {
+                System.out.println("Point is greater than 0 or less than 10!");
+            }
         }
 
         return new Student(code, name, gender, nameClass, point);
     }
 
     @Override
-    public void add() {
+    public void add() throws IOException {
+        studentsList = readFile();
         Student student = this.enterInfoStudent();
         studentsList.add(student);
+        writeFile(studentsList);
         System.out.println("Successfully add new.");
     }
 
     @Override
-    public void remove() {
+    public void remove() throws IOException {
+        studentsList = readFile();
         System.out.print("Enter the code of student that you want to remove: ");
         String code = scanner.nextLine();
         boolean flagDelete = false;
@@ -95,7 +100,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void showList() {
+    public void showList() throws IOException {
+        studentsList = readFile();
         for (Student student : studentsList) {
             System.out.println(student.toString());
         }
@@ -116,7 +122,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public int find() {
+    public int find() throws IOException {
+        studentsList = readFile();
         System.out.println("Do you want to find student follow exact code or approximate name.");
         System.out.println("1 exact code / 2 approximate name");
         int choice = Integer.parseInt(scanner.nextLine());
@@ -150,7 +157,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void sort() {
+    public void sort() throws IOException {
+        studentsList = readFile();
         for (int i = 0; i < studentsList.size(); i++) {
             for (int j = 0; j < studentsList.size() - i - 1; j++) {
 
@@ -166,6 +174,44 @@ public class StudentService implements IStudentService {
                 }
             }
         }
+        writeFile(studentsList);
     }
 
+    public ArrayList<Student> readFile() throws IOException {
+        File file = new File("src\\ss10_java_collection_framework\\exercise\\exercise_extra_1\\data\\students_list.csv");
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        ArrayList<Student> studentList = new ArrayList<>();
+        String line;
+        String[] studentInfo;
+
+
+        while((line = bufferedReader.readLine()) != null){
+            studentInfo = line.split(",");
+            Student student = new Student();
+            student.setCode(studentInfo[0]);
+            student.setName(studentInfo[1]);
+            student.setGender(studentInfo[2]);
+            student.setNameClass(studentInfo[3]);
+            student.setPoint(Double.parseDouble(studentInfo[4]));
+            studentList.add(student);
+
+        }
+        bufferedReader.close();
+        return studentList;
+
+    }
+    public void writeFile(ArrayList<Student> studentsList) throws IOException {
+        File file = new File("src\\ss10_java_collection_framework\\exercise\\exercise_extra_1\\data\\students_list.csv");
+        FileWriter fileWriter = new FileWriter(file);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+        for (Student student : studentsList) {
+            bufferedWriter.write(student.info());
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+
+    }
 }

@@ -3,13 +3,14 @@ package ss10_java_collection_framework.exercise.exercise_extra_1.controller;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.ITeacherService;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.impl.TeacherService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class TeacherController {
     public static Scanner scanner = new Scanner(System.in);
     public static ITeacherService iTeacherService = new TeacherService();
 
-    public static void menuTeacher() {
+    public static void menuTeacher() throws IOException {
         while (true){
             System.out.println("TEACHER MANAGEMENT PROGRAM");
             System.out.println("choose function follow number:");

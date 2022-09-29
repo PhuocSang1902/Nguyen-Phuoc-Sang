@@ -3,6 +3,7 @@ package ss10_java_collection_framework.exercise.exercise_extra_1.controller;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.IStudentService;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.impl.StudentService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class StudentController {
@@ -10,7 +11,7 @@ public class StudentController {
     public static Scanner scanner = new Scanner(System.in);
     public static IStudentService iStudentService = new StudentService();
 
-    public static void menuStudent(){
+    public static void menuStudent() throws IOException {
         while (true){
             System.out.println("STUDENT MANAGEMENT PROGRAM");
             System.out.println("choose function follow number:");

@@ -6,12 +6,15 @@ import ss10_java_collection_framework.exercise.exercise_extra_1.service.ITeacher
 import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
 import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFormatException;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TeacherService implements ITeacherService {
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<Teacher> teachersList = new ArrayList<>();
+
 
     public Teacher enterInfoTeacher() {
         System.out.print("Enter code of teacher: ");
@@ -62,14 +65,16 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public void add() {
+    public void add() throws IOException {
+        teachersList = readFile();
         Teacher teacher = this.enterInfoTeacher();
         teachersList.add(teacher);
         System.out.println("Successfully add new.");
     }
 
     @Override
-    public void remove() {
+    public void remove() throws IOException {
+        teachersList = readFile();
         System.out.print("Enter the code of teacher that you want to remove: ");
         String code = scanner.nextLine();
         boolean flagDelete = false;
@@ -88,10 +93,12 @@ public class TeacherService implements ITeacherService {
         if(!flagDelete){
             System.out.println("The teacher you want to remove does not exist.");
         }
+        writeFile(teachersList);
     }
 
     @Override
-    public void showList() {
+    public void showList() throws IOException {
+        teachersList = readFile();
         for(Teacher teacher : teachersList){
             System.out.println(teacher.toString());
         }
@@ -118,7 +125,8 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public int find() {
+    public int find() throws IOException {
+        teachersList = readFile();
         System.out.println("Do you want to find student follow exact code or approximate name.");
         System.out.println("1 exact code / 2 approximate name");
         int choice = Integer.parseInt(scanner.nextLine());
@@ -152,7 +160,8 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public void sort() {
+    public void sort() throws IOException {
+        teachersList = readFile();
         for (int i = 0; i < teachersList.size(); i++) {
 
             for (int j = 0; j < teachersList.size() - i - 1; j++) {
@@ -169,5 +178,42 @@ public class TeacherService implements ITeacherService {
                 }
             }
         }
+        writeFile(teachersList);
+    }
+    public ArrayList<Teacher> readFile() throws IOException {
+        File file = new File("src\\ss10_java_collection_framework\\exercise\\exercise_extra_1\\data\\teachers_list.csv");
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        ArrayList<Teacher> teachersList = new ArrayList<>();
+        String line;
+        String[] teacherInfo;
+
+
+        while((line = bufferedReader.readLine()) != null){
+            teacherInfo = line.split(",");
+            Teacher teacher = new Teacher();
+            teacher.setCode(teacherInfo[0]);
+            teacher.setName(teacherInfo[1]);
+            teacher.setGender(teacherInfo[2]);
+            teacher.setSpeciality(teacherInfo[3]);
+            teachersList.add(teacher);
+
+        }
+        bufferedReader.close();
+        return teachersList;
+
+    }
+    public void writeFile(ArrayList<Teacher> teachersList) throws IOException {
+        File file = new File("src\\ss10_java_collection_framework\\exercise\\exercise_extra_1\\data\\teachers_list.csv");
+        FileWriter fileWriter = new FileWriter(file);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+        for (Teacher teacher : teachersList) {
+            bufferedWriter.write(teacher.info());
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+
     }
 }

@@ -39,6 +39,9 @@ public class Student extends Person implements Comparable<Student> {
         return super.toString() + ", name class is " + this.nameClass + ", point is " + this.point;
     }
 
+    public String info() {
+        return super.info() + "," + this.nameClass + "," + this.point;
+    }
 
     @Override
     public int compareTo(Student o) {
