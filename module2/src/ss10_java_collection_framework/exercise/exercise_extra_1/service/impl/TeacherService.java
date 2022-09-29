@@ -98,6 +98,7 @@ public class TeacherService implements ITeacherService {
 
     @Override
     public void showList() {
+        teachersList = readFile();
         for (Teacher teacher : teachersList) {
             System.out.println(teacher.toString());
         }
@@ -106,6 +107,7 @@ public class TeacherService implements ITeacherService {
 
     @Override
     public int find() {
+        teachersList = readFile();
         System.out.println("Do you want to find student follow exact code or approximate name.");
         System.out.println("1 exact code / 2 approximate name");
         int choice = Integer.parseInt(scanner.nextLine());
@@ -140,6 +142,7 @@ public class TeacherService implements ITeacherService {
 
     @Override
     public void sort() {
+        teachersList = readFile();
         System.out.println("Do you want to sort follow name or code?");
         System.out.println("1.Follow name");
         System.out.println("2.Id");

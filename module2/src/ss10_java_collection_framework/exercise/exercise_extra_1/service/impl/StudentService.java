@@ -79,6 +79,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void remove() {
+        studentsList = readFile();
         System.out.print("Enter the code of student that you want to remove: ");
         String code = scanner.nextLine();
         boolean flagDelete = false;
@@ -111,6 +112,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public int find() {
+        studentsList = readFile();
         System.out.println("Do you want to find student follow exact code or approximate name.");
         System.out.println("1 exact code / 2 approximate name");
         int choice = Integer.parseInt(scanner.nextLine());
@@ -145,6 +147,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void sort() {
+        studentsList = readFile();
         System.out.println("Do you want to sort follow name or code?");
         System.out.println("1.Follow name");
         System.out.println("2.Id");
