@@ -31,7 +31,7 @@ public class StudentService implements IStudentService {
                 System.out.println("Enter again!");
             }
         }
-        System.out.print("Enter gender of student: ");
+        System.out.print("Enter gender of student(male/female/other):");
         Boolean gender;
         while (true) {
             String tempGender = scanner.nextLine();

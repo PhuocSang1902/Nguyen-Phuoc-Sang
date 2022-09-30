@@ -30,7 +30,7 @@ public class TeacherService implements ITeacherService {
                 System.out.println("Enter again!");
             }
         }
-        System.out.print("Enter gender of teacher: ");
+        System.out.print("Enter gender of teacher(male/female/other): ");
         String tempGender;
         Boolean gender;
         while (true) {
