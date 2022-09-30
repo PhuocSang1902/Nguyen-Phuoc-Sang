@@ -27,7 +27,7 @@ public class TeacherService implements ITeacherService {
                 Check.checkName(name);
                 break;
             } catch (IncorrectFormatException e) {
-                System.out.println("Enter again!");
+                System.out.print("Enter again!");
             }
         }
         System.out.print("Enter gender of teacher(male/female/other): ");
@@ -47,7 +47,7 @@ public class TeacherService implements ITeacherService {
                 gender = null;
                 break;
             }
-            System.out.println("Gender is male, female or other ");
+            System.out.print("Gender is male, female or other ");
         }
         String speciality;
         while (true) {
@@ -57,7 +57,7 @@ public class TeacherService implements ITeacherService {
                 Check.checkName(speciality);
                 break;
             } catch (IncorrectFormatException e) {
-                System.out.println("Enter again!");
+                System.out.print("Enter again!");
             }
         }
 

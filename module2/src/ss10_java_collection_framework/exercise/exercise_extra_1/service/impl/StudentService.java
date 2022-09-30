@@ -47,21 +47,21 @@ public class StudentService implements IStudentService {
                 gender = null;
                 break;
             }
-            System.out.println("Gender is male, female or other ");
+            System.out.print("Gender is male, female or other ");
         }
         System.out.print("Enter class of student:");
         String nameClass = scanner.nextLine();
         double point;
         while (true) {
             try {
-                System.out.println("Enter point of student: ");
+                System.out.print("Enter point of student: ");
                 point = Double.parseDouble(scanner.nextLine());
                 Check.checkPoint(point);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Enter again!");
+                System.out.print("Enter again!");
             } catch (IncorrectFormatException e) {
-                System.out.println("Point is greater than 0 or less than 10!");
+                System.out.print("Point is greater than 0 or less than 10!");
             }
         }
 
@@ -98,7 +98,7 @@ public class StudentService implements IStudentService {
         if (!flagDelete) {
             System.out.println("The student you want to remove does not exist");
         }
-
+        writeFile(studentsList);
     }
 
     @Override
