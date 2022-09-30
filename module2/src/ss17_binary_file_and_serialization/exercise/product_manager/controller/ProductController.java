@@ -33,9 +33,9 @@ public class ProductController {
                     break;
                 case 4:
                     System.exit(0);
-                case 5:
-                    productService.copy();
-                    break;
+//                case 5:
+//                    productService.copy();
+//                    break;
                 default:
                     System.out.print("Your choice is not correct. Enter again:");
             }
