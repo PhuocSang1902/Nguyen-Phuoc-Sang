@@ -17,7 +17,6 @@ public class ProductController {
             System.out.println("2.Show products list");
             System.out.println("3.Find product");
             System.out.println("4.Exit");
-            System.out.println("5.Copy");
             System.out.print("Enter your choice: ");
             int choice = Integer.parseInt(scanner.nextLine());
 
@@ -33,9 +32,6 @@ public class ProductController {
                     break;
                 case 4:
                     System.exit(0);
-//                case 5:
-//                    productService.copy();
-//                    break;
                 default:
                     System.out.print("Your choice is not correct. Enter again:");
             }

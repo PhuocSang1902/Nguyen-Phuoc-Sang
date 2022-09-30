@@ -16,5 +16,4 @@ public interface IProductService {
 
     void writeFile(List<Product> productList);
 
-    void copy() throws IOException;
 }
