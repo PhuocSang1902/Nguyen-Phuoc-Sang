@@ -1,15 +1,12 @@
 package ss10_java_collection_framework.exercise.exercise_extra_1.service.impl;
 
-import ss10_java_collection_framework.exercise.exercise_extra_1.model.Person;
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Student;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.IStudentService;
 import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
-import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFormatException;
+import ss10_java_collection_framework.exercise.exercise_extra_1.util.FormatException;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class StudentService implements IStudentService {
@@ -18,8 +15,30 @@ public class StudentService implements IStudentService {
     public static ArrayList<Student> studentsList = new ArrayList<>();
 
     public Student enterInfoStudent() {
-        System.out.print("Enter code of student: ");
-        String code = scanner.nextLine();
+        System.out.print("Enter code of student:(Code start with A word and 4 number) ");
+        String code;
+        while(true){
+            try{
+                code = scanner.nextLine();
+                Check.checkCode(code);
+                boolean flagCheck = false;
+                for(Student student : studentsList){
+                    if (student.getCode().equals(code)){
+                        flagCheck = true;
+                        break;
+                    }
+                }
+                if (flagCheck){
+                    System.out.println("Code is duplicate. Enter again:");
+                }else {
+                    break;
+                }
+            }catch(FormatException e){
+                e.getStackTrace();
+                System.out.println("Enter again.");
+            }
+
+        }
         String name;
         while (true) {
             try {
@@ -27,30 +46,45 @@ public class StudentService implements IStudentService {
                 name = scanner.nextLine();
                 Check.checkName(name);
                 break;
-            } catch (IncorrectFormatException e) {
+            } catch (FormatException e) {
+                e.getStackTrace();
                 System.out.println("Enter again!");
             }
         }
         System.out.print("Enter gender of student(male/female/other):");
         Boolean gender;
         while (true) {
-            String tempGender = scanner.nextLine();
-            if (tempGender.equals("male")) {
-                gender = true;
+            try{
+                String tempGender = scanner.nextLine();
+                Check.checkGender(tempGender);
+                switch (tempGender){
+                    case "male":
+                        gender = true;
+                        break;
+                    case "female":
+                        gender = false;
+                        break;
+                    default:
+                        gender = null;
+                }
                 break;
+            }catch (FormatException e){
+                e.getStackTrace();
+                System.out.println("Gender is male, female or other.Enter again");
             }
-            if (tempGender.equals("female")) {
-                gender = false;
-                break;
-            }
-            if (tempGender.equals("other")) {
-                gender = null;
-                break;
-            }
-            System.out.print("Gender is male, female or other ");
         }
-        System.out.print("Enter class of student:");
-        String nameClass = scanner.nextLine();
+        String nameClass;
+        System.out.print("Enter class of student:(Name class start with A or B or C and have 2 number)");
+        while (true){
+            try {
+                nameClass = scanner.nextLine();
+                Check.checkClassName(nameClass);
+                break;
+            }catch (FormatException e){
+                e.getStackTrace();
+                System.out.print("Enter again:");
+            }
+        }
         double point;
         while (true) {
             try {
@@ -60,7 +94,7 @@ public class StudentService implements IStudentService {
                 break;
             } catch (NumberFormatException e) {
                 System.out.print("Enter again!");
-            } catch (IncorrectFormatException e) {
+            } catch (FormatException e) {
                 System.out.print("Point is greater than 0 or less than 10!");
             }
         }

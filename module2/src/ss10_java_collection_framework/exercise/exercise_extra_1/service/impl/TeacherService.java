@@ -4,11 +4,10 @@ import ss10_java_collection_framework.exercise.exercise_extra_1.model.Student;
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Teacher;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.ITeacherService;
 import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
-import ss10_java_collection_framework.exercise.exercise_extra_1.util.IncorrectFormatException;
+import ss10_java_collection_framework.exercise.exercise_extra_1.util.FormatException;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class TeacherService implements ITeacherService {
@@ -17,37 +16,63 @@ public class TeacherService implements ITeacherService {
 
 
     public Teacher enterInfoTeacher() {
-        System.out.print("Enter code of teacher: ");
-        String code = scanner.nextLine();
+        System.out.print("Enter code of student:(Code start with A word and 4 number) ");
+        String code;
+        while(true){
+            try{
+                code = scanner.nextLine();
+                Check.checkCode(code);
+                boolean flagCheck = false;
+                for(Teacher teacher : teachersList){
+                    if (teacher.getCode().equals(code)){
+                        flagCheck = true;
+                        break;
+                    }
+                }
+                if (flagCheck){
+                    System.out.println("Code is duplicate. Enter again:");
+                }else {
+                    break;
+                }
+            }catch(FormatException e){
+                e.getStackTrace();
+                System.out.println("Enter again.");
+            }
+
+        }
         String name;
         while (true) {
             try {
-                System.out.print("Enter name of teacher: ");
+                System.out.print("Enter name of student: ");
                 name = scanner.nextLine();
                 Check.checkName(name);
                 break;
-            } catch (IncorrectFormatException e) {
-                System.out.print("Enter again!");
+            } catch (FormatException e) {
+                e.getStackTrace();
+                System.out.println("Enter again!");
             }
         }
-        System.out.print("Enter gender of teacher(male/female/other): ");
-        String tempGender;
+        System.out.print("Enter gender of student(male/female/other):");
         Boolean gender;
         while (true) {
-            tempGender = scanner.nextLine();
-            if (tempGender.equals("male")) {
-                gender = true;
+            try{
+                String tempGender = scanner.nextLine();
+                Check.checkGender(tempGender);
+                switch (tempGender){
+                    case "male":
+                        gender = true;
+                        break;
+                    case "female":
+                        gender = false;
+                        break;
+                    default:
+                        gender = null;
+                }
                 break;
+            }catch (FormatException e){
+                e.getStackTrace();
+                System.out.println("Gender is male, female or other.Enter again");
             }
-            if (tempGender.equals("female")) {
-                gender = false;
-                break;
-            }
-            if (tempGender.equals("other")) {
-                gender = null;
-                break;
-            }
-            System.out.print("Gender is male, female or other ");
         }
         String speciality;
         while (true) {
@@ -56,7 +81,7 @@ public class TeacherService implements ITeacherService {
                 speciality = scanner.nextLine();
                 Check.checkName(speciality);
                 break;
-            } catch (IncorrectFormatException e) {
+            } catch (FormatException e) {
                 System.out.print("Enter again!");
             }
         }
