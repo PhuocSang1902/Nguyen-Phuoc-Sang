@@ -16,7 +16,7 @@ public class TeacherService implements ITeacherService {
 
 
     public Teacher enterInfoTeacher() {
-        System.out.print("Enter code of student:(Code start with A word and 4 number) ");
+        System.out.print("Enter code of student:(Code start with B word and 4 number) ");
         String code;
         while(true){
             try{
