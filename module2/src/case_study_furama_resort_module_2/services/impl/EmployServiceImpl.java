@@ -6,8 +6,10 @@ import case_study_furama_resort_module_2.utils.CheckUtils;
 import case_study_furama_resort_module_2.utils.FormatException;
 
 import java.io.*;
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -30,8 +32,14 @@ public class EmployServiceImpl implements EmployeeService {
         double salary;
 
         while (true) {
-            int tempCode = ((int) (Math.random() * 10000) + 1);
-            code = "E" + tempCode;
+            String rangeID = "0123456789";
+            SecureRandom random = new SecureRandom();
+
+            StringBuilder tempCode=new StringBuilder("E");
+            for (int i = 0; i < 3; i++) {
+                tempCode.append(rangeID.charAt(random.nextInt(rangeID.length())));
+            }
+            code = tempCode.toString();
             boolean flagCheck = true;
             for (Employee employee : employeeList) {
                 if (employee.getCode().equals(code)) {
@@ -64,8 +72,7 @@ public class EmployServiceImpl implements EmployeeService {
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 dateOfBirth = LocalDate.parse(date,fm);
                 break;
-            } catch (FormatException | NumberFormatException e) {
-                e.printStackTrace();
+            } catch (FormatException | NumberFormatException | DateTimeParseException e) {
                 System.out.println("Format error!");
             }
         }

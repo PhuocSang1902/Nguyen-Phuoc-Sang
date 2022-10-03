@@ -86,7 +86,7 @@ public abstract class Person {
         DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         return
-                        ", code='" + code + '\'' +
+                        "code='" + code + '\'' +
                         ", fullName='" + fullName + '\'' +
                         ", dateOfBirth='" + dateOfBirth.format(fm)+ '\'' +
                         ", gender='" + gender + '\'' +
