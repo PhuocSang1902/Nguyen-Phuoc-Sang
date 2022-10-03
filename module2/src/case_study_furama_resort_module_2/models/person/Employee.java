@@ -1,5 +1,7 @@
 package case_study_furama_resort_module_2.models.person;
 
+import java.time.LocalDate;
+
 public class Employee extends Person {
     private String qualification;
     private String position;
@@ -8,11 +10,11 @@ public class Employee extends Person {
     public Employee() {
     }
 
-    public Employee(String employeeCode, String fullName, String dateOfBirth, String gender, String idNumber, String phoneNumber, String email) {
+    public Employee(String employeeCode, String fullName, LocalDate dateOfBirth, String gender, String idNumber, String phoneNumber, String email) {
         super(employeeCode, fullName, dateOfBirth, gender, idNumber, phoneNumber, email);
     }
 
-    public Employee(String employeeCode, String fullName, String dateOfBirth, String gender, String idNumber, String phoneNumber, String email, String qualification, String position, double salary) {
+    public Employee(String employeeCode, String fullName, LocalDate dateOfBirth, String gender, String idNumber, String phoneNumber, String email, String qualification, String position, double salary) {
         super(employeeCode, fullName, dateOfBirth, gender, idNumber, phoneNumber, email);
         this.qualification = qualification;
         this.position = position;

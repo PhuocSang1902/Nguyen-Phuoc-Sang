@@ -6,6 +6,8 @@ import case_study_furama_resort_module_2.utils.CheckUtils;
 import case_study_furama_resort_module_2.utils.FormatException;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +20,7 @@ public class EmployServiceImpl implements EmployeeService {
     private Employee inputInfo() {
         String code;
         String fullName;
-        String dateOfBirth;
+        LocalDate dateOfBirth;
         String gender;
         String idNumber;
         String phoneNumber;
@@ -28,7 +30,7 @@ public class EmployServiceImpl implements EmployeeService {
         double salary;
 
         while (true) {
-            int tempCode = ((int) (Math.random() * 1000) + 1);
+            int tempCode = ((int) (Math.random() * 10000) + 1);
             code = "E" + tempCode;
             boolean flagCheck = true;
             for (Employee employee : employeeList) {
@@ -55,12 +57,16 @@ public class EmployServiceImpl implements EmployeeService {
         }
         while (true) {
             System.out.print("Enter employee birthday (dd-MM-yyyy): ");
-            dateOfBirth = sc.nextLine();
+
             try {
-                CheckUtils.checkDate(dateOfBirth);
+                String date = sc.nextLine();
+                CheckUtils.checkDate(date);
+                DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                dateOfBirth = LocalDate.parse(date,fm);
                 break;
             } catch (FormatException | NumberFormatException e) {
                 e.printStackTrace();
+                System.out.println("Format error!");
             }
         }
 
@@ -209,7 +215,7 @@ public class EmployServiceImpl implements EmployeeService {
 
     private Employee editInfo(String code) {
         String fullName;
-        String dateOfBirth;
+        LocalDate dateOfBirth;
         String gender;
         String idNumber;
         String phoneNumber;
@@ -230,12 +236,16 @@ public class EmployServiceImpl implements EmployeeService {
         }
         while (true) {
             System.out.print("Enter employee birthday (dd-MM-yyyy): ");
-            dateOfBirth = sc.nextLine();
+
             try {
-                CheckUtils.checkDate(dateOfBirth);
+                String date = sc.nextLine();
+                CheckUtils.checkDate(date);
+                DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                dateOfBirth = LocalDate.parse(date,fm);
                 break;
             } catch (FormatException | NumberFormatException e) {
                 e.printStackTrace();
+                System.out.println("Format error!");
             }
         }
 
@@ -395,7 +405,8 @@ public class EmployServiceImpl implements EmployeeService {
                 employee = new Employee();
                 employee.setCode(info[0]);
                 employee.setFullName(info[1]);
-                employee.setDateOfBirth(info[2]);
+                DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                employee.setDateOfBirth(LocalDate.parse(info[2],fm));
                 employee.setGender(info[3]);
                 employee.setIdNumber(info[4]);
                 employee.setPhoneNumber(info[5]);
@@ -444,8 +455,9 @@ public class EmployServiceImpl implements EmployeeService {
     }
 
     private String getInfo(Employee employee) {
+        DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
-                employee.getCode(), employee.getFullName(), employee.getDateOfBirth(), employee.getGender(), employee.getIdNumber(), employee.getPhoneNumber(), employee.getEmail(), employee.getQualification(), employee.getPosition(), employee.getSalary());
+                employee.getCode(), employee.getFullName(), employee.getDateOfBirth().format(fm), employee.getGender(), employee.getIdNumber(), employee.getPhoneNumber(), employee.getEmail(), employee.getQualification(), employee.getPosition(), employee.getSalary());
     }
 
     @Override

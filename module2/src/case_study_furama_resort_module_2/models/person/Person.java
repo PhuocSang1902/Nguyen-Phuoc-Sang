@@ -41,14 +41,12 @@ public abstract class Person {
         this.fullName = fullName;
     }
 
-    public String getDateOfBirth() {
-        DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return dateOfBirth.format(fm);
+    public LocalDate getDateOfBirth() {
+        return this.dateOfBirth;
     }
 
-    public void setDateOfBirth(String date) {
-        DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        this.dateOfBirth = LocalDate.parse(date, fm);
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getGender() {
