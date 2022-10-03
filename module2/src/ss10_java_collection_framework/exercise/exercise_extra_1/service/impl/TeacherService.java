@@ -1,10 +1,9 @@
 package ss10_java_collection_framework.exercise.exercise_extra_1.service.impl;
 
-import ss10_java_collection_framework.exercise.exercise_extra_1.model.Student;
 import ss10_java_collection_framework.exercise.exercise_extra_1.model.Teacher;
 import ss10_java_collection_framework.exercise.exercise_extra_1.service.ITeacherService;
-import ss10_java_collection_framework.exercise.exercise_extra_1.util.Check;
-import ss10_java_collection_framework.exercise.exercise_extra_1.util.FormatException;
+import ss10_java_collection_framework.exercise.exercise_extra_1.utils.Check;
+import ss10_java_collection_framework.exercise.exercise_extra_1.utils.FormatException;
 
 import java.io.*;
 import java.util.ArrayList;

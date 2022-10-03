@@ -1,4 +1,4 @@
-package ss10_java_collection_framework.exercise.exercise_extra_1.util;
+package ss10_java_collection_framework.exercise.exercise_extra_1.utils;
 
 public class FormatException extends Exception {
 
