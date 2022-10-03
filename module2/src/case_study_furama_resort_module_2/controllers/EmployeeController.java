@@ -5,7 +5,7 @@ import case_study_furama_resort_module_2.services.impl.EmployServiceImpl;
 
 import java.util.Scanner;
 
-public class EmployController {
+public class EmployeeController {
     public static EmployeeService employeeServiceImpl = new EmployServiceImpl();
     public static Scanner sc = new Scanner(System.in);
 

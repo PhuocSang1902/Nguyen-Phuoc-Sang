@@ -35,7 +35,7 @@ public class EmployServiceImpl implements EmployeeService {
             String rangeID = "0123456789";
             SecureRandom random = new SecureRandom();
 
-            StringBuilder tempCode=new StringBuilder("E");
+            StringBuilder tempCode = new StringBuilder("E");
             for (int i = 0; i < 3; i++) {
                 tempCode.append(rangeID.charAt(random.nextInt(rangeID.length())));
             }
@@ -70,7 +70,7 @@ public class EmployServiceImpl implements EmployeeService {
                 String date = sc.nextLine();
                 CheckUtils.checkDate(date);
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                dateOfBirth = LocalDate.parse(date,fm);
+                dateOfBirth = LocalDate.parse(date, fm);
                 break;
             } catch (FormatException | NumberFormatException | DateTimeParseException e) {
                 System.out.println("Format error!");
@@ -248,7 +248,7 @@ public class EmployServiceImpl implements EmployeeService {
                 String date = sc.nextLine();
                 CheckUtils.checkDate(date);
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                dateOfBirth = LocalDate.parse(date,fm);
+                dateOfBirth = LocalDate.parse(date, fm);
                 break;
             } catch (FormatException | NumberFormatException e) {
                 e.printStackTrace();
@@ -413,7 +413,7 @@ public class EmployServiceImpl implements EmployeeService {
                 employee.setCode(info[0]);
                 employee.setFullName(info[1]);
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                employee.setDateOfBirth(LocalDate.parse(info[2],fm));
+                employee.setDateOfBirth(LocalDate.parse(info[2], fm));
                 employee.setGender(info[3]);
                 employee.setIdNumber(info[4]);
                 employee.setPhoneNumber(info[5]);
@@ -494,7 +494,7 @@ public class EmployServiceImpl implements EmployeeService {
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getCode().equals(code)) {
                 Employee employee = editInfo(employeeList.get(i).getCode());
-                employeeList.set(i,employee);
+                employeeList.set(i, employee);
                 flagCheck = true;
                 break;
             }
