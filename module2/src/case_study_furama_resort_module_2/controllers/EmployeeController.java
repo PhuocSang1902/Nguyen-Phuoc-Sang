@@ -17,7 +17,7 @@ public class EmployeeController {
             System.out.println("2.Add New Employee");
             System.out.println("3.Edit Employee");
             System.out.println("4.Return Main Menu");
-            System.out.print("Enter your choice: ");
+            System.out.print("Enter your choice follow number: ");
             int choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1:
@@ -31,6 +31,8 @@ public class EmployeeController {
                     break;
                 case 4:
                     return;
+                default:
+                    System.out.println("Wrong format. Enter again!");
 
             }
             System.out.println();

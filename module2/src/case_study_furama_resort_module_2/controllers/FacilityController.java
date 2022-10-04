@@ -22,24 +22,26 @@ public class FacilityController {
             System.out.println("2.Add New Facility");
             System.out.println("3.Display List Facility Maintenance");
             System.out.println("4.Return Main Menu");
-            System.out.print("Enter your choice: ");
-            int choice = Integer.parseInt(sc.nextLine());
+            System.out.print("Enter your choice follow number: ");
+            String choice = sc.nextLine();
             switch (choice) {
-                case 1:
+                case "1":
                     facilityVillaService.display();
                     facilityHouseService.display();
                     facilityRoomService.display();
                     break;
-                case 2:
+                case "2":
                     addNewFacility();
                     break;
-                case 3:
+                case "3":
                     facilityVillaService.displayMaintenanceList();
                     facilityHouseService.displayMaintenanceList();
                     facilityRoomService.displayMaintenanceList();
                     break;
-                case 4:
+                case "4":
                     return;
+                default:
+                    System.out.println("Wrong format. Enter again!");
             }
             System.out.println();
         }
@@ -52,20 +54,22 @@ public class FacilityController {
             System.out.println("2.Add New House");
             System.out.println("3.Add New Room");
             System.out.println("4.Return Facility Menu");
-            System.out.print("Enter your choice: ");
-            int choice = Integer.parseInt(sc.nextLine());
+            System.out.print("Enter your choice follow number: ");
+            String choice = sc.nextLine();
             switch (choice) {
-                case 1:
+                case "1":
                     facilityVillaService.add();
                     break;
-                case 2:
+                case "2":
                     facilityHouseService.add();
                     break;
-                case 3:
+                case "3":
                     facilityRoomService.add();
                     break;
-                case 4:
+                case "4":
                     return;
+                default:
+                    System.out.println("Wrong format. Enter again!");
             }
             System.out.println();
         }

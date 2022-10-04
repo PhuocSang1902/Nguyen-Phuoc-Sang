@@ -20,26 +20,28 @@ public class FuramaController {
             System.out.println("4.Booking Management");
             System.out.println("5.Promotion Management");
             System.out.println("6.Exit");
-            System.out.print("Enter your choice: ");
-            int choice = Integer.parseInt(sc.nextLine());
+            System.out.print("Enter your choice follow number: ");
+            String choice = sc.nextLine();
             switch (choice) {
-                case 1:
+                case "1":
                     EmployeeController.displayEmployeeMenu();
                     break;
-                case 2:
+                case "2":
                     CustomerController.displayCustomerMenu();
                     break;
-                case 3:
+                case "3":
                     FacilityController.displayFacilityMenu();
                     break;
-                case 4:
+                case "4":
                     displayBookingMenu();
                     break;
-                case 5:
+                case "5":
                     displayPromotionMenu();
                     break;
-                case 6:
+                case "6":
                     System.exit(0);
+                default:
+                    System.out.println("Wrong format. Enter again!");
             }
             System.out.println();
         }
