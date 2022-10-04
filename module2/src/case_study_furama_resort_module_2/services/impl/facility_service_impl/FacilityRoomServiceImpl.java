@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class FacilityRoomServiceImpl implements FacilityRoomService {
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner SC = new Scanner(System.in);
     private static LinkedHashMap<Room, Integer> roomsList = new LinkedHashMap<>();
 
     private Room inputInfoRoom() {
@@ -47,11 +47,11 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         System.out.println("Facility code is: " + code);
 
         System.out.print("Enter service name: ");
-        serviceName = sc.nextLine();
+        serviceName = SC.nextLine();
         while (true) {
             System.out.print("Enter usable area: ");
             try {
-                usableArea = Double.parseDouble(sc.nextLine());
+                usableArea = Double.parseDouble(SC.nextLine());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format.Enter again.");
@@ -60,7 +60,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         while (true) {
             System.out.print("Enter rental cost: ");
             try {
-                rentalCost = Double.parseDouble(sc.nextLine());
+                rentalCost = Double.parseDouble(SC.nextLine());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format.Enter again.");
@@ -69,7 +69,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         while (true) {
             System.out.print("Enter maximum number of people: ");
             try {
-                maximumNumberOfPeople = Integer.parseInt(sc.nextLine());
+                maximumNumberOfPeople = Integer.parseInt(SC.nextLine());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format.Enter again.");
@@ -80,7 +80,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
             int choice = 0;
             boolean flagChoice = false;
             try {
-                choice = Integer.parseInt(sc.nextLine());
+                choice = Integer.parseInt(SC.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format.Enter again.");
             }
@@ -111,7 +111,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         }
 
         System.out.print("Enter free service included: ");
-        freeServiceIncluded = sc.nextLine();
+        freeServiceIncluded = SC.nextLine();
 
 
         return new Room(code, serviceName, usableArea, rentalCost, maximumNumberOfPeople, rentalType, freeServiceIncluded);
@@ -156,9 +156,9 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         return roomsList;
     }
 
-    private void writeFile(LinkedHashMap<Room, Integer> roomsList){
+    private void writeFile(LinkedHashMap<Room, Integer> roomsList) {
         File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_room_facility_data.csv");
-        if (!file.exists()){
+        if (!file.exists()) {
             System.out.println("File is not exist");
         }
 
@@ -170,7 +170,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
             bufferedWriter = new BufferedWriter(fileWriter);
             Set<Room> rooms = new LinkedHashSet<>();
             rooms = roomsList.keySet();
-            for (Room room : rooms){
+            for (Room room : rooms) {
                 bufferedWriter.write(getInfo(room) + "," + roomsList.get(room));
             }
         } catch (IOException e) {
@@ -186,7 +186,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         }
     }
 
-    private String getInfo(Room room){
+    private String getInfo(Room room) {
         return String.format("%s,%s,%s,%s,%s,%s,%s", room.getFacilityCode(), room.getServiceName(), room.getUsableArea(), room.getRentalCost(), room.getMaximumNumberOfPeople(), room.getRentalType(), room.getFreeServiceIncluded());
 
     }
@@ -202,7 +202,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         roomsList = getDataFromFile();
         Set<Room> rooms = new LinkedHashSet<>();
         rooms = roomsList.keySet();
-        for (Room room : rooms){
+        for (Room room : rooms) {
             System.out.println(room.toString());
         }
     }

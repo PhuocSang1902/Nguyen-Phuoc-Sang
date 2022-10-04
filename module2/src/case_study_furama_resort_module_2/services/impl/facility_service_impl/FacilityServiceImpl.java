@@ -9,29 +9,10 @@ import java.util.Scanner;
 
 public class FacilityServiceImpl implements FacilityService {
 
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner SC = new Scanner(System.in);
     private static Map<Facility, Integer> facilitiesList = new LinkedHashMap<>();
 
 
-//    private static Facility getInfoFromFile(){
-//        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_house_data.csv");
-//        FileReader fileReader;
-//        BufferedReader bufferedReader;
-//
-//        try {
-//            fileReader = new FileReader(file);
-//            bufferedReader = new BufferedReader(fileReader);
-//            String line;
-//            String[] str;
-//            while ((line = bufferedReader.readLine())!=null){
-//                str = line.split(",");
-//
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 
     @Override
     public void display() {
