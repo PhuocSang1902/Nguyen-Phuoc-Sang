@@ -63,15 +63,17 @@ public class CustomerServiceImpl implements CustomerService {
             }
         }
         while (true) {
-            System.out.print("Enter customer birthday (dd-MM-yyyy): ");
+            System.out.print("Enter employee birthday (dd-MM-yyyy): ");
 
             try {
                 String date = sc.nextLine();
                 CheckUtils.checkDate(date);
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                dateOfBirth = LocalDate.parse(date,fm);
+                dateOfBirth = LocalDate.parse(date, fm);
+                CheckUtils.checkDateOfBirth(dateOfBirth);
                 break;
             } catch (FormatException | NumberFormatException | DateTimeParseException e) {
+                e.getStackTrace();
                 System.out.println("Format error!");
             }
         }

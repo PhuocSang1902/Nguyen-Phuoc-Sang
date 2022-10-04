@@ -1,5 +1,8 @@
 package case_study_furama_resort_module_2.utils;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class CheckUtils {
     public static void checkName(String str) throws FormatException {
         boolean check = str.matches("^([A-Z][a-z]+[ ])+([A-Z][a-z]+)$");
@@ -8,11 +11,43 @@ public class CheckUtils {
         }
     }
 
-    public static void checkSalary(double point) throws FormatException {
-        if (point <= 0) {
+    public static void checkNameService(String str) throws FormatException {
+        boolean check = str.matches("^([A-Z][a-z]+)+([a-z]+[ ])+([a-z]+)$");
+        if (!check){
+            throw new FormatException(" Service Name Is Out Of Format Exception");
+        }
+    }
+
+    public static void checkSalary(double salary) throws FormatException {
+        if (salary <= 0) {
             throw new FormatException("Point Is Out Of Format Exception!");
         }
     }
+
+    public static void checkRentalCost(double cost) throws FormatException {
+        if (cost <= 0) {
+            throw new FormatException("Rental Cost Is Out Of Format Exception!");
+        }
+    }
+
+    public static void checkNumberOfPeople(int num) throws FormatException {
+        if (num <= 0 || num >= 20) {
+            throw new FormatException("Number Of People Is Out Of Format Exception!");
+        }
+    }
+
+    public static void checkNumberOfFloors(int num) throws FormatException {
+        if (num <= 0 ) {
+            throw new FormatException("Number Of Floor Is Out Of Format Exception!");
+        }
+    }
+
+    public static void checkArea(double area) throws FormatException {
+        if (area <= 30) {
+            throw new FormatException("Area Is Out Of Format Exception!");
+        }
+    }
+
     public static void checkEmail(String str) throws FormatException {
         boolean check = str.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
         if (!check){
@@ -61,6 +96,17 @@ public class CheckUtils {
         boolean check = str.matches("^\\d{2}-\\d{2}-\\d{4}$");
         if (!check) {
             throw new FormatException("Date Is Out Of Format Exception");
+        }
+
+    }
+    public static void checkDateOfBirth(LocalDate dob) throws FormatException {
+        LocalDate now = LocalDate.now();
+        Period period = Period.between(dob, now);
+        boolean isGreatThan18 = (period.getYears() >= 18);
+        boolean isLessThan100 = (period.getYears() <= 100);
+
+        if (!isGreatThan18 || !isLessThan100) {
+            throw new FormatException("Date Of Birth Is Great Than 18 And Less Than 100 Exception");
         }
 
     }

@@ -2,6 +2,8 @@ package case_study_furama_resort_module_2.services.impl.facility_service_impl;
 
 import case_study_furama_resort_module_2.models.facility.House;
 import case_study_furama_resort_module_2.services.facility_service.FacilityHouseService;
+import case_study_furama_resort_module_2.utils.CheckUtils;
+import case_study_furama_resort_module_2.utils.FormatException;
 
 import java.io.*;
 import java.security.SecureRandom;
@@ -47,36 +49,55 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
         }
         System.out.println("Facility code is: " + code);
 
-        System.out.print("Enter service name: ");
-        serviceName = SC.nextLine();
+        while (true){
+            System.out.print("Enter service name: ");
+            serviceName = SC.nextLine();
+            try {
+                CheckUtils.checkNameService(serviceName);
+                break;
+            } catch (FormatException e) {
+                e.getStackTrace();
+            }
+        }
 
         while (true) {
             System.out.print("Enter usable area: ");
             try {
                 usableArea = Double.parseDouble(SC.nextLine());
+                CheckUtils.checkArea(usableArea);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format.Enter again.");
+            } catch (FormatException e) {
+                e.printStackTrace();
             }
         }
+
         while (true) {
             System.out.print("Enter rental cost: ");
             try {
                 rentalCost = Double.parseDouble(SC.nextLine());
+                CheckUtils.checkRentalCost(rentalCost);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format.Enter again.");
+            } catch (FormatException e) {
+                e.printStackTrace();
             }
         }
         while (true) {
             System.out.print("Enter maximum number of people: ");
             try {
                 maximumNumberOfPeople = Integer.parseInt(SC.nextLine());
+                CheckUtils.checkNumberOfPeople(maximumNumberOfPeople);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format.Enter again.");
+            } catch (FormatException e) {
+                e.printStackTrace();
             }
         }
+
         while (true) {
             System.out.print("1.Rental by year\n2.Rental by month\n3.Rental by day\n2.Rental by hours\nEnter rental type follow number: ");
             int choice = 0;
@@ -112,16 +133,27 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
             }
         }
 
-        System.out.print("Enter free room standard: ");
-        roomStandard = SC.nextLine();
+        while (true){
+            System.out.print("Enter room standard: ");
+            roomStandard = SC.nextLine();
+            try {
+                CheckUtils.checkNameService(roomStandard);
+                break;
+            } catch (FormatException e) {
+                e.printStackTrace();
+            }
+        }
 
         while (true) {
             System.out.print("Enter number of floor: ");
             try {
                 numberOfFloor = Integer.parseInt(SC.nextLine());
+                CheckUtils.checkNumberOfFloors(numberOfFloor);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format. Enter again");
+            } catch (FormatException e) {
+                e.printStackTrace();
             }
         }
 

@@ -71,8 +71,10 @@ public class EmployServiceImpl implements EmployeeService {
                 CheckUtils.checkDate(date);
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 dateOfBirth = LocalDate.parse(date, fm);
+                CheckUtils.checkDateOfBirth(dateOfBirth);
                 break;
             } catch (FormatException | NumberFormatException | DateTimeParseException e) {
+                e.getStackTrace();
                 System.out.println("Format error!");
             }
         }
@@ -213,7 +215,9 @@ public class EmployServiceImpl implements EmployeeService {
                 CheckUtils.checkSalary(salary);
                 break;
             } catch (FormatException e) {
-                e.printStackTrace();
+                System.out.println("Wrong format.Enter again!");
+            } catch (NumberFormatException e){
+                System.out.println("Wrong format.Enter again!");
             }
         }
 
