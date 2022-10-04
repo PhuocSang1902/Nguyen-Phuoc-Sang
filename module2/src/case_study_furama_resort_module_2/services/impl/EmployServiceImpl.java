@@ -16,8 +16,8 @@ import java.util.Scanner;
 
 public class EmployServiceImpl implements EmployeeService {
 
-    public static List<Employee> employeeList = new ArrayList<>();
-    public static Scanner sc = new Scanner(System.in);
+    private static List<Employee> employeeList = new ArrayList<>();
+    private static Scanner sc = new Scanner(System.in);
 
     private Employee inputInfo() {
         String code;

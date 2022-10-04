@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class FacilityVillaServiceImpl implements FacilityVillaService {
-    public static Scanner sc = new Scanner(System.in);
-    public static Map<Villa, Integer> facilitiesList = new LinkedHashMap<>();
+    private static Scanner sc = new Scanner(System.in);
+    private static Map<Villa, Integer> facilitiesList = new LinkedHashMap<>();
 
     private static Facility inputInfoVilla() {
         String serviceName;

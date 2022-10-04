@@ -16,8 +16,8 @@ import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
 
-    public static List<Customer> customerList = new LinkedList<>();
-    public static Scanner sc = new Scanner(System.in);
+    private static List<Customer> customerList = new LinkedList<>();
+    private static Scanner sc = new Scanner(System.in);
 
     private static Customer inputInfo() {
         String code;
@@ -326,7 +326,7 @@ public class CustomerServiceImpl implements CustomerService {
         return new Customer(code, fullName, dateOfBirth, gender, idNumber, phoneNumber, email, guestType, address);
     }
 
-    private List<Customer> getInfoFromFile() {
+    private List<Customer> getDataFromFile() {
         File file = new File("src\\case_study_furama_resort_module_2\\data\\customer_data.csv");
 
         if (!file.exists()) {
@@ -404,7 +404,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void display() {
-        customerList = getInfoFromFile();
+        customerList = getDataFromFile();
         for (Customer customer : customerList) {
             System.out.println(customer.toString());
         }
@@ -412,7 +412,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void add() {
-        customerList = getInfoFromFile();
+        customerList = getDataFromFile();
         Customer customer = inputInfo();
         customerList.add(customer);
         writeFile(customerList);
@@ -420,7 +420,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void edit() {
-        customerList = getInfoFromFile();
+        customerList = getDataFromFile();
         System.out.print("Enter code of employee that you want to edit:");
         String code = sc.nextLine();
         boolean flagCheck = false;

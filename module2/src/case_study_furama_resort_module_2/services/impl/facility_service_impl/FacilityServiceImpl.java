@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class FacilityServiceImpl implements FacilityService {
 
-    public static Scanner sc = new Scanner(System.in);
-    public static Map<Facility, Integer> facilitiesList = new LinkedHashMap<>();
+    private static Scanner sc = new Scanner(System.in);
+    private static Map<Facility, Integer> facilitiesList = new LinkedHashMap<>();
 
 
 //    private static Facility getInfoFromFile(){

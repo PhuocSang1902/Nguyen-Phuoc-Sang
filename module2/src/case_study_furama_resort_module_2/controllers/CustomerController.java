@@ -6,8 +6,8 @@ import case_study_furama_resort_module_2.services.impl.CustomerServiceImpl;
 import java.util.Scanner;
 
 public class CustomerController {
-    public static CustomerService customerServiceImpl = new CustomerServiceImpl();
-    public static Scanner sc = new Scanner(System.in);
+    private static CustomerService customerServiceImpl = new CustomerServiceImpl();
+    private static Scanner sc = new Scanner(System.in);
 
     public static void displayCustomerMenu() {
         while (true) {

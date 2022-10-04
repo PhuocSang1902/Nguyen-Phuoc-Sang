@@ -6,8 +6,8 @@ import case_study_furama_resort_module_2.services.impl.facility_service_impl.Fac
 import java.util.Scanner;
 
 public class FacilityController {
-    public static Scanner sc = new Scanner(System.in);
-    public static FacilityService facilityServiceImpl = new FacilityServiceImpl();
+    private static Scanner sc = new Scanner(System.in);
+    private static FacilityService facilityServiceImpl = new FacilityServiceImpl();
 
     public static void displayFacilityMenu() {
         while (true) {
