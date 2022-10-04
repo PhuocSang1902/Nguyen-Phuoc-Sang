@@ -26,7 +26,7 @@ public class Room extends Facility {
     @Override
     public String toString() {
         return "Room{" + super.toString() +
-                ", freeServiceIncluded='" + freeServiceIncluded + '\'' +
+                ", Free Service Included='" + freeServiceIncluded + '\'' +
                 '}';
     }
 }

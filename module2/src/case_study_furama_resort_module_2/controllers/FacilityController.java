@@ -1,13 +1,19 @@
 package case_study_furama_resort_module_2.controllers;
 
-import case_study_furama_resort_module_2.services.facility_service.FacilityService;
-import case_study_furama_resort_module_2.services.impl.facility_service_impl.FacilityServiceImpl;
+import case_study_furama_resort_module_2.services.facility_service.FacilityHouseService;
+import case_study_furama_resort_module_2.services.facility_service.FacilityRoomService;
+import case_study_furama_resort_module_2.services.facility_service.FacilityVillaService;
+import case_study_furama_resort_module_2.services.impl.facility_service_impl.FacilityHouseServiceImpl;
+import case_study_furama_resort_module_2.services.impl.facility_service_impl.FacilityRoomServiceImpl;
+import case_study_furama_resort_module_2.services.impl.facility_service_impl.FacilityVillaServiceImpl;
 
 import java.util.Scanner;
 
 public class FacilityController {
     private static Scanner sc = new Scanner(System.in);
-    private static FacilityService facilityServiceImpl = new FacilityServiceImpl();
+    private static FacilityHouseService facilityHouseService = new FacilityHouseServiceImpl();
+    private static FacilityVillaService facilityVillaService = new FacilityVillaServiceImpl();
+    private static FacilityRoomService facilityRoomService = new FacilityRoomServiceImpl();
 
     public static void displayFacilityMenu() {
         while (true) {
@@ -20,13 +26,17 @@ public class FacilityController {
             int choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1:
-                    facilityServiceImpl.display();
+                    facilityVillaService.display();
+                    facilityHouseService.display();
+                    facilityRoomService.display();
                     break;
                 case 2:
                     addNewFacility();
                     break;
                 case 3:
-                    facilityServiceImpl.displayMaintenanceList();
+                    facilityVillaService.displayMaintenanceList();
+                    facilityHouseService.displayMaintenanceList();
+                    facilityRoomService.displayMaintenanceList();
                     break;
                 case 4:
                     return;
@@ -46,13 +56,13 @@ public class FacilityController {
             int choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1:
-                    facilityServiceImpl.addNewVilla();
+                    facilityVillaService.add();
                     break;
                 case 2:
-                    facilityServiceImpl.addNewHouse();
+                    facilityHouseService.add();
                     break;
                 case 3:
-                    facilityServiceImpl.addNewRoom();
+                    facilityRoomService.add();
                     break;
                 case 4:
                     return;

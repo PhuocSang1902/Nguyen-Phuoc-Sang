@@ -28,7 +28,7 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
             String rangeID = "0123456789";
             SecureRandom random = new SecureRandom();
 
-            StringBuilder tempCode = new StringBuilder("SVRO-");
+            StringBuilder tempCode = new StringBuilder("SVHO-");
             for (int i = 0; i < 4; i++) {
                 tempCode.append(rangeID.charAt(random.nextInt(rangeID.length())));
             }
