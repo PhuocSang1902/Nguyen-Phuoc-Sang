@@ -1,7 +1,5 @@
 package case_study_furama_resort_module_2.models.facility;
 
-import case_study_furama_resort_module_2.models.facility.Facility;
-
 public class Villa extends Facility {
     private String standardRoom;
     private double poolArea;
@@ -10,11 +8,11 @@ public class Villa extends Facility {
     public Villa() {
     }
 
-    public Villa(String serviceName, String usableArea, double rentalCost, int maximumNumberOfPeople, String rentalType) {
+    public Villa(String serviceName, double usableArea, double rentalCost, int maximumNumberOfPeople, String rentalType) {
         super(serviceName, usableArea, rentalCost, maximumNumberOfPeople, rentalType);
     }
 
-    public Villa(String serviceName, String usableArea, double rentalCost, int maximumNumberOfPeople, String rentalType, String standardRoom, double poolArea, int numberOfFloor) {
+    public Villa(String serviceName, double usableArea, double rentalCost, int maximumNumberOfPeople, String rentalType, String standardRoom, double poolArea, int numberOfFloor) {
         super(serviceName, usableArea, rentalCost, maximumNumberOfPeople, rentalType);
         this.standardRoom = standardRoom;
         this.poolArea = poolArea;

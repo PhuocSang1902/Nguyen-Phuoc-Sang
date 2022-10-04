@@ -30,7 +30,7 @@ public class FuramaController {
                     CustomerController.displayCustomerMenu();
                     break;
                 case 3:
-                    displayFacilityMenu();
+                    FacilityController.displayFacilityMenu();
                     break;
                 case 4:
                     displayBookingMenu();
@@ -49,32 +49,7 @@ public class FuramaController {
 
 
 
-    public static void displayFacilityMenu() {
-        while (true) {
-            System.out.println("FACILITY MANAGEMENT MENU");
-            System.out.println("1.Display List Facility");
-            System.out.println("2.Add New Facility");
-            System.out.println("3.Display List Facility Maintenance");
-            System.out.println("4.Return Main Menu");
-            System.out.print("Enter your choice: ");
-            int choice = Integer.parseInt(sc.nextLine());
-            switch (choice) {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    System.exit(0);
-            }
-            System.out.println();
-        }
-    }
+
 
     public static void displayBookingMenu() {
         while (true) {
