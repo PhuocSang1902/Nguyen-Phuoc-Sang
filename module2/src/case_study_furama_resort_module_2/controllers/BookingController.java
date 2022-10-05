@@ -1,13 +1,18 @@
 package case_study_furama_resort_module_2.controllers;
 
 import case_study_furama_resort_module_2.services.BookingService;
+import case_study_furama_resort_module_2.services.ContractService;
 import case_study_furama_resort_module_2.services._impl.BookingServiceImpl;
+import case_study_furama_resort_module_2.services._impl.ContractServiceImpl;
 
 import java.util.Scanner;
 
 public class BookingController {
 
-    private static BookingService bookingServiceImpl = new BookingServiceImpl() {};
+    private static BookingService bookingServiceImpl = new BookingServiceImpl() {
+    };
+    private static ContractService contractServiceImpl = new ContractServiceImpl() {
+    };
 
     private static Scanner sc = new Scanner(System.in);
 
@@ -27,16 +32,16 @@ public class BookingController {
                     bookingServiceImpl.add();
                     break;
                 case "2":
-
+                    bookingServiceImpl.display();
                     break;
                 case "3":
-
+                    contractServiceImpl.add();
                     break;
                 case "4":
-
+                    contractServiceImpl.display();
                     break;
                 case "5":
-
+                    editContract();
                     break;
                 case "6":
                     return;
@@ -46,4 +51,26 @@ public class BookingController {
             System.out.println();
         }
     }
+
+    private static void editContract() {
+        while (true) {
+            System.out.println("EDITING CONTRACT MENU");
+            System.out.println("1.Edit booking code");
+            System.out.println("2.Edit advance deposit amount");
+            System.out.print("Enter your choice follow number: ");
+            String choice = sc.nextLine();
+
+            switch (choice){
+                case "1":
+                    contractServiceImpl.editBookingCode();
+                    break;
+                case "2":
+                    contractServiceImpl.editAdvanceDepositAmount();
+                    break;
+                default:
+                    System.out.println("Wrong format. Enter again!");
+            }
+        }
+    }
+
 }

@@ -8,7 +8,7 @@ public class Booking implements Comparable<Booking> {
     private LocalDate startDay;
     private LocalDate endDay;
     private String CustomerCode;
-    private String serviceName;
+    private String serviceCode;
     private String serviceType;
 
     public Booking() {
@@ -19,7 +19,7 @@ public class Booking implements Comparable<Booking> {
         this.startDay = startDay;
         this.endDay = endDay;
         CustomerCode = customerCode;
-        this.serviceName = serviceName;
+        this.serviceCode = serviceName;
         this.serviceType = serviceType;
     }
 
@@ -55,12 +55,12 @@ public class Booking implements Comparable<Booking> {
         CustomerCode = customerCode;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getServiceCode() {
+        return serviceCode;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
     }
 
     public String getServiceType() {
@@ -80,7 +80,7 @@ public class Booking implements Comparable<Booking> {
                 ", startDay='" + startDay.format(fm) + '\'' +
                 ", endDay='" + endDay.format(fm) + '\'' +
                 ", CustomerCode='" + CustomerCode + '\'' +
-                ", serviceName='" + serviceName + '\'' +
+                ", serviceName='" + serviceCode + '\'' +
                 ", serviceType='" + serviceType + '\'' +
                 '}';
     }

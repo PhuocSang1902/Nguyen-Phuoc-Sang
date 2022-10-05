@@ -24,8 +24,8 @@ public class CheckUtils {
         }
     }
 
-    public static void checkRentalCost(double cost) throws FormatException {
-        if (cost <= 0) {
+    public static void checkMoney(double cost) throws FormatException {
+        if (cost < 0) {
             throw new FormatException("Rental Cost Is Out Of Format Exception!");
         }
     }

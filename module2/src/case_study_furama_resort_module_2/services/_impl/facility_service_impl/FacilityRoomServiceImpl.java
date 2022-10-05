@@ -80,7 +80,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
             System.out.print("Enter rental cost: ");
             try {
                 rentalCost = Double.parseDouble(SC.nextLine());
-                CheckUtils.checkRentalCost(rentalCost);
+                CheckUtils.checkMoney(rentalCost);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format.Enter again.");

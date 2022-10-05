@@ -32,6 +32,7 @@ public class BookingServiceImpl implements BookingService {
     private static Scanner SC = new Scanner(System.in);
     private static final String PATH = "src\\case_study_furama_resort_module_2\\data\\booking.csv";
     private static Set<Booking> bookingList = new TreeSet<>();
+    private static ContractServiceImpl contractService = new ContractServiceImpl();
 
     private Booking inputInfo(){
 
@@ -222,7 +223,7 @@ public class BookingServiceImpl implements BookingService {
                 booking.setStartDay(LocalDate.parse(info[1], fm));
                 booking.setEndDay(LocalDate.parse(info[2], fm));
                 booking.setCustomerCode(info[3]);
-                booking.setServiceName(info[4]);
+                booking.setServiceCode(info[4]);
                 booking.setServiceType(info[5]);
 
                 bookingList.add(booking);
@@ -268,7 +269,7 @@ public class BookingServiceImpl implements BookingService {
     private String getInfo(Booking booking) {
         DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return String.format("%s,%s,%s,%s,%s,%s",
-                booking.getBookingCode(), booking.getStartDay().format(fm), booking.getEndDay().format(fm), booking.getCustomerCode(), booking.getServiceName(), booking.getServiceType());
+                booking.getBookingCode(), booking.getStartDay().format(fm), booking.getEndDay().format(fm), booking.getCustomerCode(), booking.getServiceCode(), booking.getServiceType());
     }
 
     @Override
@@ -284,33 +285,35 @@ public class BookingServiceImpl implements BookingService {
         bookingList = getDataFromFile();
         Booking booking = inputInfo();
         bookingList.add(booking);
-        if (booking.getServiceName().contains("SVHO")){
+        if (booking.getServiceCode().contains("SVHO")){
             LinkedHashMap<House, Integer> houseList = facilityHouseService.getDataFromFile();
             Set<House> houses = houseList.keySet();
             for (House house : houses){
-                if (house.getFacilityCode().equals(booking.getServiceName())){
+                if (house.getFacilityCode().equals(booking.getServiceCode())){
                     houseList.replace(house, houseList.get(house) + 1);
                     break;
                 }
             }
-        }else if(booking.getServiceName().contains("SVRO")){
+            contractService.add();
+        }else if(booking.getServiceCode().contains("SVRO")){
             LinkedHashMap<Room, Integer> roomList = facilityRoomService.getDataFromFile();
             Set<Room> roomSet = roomList.keySet();
             for (Room room : roomSet){
-                if (room.getFacilityCode().equals(booking.getServiceName())){
+                if (room.getFacilityCode().equals(booking.getServiceCode())){
                     roomList.replace(room, roomList.get(room) + 1);
                     break;
                 }
             }
-        }else if(booking.getServiceName().contains("SVVL")){
+        }else if(booking.getServiceCode().contains("SVVL")){
             LinkedHashMap<Villa, Integer> villaList = facilityVillaService.getDataFromFile();
             Set<Villa> villaSet = villaList.keySet();
             for (Villa villa : villaSet){
-                if (villa.getFacilityCode().equals(booking.getServiceName())){
+                if (villa.getFacilityCode().equals(booking.getServiceCode())){
                     villaList.replace(villa, villaList.get(villa) + 1);
                     break;
                 }
             }
+            contractService.add();
         }
         writeFile(bookingList);
     }
