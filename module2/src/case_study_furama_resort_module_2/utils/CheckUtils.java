@@ -70,10 +70,26 @@ public class CheckUtils {
 
     }
 
-    public static void checkClassName(String str) throws FormatException {
-        boolean check = str.matches("^[ABC][0-9]{2}$");
+    public static void checkCustomerCode(String str) throws FormatException {
+        boolean check = str.matches("^CT[0-9]{4}$");
         if (!check) {
-            throw new FormatException("Class Name Is Out Of Format Exception");
+            throw new FormatException("Customer Code Is Out Of Format Exception");
+        }
+
+    }
+
+    public static void checkFacilityCode(String str) throws FormatException {
+        boolean check = str.matches("^(SVVL)|(SVHO)|(SVRO)[-][0-9]{4}$");
+        if (!check) {
+            throw new FormatException("Facility Code Is Out Of Format Exception");
+        }
+
+    }
+
+    public static void checkBookingCode(String str) throws FormatException {
+        boolean check = str.matches("^(BK)[0-9]{4}$");
+        if (!check) {
+            throw new FormatException("Facility Code Is Out Of Format Exception");
         }
 
     }

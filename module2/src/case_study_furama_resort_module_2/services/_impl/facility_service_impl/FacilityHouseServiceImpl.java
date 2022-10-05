@@ -1,42 +1,44 @@
-package case_study_furama_resort_module_2.services.impl.facility_service_impl;
+package case_study_furama_resort_module_2.services._impl.facility_service_impl;
 
-import case_study_furama_resort_module_2.models.facility.Villa;
-import case_study_furama_resort_module_2.services.facility_service.FacilityVillaService;
+import case_study_furama_resort_module_2.models.facility.House;
+import case_study_furama_resort_module_2.services.facility_service.FacilityHouseService;
 import case_study_furama_resort_module_2.utils.CheckUtils;
 import case_study_furama_resort_module_2.utils.FormatException;
 
 import java.io.*;
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Scanner;
+import java.util.Set;
 
-public class FacilityVillaServiceImpl implements FacilityVillaService {
-    private static final Scanner SC = new Scanner(System.in);
-    private static LinkedHashMap<Villa, Integer> villasList = new LinkedHashMap<>();
+public class FacilityHouseServiceImpl implements FacilityHouseService {
+    private static Scanner SC = new Scanner(System.in);
+    private static LinkedHashMap<House, Integer> housesList = new LinkedHashMap<>();
 
-    private Villa inputInfoVilla() {
+    private House inputInfoHouse() {
         String code;
         String serviceName;
         double usableArea;
         double rentalCost;
         int maximumNumberOfPeople;
         String rentalType;
-        String standardRoom;
-        double poolArea;
+        String roomStandard;
         int numberOfFloor;
 
         while (true) {
             String rangeID = "0123456789";
             SecureRandom random = new SecureRandom();
 
-            StringBuilder tempCode = new StringBuilder("SVVL-");
+            StringBuilder tempCode = new StringBuilder("SVHO-");
             for (int i = 0; i < 4; i++) {
                 tempCode.append(rangeID.charAt(random.nextInt(rangeID.length())));
             }
             code = tempCode.toString();
             boolean flagCheck = true;
-            Set<Villa> keyList = villasList.keySet();
-            for (Villa villa : keyList) {
-                if (villa.getFacilityCode().equals(code)) {
+            Set<House> keyList = housesList.keySet();
+            for (House house : keyList) {
+                if (house.getFacilityCode().equals(code)) {
                     flagCheck = false;
                     break;
                 }
@@ -54,7 +56,7 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
                 CheckUtils.checkNameService(serviceName);
                 break;
             } catch (FormatException e) {
-                System.out.println("Wrong format. Enter again!");
+                e.getStackTrace();
             }
         }
 
@@ -132,24 +134,28 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
         }
 
         while (true){
-            System.out.print("Enter room standard: ");
-            standardRoom = SC.nextLine();
-            try {
-                CheckUtils.checkNameService(standardRoom);
-                break;
-            } catch (FormatException e) {
-                e.printStackTrace();
-            }
-        }
+            System.out.print("1.Superior Room\n2.Deluxe Room\n3.Suite Room\nEnter room standard follow number: ");
+            String choice = SC.nextLine();
 
-        while (true){
-            System.out.print("Enter pool area: ");
-            try{
-                poolArea = Double.parseDouble(SC.nextLine());
-                CheckUtils.checkArea(poolArea);
+            switch (choice){
+                case "1":
+                    roomStandard = "Superior Room";
+                    break;
+                case "2":
+                    roomStandard = "Deluxe Room";
+                    break;
+                case "3":
+                    roomStandard = "Suite Room";
+                    break;
+                default:
+                    roomStandard = null;
+                    System.out.println("Wrong format! Enter again.");
+            }
+            try {
+                if (roomStandard != null) {
+                    CheckUtils.checkNameService(roomStandard);
+                }
                 break;
-            }catch (NumberFormatException e){
-                System.out.println("Wrong format.Enter again");
             } catch (FormatException e) {
                 e.printStackTrace();
             }
@@ -168,13 +174,13 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
             }
         }
 
-        return new Villa(code, serviceName, usableArea, rentalCost, maximumNumberOfPeople, rentalType, standardRoom, poolArea, numberOfFloor);
+        return new House(code, serviceName, usableArea, rentalCost, maximumNumberOfPeople, rentalType, roomStandard, numberOfFloor);
     }
 
-    private LinkedHashMap<Villa, Integer> getDataFromFile() {
-        LinkedHashMap<Villa, Integer> villasList = new LinkedHashMap<>();
+    public LinkedHashMap<House, Integer> getDataFromFile() {
+        LinkedHashMap<House, Integer> housesList = new LinkedHashMap<>();
 
-        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_villa_data.csv");
+        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_house_data.csv");
         if (!file.exists()) {
             System.out.println("File is not exist");
         }
@@ -189,18 +195,17 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
             String[] info;
             while ((line = bufferedReader.readLine()) != null) {
                 info = line.split(",");
-                Villa villa = new Villa();
-                villa.setFacilityCode(info[0]);
-                villa.setServiceName(info[1]);
-                villa.setUsableArea(Double.parseDouble(info[2]));
-                villa.setRentalCost(Double.parseDouble(info[3]));
-                villa.setMaximumNumberOfPeople(Integer.parseInt(info[4]));
-                villa.setRentalType(info[5]);
-                villa.setStandardRoom(info[6]);
-                villa.setPoolArea(Double.parseDouble(info[7]));
-                villa.setNumberOfFloor(Integer.parseInt(info[8]));
-                Integer value = Integer.parseInt(info[9]);
-                villasList.put(villa, value);
+                House house = new House();
+                house.setFacilityCode(info[0]);
+                house.setServiceName(info[1]);
+                house.setUsableArea(Double.parseDouble(info[2]));
+                house.setRentalCost(Double.parseDouble(info[3]));
+                house.setMaximumNumberOfPeople(Integer.parseInt(info[4]));
+                house.setRentalType(info[5]);
+                house.setRoomStandard(info[6]);
+                house.setNumberOfFloor(Integer.parseInt(info[7]));
+                Integer value = Integer.parseInt(info[8]);
+                housesList.put(house, value);
             }
 
         } catch (FileNotFoundException e) {
@@ -209,11 +214,11 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
             e.printStackTrace();
         }
 
-        return villasList;
+        return housesList;
     }
 
-    private void writeFile(LinkedHashMap<Villa, Integer> villasList) {
-        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_villa_data.csv");
+    private void writeFile(LinkedHashMap<House, Integer> housesList) {
+        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_house_data.csv");
         if (!file.exists()) {
             System.out.println("File is not exist");
         }
@@ -224,10 +229,11 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
         try {
             fileWriter = new FileWriter(file);
             bufferedWriter = new BufferedWriter(fileWriter);
-            Set<Villa> villas = new LinkedHashSet<>();
-            villas = villasList.keySet();
-            for (Villa villa : villas) {
-                bufferedWriter.write(getInfo(villa) + "," + villasList.get(villa));
+            Set<House> houses = new LinkedHashSet<>();
+            houses = housesList.keySet();
+            for (House house : houses) {
+                bufferedWriter.write(getInfo(house) + "," + housesList.get(house));
+                bufferedWriter.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -242,8 +248,8 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
         }
     }
 
-    private String getInfo(Villa villa) {
-        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s", villa.getFacilityCode(), villa.getServiceName(), villa.getUsableArea(), villa.getRentalCost(), villa.getMaximumNumberOfPeople(), villa.getRentalType(), villa.getStandardRoom(), villa.getPoolArea(), villa.getNumberOfFloor());
+    private String getInfo(House house) {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s", house.getFacilityCode(), house.getServiceName(), house.getUsableArea(), house.getRentalCost(), house.getMaximumNumberOfPeople(), house.getRentalType(), house.getRoomStandard(), house.getNumberOfFloor());
 
     }
 
@@ -254,19 +260,20 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
 
     @Override
     public void display() {
-        villasList = getDataFromFile();
-        Set<Villa> villas = new LinkedHashSet<>();
-        villas = villasList.keySet();
-        for (Villa villa : villas){
-            System.out.println(villa.toString());
+        housesList = getDataFromFile();
+        Set<House> houses = new LinkedHashSet<>();
+        houses = housesList.keySet();
+        for (House house : houses) {
+            System.out.println(house.toString());
         }
+
     }
 
     @Override
     public void add() {
-        villasList = getDataFromFile();
-        Villa villa = inputInfoVilla();
-        villasList.put(villa, 0);
-        writeFile(villasList);
+        housesList = getDataFromFile();
+        House house = inputInfoHouse();
+        housesList.put(house, 0);
+        writeFile(housesList);
     }
 }

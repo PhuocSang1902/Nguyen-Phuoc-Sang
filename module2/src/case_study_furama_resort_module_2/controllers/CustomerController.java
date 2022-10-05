@@ -1,7 +1,7 @@
 package case_study_furama_resort_module_2.controllers;
 
-import case_study_furama_resort_module_2.services.CustomerService;
-import case_study_furama_resort_module_2.services.impl.CustomerServiceImpl;
+import case_study_furama_resort_module_2.services.people_service.CustomerService;
+import case_study_furama_resort_module_2.services._impl.people_service_impl.CustomerServiceImpl;
 
 import java.util.Scanner;
 
@@ -17,18 +17,18 @@ public class CustomerController {
             System.out.println("3.Edit Customer");
             System.out.println("4.Return Main Menu");
             System.out.print("Enter your choice follow number: ");
-            int choice = Integer.parseInt(sc.nextLine());
+            String choice = sc.nextLine();
             switch (choice) {
-                case 1:
+                case "1":
                     customerServiceImpl.display();
                     break;
-                case 2:
+                case "2":
                     customerServiceImpl.add();
                     break;
-                case 3:
+                case "3":
                     customerServiceImpl.edit();
                     break;
-                case 4:
+                case "4":
                     System.exit(0);
                 default:
                     System.out.println("Wrong format. Enter again!");

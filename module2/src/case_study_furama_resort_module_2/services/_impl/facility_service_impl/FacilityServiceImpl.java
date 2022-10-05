@@ -1,4 +1,4 @@
-package case_study_furama_resort_module_2.services.impl.facility_service_impl;
+package case_study_furama_resort_module_2.services._impl.facility_service_impl;
 
 import case_study_furama_resort_module_2.services.facility_service.FacilityService;
 

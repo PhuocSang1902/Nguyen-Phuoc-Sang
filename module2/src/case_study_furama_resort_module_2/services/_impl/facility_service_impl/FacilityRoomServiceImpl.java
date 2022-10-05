@@ -1,4 +1,4 @@
-package case_study_furama_resort_module_2.services.impl.facility_service_impl;
+package case_study_furama_resort_module_2.services._impl.facility_service_impl;
 
 import case_study_furama_resort_module_2.models.facility.Room;
 import case_study_furama_resort_module_2.services.facility_service.FacilityRoomService;
@@ -22,7 +22,11 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         double rentalCost;
         int maximumNumberOfPeople;
         String rentalType;
-        String freeServiceIncluded;
+        String freeServiceIncluded = "Hairdryer/Bathrobe/" +
+                "Ironing set/" +
+                "Sewing kit/" +
+                "Power socket/" +
+                "Personal hygiene tools";
         String code;
 
         while (true) {
@@ -48,7 +52,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         }
         System.out.println("Facility code is: " + code);
 
-        while (true){
+        while (true) {
             System.out.print("Enter service name: ");
             serviceName = SC.nextLine();
             try {
@@ -84,6 +88,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
                 e.printStackTrace();
             }
         }
+
         while (true) {
             System.out.print("Enter maximum number of people: ");
             try {
@@ -133,24 +138,42 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         }
 
         while (true){
-            System.out.print("Enter free service included: ");
-            freeServiceIncluded = SC.nextLine();
-            try {
-                CheckUtils.checkNameService(freeServiceIncluded);
+            System.out.print("1.Beer\n2.Whisky\n3.Juice\n4.Coffee and tea\nEnter free service follow number: ");
+            String choice = SC.nextLine();
+            boolean flagCheck = false;
+            switch (choice){
+                case "1":
+                    freeServiceIncluded = "Beer";
+                    flagCheck = true;
+                    break;
+                case "2":
+                    freeServiceIncluded = "Whisky";
+                    flagCheck = true;
+                    break;
+                case "3":
+                    freeServiceIncluded = "Juice";
+                    flagCheck = true;
+                    break;
+                case "4":
+                    freeServiceIncluded = "Coffee and tea";
+                    flagCheck = true;
+                    break;
+                default:
+                    freeServiceIncluded = null;
+                    System.out.println("Wrong format. Enter again!");
+            }
+            if (flagCheck){
                 break;
-            } catch (FormatException e) {
-                e.printStackTrace();
             }
         }
-
 
         return new Room(code, serviceName, usableArea, rentalCost, maximumNumberOfPeople, rentalType, freeServiceIncluded);
     }
 
-    private LinkedHashMap<Room, Integer> getDataFromFile() {
+    public LinkedHashMap<Room, Integer> getDataFromFile() {
         LinkedHashMap<Room, Integer> roomsList = new LinkedHashMap<>();
 
-        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_room_facility_data.csv");
+        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_room_data.csv");
         if (!file.exists()) {
             System.out.println("File is not exist");
         }
@@ -187,7 +210,8 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
     }
 
     private void writeFile(LinkedHashMap<Room, Integer> roomsList) {
-        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_room_facility_data.csv");
+
+        File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_room_data.csv");
         if (!file.exists()) {
             System.out.println("File is not exist");
         }
@@ -202,6 +226,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
             rooms = roomsList.keySet();
             for (Room room : rooms) {
                 bufferedWriter.write(getInfo(room) + "," + roomsList.get(room));
+                bufferedWriter.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -217,8 +242,8 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
     }
 
     private String getInfo(Room room) {
-        return String.format("%s,%s,%s,%s,%s,%s,%s", room.getFacilityCode(), room.getServiceName(), room.getUsableArea(), room.getRentalCost(), room.getMaximumNumberOfPeople(), room.getRentalType(), room.getFreeServiceIncluded());
 
+        return String.format("%s,%s,%s,%s,%s,%s,%s", room.getFacilityCode(), room.getServiceName(), room.getUsableArea(), room.getRentalCost(), room.getMaximumNumberOfPeople(), room.getRentalType(), room.getFreeServiceIncluded());
     }
 
 
@@ -230,7 +255,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
     @Override
     public void display() {
         roomsList = getDataFromFile();
-        Set<Room> rooms = new LinkedHashSet<>();
+        Set<Room> rooms;
         rooms = roomsList.keySet();
         for (Room room : rooms) {
             System.out.println(room.toString());

@@ -1,9 +1,12 @@
 package case_study_furama_resort_module_2.models;
 
-public class Booking {
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class Booking implements Comparable<Booking> {
     private String bookingCode;
-    private String startDay;
-    private String endDay;
+    private LocalDate startDay;
+    private LocalDate endDay;
     private String CustomerCode;
     private String serviceName;
     private String serviceType;
@@ -11,7 +14,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(String bookingCode, String startDay, String endDay, String customerCode, String serviceName, String serviceType) {
+    public Booking(String bookingCode, LocalDate startDay, LocalDate endDay, String customerCode, String serviceName, String serviceType) {
         this.bookingCode = bookingCode;
         this.startDay = startDay;
         this.endDay = endDay;
@@ -28,19 +31,19 @@ public class Booking {
         this.bookingCode = bookingCode;
     }
 
-    public String getStartDay() {
+    public LocalDate getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(String startDay) {
+    public void setStartDay(LocalDate startDay) {
         this.startDay = startDay;
     }
 
-    public String getEndDay() {
+    public LocalDate getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(String endDay) {
+    public void setEndDay(LocalDate endDay) {
         this.endDay = endDay;
     }
 
@@ -70,13 +73,23 @@ public class Booking {
 
     @Override
     public String toString() {
+        DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
         return "Booking{" +
                 "bookingCode='" + bookingCode + '\'' +
-                ", startDay='" + startDay + '\'' +
-                ", endDay='" + endDay + '\'' +
+                ", startDay='" + startDay.format(fm) + '\'' +
+                ", endDay='" + endDay.format(fm) + '\'' +
                 ", CustomerCode='" + CustomerCode + '\'' +
                 ", serviceName='" + serviceName + '\'' +
                 ", serviceType='" + serviceType + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Booking o) {
+        if(this.getStartDay().compareTo(o.getStartDay()) != 0){
+            return this.getStartDay().compareTo(o.getStartDay());
+        }
+        return this.getEndDay().compareTo(o.getEndDay());
     }
 }

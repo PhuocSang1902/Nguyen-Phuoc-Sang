@@ -1,7 +1,7 @@
 package case_study_furama_resort_module_2.controllers;
 
-import case_study_furama_resort_module_2.services.EmployeeService;
-import case_study_furama_resort_module_2.services.impl.EmployServiceImpl;
+import case_study_furama_resort_module_2.services.people_service.EmployeeService;
+import case_study_furama_resort_module_2.services._impl.people_service_impl.EmployServiceImpl;
 
 import java.util.Scanner;
 
@@ -18,18 +18,18 @@ public class EmployeeController {
             System.out.println("3.Edit Employee");
             System.out.println("4.Return Main Menu");
             System.out.print("Enter your choice follow number: ");
-            int choice = Integer.parseInt(sc.nextLine());
+            String choice = sc.nextLine();
             switch (choice) {
-                case 1:
+                case "1":
                     employeeServiceImpl.display();
                     break;
-                case 2:
+                case "2":
                     employeeServiceImpl.add();
                     break;
-                case 3:
+                case "3":
                     employeeServiceImpl.edit();
                     break;
-                case 4:
+                case "4":
                     return;
                 default:
                     System.out.println("Wrong format. Enter again!");
