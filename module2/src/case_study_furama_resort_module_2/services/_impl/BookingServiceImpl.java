@@ -294,6 +294,7 @@ public class BookingServiceImpl implements BookingService {
                     break;
                 }
             }
+            facilityHouseService.writeFile(houseList);
             contractService.add();
         }else if(booking.getServiceCode().contains("SVRO")){
             LinkedHashMap<Room, Integer> roomList = facilityRoomService.getDataFromFile();
@@ -304,6 +305,7 @@ public class BookingServiceImpl implements BookingService {
                     break;
                 }
             }
+            facilityRoomService.writeFile(roomList);
         }else if(booking.getServiceCode().contains("SVVL")){
             LinkedHashMap<Villa, Integer> villaList = facilityVillaService.getDataFromFile();
             Set<Villa> villaSet = villaList.keySet();
@@ -313,6 +315,7 @@ public class BookingServiceImpl implements BookingService {
                     break;
                 }
             }
+            facilityVillaService.writeFile(villaList);
             contractService.add();
         }
         writeFile(bookingList);

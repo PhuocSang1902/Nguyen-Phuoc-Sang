@@ -217,7 +217,7 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
         return housesList;
     }
 
-    private void writeFile(LinkedHashMap<House, Integer> housesList) {
+    public void writeFile(LinkedHashMap<House, Integer> housesList) {
         File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_house_data.csv");
         if (!file.exists()) {
             System.out.println("File is not exist");

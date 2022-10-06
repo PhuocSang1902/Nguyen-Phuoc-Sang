@@ -230,7 +230,7 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
         return villasList;
     }
 
-    private void writeFile(LinkedHashMap<Villa, Integer> villasList) {
+    public void writeFile(LinkedHashMap<Villa, Integer> villasList) {
         File file = new File(PATH);
         if (!file.exists()) {
             System.out.println("File is not exist");

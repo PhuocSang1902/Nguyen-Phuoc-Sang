@@ -209,7 +209,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         return roomsList;
     }
 
-    private void writeFile(LinkedHashMap<Room, Integer> roomsList) {
+    public void writeFile(LinkedHashMap<Room, Integer> roomsList) {
 
         File file = new File("src\\case_study_furama_resort_module_2\\data\\facility_room_data.csv");
         if (!file.exists()) {
