@@ -120,7 +120,7 @@ public class ContractServiceImpl implements ContractService {
                         break;
                     }
                 }
-                Period period = null;
+                Period period;
                 if (endDay != null) {
                     period = Period.between(startDay, endDay);
                     totalPaymentAmount = rentalCost * period.getDays() - advanceDepositAmount;
@@ -134,7 +134,7 @@ public class ContractServiceImpl implements ContractService {
                         break;
                     }
                 }
-                Period period = null;
+                Period period;
                 if (endDay != null) {
                     period = Period.between(startDay, endDay);
                     totalPaymentAmount = rentalCost * period.getDays() - advanceDepositAmount;
