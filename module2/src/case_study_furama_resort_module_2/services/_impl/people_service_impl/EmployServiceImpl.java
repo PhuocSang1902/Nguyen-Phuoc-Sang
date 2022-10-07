@@ -9,7 +9,6 @@ import java.io.*;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,6 +17,7 @@ public class EmployServiceImpl implements EmployeeService {
 
     private static List<Employee> employeeList = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
+    private static final String PATH = "src\\case_study_furama_resort_module_2\\data\\employee_data.csv";
 
     private Employee inputInfo() {
         String code;
@@ -60,7 +60,7 @@ public class EmployServiceImpl implements EmployeeService {
                 CheckUtils.checkName(fullName);
                 break;
             } catch (FormatException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());;
             }
         }
         while (true) {
@@ -73,8 +73,8 @@ public class EmployServiceImpl implements EmployeeService {
                 dateOfBirth = LocalDate.parse(date, fm);
                 CheckUtils.checkDateOfBirth(dateOfBirth);
                 break;
-            } catch (FormatException | NumberFormatException | DateTimeParseException e) {
-                e.getStackTrace();
+            } catch (FormatException | NumberFormatException e) {
+                System.out.println(e.getMessage());
                 System.out.println("Format error!Try again!");
             }
         }
@@ -117,7 +117,7 @@ public class EmployServiceImpl implements EmployeeService {
         }
 
         while (true) {
-            System.out.print("Enter employee phone number(start with zero and have 10 numbers): ");
+            System.out.print("Enter employee phone number(XX-XXXXXXXXX X: is number): ");
             phoneNumber = sc.nextLine();
             try {
                 CheckUtils.checkPhoneNumber(phoneNumber);
@@ -253,10 +253,10 @@ public class EmployServiceImpl implements EmployeeService {
                 CheckUtils.checkDate(date);
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 dateOfBirth = LocalDate.parse(date, fm);
+                CheckUtils.checkDateOfBirth(dateOfBirth);
                 break;
-            } catch (FormatException | NumberFormatException e) {
-                e.printStackTrace();
-                System.out.println("Format error!");
+            } catch (NumberFormatException | FormatException e) {
+                System.out.println(e.getMessage());
             }
         }
 
@@ -286,7 +286,7 @@ public class EmployServiceImpl implements EmployeeService {
             }
         }
         while (true) {
-            System.out.print("Enter employee id number(Id have 9 numbers): ");
+            System.out.print("Enter employee id number(Id have 10 numbers): ");
             idNumber = sc.nextLine();
             try {
                 CheckUtils.checkId(idNumber);
@@ -297,7 +297,7 @@ public class EmployServiceImpl implements EmployeeService {
         }
 
         while (true) {
-            System.out.print("Enter employee phone number(start with zero and have 10 numbers): ");
+            System.out.print("Enter employee phone number(XX-XXXXXXXXX X:number): ");
             phoneNumber = sc.nextLine();
             try {
                 CheckUtils.checkPhoneNumber(phoneNumber);
@@ -395,7 +395,7 @@ public class EmployServiceImpl implements EmployeeService {
     }
 
     private List<Employee> getDataFromFile() {
-        File file = new File("src\\case_study_furama_resort_module_2\\data\\employee_data.csv");
+        File file = new File(PATH);
 
         if (!file.exists()) {
             System.out.println("File is not exist.");
@@ -427,21 +427,21 @@ public class EmployServiceImpl implements EmployeeService {
                 employee.setSalary(Double.parseDouble(info[9]));
                 employeeList.add(employee);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             if (bufferedReader != null) {
                 bufferedReader.close();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return employeeList;
     }
 
     private void writeFile(List<Employee> employeeList) {
-        File file = new File("src\\case_study_furama_resort_module_2\\data\\employee_data.csv");
+        File file = new File(PATH);
 
         BufferedWriter bufferedWriter = null;
 
@@ -492,19 +492,24 @@ public class EmployServiceImpl implements EmployeeService {
     @Override
     public void edit() {
         employeeList = getDataFromFile();
-        System.out.print("Enter code of employee that you want to edit:");
-        String code = sc.nextLine();
-        boolean flagCheck = false;
-        for (int i = 0; i < employeeList.size(); i++) {
-            if (employeeList.get(i).getCode().equals(code)) {
-                Employee employee = editInfo(employeeList.get(i).getCode());
-                employeeList.set(i, employee);
-                flagCheck = true;
-                break;
+        if (!employeeList.isEmpty()){
+            System.out.print("Enter code of employee that you want to edit:");
+            String code = sc.nextLine();
+            boolean flagCheck = false;
+            for (int i = 0; i < employeeList.size(); i++) {
+                if (employeeList.get(i).getCode().equals(code)) {
+                    Employee employee = editInfo(employeeList.get(i).getCode());
+                    employeeList.set(i, employee);
+                    flagCheck = true;
+                    break;
+                }
             }
-        }
-        if (!flagCheck) {
-            System.out.println("Employee is not exist");
+            if (!flagCheck) {
+                System.out.println("Employee is not exist");
+            }
+        }else {
+            System.out.println("Data is empty");
+            return;
         }
         writeFile(employeeList);
     }

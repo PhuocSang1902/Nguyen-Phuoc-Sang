@@ -2,36 +2,30 @@ package case_study_furama_resort_module_2.services._impl;
 
 import case_study_furama_resort_module_2.models.Booking;
 import case_study_furama_resort_module_2.models.Contract;
-import case_study_furama_resort_module_2.models.facility.House;
-import case_study_furama_resort_module_2.models.facility.Villa;
 import case_study_furama_resort_module_2.services.ContractService;
-import case_study_furama_resort_module_2.services._impl.facility_service_impl.FacilityHouseServiceImpl;
-import case_study_furama_resort_module_2.services._impl.facility_service_impl.FacilityVillaServiceImpl;
 import case_study_furama_resort_module_2.utils.CheckUtils;
 import case_study_furama_resort_module_2.utils.FormatException;
 
 import java.io.*;
 import java.security.SecureRandom;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
 
 public class ContractServiceImpl implements ContractService {
 
     private static List<Contract> contractList = new LinkedList<>();
     private static final Scanner SC = new Scanner(System.in);
     private static BookingServiceImpl bookingService = new BookingServiceImpl();
-    private static FacilityVillaServiceImpl facilityVillaService = new FacilityVillaServiceImpl();
-    private static FacilityHouseServiceImpl facilityHouseService = new FacilityHouseServiceImpl();
     private static final String PATH = "src\\case_study_furama_resort_module_2\\data\\contract.csv";
 
     private Contract inputInfo() {
         String contractNumber;
         String bookingCode;
         double advanceDepositAmount;
-        double totalPaymentAmount = 0;
-        String customerCode = null;
+        double totalPaymentAmountFinal;
+        String customerCode;
 
 
         while (true) {
@@ -56,10 +50,12 @@ public class ContractServiceImpl implements ContractService {
         }
         System.out.println("Contract number is: " + contractNumber);
 
+
         while (true) {
-            System.out.println("Enter the booking code: ");
             Set<Booking> bookingList = bookingService.getDataFromFile();
             bookingService.display();
+            System.out.println("Enter the booking code: ");
+
             bookingCode = SC.nextLine();
             boolean flagCheck = false;
             for (Booking booking : bookingList) {
@@ -68,15 +64,19 @@ public class ContractServiceImpl implements ContractService {
                     break;
                 }
             }
+            if (!flagCheck) {
+                System.out.println("Booking code is not exist. Enter again!");
+            } else if (contractList != null) {
+                for (Contract contract : contractList) {
+                    if (contract.getBookingCode().equals(bookingCode)) {
+                        flagCheck = false;
+                        System.out.println("This booking created agreement");
+                        break;
+                    }
+                }
+            }
             if (flagCheck) {
                 break;
-            } else {
-                System.out.println("Booking code is not exist. Enter again!");
-            }
-            try {
-                CheckUtils.checkBookingCode(bookingCode);
-            } catch (FormatException e) {
-                e.printStackTrace();
             }
         }
 
@@ -95,62 +95,51 @@ public class ContractServiceImpl implements ContractService {
 
         }
 
-        Set<Booking> bookingList = bookingService.getDataFromFile();
-        String serviceCode = null;
-        LocalDate startDay = null;
-        LocalDate endDay = null;
+        while (true) {
+            System.out.println("Enter total payment amount: ");
+            try {
+                double totalPaymentAmount = Double.parseDouble(SC.nextLine());
+                totalPaymentAmountFinal = totalPaymentAmount - advanceDepositAmount;
+                break;
+            } catch (Exception e) {
+                System.out.println("Wrong format enter again");
+            }
+        }
 
-        for (Booking booking : bookingList) {
-            if (booking.getBookingCode().equals(bookingCode)) {
-                serviceCode = booking.getServiceCode();
-                startDay = booking.getStartDay();
-                endDay = booking.getEndDay();
-                customerCode = booking.getCustomerCode();
+        while (true) {
+            Set<Booking> bookingList = bookingService.getDataFromFile();
+            bookingService.display();
+            System.out.println("Enter the customer code: ");
+
+            customerCode = SC.nextLine();
+            boolean flagCheck = false;
+            for (Booking booking : bookingList) {
+                if (booking.getCustomerCode().equals(customerCode)) {
+                    flagCheck = true;
+                    break;
+                }
+            }
+            if (!flagCheck) {
+                System.out.println("Customer code is not exist. Enter again!");
+            } else if (contractList != null) {
+                for (Contract contract : contractList) {
+                    if (contract.getCustomerCode().equals(customerCode)) {
+                        flagCheck = false;
+                        System.out.println("This customer created agreement");
+                        break;
+                    }
+                }
+            }
+            if (flagCheck) {
                 break;
             }
         }
-        double rentalCost = 0;
-        if (serviceCode != null) {
-            if (serviceCode.contains("SVVL")) {
-                LinkedHashMap<Villa, Integer> villas = facilityVillaService.getDataFromFile();
-                Set<Villa> villaSet = villas.keySet();
-                for (Villa villa : villaSet) {
-                    if (villa.getFacilityCode().equals(serviceCode)) {
-                        rentalCost = villa.getRentalCost();
-                        break;
-                    }
-                }
-                Period period;
-                if (endDay != null) {
-                    period = Period.between(startDay, endDay);
-                    totalPaymentAmount = rentalCost * period.getDays() - advanceDepositAmount;
-                }
-            } else if (serviceCode.contains("SVHO")) {
-                LinkedHashMap<House, Integer> Houses = facilityHouseService.getDataFromFile();
-                Set<House> houseSet = Houses.keySet();
-                for (House house : houseSet) {
-                    if (house.getFacilityCode().equals(serviceCode)) {
-                        rentalCost = house.getRentalCost();
-                        break;
-                    }
-                }
-                Period period;
-                if (endDay != null) {
-                    period = Period.between(startDay, endDay);
-                    totalPaymentAmount = rentalCost * period.getDays() - advanceDepositAmount;
-                }
-            }
-        } else {
-            System.out.println("Booking code is wrong.");
-        }
 
-        System.out.println("Customer code is " + customerCode);
 
-        return new Contract(contractNumber, bookingCode, advanceDepositAmount, totalPaymentAmount, customerCode);
+        return new Contract(contractNumber, bookingCode, advanceDepositAmount, totalPaymentAmountFinal, customerCode);
     }
 
     private String getInfo(Contract contract) {
-        DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return String.format("%s,%s,%s,%s,%s",
                 contract.getContractNumber(), contract.getBookingCode(), contract.getAdvanceDepositAmount(), contract.getTotalPaymentAmount(), contract.getCustomerCode());
     }
@@ -177,21 +166,20 @@ public class ContractServiceImpl implements ContractService {
                 contract = new Contract();
                 contract.setContractNumber(info[0]);
                 contract.setBookingCode(info[1]);
-                DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 contract.setAdvanceDepositAmount(Double.parseDouble(info[2]));
                 contract.setTotalPaymentAmount(Double.parseDouble(info[3]));
                 contract.setCustomerCode(info[4]);
 
                 contractList.add(contract);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             if (bufferedReader != null) {
                 bufferedReader.close();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return contractList;
@@ -225,7 +213,7 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public void display() {
         contractList = getDataFromFile();
-        for (Contract contract : contractList){
+        for (Contract contract : contractList) {
             System.out.println(contract.toString());
         }
 
@@ -246,8 +234,8 @@ public class ContractServiceImpl implements ContractService {
         System.out.print("Enter the number of contract: ");
         String numberOfContract = SC.nextLine();
         boolean flagCheck = false;
-        for (Contract contract : contractList){
-            if (contract.getContractNumber().equals(numberOfContract)){
+        for (Contract contract : contractList) {
+            if (contract.getContractNumber().equals(numberOfContract)) {
                 System.out.println("Enter new booking code");
                 String bookingCode = SC.nextLine();
                 contract.setBookingCode(bookingCode);
@@ -255,9 +243,9 @@ public class ContractServiceImpl implements ContractService {
                 break;
             }
         }
-        if (flagCheck){
+        if (flagCheck) {
             System.out.println("Successfully edit.");
-        }else {
+        } else {
             System.out.println("Number of contract is not exist");
         }
         writeFile(contractList);
@@ -270,17 +258,18 @@ public class ContractServiceImpl implements ContractService {
         System.out.print("Enter the number of contract: ");
         String numberOfContract = SC.nextLine();
         boolean flagCheck = false;
-        for (Contract contract : contractList){
-            if (contract.getContractNumber().equals(numberOfContract)){
+        for (Contract contract : contractList) {
+            if (contract.getContractNumber().equals(numberOfContract)) {
                 System.out.println("Enter new advance deposit amount code");
                 double advanceDepositAmount = Double.parseDouble(SC.nextLine());
                 contract.setAdvanceDepositAmount(advanceDepositAmount);
+                flagCheck = true;
                 break;
             }
         }
-        if (flagCheck){
+        if (flagCheck) {
             System.out.println("Successfully edit.");
-        }else {
+        } else {
             System.out.println("Number of contract is not exist");
         }
         writeFile(contractList);

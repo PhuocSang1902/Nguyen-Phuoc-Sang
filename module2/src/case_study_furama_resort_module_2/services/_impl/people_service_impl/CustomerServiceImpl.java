@@ -9,7 +9,6 @@ import java.io.*;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -72,9 +71,8 @@ public class CustomerServiceImpl implements CustomerService {
                 dateOfBirth = LocalDate.parse(date, fm);
                 CheckUtils.checkDateOfBirth(dateOfBirth);
                 break;
-            } catch (FormatException | NumberFormatException | DateTimeParseException e) {
-                e.getStackTrace();
-                System.out.println("Format error!");
+            } catch (NumberFormatException | FormatException e) {
+                System.out.println(e.getMessage());
             }
         }
 
@@ -116,7 +114,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         while (true) {
-            System.out.print("Enter customer phone number(start with zero and have 10 numbers): ");
+            System.out.print("Enter customer phone number(XX-XXXXXXXXX X:number)");
             phoneNumber = SC.nextLine();
             try {
                 CheckUtils.checkPhoneNumber(phoneNumber);
@@ -173,7 +171,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         while (true) {
-            System.out.print("Enter customer full name: ");
+            System.out.print("Enter customer address: ");
             address = SC.nextLine();
             try {
                 CheckUtils.checkAddress(address);
@@ -214,9 +212,10 @@ public class CustomerServiceImpl implements CustomerService {
                 CheckUtils.checkDate(date);
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 dateOfBirth = LocalDate.parse(date,fm);
+                CheckUtils.checkDateOfBirth(dateOfBirth);
                 break;
-            } catch (FormatException | NumberFormatException | DateTimeParseException e) {
-                System.out.println("Format error!");
+            } catch (NumberFormatException | FormatException e) {
+                System.out.println(e.getMessage());
             }
         }
 
@@ -258,7 +257,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         while (true) {
-            System.out.print("Enter customer phone number(start with zero and have 10 numbers): ");
+            System.out.print("Enter customer phone number(XX-XXXXXXXXX X:number)");
             phoneNumber = SC.nextLine();
             try {
                 CheckUtils.checkPhoneNumber(phoneNumber);
@@ -315,7 +314,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         while (true) {
-            System.out.print("Enter customer full name: ");
+            System.out.print("Enter customer address: ");
             address = SC.nextLine();
             try {
                 CheckUtils.checkAddress(address);
@@ -360,14 +359,14 @@ public class CustomerServiceImpl implements CustomerService {
                 customer.setAddress(info[8]);
                 customerList.add(customer);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         try {
             if (bufferedReader != null) {
                 bufferedReader.close();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return customerList;

@@ -29,7 +29,7 @@ public class CustomerController {
                     customerServiceImpl.edit();
                     break;
                 case "4":
-                    System.exit(0);
+                    return;
                 default:
                     System.out.println("Wrong format. Enter again!");
             }

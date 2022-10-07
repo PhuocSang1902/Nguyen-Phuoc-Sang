@@ -1,6 +1,7 @@
 package case_study_furama_resort_module_2.services._impl;
 
 import case_study_furama_resort_module_2.models.Booking;
+import case_study_furama_resort_module_2.models.Contract;
 import case_study_furama_resort_module_2.models.facility.House;
 import case_study_furama_resort_module_2.models.facility.Room;
 import case_study_furama_resort_module_2.models.facility.Villa;
@@ -17,11 +18,7 @@ import java.io.*;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.LinkedHashMap;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class BookingServiceImpl implements BookingService {
 
@@ -29,12 +26,12 @@ public class BookingServiceImpl implements BookingService {
     private static FacilityVillaServiceImpl facilityVillaService = new FacilityVillaServiceImpl();
     private static FacilityHouseServiceImpl facilityHouseService = new FacilityHouseServiceImpl();
     private static FacilityRoomServiceImpl facilityRoomService = new FacilityRoomServiceImpl();
-    private static Scanner SC = new Scanner(System.in);
+    private static final Scanner SC = new Scanner(System.in);
     private static final String PATH = "src\\case_study_furama_resort_module_2\\data\\booking.csv";
-    private static Set<Booking> bookingList = new TreeSet<>();
+    private static TreeSet<Booking> bookingList = new TreeSet<>();
     private static ContractServiceImpl contractService = new ContractServiceImpl();
 
-    private Booking inputInfo(){
+    private Booking inputInfo() {
 
         String code;
         LocalDate startDay;
@@ -74,9 +71,8 @@ public class BookingServiceImpl implements BookingService {
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 startDay = LocalDate.parse(date, fm);
                 break;
-            } catch (FormatException | NumberFormatException | DateTimeParseException e) {
-                e.getStackTrace();
-                System.out.println("Format error!");
+            } catch (NumberFormatException | FormatException e) {
+                System.out.println(e.getMessage());
             }
         }
 
@@ -88,29 +84,33 @@ public class BookingServiceImpl implements BookingService {
                 CheckUtils.checkDate(date);
                 DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 endDay = LocalDate.parse(date, fm);
-                break;
-            } catch (FormatException | NumberFormatException | DateTimeParseException e) {
-                e.getStackTrace();
-                System.out.println("Format error!");
+                if (endDay.isAfter(startDay)) {
+                    break;
+                } else {
+                    System.out.println("Input again. End day has to be after start day.");
+                }
+
+            } catch ( NumberFormatException | FormatException e) {
+                System.out.println(e.getMessage());
             }
         }
 
-        while (true){
+        while (true) {
             customerService.display();
             System.out.println("Enter the customer code: ");
             customerCode = SC.nextLine();
             try {
                 CheckUtils.checkCustomerCode(customerCode);
                 boolean flagCheck = false;
-                for (Customer customer : customerService.getDataFromFile()){
-                    if (customer.getCode().equals(customerCode)){
+                for (Customer customer : customerService.getDataFromFile()) {
+                    if (customer.getCode().equals(customerCode)) {
                         flagCheck = true;
                         break;
                     }
                 }
-                if (flagCheck){
+                if (flagCheck) {
                     break;
-                }else {
+                } else {
                     System.out.println("Wrong customer code. Enter again!");
                 }
             } catch (FormatException e) {
@@ -119,7 +119,7 @@ public class BookingServiceImpl implements BookingService {
             }
         }
 
-        while (true){
+        while (true) {
             facilityVillaService.display();
             facilityHouseService.display();
             facilityRoomService.display();
@@ -129,38 +129,38 @@ public class BookingServiceImpl implements BookingService {
             try {
                 CheckUtils.checkFacilityCode(serviceCode);
                 boolean flagCheck = false;
-                if (serviceCode.contains("SVHO")){
+                if (serviceCode.contains("SVHO")) {
                     Set<House> houses;
                     houses = facilityHouseService.getDataFromFile().keySet();
-                    for (House house : houses){
-                        if (house.getFacilityCode().equals(serviceCode)){
+                    for (House house : houses) {
+                        if (house.getFacilityCode().equals(serviceCode)) {
                             flagCheck = true;
                             break;
                         }
                     }
-                }else if (serviceCode.contains("SVRO")){
+                } else if (serviceCode.contains("SVRO")) {
                     Set<Room> rooms;
                     rooms = facilityRoomService.getDataFromFile().keySet();
-                    for (Room room : rooms){
-                        if (room.getFacilityCode().equals(serviceCode)){
+                    for (Room room : rooms) {
+                        if (room.getFacilityCode().equals(serviceCode)) {
                             flagCheck = true;
                             break;
                         }
                     }
-                }else if (serviceCode.contains("SVVL")){
+                } else if (serviceCode.contains("SVVL")) {
                     Set<Villa> villas;
                     villas = facilityVillaService.getDataFromFile().keySet();
-                    for (Villa villa : villas){
-                        if (villa.getFacilityCode().equals(serviceCode)){
+                    for (Villa villa : villas) {
+                        if (villa.getFacilityCode().equals(serviceCode)) {
                             flagCheck = true;
                             break;
                         }
                     }
                 }
 
-                if (flagCheck){
+                if (flagCheck) {
                     break;
-                }else {
+                } else {
                     System.out.println("Wrong facility code. Enter again!");
                 }
             } catch (FormatException e) {
@@ -169,11 +169,11 @@ public class BookingServiceImpl implements BookingService {
             }
         }
 
-        while (true){
+        while (true) {
             System.out.println("1.1 star service\n2.2 stars service\n3.3 stars service\nEnter the service type follow the number: ");
             String choice = SC.nextLine();
             boolean flagCheck = false;
-            switch (choice){
+            switch (choice) {
                 case "1":
                     serviceType = "1 star service";
                     flagCheck = true;
@@ -190,7 +190,7 @@ public class BookingServiceImpl implements BookingService {
                     serviceType = null;
                     System.out.println("Wrong format! Enter again!");
             }
-            if (flagCheck){
+            if (flagCheck) {
                 break;
             }
         }
@@ -198,7 +198,7 @@ public class BookingServiceImpl implements BookingService {
         return new Booking(code, startDay, endDay, customerCode, serviceCode, serviceType);
     }
 
-    public Set<Booking> getDataFromFile() {
+    public TreeSet<Booking> getDataFromFile() {
         File file = new File(PATH);
 
         if (!file.exists()) {
@@ -207,7 +207,7 @@ public class BookingServiceImpl implements BookingService {
 
         FileReader fileReader;
         BufferedReader bufferedReader = null;
-        Set<Booking> bookingList = new TreeSet<>();
+        TreeSet<Booking> bookingList = new TreeSet<>();
 
         try {
             fileReader = new FileReader(file);
@@ -228,20 +228,20 @@ public class BookingServiceImpl implements BookingService {
 
                 bookingList.add(booking);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         try {
             if (bufferedReader != null) {
                 bufferedReader.close();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return bookingList;
     }
 
-    private void writeFile(Set<Booking> bookingList) {
+    private void writeFile(TreeSet<Booking> bookingList) {
         File file = new File(PATH);
 
         BufferedWriter bufferedWriter = null;
@@ -253,7 +253,7 @@ public class BookingServiceImpl implements BookingService {
                 bufferedWriter.write(getInfo(booking));
                 bufferedWriter.newLine();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -274,9 +274,27 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void display() {
+        List<Contract> contractList = contractService.getDataFromFile();
         bookingList = getDataFromFile();
-        for (Booking booking : bookingList){
+        for (Booking booking : bookingList) {
             System.out.println(booking.toString());
+            boolean flag = false;
+            String contractNumber = null;
+            for (Contract contract : contractList) {
+                if (contract.getBookingCode().equals(booking.getBookingCode())) {
+                    flag = true;
+                    contractNumber = contract.getContractNumber();
+                    break;
+                }
+            }
+            if (flag) {
+                System.out.println("This booking has contract number is " + contractNumber);
+            } else if (booking.getServiceCode().contains("SVHO")){
+                System.out.println("This booking is miss contract");
+            }else if (booking.getServiceCode().contains("SVVL")){
+                System.out.println("This booking is miss contract");
+            }
+            System.out.println();
         }
     }
 
@@ -285,38 +303,38 @@ public class BookingServiceImpl implements BookingService {
         bookingList = getDataFromFile();
         Booking booking = inputInfo();
         bookingList.add(booking);
-        if (booking.getServiceCode().contains("SVHO")){
+        if (booking.getServiceCode().contains("SVHO")) {
             LinkedHashMap<House, Integer> houseList = facilityHouseService.getDataFromFile();
             Set<House> houses = houseList.keySet();
-            for (House house : houses){
-                if (house.getFacilityCode().equals(booking.getServiceCode())){
+            for (House house : houses) {
+                if (house.getFacilityCode().equals(booking.getServiceCode())) {
                     houseList.replace(house, houseList.get(house) + 1);
                     break;
                 }
             }
             facilityHouseService.writeFile(houseList);
-            contractService.add();
-        }else if(booking.getServiceCode().contains("SVRO")){
+            System.out.println("Remember to make a rental agreement");
+        } else if (booking.getServiceCode().contains("SVRO")) {
             LinkedHashMap<Room, Integer> roomList = facilityRoomService.getDataFromFile();
             Set<Room> roomSet = roomList.keySet();
-            for (Room room : roomSet){
-                if (room.getFacilityCode().equals(booking.getServiceCode())){
+            for (Room room : roomSet) {
+                if (room.getFacilityCode().equals(booking.getServiceCode())) {
                     roomList.replace(room, roomList.get(room) + 1);
                     break;
                 }
             }
             facilityRoomService.writeFile(roomList);
-        }else if(booking.getServiceCode().contains("SVVL")){
+        } else if (booking.getServiceCode().contains("SVVL")) {
             LinkedHashMap<Villa, Integer> villaList = facilityVillaService.getDataFromFile();
             Set<Villa> villaSet = villaList.keySet();
-            for (Villa villa : villaSet){
-                if (villa.getFacilityCode().equals(booking.getServiceCode())){
+            for (Villa villa : villaSet) {
+                if (villa.getFacilityCode().equals(booking.getServiceCode())) {
                     villaList.replace(villa, villaList.get(villa) + 1);
                     break;
                 }
             }
             facilityVillaService.writeFile(villaList);
-            contractService.add();
+            System.out.println("Remember to make a rental agreement");
         }
         writeFile(bookingList);
     }

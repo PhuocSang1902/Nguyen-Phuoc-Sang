@@ -16,16 +16,18 @@ public class PromotionController {
             System.out.println("2.Display List Customers Get Voucher");
             System.out.println("3.Return Main Menu");
             System.out.print("Enter your choice: ");
-            int choice = Integer.parseInt(sc.nextLine());
+            String choice = sc.nextLine();
             switch (choice) {
-                case 1:
+                case "1":
                     promotionService.display();
                     break;
-                case 2:
+                case "2":
                     promotionService.displayCustomerGetVoucher();
                     break;
-                case 3:
+                case "3":
                     return;
+                default:
+                    System.out.println("Wrong format. Enter again!");
             }
             System.out.println();
         }

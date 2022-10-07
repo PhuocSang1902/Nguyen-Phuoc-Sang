@@ -179,7 +179,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         }
 
         FileReader fileReader;
-        BufferedReader bufferedReader;
+        BufferedReader bufferedReader = null;
 
         try {
             fileReader = new FileReader(file);
@@ -202,10 +202,16 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
 
         } catch (FileNotFoundException e) {
             System.out.println("File is not exist");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
+        try {
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return roomsList;
     }
 
@@ -228,7 +234,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
                 bufferedWriter.write(getInfo(room) + "," + roomsList.get(room));
                 bufferedWriter.newLine();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -236,7 +242,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
             if (bufferedWriter != null) {
                 bufferedWriter.close();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -258,7 +264,7 @@ public class FacilityRoomServiceImpl implements FacilityRoomService {
         Set<Room> rooms;
         rooms = roomsList.keySet();
         for (Room room : rooms) {
-            System.out.println(room.toString());
+            System.out.println(room.toString() + "," + roomsList.get(room));
         }
     }
 

@@ -57,6 +57,7 @@ public class BookingController {
             System.out.println("EDITING CONTRACT MENU");
             System.out.println("1.Edit booking code");
             System.out.println("2.Edit advance deposit amount");
+            System.out.println("3.Return");
             System.out.print("Enter your choice follow number: ");
             String choice = sc.nextLine();
 
@@ -67,6 +68,8 @@ public class BookingController {
                 case "2":
                     contractServiceImpl.editAdvanceDepositAmount();
                     break;
+                case "3":
+                    return;
                 default:
                     System.out.println("Wrong format. Enter again!");
             }

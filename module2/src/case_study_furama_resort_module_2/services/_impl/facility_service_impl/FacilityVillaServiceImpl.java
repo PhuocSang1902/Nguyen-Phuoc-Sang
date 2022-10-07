@@ -138,13 +138,13 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
 
             switch (choice){
                 case "1":
-                    standardRoom = "Superior Room";
+                    standardRoom = "Superior room";
                     break;
                 case "2":
-                    standardRoom = "Deluxe Room";
+                    standardRoom = "Deluxe room";
                     break;
                 case "3":
-                    standardRoom = "Suite Room";
+                    standardRoom = "Suite room";
                     break;
                 default:
                     standardRoom = null;
@@ -198,7 +198,7 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
         }
 
         FileReader fileReader;
-        BufferedReader bufferedReader;
+        BufferedReader bufferedReader = null;
 
         try {
             fileReader = new FileReader(file);
@@ -223,10 +223,16 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
 
         } catch (FileNotFoundException e) {
             System.out.println("File is not exist");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
+        try {
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return villasList;
     }
 
@@ -277,7 +283,7 @@ public class FacilityVillaServiceImpl implements FacilityVillaService {
         Set<Villa> villas;
         villas = villasList.keySet();
         for (Villa villa : villas){
-            System.out.println(villa.toString());
+            System.out.println(villa.toString() + "," + villasList.get(villa));
         }
     }
 

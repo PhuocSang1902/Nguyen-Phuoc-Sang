@@ -8,18 +8,16 @@ import case_study_furama_resort_module_2.services._impl.people_service_impl.Cust
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class PromotionServiceImpl implements PromotionService {
     private static Scanner sc = new Scanner(System.in);
     private static BookingServiceImpl bookingService = new BookingServiceImpl();
     private static CustomerServiceImpl customerService = new CustomerServiceImpl();
-    private static TreeSet<Booking> bookingPromotionTreeSet = new TreeSet<>();
 
     @Override
     public void display() {
-        Set<Booking> bookingSet = bookingService.getDataFromFile();
+        TreeSet<Booking> bookingSet = bookingService.getDataFromFile();
         String year;
         while (true) {
             System.out.print("Enter the year that you want to display list customer use service: ");
@@ -46,7 +44,13 @@ public class PromotionServiceImpl implements PromotionService {
 
     @Override
     public void displayCustomerGetVoucher() {
-        Set<Booking> bookingSet = bookingService.getDataFromFile();
+        TreeSet<Booking> bookingSet = bookingService.getDataFromFile();
+        TreeSet<Booking> bookings = new TreeSet<>();
+        for (Booking booking : bookingSet) {
+            if (booking.getStartDay().getMonth().equals(LocalDate.now().getMonth())) {
+                bookings.add(booking);
+            }
+        }
         System.out.println("Enter the number of voucher 10%: ");
         int voucher10 = Integer.parseInt(sc.nextLine());
         System.out.println("Enter the number of voucher 20%: ");
@@ -55,25 +59,36 @@ public class PromotionServiceImpl implements PromotionService {
         int voucher50 = Integer.parseInt(sc.nextLine());
 
         int totalVoucher = voucher10 + voucher20 + voucher50;
-        int count = 0;
-        for (Booking booking : bookingSet) {
-            if (booking.getStartDay().getMonth() == LocalDate.now().getMonth() && count <= totalVoucher) {
-                bookingPromotionTreeSet.add(booking);
-                count++;
-            }
-        }
-        for (Booking booking : bookingPromotionTreeSet) {
-            int countCustomer = 0;
+        int countCustomer = 0;
+
+        for (Booking booking : bookings) {
+
+            String codeOfBooking = booking.getCustomerCode();
             List<Customer> customerList = customerService.getDataFromFile();
+
             for (Customer customer : customerList) {
-                if (customer.getCode().equals(booking.getCustomerCode()) && countCustomer <= voucher10) {
+
+                String codeOfCustomer = customer.getCode();
+                boolean isEqual = codeOfCustomer.equals(codeOfBooking);
+
+                if (isEqual && countCustomer < voucher50) {
+                    System.out.println("customer get voucher 50%");
                     System.out.println(customer.toString());
-                    countCustomer++;
-                } else if (customer.getCode().equals(booking.getCustomerCode()) && countCustomer <= (voucher20 + voucher10)) {
+                    System.out.println(booking.toString());
+                    countCustomer += 1;
+                    break;
+                } else if (isEqual && countCustomer < (voucher20 + voucher50)) {
+                    System.out.println("customer get voucher 20%");
                     System.out.println(customer.toString());
-                    countCustomer++;
-                }else {
+                    System.out.println(booking.toString());
+                    countCustomer += 1;
+                    break;
+                } else if (isEqual && countCustomer < totalVoucher) {
+                    System.out.println("customer get voucher 10%");
                     System.out.println(customer.toString());
+                    System.out.println(booking.toString());
+                    countCustomer += 1;
+                    break;
                 }
             }
         }

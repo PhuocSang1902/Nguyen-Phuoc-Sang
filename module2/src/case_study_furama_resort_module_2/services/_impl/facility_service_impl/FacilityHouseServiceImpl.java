@@ -49,7 +49,7 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
         }
         System.out.println("Facility code is: " + code);
 
-        while (true){
+        while (true) {
             System.out.print("Enter service name: ");
             serviceName = SC.nextLine();
             try {
@@ -133,19 +133,19 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
             }
         }
 
-        while (true){
+        while (true) {
             System.out.print("1.Superior Room\n2.Deluxe Room\n3.Suite Room\nEnter room standard follow number: ");
             String choice = SC.nextLine();
 
-            switch (choice){
+            switch (choice) {
                 case "1":
-                    roomStandard = "Superior Room";
+                    roomStandard = "Superior room";
                     break;
                 case "2":
-                    roomStandard = "Deluxe Room";
+                    roomStandard = "Deluxe room";
                     break;
                 case "3":
-                    roomStandard = "Suite Room";
+                    roomStandard = "Suite room";
                     break;
                 default:
                     roomStandard = null;
@@ -186,7 +186,7 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
         }
 
         FileReader fileReader;
-        BufferedReader bufferedReader;
+        BufferedReader bufferedReader = null;
 
         try {
             fileReader = new FileReader(file);
@@ -210,10 +210,16 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
 
         } catch (FileNotFoundException e) {
             System.out.println("File is not exist");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
+        try {
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return housesList;
     }
 
@@ -235,7 +241,7 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
                 bufferedWriter.write(getInfo(house) + "," + housesList.get(house));
                 bufferedWriter.newLine();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -243,7 +249,7 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
             if (bufferedWriter != null) {
                 bufferedWriter.close();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -264,7 +270,7 @@ public class FacilityHouseServiceImpl implements FacilityHouseService {
         Set<House> houses = new LinkedHashSet<>();
         houses = housesList.keySet();
         for (House house : houses) {
-            System.out.println(house.toString());
+            System.out.println(house.toString() + "," + housesList.get(house));
         }
 
     }
