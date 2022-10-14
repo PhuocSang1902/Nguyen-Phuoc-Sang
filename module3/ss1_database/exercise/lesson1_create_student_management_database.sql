@@ -23,3 +23,4 @@ alter table class add teacher_id int;
 update class set teacher_id = 1 where class_id = 1;
 update class set teacher_id = 2 where class_id = 2;
 alter table class add foreign key (teacher_id) references teacher(teacher_id);
+alter table class change class_name class_name varchar(20);
