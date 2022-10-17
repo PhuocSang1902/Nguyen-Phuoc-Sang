@@ -68,3 +68,4 @@ CREATE TABLE bill_supply (
     CONSTRAINT bill_supply_fk_supply FOREIGN KEY (supply_id)
         REFERENCES supply (id)
 );
+EXPLAIN SELECT * FROM bill;
