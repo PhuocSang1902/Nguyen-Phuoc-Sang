@@ -75,7 +75,7 @@ CREATE TABLE nhan_vien (
 CREATE TABLE dich_vu (
     ma_dich_vu INT,
     ten_dich_vu VARCHAR(45) NOT NULL,
-    dien_tich INT NOT NULL,
+    dien_tich INT,
     chi_phi_thue DOUBLE NOT NULL,
     so_nguoi_toi_da INT,
     ma_kieu_thue INT NOT NULL,
