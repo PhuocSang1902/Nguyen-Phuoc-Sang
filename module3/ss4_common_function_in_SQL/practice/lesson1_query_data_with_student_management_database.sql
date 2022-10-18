@@ -1,35 +1,27 @@
 USE student_management;
 
--- Hiển thị tất cả các thông tin môn học (bảng subject) có credit lớn nhất.
+-- Sử dụng hàm count để hiển thị số lượng sinh viên ở từng nơi
 
-SELECT *, max(credit)
-FROM `subject`
-WHERE credit =
-(
-SELECT max(credit) FROM `subject`
-);
+SELECT address, COUNT(student_id) AS 'number_student'
+FROM student
+GROUP BY address;
 
--- Hiển thị các thông tin môn học có điểm thi lớn nhất.
+-- Tính điểm trung bình các môn học của mỗi học viên bằng cách sử dụng hàm AVG
 
-SELECT 
-	s.*, 
-	m.mark, 
-	max(m.mark) AS max_point
-FROM 
-	`subject` s JOIN mark m ON s.subject_id = m.subject_id
-WHERE 
-	m.mark = 
-    (
-    SELECT max(m.mark) FROM mark m
-    );
+SELECT s.student_id,s.student_name, AVG(m.mark)
+FROM student s join mark m on s.student_id = m.student_id
+GROUP BY s.student_id, s.student_name;
 
--- Hiển thị các thông tin sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
+-- Hiển thị những bạn học viên co điểm trung bình các môn học lớn hơn 15
 
-SELECT 
-	s.*, 
-    AVG(m.mark) 
-    AS avg_mark
-FROM 
-	student s JOIN mark m ON s.student_id = m.student_id
-GROUP BY 
-	student_id; 
+SELECT s.student_id,s.student_name, AVG(m.mark)
+FROM student s join mark m on s.student_id = m.student_id
+GROUP BY s.Student_id, s.Student_name
+HAVING AVG(m.mark) > 15;
+
+-- Hiển thị thông tin các học viên có điểm trung bình lớn nhất.
+
+SELECT s.student_id, s.student_name, AVG(m.mark)
+FROM student s join mark m on s.student_id = m.student_id
+GROUP BY s.student_id, s.student_name
+HAVING AVG(m.mark) >= ALL (SELECT AVG(m.mark) FROM mark m GROUP BY m.student_id);
