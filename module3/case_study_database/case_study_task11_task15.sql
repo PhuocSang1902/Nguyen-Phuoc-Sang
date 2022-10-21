@@ -55,9 +55,12 @@ GROUP BY
 	hdct.ma_dich_vu_di_kem, dvdk.ten_dich_vu_di_kem
 HAVING
 	sum(hdct.so_luong) >= ALL (
-		SELECT sum(hop_dong_chi_tiet.so_luong) 
-        FROM hop_dong_chi_tiet
-        GROUP BY hop_dong_chi_tiet.ma_dich_vu_di_kem
+		SELECT 
+			sum(hop_dong_chi_tiet.so_luong) 
+        FROM 
+			hop_dong_chi_tiet
+        GROUP BY 
+			hop_dong_chi_tiet.ma_dich_vu_di_kem
 		);
 
 -- 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 

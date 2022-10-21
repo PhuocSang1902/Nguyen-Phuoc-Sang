@@ -62,5 +62,5 @@ FROM
 	LEFT JOIN view_gia_tri_hop_dong vgthd ON kh.ma_khach_hang = vgthd.ma_khach_hang
 ORDER BY
 	kh.ma_khach_hang;
-    
+SELECT * FROM view_gia_tri_hop_dong;
 DROP VIEW view_gia_tri_hop_dong;
