@@ -92,7 +92,7 @@ CREATE TABLE dich_vu (
         REFERENCES loai_dich_vu (ma_loai_dich_vu)
 );
 CREATE TABLE hop_dong (
-    ma_hop_dong INT,
+    ma_hop_dong INT AUTO_INCREMENT,
     ngay_lam_hop_dong DATETIME NOT NULL,
     ngay_ket_thuc DATETIME NOT NULL,
     tien_dat_coc DOUBLE NOT NULL,
