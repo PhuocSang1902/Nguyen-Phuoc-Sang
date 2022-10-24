@@ -140,12 +140,12 @@ SELECT f_dem_cac_dich_vu();
 
 -- b.	Tạo Function func_tinh_thoi_gian_hop_dong
 DELIMITER //
-CREATE FUNCTION f_thoi_gian_dai_nhat ()
+CREATE FUNCTION f_thoi_gian_dai_nhat ( ma_kh INT)
 RETURNS INT
 DETERMINISTIC
 BEGIN
 	DECLARE thoi_gian_dai_nhat INT;
-    SET thoi_gian_dai_nhat = (SELECT max(datediff(ngay_ket_thuc, ngay_lam_hop_dong)) FROM hop_dong);
+    SET thoi_gian_dai_nhat = (SELECT max(datediff(ngay_ket_thuc, ngay_lam_hop_dong)) FROM hop_dong WHERE ma_khach_hang = ma_kh);
 	RETURN thoi_gian_dai_nhat;
 END //
 DELIMITER ;
