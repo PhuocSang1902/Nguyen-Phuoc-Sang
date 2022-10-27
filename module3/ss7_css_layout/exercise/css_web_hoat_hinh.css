@@ -58,19 +58,18 @@ header {
 nav {
     background-color: #CDCDCD;
     height: 25px;
+    margin: 0;
     display: flex;
     justify-content: center;
-    float: right;
-    margin: 0;
 }
 nav ul {
     display: flex;
     list-style: none;
     justify-content: center;
+    align-items: center;
 }
 nav ul li {
-    display: flex;
-    align-items: center;
+
     line-height: 25px;
 }
 
@@ -82,18 +81,18 @@ a {
 
 }
 section {
-
+    background-color: aqua;
     float: right;
     margin: 0;
+    height: auto;
 }
 section div {
-    height: 700px;
+    padding: 20px;
     font-size: 1.5em;
+
 }
 aside {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    float: right;
 }
 aside div {
     height: 350px;
@@ -103,7 +102,4 @@ footer {
     clear: both;
     background-color: black;
     color: white;
-    display: flex;
-    justify-content: center;
 }
-
