@@ -23,7 +23,7 @@
                 <td>
                     <div class="input-group flex-nowrap">
                         <input type="text" class="form-control" placeholder="First operand"
-                               aria-describedby="addon-wrapping" name="fOperand" style="border: solid black 1px">
+                               aria-describedby="addon-wrapping" name="fOperand" style="border: solid black 1px" value="0">
                     </div>
                 </td>
             </tr>
@@ -32,7 +32,7 @@
                 <td>
                     <div class="input-group flex-nowrap">
                         <input type="text" class="form-control" placeholder="Second operand"
-                               aria-describedby="addon-wrapping" name="sOperand" style="border: solid black 1px">
+                               aria-describedby="addon-wrapping" name="sOperand" style="border: solid black 1px" value="0">
                     </div>
                 </td>
             </tr>
@@ -40,8 +40,7 @@
                 <td>Operator</td>
                 <td>
                     <select class="form-select" name="math" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="Addition">Addition</option>
+                        <option selected value="Addition">Addition</option>
                         <option value="Subtraction">Subtraction</option>
                         <option value="Multiplication">Multiplication</option>
                         <option value="Division">Division</option>
