@@ -11,7 +11,7 @@ public class ProductRepository implements IProductRepository {
     static final private List<Product> productList = new ArrayList<>();
 
     static {
-        productList.add(new Product(1, "Hoa Hồng", 8000, "Hoa cánh to nhiều màu", "Đà Lat"));
+        productList.add(new Product(1, "Hoa Hồng", 8000, "Hoa cánh to nhiều màu", "Hà Nội"));
         productList.add(new Product(2, "Hoa Cúc", 6000, "Hoa cánh nhỏ nhiều cánh", "Đà Nẵng "));
         productList.add(new Product(3, "Hoa Hướng Dương", 10000, "Hoa to nhiều cánh", "Đà Nẵng"));
         productList.add(new Product(4, "Hoa Cẩm Chướng", 11000, "Hoa cách to nhiều cánh nhiều màu", "Da Lat"));
@@ -32,24 +32,14 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void edit(int id, Product product) {
-        int index = -1;
-        for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).getId()==product.getId()){
-                index = i;
-                break;
-            }
-        }
-        if (index ==  -1){
-            add(product);
-        }else {
-            productList.set(index, product);
-        }
+    public void edit(int index, Product product) {
+
+        productList.set(index, product);
     }
 
     @Override
-    public void remove(int id) {
-
+    public void remove(int index) {
+        productList.remove(index);
     }
 
     @Override

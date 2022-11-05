@@ -36,6 +36,7 @@
         <th>Producer</th>
         <th>Edit</th>
         <th>Delete</th>
+        <th>Detail</th>
     </tr>
     <c:forEach var="product" items="${productList}" varStatus="status">
         <tr>
@@ -47,16 +48,51 @@
             <td>
                 <form>
                     <button class="btn btn-warning">
-                        <a style="text-decoration: none; color: black" href="/product?action=edit&id=${product.getId()}">edit</a>
+                        <a style="text-decoration: none; color: black"
+                           href="/product?action=edit&id=${product.getId()}">edit</a>
                     </button>
                 </form>
             </td>
             <td>
-                <button class="btn btn-danger" type="submit" formmethod="get"
-                        formaction="/product?action=remove&id=${product.getId()}">delete
-                </button>
+                <form action="">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProduct${product.getId()}">
+                    Delete
+                </button></form>
+            </td>
+            <td>
+                <form>
+                    <button class="btn btn-info">
+                        <a style="text-decoration: none; color: black"
+                           href="/product?action=viewDetail&id=${product.getId()}">view</a>
+                    </button>
+                </form>
             </td>
         </tr>
+        <%-- REMOVE--%>
+        <div class="modal fade" id="deleteProduct${product.getId()}" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure to delete???
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
+                        </button>
+                        <form action="/product?action=remove&id=${product.getId()}"
+                              method="post">
+                            <button  class="btn btn-primary" >Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </c:forEach>
 </table>
 </body>

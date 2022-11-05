@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: phuoc
@@ -11,6 +12,14 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>View Page</h1>
+<a href="/product?action=display">Return</a>
+<form>
+    <pre>ID :              ${id}</pre>
+    <pre>Name :            ${name}</pre>
+    <pre>Price :           ${price}</pre>
+    <pre>Product Detail :  ${productDetail}</pre>
+    <pre>Producer :        ${producer}</pre>
+</form>
 </body>
 </html>

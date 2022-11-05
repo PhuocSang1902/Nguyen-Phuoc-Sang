@@ -16,5 +16,5 @@ public interface IProductService {
 
     void viewDetail(int id, Product product);
 
-    void search(int id, List<Product> productList);
+    List<Product> search(String name);
 }

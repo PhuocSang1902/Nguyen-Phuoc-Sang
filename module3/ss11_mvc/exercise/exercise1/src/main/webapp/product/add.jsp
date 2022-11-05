@@ -14,7 +14,7 @@
 <body>
 
 <h1>Add Page</h1>
-<a href="/product">Return</a>
+<a href="/product?action=display">Return</a>
 <c:if test="${mess!=null}">
     <span style="color: red">${mess}</span>
 </c:if>

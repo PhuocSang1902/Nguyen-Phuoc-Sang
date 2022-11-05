@@ -1,5 +1,6 @@
 package service.impl;
 
+import controller.ProductServlet;
 import model.Product;
 import repository.IProductRepository;
 import repository.impl.ProductRepository;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class ProductService implements IProductService {
     IProductRepository productRepository = new ProductRepository();
+    ProductServlet productServlet = new ProductServlet();
 
     @Override
     public List<Product> display() {
@@ -25,12 +27,30 @@ public class ProductService implements IProductService {
 
     @Override
     public void edit(int id, Product product) {
-        productRepository.edit(product.getId(), product);
+        List<Product> productList = productRepository.display();
+        int index = -1;
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getId() == id) {
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) {
+            productRepository.edit(index, product);
+        } else {
+            productRepository.add(product);
+        }
     }
 
     @Override
     public void remove(int id) {
-
+        List<Product> productList = productRepository.display();
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getId() == id) {
+                productRepository.remove(i);
+                break;
+            }
+        }
     }
 
     @Override
@@ -39,7 +59,14 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void search(int id, List<Product> productList) {
-
+    public List<Product> search(String name) {
+        List<Product> productList= productRepository.display();
+        List<Product> findProductList = new ArrayList<>();
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getName().contains(name)){
+                findProductList.add(productList.get(i));
+            }
+        }
+        return findProductList;
     }
 }

@@ -31,6 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/product?action=display">Edit</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/product?action=search">Search</a>
+                </li>
             </ul>
         </div>
     </div>

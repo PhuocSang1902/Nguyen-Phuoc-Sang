@@ -10,9 +10,9 @@ public interface IProductRepository {
 
     void add(Product product);
 
-    void edit(int id, Product product);
+    void edit(int index, Product product);
 
-    void remove(int id);
+    void remove(int index);
 
     void viewDetail(int id, Product product);
 
