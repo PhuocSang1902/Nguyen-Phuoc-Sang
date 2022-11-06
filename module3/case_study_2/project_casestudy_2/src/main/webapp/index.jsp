@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: phuoc
+  Date: 06/11/2022
+  Time: 08:17
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Furama Resort</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 </head>
 <body>
 
-<div class="vh-100 vw-100">
+<div>
 
     <header class="row d-flex justify-content-between align-items-center">
         <div class="col-1">
@@ -28,71 +35,79 @@
 
     </header>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-success row" style="height: 8%">
-        <div class="container-fluid row">
-            <div class="collapse navbar-collapse row" id="navbarSupportedContent d-md">
-                <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-xxl-8 col-xl-8 col-lg-6 col-md-6 col-sm-6 justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="https://furamavietnam.com/the-resort/">THE
-                            RESORT</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            DỊCH VỤ
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Danh sách dịch vụ</a></li>
-                            <li><a class="dropdown-item" href="#">Thêm mới dịch vụ</a></li>
-                            <li><a class="dropdown-item" href="#">Chỉnh sửa dịch vụ</a></li>
-                            <li><a class="dropdown-item" href="#">Xóa dịch vụ</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown1" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            KHÁCH HÀNG
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Danh sách khách hàng</a></li>
-                            <li><a class="dropdown-item" href="#">Thêm mới khách hàng</a></li>
-                            <li><a class="dropdown-item" href="#">Chỉnh sửa khách hàng</a></li>
-                            <li><a class="dropdown-item" href="#">Xóa khách hàng</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown2" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            NHÂN VIÊN
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Danh sách nhân viên</a></li>
-                            <li><a class="dropdown-item" href="#">Thêm mới nhân viên</a></li>
-                            <li><a class="dropdown-item" href="#">Chỉnh sửa nhân viên</a></li>
-                            <li><a class="dropdown-item" href="#">Xóa nhân viên</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            HỢP ĐỒNG
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Danh sách hợp đồng</a></li>
-                            <li><a class="dropdown-item" href="#">Thêm mới hợp đồng</a></li>
-                            <li><a class="dropdown-item" href="#">Chỉnh sửa hợp đồng</a></li>
-                            <li><a class="dropdown-item" href="#">Xóa hợp đồng</a></li>
-                        </ul>
-                    </li>
+    <div class="row sticky-top" style="height: 50px;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-success" style="height: 50px;">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent d-md" >
+            <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-xxl-8 col-xl-8 col-lg-6 col-md-6 col-sm-6 justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="https://furamavietnam.com/the-resort/">THE
+                  RESORT</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                  DỊCH VỤ
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Danh sách dịch vụ</a></li>
+                  <li><a class="dropdown-item" href="#">Thêm mới dịch vụ</a></li>
+                  <li><a class="dropdown-item" href="#">Chỉnh sửa dịch vụ</a></li>
+                  <li><a class="dropdown-item" href="#">Xóa dịch vụ</a></li>
                 </ul>
-                <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Tiềm kiếm">
-                    <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
-                </form>
-            </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown1" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                  KHÁCH HÀNG
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Danh sách khách hàng</a></li>
+                  <li><a class="dropdown-item" href="#">Thêm mới khách hàng</a></li>
+                  <li><a class="dropdown-item" href="#">Chỉnh sửa khách hàng</a></li>
+                  <li><a class="dropdown-item" href="#">Xóa khách hàng</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown2" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                  NHÂN VIÊN
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Danh sách nhân viên</a></li>
+                  <li><a class="dropdown-item" href="#">Thêm mới nhân viên</a></li>
+                  <li><a class="dropdown-item" href="#">Chỉnh sửa nhân viên</a></li>
+                  <li><a class="dropdown-item" href="#">Xóa nhân viên</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown3" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                  HỢP ĐỒNG
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Danh sách hợp đồng</a></li>
+                  <li><a class="dropdown-item" href="#">Thêm mới hợp đồng</a></li>
+                  <li><a class="dropdown-item" href="#">Chỉnh sửa hợp đồng</a></li>
+                  <li><a class="dropdown-item" href="#">Xóa hợp đồng</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 align-items-center" style="height: 50px;">
+              <div class="d-flex align-items-center" style="height: 40px;">
+                <input class="form-control me-2" type="search" placeholder="Tim kiếm" aria-label="Tiềm kiếm">
+              </div >
+              <div class="d-flex align-items-center" style="height: 40px;">
+                <button class="btn btn-info" type="submit" style="height: 40px;">Tìm</button>
+              </div>
+            </form>
+
+          </div>
         </div>
-    </nav>
+      </nav>
+    </div>
 
     <div class="row">
         <aside class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 d-flex flex-column align-items-center justify-content-center">

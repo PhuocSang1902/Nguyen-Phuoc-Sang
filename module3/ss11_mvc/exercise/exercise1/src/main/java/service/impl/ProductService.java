@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService implements IProductService {
-    IProductRepository productRepository = new ProductRepository();
-    ProductServlet productServlet = new ProductServlet();
+    private IProductRepository productRepository = new ProductRepository();
+    private ProductServlet productServlet = new ProductServlet();
 
     @Override
     public List<Product> display() {
