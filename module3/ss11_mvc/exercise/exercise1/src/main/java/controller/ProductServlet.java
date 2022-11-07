@@ -76,15 +76,6 @@ public class ProductServlet extends HttpServlet {
         productService.edit(id, product);
 
         display(request, response, productList);
-        request.setAttribute("mess", "Successfully add new");
-
-        try {
-            request.getRequestDispatcher("product/display.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void add(HttpServletRequest request, HttpServletResponse response) {
