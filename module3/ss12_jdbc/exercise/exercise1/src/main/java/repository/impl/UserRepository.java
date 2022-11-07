@@ -19,10 +19,11 @@ public class UserRepository implements IUserRepository {
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
     private static final String SEARCH = "select * from users where users.country = ?;";
+    private static final String ORDER = "select * from users ORDER BY `name`;";
 
 
     @Override
-    public void insertUser(User user){
+    public void insertUser(User user) {
         System.out.println(INSERT_USERS_SQL);
         try {
             Connection connection = BaseRepository.getConnectDB();
@@ -114,8 +115,6 @@ public class UserRepository implements IUserRepository {
         }
 
 
-
-
         return false;
     }
 
@@ -140,6 +139,29 @@ public class UserRepository implements IUserRepository {
         }
 
         return userList;
+    }
+
+    @Override
+    public List<User> order() {
+        List<User> orderUserList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+
+        try {
+
+            PreparedStatement statement = connection.prepareStatement(ORDER);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String country = resultSet.getString("country");
+                orderUserList.add(new User(id, name, email, country));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return orderUserList;
     }
 
     private void printSQLException(SQLException ex) {

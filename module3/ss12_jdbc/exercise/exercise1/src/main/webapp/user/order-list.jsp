@@ -22,9 +22,6 @@
         <input type="text" name="country" placeholder="Search follow country">
         <input type="submit" value="Search" >
     </form>
-    <form action="/user?action=order" method="post">
-        <input type="submit" value="Order" >
-    </form>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
@@ -36,7 +33,7 @@
             <th>Country</th>
             <th>Actions</th>
         </tr>
-        <c:forEach var="user" items="${listUser}">
+        <c:forEach var="user" items="${orderListUser}">
             <tr>
                 <td><c:out value="${user.id}"/></td>
                 <td><c:out value="${user.name}"/></td>

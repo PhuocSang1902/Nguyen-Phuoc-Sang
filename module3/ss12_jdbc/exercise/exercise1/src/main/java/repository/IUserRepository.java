@@ -17,4 +17,6 @@ public interface IUserRepository {
     public boolean updateUser(User user);
 
     List<User> search(String country);
+
+    List<User> order() throws Exception;
 }

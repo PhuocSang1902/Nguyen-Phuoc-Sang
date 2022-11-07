@@ -34,6 +34,25 @@ public class UserServlet extends HttpServlet {
             case "search":
                 searchUser(request, response);
                 break;
+            case "order":
+                try {
+                    orderUser(request, response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+    }
+
+    private void orderUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        List<User> orderUserList = userService.order();
+        request.setAttribute("orderListUser", orderUserList);
+        try {
+            request.getRequestDispatcher("user/order-list.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

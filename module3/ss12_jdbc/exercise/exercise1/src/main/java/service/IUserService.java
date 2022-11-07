@@ -16,4 +16,6 @@ public interface IUserService {
     boolean deleteUser(int id);
 
     List<User> search(String country);
+
+    List<User> order() throws Exception;
 }

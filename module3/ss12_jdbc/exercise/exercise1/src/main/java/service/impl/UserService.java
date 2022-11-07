@@ -41,4 +41,9 @@ public class UserService implements IUserService {
     public List<User> search(String country) {
         return userRepository.search(country);
     }
+
+    @Override
+    public List<User> order() throws Exception {
+        return userRepository.order();
+    }
 }
