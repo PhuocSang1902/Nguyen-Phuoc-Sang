@@ -56,6 +56,11 @@
                 <input style="width: 30%" type="button" class="form-control btn btn-outline-warning mx-5" id="formInput12" value="Hủy">
                 <input style="width: 30%" type="button" class="form-control btn btn-outline-success mx-5" id="formInput11" value="Lưu thông tin">
             </div>
+            <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
+                <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5" id="formInput13">
+                    <a href="/customer?action=display" style="text-decoration: none; color: #0dcaf0">Danh sách khách hàng</a>
+                </button>
+            </div>
         </form>
     </div>
 </div>

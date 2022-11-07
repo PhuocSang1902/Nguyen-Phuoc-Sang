@@ -63,8 +63,8 @@
                   KHÁCH HÀNG
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Danh sách khách hàng</a></li>
-                  <li><a class="dropdown-item" href="#">Thêm mới khách hàng</a></li>
+                  <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a></li>
+                  <li><a class="dropdown-item" href="/customer?action=add">Thêm mới khách hàng</a></li>
                   <li><a class="dropdown-item" href="#">Chỉnh sửa khách hàng</a></li>
                   <li><a class="dropdown-item" href="#">Xóa khách hàng</a></li>
                 </ul>
@@ -95,7 +95,7 @@
               </li>
             </ul>
 
-            <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 align-items-center" style="height: 50px;">
+            <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;">
               <div class="d-flex align-items-center" style="height: 40px;">
                 <input class="form-control me-2" type="search" placeholder="Tim kiếm" aria-label="Tiềm kiếm">
               </div >

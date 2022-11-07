@@ -169,7 +169,7 @@ public class ProductServlet extends HttpServlet {
 
     private void showHomePage(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("product/view.jsp").forward(request, response);
+            request.getRequestDispatcher("in.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
