@@ -3,8 +3,9 @@ package controller;
 
 import model.User;
 import repository.impl.UserRepository;
+import service.IUserService;
+import service.impl.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,11 +17,7 @@ import java.util.List;
 @WebServlet(name = "UserServlet", urlPatterns = "/user")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserRepository userRepository;
-
-    public void init() {
-        userRepository = new UserRepository();
-    }
+    private IUserService userService = new UserService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -61,7 +58,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void listUser(HttpServletRequest request, HttpServletResponse response) {
-        List<User> listUser = userRepository.selectAllUsers();
+        List<User> listUser = userService.selectAllUsers();
         request.setAttribute("listUser", listUser);
         try {
             request.getRequestDispatcher("user/list.jsp").forward(request, response);
@@ -84,7 +81,7 @@ public class UserServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        User existingUser = userRepository.selectUser(id);
+        User existingUser = userService.selectUser(id);
         request.setAttribute("user", existingUser);
         try {
             request.getRequestDispatcher("user/edit.jsp").forward(request, response);
@@ -101,7 +98,7 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
-        userRepository.insertUser(newUser);
+        userService.insertUser(newUser);
         try {
             request.getRequestDispatcher("user/list.jsp").forward(request, response);
         } catch (ServletException e) {
@@ -118,7 +115,7 @@ public class UserServlet extends HttpServlet {
         String country = request.getParameter("country");
 
         User book = new User(id, name, email, country);
-        userRepository.updateUser(book);
+        userService.updateUser(book);
         try {
             request.getRequestDispatcher("user/list.jsp").forward(request, response);
         } catch (ServletException e) {
@@ -130,9 +127,9 @@ public class UserServlet extends HttpServlet {
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        userRepository.deleteUser(id);
+        userService.deleteUser(id);
 
-        List<User> listUser = userRepository.selectAllUsers();
+        List<User> listUser = userService.selectAllUsers();
         request.setAttribute("listUser", listUser);
         try {
             request.getRequestDispatcher("user/list.jsp").forward(request, response);

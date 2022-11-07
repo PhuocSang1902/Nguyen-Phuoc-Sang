@@ -1,6 +1,38 @@
 package service.impl;
 
+import model.User;
+import repository.IUserRepository;
+import repository.impl.UserRepository;
 import service.IUserService;
 
+import java.util.List;
+
 public class UserService implements IUserService {
+
+    private IUserRepository userRepository = new UserRepository();
+
+    @Override
+    public List<User> selectAllUsers() {
+        return userRepository.selectAllUsers();
+    }
+
+    @Override
+    public User selectUser(int id) {
+        return userRepository.selectUser(id);
+    }
+
+    @Override
+    public void insertUser(User newUser) {
+        userRepository.insertUser(newUser);
+    }
+
+    @Override
+    public boolean updateUser(User book) {
+        return userRepository.updateUser(book);
+    }
+
+    @Override
+    public boolean deleteUser(int id) {
+        return userRepository.deleteUser(id);
+    }
 }
