@@ -4,6 +4,7 @@ public class Customer {
     private String id;
     private String name;
     private String customerType;
+    private String nameCustomerType;
     private String birthday;
     private String gender;
     private String idCard;
@@ -12,6 +13,30 @@ public class Customer {
     private String address;
 
     public Customer() {
+    }
+
+    public Customer(String name, String customerType, String birthday, String gender, String idCard, String phoneNumber, String email, String address) {
+        this.name = name;
+        this.customerType = customerType;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+    }
+
+    public Customer(String id, String name, String customerType, String nameCustomerType, String birthday, String gender, String idCard, String phoneNumber, String email, String address) {
+        this.id = id;
+        this.name = name;
+        this.customerType = customerType;
+        this.nameCustomerType = nameCustomerType;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
     }
 
     public Customer(String id, String name, String customerType, String birthday, String gender, String idCard, String phoneNumber, String email, String address) {
@@ -24,6 +49,14 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
+    }
+
+    public String getNameCustomerType() {
+        return nameCustomerType;
+    }
+
+    public void setNameCustomerType(String nameCustomerType) {
+        this.nameCustomerType = nameCustomerType;
     }
 
     public String getId() {

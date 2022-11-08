@@ -42,7 +42,7 @@
             <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-xxl-8 col-xl-8 col-lg-6 col-md-6 col-sm-6 justify-content-center">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="https://furamavietnam.com/the-resort/">THE
+                <a class="nav-link active" aria-current="page" href="/index.jsp">THE
                   RESORT</a>
               </li>
               <li class="nav-item dropdown">
@@ -65,7 +65,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a></li>
                   <li><a class="dropdown-item" href="/customer?action=add">Thêm mới khách hàng</a></li>
-                  <li><a class="dropdown-item" href="/customer?action=edit">Chỉnh sửa khách hàng</a></li>
+                  <li><a class="dropdown-item" href="/customer?action=display">Chỉnh sửa khách hàng</a></li>
                   <li><a class="dropdown-item" href="/customer?action=display">Xóa khách hàng</a></li>
                 </ul>
               </li>

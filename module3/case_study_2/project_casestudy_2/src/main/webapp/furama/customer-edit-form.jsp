@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -18,45 +18,66 @@
 <body>
 <div class="d-flex justify-content-center">
     <div class="col-6">
-        <div class="my-5"><h1>Chỉnh sửa thông tin khách hàng khách hàng</h1></div>
-        <form class="my-5" method="post" action="/customer?action=edit">
+        <div class="my-5" style="text-align: center"><h1>Chỉnh sửa thông tin khách hàng</h1></div>
+        <form class="my-5" method="post" action="/customer?action=edit&id=${customer.getId()}">
             <div class="form-group">
                 <label for="formInput">Tên khách hàng</label>
-                <input type="text" class="form-control" id="formInput" value="${customer.getName()}">
+                <input type="text" class="form-control" id="formInput" name="name" value="${customer.getName()}">
             </div>
             <div class="form-group">
                 <label for="formInput1">Loại khách hàng</label>
-                <input type="text" class="form-control" id="formInput1" value="${customer.getCustomerType()}">
+<%--                <select class="form-control" name="nameCustomerType" id="nameCustomerType">--%>
+<%--                    <option value="1">Diamond</option>--%>
+<%--                    <option value="2">Platinium</option>--%>
+<%--                    <option value="3">Gold</option>--%>
+<%--                    <option value="4">Silver</option>--%>
+<%--                    <option value="5">Member</option>--%>
+<%--                </select>--%>
+                <input type="text" class="form-control" id="formInput1" name="nameCustomerType" value="${customer.getNameCustomerType()}">
             </div>
             <div class="form-group">
                 <label for="formInput2">Ngày sinh</label>
-                <input type="text" class="form-control" id="formInput2" value="${customer.getBirthday()}">
+                <input type="text" class="form-control" id="formInput2" name="birthday" value="${customer.getBirthday()}">
             </div>
             <div class="form-group">
                 <label for="formInput3">Giới tính</label>
-                <input type="text" class="form-control" id="formInput3" value="${customer.getGender()}">
+                <input type="text" class="form-control" id="formInput3" name="gender" value="${customer.getGender()}">
             </div>
             <div class="form-group">
                 <label for="formInput4">Số CCCD</label>
-                <input type="text" class="form-control" id="formInput4" value="${customer.getIdCard()}">
+                <input type="text" class="form-control" id="formInput4" name="idCard" value="${customer.getIdCard()}">
             </div>
             <div class="form-group">
                 <label for="formInput5">Số điện thoại</label>
-                <input type="text" class="form-control" id="formInput5" value="${customer.getPhoneNumber()}">
+                <input type="text" class="form-control" id="formInput5" name="phoneNumber" value="${customer.getPhoneNumber()}">
             </div>
             <div class="form-group">
                 <label for="formInput6">Email</label>
-                <input type="text" class="form-control" id="formInput6" value="${customer.getEmail()}">
+                <input type="text" class="form-control" id="formInput6" name="email" value="${customer.getEmail()}">
             </div>
             <div class="form-group">
                 <label for="formInput7">Địa chỉ</label>
-                <input type="text" class="form-control" id="formInput7" value="${customer.getAddress()}">
+                <input type="text" class="form-control" id="formInput7" name="address" value="${customer.getAddress()}">
             </div>
+
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
-                <button style="width: 30%" type="button" class="form-control btn btn-outline-warning mx-5" id="formInput12" value="Hủy">
-                    <a style="text-decoration: none; color: #ffc107" href="/customer?action=display"></a>
+                <button style="width: 30%" type="button" class="form-control btn btn-outline-warning mx-5"
+                        id="formInput12">
+                    <a style="text-decoration: none; color: #ffc107" href="/customer?action=display">Hủy</a>
                 </button>
-                <input style="width: 30%" type="button" class="form-control btn btn-outline-success mx-5" id="formInput11" value="Lưu thông tin">
+                <button style="width: 30%" type="submit" class="form-control btn btn-outline-success mx-5"
+                        id="formInput11">
+                    Lưu thông tin
+                </button>
+            </div>
+
+            <div class="form-group d-flex align-items-center justify-content-center"
+                 style="margin-top: 25px; margin-bottom: 25px">
+                <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
+                        id="formInput13">
+                    <a href="/customer?action=display" style="text-decoration: none; color: #0dcaf0">Danh sách khách
+                        hàng</a>
+                </button>
             </div>
         </form>
     </div>

@@ -7,7 +7,9 @@ import java.util.List;
 public interface ICustomerService {
     List<Customer> getList();
 
-    Customer findById(String id);
+    Customer findById(int id);
 
     boolean remove(String id);
+
+    boolean edit(int id, Customer customer);
 }

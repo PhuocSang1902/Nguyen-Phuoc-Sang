@@ -40,7 +40,7 @@
     <div class="row sticky-top" style="height: 50px;">
         <nav class="navbar navbar-expand-lg navbar-light bg-success" style="height: 50px;">
             <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent d-md" >
+                <div class="collapse navbar-collapse" id="navbarSupportedContent d-md">
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-xxl-8 col-xl-8 col-lg-6 col-md-6 col-sm-6 justify-content-center">
                         <li class="nav-item">
@@ -65,7 +65,8 @@
                                 KHÁCH HÀNG
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a></li>
+                                <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a>
+                                </li>
                                 <li><a class="dropdown-item" href="/customer?action=add">Thêm mới khách hàng</a></li>
                                 <li><a class="dropdown-item" href="/customer?action=edit">Chỉnh sửa khách hàng</a></li>
                                 <li><a class="dropdown-item" href="/customer?action=display">Xóa khách hàng</a></li>
@@ -99,8 +100,9 @@
 
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;">
                         <div class="d-flex align-items-center" style="height: 40px;">
-                            <input class="form-control me-2" type="search" placeholder="Tim kiếm" aria-label="Tiềm kiếm">
-                        </div >
+                            <input class="form-control me-2" type="search" placeholder="Tim kiếm"
+                                   aria-label="Tiềm kiếm">
+                        </div>
                         <div class="d-flex align-items-center" style="height: 40px;">
                             <button class="btn btn-info" type="submit" style="height: 40px;">Tìm</button>
                         </div>
@@ -111,7 +113,7 @@
         </nav>
     </div>
 
-    <div style="height: 65%">
+    <div>
         <div class="row text-center align-items-center" style="border-bottom: 2px black solid">
             <div class="col-1"></div>
             <div class="col-10">
@@ -142,7 +144,7 @@
             <tr class="align-middle text-center">
                 <th>${status.count}</th>
                 <td>${customer.getName()}</td>
-                <td>${customer.getCustomerType()}</td>
+                <td>${customer.getNameCustomerType()}</td>
                 <td>${customer.getBirthday()}</td>
                 <td>${customer.getGender()}</td>
                 <td>${customer.getIdCard()}</td>
@@ -156,7 +158,8 @@
                     </button>
                 </td>
                 <td>
-                    <button onclick="getId('${customer.getId()}','${customer.getName()}')" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                    <button onclick="getId('${customer.getId()}','${customer.getName()}')" type="button"
+                            class="btn btn-outline-danger" data-bs-toggle="modal"
                             data-bs-target="#deleteProduct">Xóa
                     </button>
                 </td>
@@ -165,32 +168,34 @@
 
         </table>
 
-        <div class="modal fade" id="deleteProduct" tabindex="-1"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" hidden name="action" value="delete">
-                        <input type="text" hidden id="deleteId" name="deleteId">
-                        <p>Bạn có chắc chắn muốn xóa?</p><p id="deleteName"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
-                        </button>
-                        <form action="/product?action=remove&id=${product.getId()}"
-                              method="post">
+        <form action="/customer" method="post">
+            <div class="modal fade" id="deleteProduct" tabindex="-1"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" hidden name="action" value="remove">
+                            <input type="text" hidden id="deleteId" name="deleteId">
+                            <p>Bạn có chắc chắn muốn xóa?</p>
+                            <p id="deleteName"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
+                            </button>
+
                             <button class="btn btn-primary">Xóa</button>
-                        </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
 
     </div>
 
@@ -211,8 +216,8 @@
         crossorigin="anonymous"></script>
 <script>
     function getId(id, name) {
-        document.getElementById("deleteId").value=id;
-        document.getElementById("deleteName").innerText=name;
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
     }
 </script>
 </html>

@@ -17,20 +17,18 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Customer findById(String id) {
-        List<Customer> customerList = customerRepository.getList();
-        Customer customer = new Customer();
-        for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getId().equals(id)){
-                customer = customerList.get(i);
-                break;
-            }
-        }
-        return customer;
+    public Customer findById(int id) {
+
+        return customerRepository.findById(id);
     }
 
     @Override
     public boolean remove(String id) {
         return customerRepository.remove(id);
+    }
+
+    @Override
+    public boolean edit(int id, Customer customer) {
+        return customerRepository.edit(id, customer);
     }
 }
