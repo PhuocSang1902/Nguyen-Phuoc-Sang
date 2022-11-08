@@ -117,8 +117,8 @@ public class UserServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        User existingUser = userService.selectUser(id);
-        request.setAttribute("user", existingUser);
+        User user = userService.getUserById(id);
+        request.setAttribute("user", user);
         try {
             request.getRequestDispatcher("user/edit.jsp").forward(request, response);
         } catch (ServletException e) {
@@ -134,7 +134,7 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
-        userService.insertUser(newUser);
+        userService.insertUserStore(newUser);
         try {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServletException e) {

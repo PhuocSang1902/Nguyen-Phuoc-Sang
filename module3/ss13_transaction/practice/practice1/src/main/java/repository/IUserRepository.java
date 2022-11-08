@@ -19,4 +19,8 @@ public interface IUserRepository {
     List<User> search(String country);
 
     List<User> order() throws Exception;
+
+    User getUserById(int id);
+
+    void insertUserStore(User user);
 }
