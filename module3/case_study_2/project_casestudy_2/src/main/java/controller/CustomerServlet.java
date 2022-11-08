@@ -2,7 +2,7 @@ package controller;
 
 import model.Customer;
 import service.ICustomerService;
-import service.customer.CustomerService;
+import service.impl.CustomerService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +18,20 @@ public class CustomerServlet extends HttpServlet {
     private ICustomerService customerService = new CustomerService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        switch (action) {
+            case "remove":
+                remove(request, response);
+                break;
+            default:
+                displayHomePage(request, response);
+                break;
+        }
+    }
 
+    private void remove(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        boolean checkRemove = customerService.remove(id);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,9 +56,15 @@ public class CustomerServlet extends HttpServlet {
         String id = request.getParameter("id");
         Customer customer = customerService.findById(id);
 
-        request.setAttribute("customerName", customer.getName());
-        request.setAttribute("customerType", customer.getCustomerType());
-        request.setAttribute("customerType", customer.getCustomerType());
+        request.setAttribute("customer", customer);
+
+        try {
+            request.getRequestDispatcher("furama/customer-edit-form").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void displayAddForm(HttpServletRequest request, HttpServletResponse response) {

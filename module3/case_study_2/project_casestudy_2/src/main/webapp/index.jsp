@@ -51,10 +51,10 @@
                   DỊCH VỤ
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Danh sách dịch vụ</a></li>
-                  <li><a class="dropdown-item" href="#">Thêm mới dịch vụ</a></li>
-                  <li><a class="dropdown-item" href="#">Chỉnh sửa dịch vụ</a></li>
-                  <li><a class="dropdown-item" href="#">Xóa dịch vụ</a></li>
+                  <li><a class="dropdown-item" href="/facility?action=display">Danh sách dịch vụ</a></li>
+                  <li><a class="dropdown-item" href="/facility?action=add">Thêm mới dịch vụ</a></li>
+                  <li><a class="dropdown-item" href="/facility?action=edit">Chỉnh sửa dịch vụ</a></li>
+                  <li><a class="dropdown-item" href="/facility?action=display">Xóa dịch vụ</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -65,8 +65,8 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a></li>
                   <li><a class="dropdown-item" href="/customer?action=add">Thêm mới khách hàng</a></li>
-                  <li><a class="dropdown-item" href="#">Chỉnh sửa khách hàng</a></li>
-                  <li><a class="dropdown-item" href="#">Xóa khách hàng</a></li>
+                  <li><a class="dropdown-item" href="/customer?action=edit">Chỉnh sửa khách hàng</a></li>
+                  <li><a class="dropdown-item" href="/customer?action=display">Xóa khách hàng</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -218,7 +218,7 @@
     <footer class="bg-light text-center text-lg-start">
         <div class="text-center p-3" style="background-color: #157347;">
             © 2022 Copyright:
-            <a class="text-dark" href="https://furamavietnam.com/vi/">Furama Resort</a>
+            <a class="text-dark" href="/index.jsp">Furama Resort</a>
         </div>
 
     </footer>

@@ -8,4 +8,6 @@ public interface ICustomerService {
     List<Customer> getList();
 
     Customer findById(String id);
+
+    boolean remove(String id);
 }

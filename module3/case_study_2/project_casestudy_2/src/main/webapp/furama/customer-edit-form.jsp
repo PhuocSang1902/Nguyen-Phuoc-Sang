@@ -19,41 +19,43 @@
 <div class="d-flex justify-content-center">
     <div class="col-6">
         <div class="my-5"><h1>Chỉnh sửa thông tin khách hàng khách hàng</h1></div>
-        <form class="my-5">
+        <form class="my-5" method="post" action="/customer?action=edit">
             <div class="form-group">
                 <label for="formInput">Tên khách hàng</label>
-                <input type="text" class="form-control" id="formInput">
+                <input type="text" class="form-control" id="formInput" value="${customer.getName()}">
             </div>
             <div class="form-group">
                 <label for="formInput1">Loại khách hàng</label>
-                <input type="text" class="form-control" id="formInput1">
+                <input type="text" class="form-control" id="formInput1" value="${customer.getCustomerType()}">
             </div>
             <div class="form-group">
                 <label for="formInput2">Ngày sinh</label>
-                <input type="text" class="form-control" id="formInput2">
+                <input type="text" class="form-control" id="formInput2" value="${customer.getBirthday()}">
             </div>
             <div class="form-group">
                 <label for="formInput3">Giới tính</label>
-                <input type="text" class="form-control" id="formInput3">
+                <input type="text" class="form-control" id="formInput3" value="${customer.getGender()}">
             </div>
             <div class="form-group">
                 <label for="formInput4">Số CCCD</label>
-                <input type="text" class="form-control" id="formInput4">
+                <input type="text" class="form-control" id="formInput4" value="${customer.getIdCard()}">
             </div>
             <div class="form-group">
                 <label for="formInput5">Số điện thoại</label>
-                <input type="text" class="form-control" id="formInput5">
+                <input type="text" class="form-control" id="formInput5" value="${customer.getPhoneNumber()}">
             </div>
             <div class="form-group">
                 <label for="formInput6">Email</label>
-                <input type="text" class="form-control" id="formInput6">
+                <input type="text" class="form-control" id="formInput6" value="${customer.getEmail()}">
             </div>
             <div class="form-group">
                 <label for="formInput7">Địa chỉ</label>
-                <input type="text" class="form-control" id="formInput7">
+                <input type="text" class="form-control" id="formInput7" value="${customer.getAddress()}">
             </div>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
-                <input style="width: 30%" type="button" class="form-control btn btn-outline-warning mx-5" id="formInput12" value="Hủy">
+                <button style="width: 30%" type="button" class="form-control btn btn-outline-warning mx-5" id="formInput12" value="Hủy">
+                    <a style="text-decoration: none; color: #ffc107" href="/customer?action=display"></a>
+                </button>
                 <input style="width: 30%" type="button" class="form-control btn btn-outline-success mx-5" id="formInput11" value="Lưu thông tin">
             </div>
         </form>

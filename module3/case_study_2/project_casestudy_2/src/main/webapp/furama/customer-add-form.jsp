@@ -19,7 +19,7 @@
 <div class="d-flex justify-content-center">
     <div class="col-6">
         <div class="my-5"><h1>Thêm mới khách hàng</h1></div>
-        <form class="my-5">
+        <form class="my-5" action="/customer?action=add" method="post">
             <div class="form-group">
                 <label for="formInput">Tên khách hàng</label>
                 <input type="text" class="form-control" id="formInput">
@@ -53,8 +53,10 @@
                 <input type="text" class="form-control" id="formInput7">
             </div>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
-                <input style="width: 30%" type="button" class="form-control btn btn-outline-warning mx-5" id="formInput12" value="Hủy">
-                <input style="width: 30%" type="button" class="form-control btn btn-outline-success mx-5" id="formInput11" value="Lưu thông tin">
+                <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5" id="formInput110">
+                    <a href="/customer?action=display" style="text-decoration: none; color: #0dcaf0">Hủy</a>
+                </button>
+                <input style="width: 30%" type="submit" class="form-control btn btn-outline-success mx-5" id="formInput11" value="Lưu thông tin">
             </div>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
                 <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5" id="formInput13">

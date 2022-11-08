@@ -40,7 +40,7 @@
     <div class="row sticky-top" style="height: 50px;">
         <nav class="navbar navbar-expand-lg navbar-light bg-success" style="height: 50px;">
             <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent d-md">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent d-md" >
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-xxl-8 col-xl-8 col-lg-6 col-md-6 col-sm-6 justify-content-center">
                         <li class="nav-item">
@@ -65,10 +65,10 @@
                                 KHÁCH HÀNG
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Danh sách khách hàng</a></li>
-                                <li><a class="dropdown-item" href="#">Thêm mới khách hàng</a></li>
-                                <li><a class="dropdown-item" href="#">Chỉnh sửa khách hàng</a></li>
-                                <li><a class="dropdown-item" href="#">Xóa khách hàng</a></li>
+                                <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a></li>
+                                <li><a class="dropdown-item" href="/customer?action=add">Thêm mới khách hàng</a></li>
+                                <li><a class="dropdown-item" href="/customer?action=edit">Chỉnh sửa khách hàng</a></li>
+                                <li><a class="dropdown-item" href="/customer?action=display">Xóa khách hàng</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -99,9 +99,8 @@
 
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;">
                         <div class="d-flex align-items-center" style="height: 40px;">
-                            <input class="form-control me-2" type="search" placeholder="Tim kiếm"
-                                   aria-label="Tiềm kiếm">
-                        </div>
+                            <input class="form-control me-2" type="search" placeholder="Tim kiếm" aria-label="Tiềm kiếm">
+                        </div >
                         <div class="d-flex align-items-center" style="height: 40px;">
                             <button class="btn btn-info" type="submit" style="height: 40px;">Tìm</button>
                         </div>
@@ -151,12 +150,14 @@
                 <td>${customer.getEmail()}</td>
                 <td>${customer.getAddress()}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-warning"><a href="/customer?action=edit&id=${customer.getId()}">Sửa</a>
+                    <button type="button" class="btn btn-outline-warning"><a
+                            style="text-decoration: none; color: #ffc107"
+                            href="/customer?action=edit&id=${customer.getId()}">Sửa</a>
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                            data-bs-target="#deleteProduct${product.getId()}">Xóa
+                    <button onclick="getId('${customer.getId()}','${customer.getName()}')" type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteProduct">Xóa
                     </button>
                 </td>
             </tr>
@@ -164,7 +165,7 @@
 
         </table>
 
-        <div class="modal fade" id="deleteProduct${product.getId()}" tabindex="-1"
+        <div class="modal fade" id="deleteProduct" tabindex="-1"
              aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -175,7 +176,9 @@
                                 aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        Bạn có chắc chắn muốn xóa?
+                        <input type="text" hidden name="action" value="delete">
+                        <input type="text" hidden id="deleteId" name="deleteId">
+                        <p>Bạn có chắc chắn muốn xóa?</p><p id="deleteName"></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
@@ -192,10 +195,9 @@
     </div>
 
     <footer class="bg-light text-center text-lg-start">
-
         <div class="text-center p-3" style="background-color: #157347;">
             © 2022 Copyright:
-            <a class="text-dark" href="https://furamavietnam.com/vi/">Furama Resort</a>
+            <a class="text-dark" href="/index.jsp">Furama Resort</a>
         </div>
 
     </footer>
@@ -207,5 +209,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
+<script>
+    function getId(id, name) {
+        document.getElementById("deleteId").value=id;
+        document.getElementById("deleteName").innerText=name;
+    }
+</script>
 </html>

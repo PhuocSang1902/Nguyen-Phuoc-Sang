@@ -219,10 +219,9 @@
     </div>
 
     <footer class="bg-light text-center text-lg-start">
-
         <div class="text-center p-3" style="background-color: #157347;">
             © 2022 Copyright:
-            <a class="text-dark" href="https://furamavietnam.com/vi/">Furama Resort</a>
+            <a class="text-dark" href="/index.jsp">Furama Resort</a>
         </div>
 
     </footer>

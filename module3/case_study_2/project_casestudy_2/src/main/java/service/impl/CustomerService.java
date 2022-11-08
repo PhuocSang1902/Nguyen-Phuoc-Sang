@@ -1,4 +1,4 @@
-package service.customer;
+package service.impl;
 
 import model.Customer;
 import repository.ICustomerRepository;
@@ -27,5 +27,10 @@ public class CustomerService implements ICustomerService {
             }
         }
         return customer;
+    }
+
+    @Override
+    public boolean remove(String id) {
+        return customerRepository.remove(id);
     }
 }
