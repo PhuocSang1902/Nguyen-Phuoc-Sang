@@ -80,10 +80,11 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public List<User> selectAllUsers() {
+        String query = "call select_all();";
         List<User> userList = new ArrayList<>();
-        try (Connection connection = BaseRepository.getConnectDB();
-
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS + " order by name DESC ")) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -102,11 +103,11 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public boolean deleteUser(int id) {
-
+        String query = "call delete_user(?);";
         Connection connection = BaseRepository.getConnectDB();
-        PreparedStatement statement = null;
+        CallableStatement statement = null;
         try {
-            statement = connection.prepareStatement(DELETE_USERS_SQL);
+            statement = connection.prepareCall(query);
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException throwables) {
@@ -265,21 +266,23 @@ public class UserRepository implements IUserRepository {
 
             connection.setAutoCommit(false);
 
-            preparedStatementInsert.setString(1,"Quynh");
+            preparedStatementInsert.setString(1, "Quynh");
             preparedStatementInsert.setBigDecimal(2, new BigDecimal(10));
             preparedStatementInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
             preparedStatementInsert.execute();
 
-            preparedStatementInsert.setString(1,"Ngan");
+            preparedStatementInsert.setString(1, "Ngan");
             preparedStatementInsert.setBigDecimal(2, new BigDecimal(20));
             preparedStatementInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
             preparedStatementInsert.execute();
 
             preparedStatementUpdate.setBigDecimal(1, new BigDecimal(99.99));
 
+
             preparedStatementUpdate.setString(2, "Quynh");
 
             preparedStatementUpdate.execute();
+
 
             connection.commit();
 
@@ -292,6 +295,7 @@ public class UserRepository implements IUserRepository {
             throwables.printStackTrace();
         }
     }
+
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
