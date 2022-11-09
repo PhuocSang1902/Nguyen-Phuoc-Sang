@@ -131,8 +131,8 @@ public class UserRepository implements IUserRepository {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
-                String country1 = rs.getString("country");
-                userList.add(new User(id, name, email, country1));
+                String userCountry = rs.getString("country");
+                userList.add(new User(id, name, email, userCountry));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

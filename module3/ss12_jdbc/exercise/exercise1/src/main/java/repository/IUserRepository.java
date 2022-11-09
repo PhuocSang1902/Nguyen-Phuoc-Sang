@@ -6,15 +6,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserRepository {
-    public void insertUser(User user);
+    void insertUser(User user);
 
-    public User selectUser(int id);
+    User selectUser(int id);
 
-    public List<User> selectAllUsers();
+    List<User> selectAllUsers();
 
-    public boolean deleteUser(int id);
+    boolean deleteUser(int id);
 
-    public boolean updateUser(User user);
+    boolean updateUser(User user);
 
     List<User> search(String country);
 
