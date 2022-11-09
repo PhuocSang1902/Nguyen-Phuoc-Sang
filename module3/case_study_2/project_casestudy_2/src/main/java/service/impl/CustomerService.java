@@ -2,7 +2,7 @@ package service.impl;
 
 import model.Customer;
 import repository.ICustomerRepository;
-import repository.customer.CustomerRepository;
+import repository.impl.CustomerRepository;
 import service.ICustomerService;
 
 import java.util.List;
@@ -30,5 +30,15 @@ public class CustomerService implements ICustomerService {
     @Override
     public boolean edit(int id, Customer customer) {
         return customerRepository.edit(id, customer);
+    }
+
+    @Override
+    public boolean add(Customer customer) {
+        return customerRepository.add(customer);
+    }
+
+    @Override
+    public List<Customer> search(String search) {
+        return customerRepository.search(search);
     }
 }

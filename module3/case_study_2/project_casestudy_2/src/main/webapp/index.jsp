@@ -53,8 +53,6 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="/facility?action=display">Danh sách dịch vụ</a></li>
                   <li><a class="dropdown-item" href="/facility?action=add">Thêm mới dịch vụ</a></li>
-                  <li><a class="dropdown-item" href="/facility?action=edit">Chỉnh sửa dịch vụ</a></li>
-                  <li><a class="dropdown-item" href="/facility?action=display">Xóa dịch vụ</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -65,8 +63,6 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a></li>
                   <li><a class="dropdown-item" href="/customer?action=add">Thêm mới khách hàng</a></li>
-                  <li><a class="dropdown-item" href="/customer?action=display">Chỉnh sửa khách hàng</a></li>
-                  <li><a class="dropdown-item" href="/customer?action=display">Xóa khách hàng</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -22,45 +22,60 @@
         <form class="my-5" action="/customer?action=add" method="post">
             <div class="form-group">
                 <label for="formInput">Tên khách hàng</label>
-                <input type="text" class="form-control" id="formInput">
+                <input type="text" class="form-control" name="name" id="formInput">
             </div>
             <div class="form-group">
                 <label for="formInput1">Loại khách hàng</label>
-                <input type="text" class="form-control" id="formInput1">
+                <select class="form-select" aria-label="Default select example" id="formInput1" name="customerType" id="customerType">
+                    <option value="Hãy chọn loại khách hàng" selected>Hãy chọn loại khách hàng</option>
+                    <c:forEach var="customerType" items="${customerTypeList}">
+                        <option value="${customerType.getId()}">${customerType.getName()}</option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="form-group">
                 <label for="formInput2">Ngày sinh</label>
-                <input type="text" class="form-control" id="formInput2">
+                <input type="date" class="form-control" id="formInput2" name="birthday"
+                       value="${nowDate}"
+                       min="1920-01-01" max="${nowDateEndYear}">
             </div>
             <div class="form-group">
                 <label for="formInput3">Giới tính</label>
-                <input type="text" class="form-control" id="formInput3">
+                <select class="form-control" id="formInput3" name="gender" id="formInput3">
+                        <option value="Hãy chọn giới tính" selected>Hãy chọn giới tính</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ" >Nữ</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="formInput4">Số CCCD</label>
-                <input type="text" class="form-control" id="formInput4">
+                <input type="text" class="form-control" id="formInput4" name="idCard">
             </div>
             <div class="form-group">
                 <label for="formInput5">Số điện thoại</label>
-                <input type="text" class="form-control" id="formInput5">
+                <input type="text" class="form-control" id="formInput5" name="phoneNumber">
             </div>
             <div class="form-group">
                 <label for="formInput6">Email</label>
-                <input type="text" class="form-control" id="formInput6">
+                <input type="text" class="form-control" id="formInput6" name="email">
             </div>
             <div class="form-group">
                 <label for="formInput7">Địa chỉ</label>
-                <input type="text" class="form-control" id="formInput7">
+                <input type="text" class="form-control" id="formInput7" name="address">
             </div>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
-                <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5" id="formInput110">
+                <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
+                        id="formInput110">
                     <a href="/customer?action=display" style="text-decoration: none; color: #0dcaf0">Hủy</a>
                 </button>
-                <input style="width: 30%" type="submit" class="form-control btn btn-outline-success mx-5" id="formInput11" value="Lưu thông tin">
+                <input style="width: 30%" type="submit" class="form-control btn btn-outline-success mx-5"
+                       id="formInput11" value="Lưu thông tin">
             </div>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
-                <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5" id="formInput13">
-                    <a href="/customer?action=display" style="text-decoration: none; color: #0dcaf0">Danh sách khách hàng</a>
+                <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
+                        id="formInput13">
+                    <a href="/customer?action=display" style="text-decoration: none; color: #0dcaf0">Danh sách khách
+                        hàng</a>
                 </button>
             </div>
         </form>

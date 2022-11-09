@@ -61,3 +61,38 @@ SET SQL_SAFE_UPDATES = 1;
 SET foreign_key_checks = 1;
 END //
 DELIMITER ;
+SELECT * FROM customer_type;
+
+INSERT INTO customer(customer_type_id, name, date_of_birth, gender, id_card, phone_number, email, address) 
+VALUES (2, 'Nguyễn Phước Sang', '1995-02-19', 1, '123456789', '0931917091', 'phuocsang@gmail.com', '464/34 Trưng Nữ Vương, Đà Nẵng');
+
+DELIMITER //
+CREATE PROCEDURE add_customer(IN customer_type_id INT, name VARCHAR(50), date_of_birth VARCHAR(50), gender BIT, id_card VARCHAR(50), phone_number VARCHAR(50), email VARCHAR(50), address VARCHAR(50))
+BEGIN
+INSERT INTO customer(customer.customer_type_id, customer.name, customer.date_of_birth, customer.gender, customer.id_card, customer.phone_number, customer.email, customer.address) 
+VALUES (customer_type_id, name, date_of_birth, gender, id_card, phone_number, email, address);
+END//
+DELIMITER ;
+
+CALL add_customer(2, 'Nguyễn Phước Sang', '1995-02-19', 1, '123456789', '0931917091', 'phuocsang@gmail.com', '464/34 Trưng Nữ Vương, Đà Nẵng');
+DELIMITER //
+CREATE PROCEDURE search(IN search VARCHAR(50))
+BEGIN
+SELECT * 
+FROM (
+	SELECT 
+		c.*, 
+        t.name AS type_customer_name
+    FROM 
+		customer c LEFT JOIN customer_type t ON c.customer_type_id = t.id
+	UNION
+		SELECT 
+		c.*, 
+        t.name AS type_customer_name
+    FROM 
+		customer c RIGHT JOIN customer_type t ON c.customer_type_id = t.id
+	) AS x
+WHERE x.name LIKE search OR x.address LIKE search;
+END//
+DELIMITER ;
+call search('%Đà Nẵng%');

@@ -12,4 +12,8 @@ public interface ICustomerRepository {
     Customer findById(int id);
 
     boolean edit(int id, Customer customer);
+
+    boolean add(Customer customer);
+
+    List<Customer> search(String search);
 }

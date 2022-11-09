@@ -15,9 +15,10 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, String customerType, String birthday, String gender, String idCard, String phoneNumber, String email, String address) {
+    public Customer(String name, String customerType, String nameCustomerType, String birthday, String gender, String idCard, String phoneNumber, String email, String address) {
         this.name = name;
         this.customerType = customerType;
+        this.nameCustomerType = nameCustomerType;
         this.birthday = birthday;
         this.gender = gender;
         this.idCard = idCard;
@@ -39,17 +40,6 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer(String id, String name, String customerType, String birthday, String gender, String idCard, String phoneNumber, String email, String address) {
-        this.id = id;
-        this.name = name;
-        this.customerType = customerType;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.idCard = idCard;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-    }
 
     public String getNameCustomerType() {
         return nameCustomerType;

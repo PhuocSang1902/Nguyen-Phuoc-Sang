@@ -1,4 +1,4 @@
-package repository.customer;
+package repository.impl;
 
 import model.Customer;
 import repository.BaseRepository;
@@ -16,6 +16,8 @@ public class CustomerRepository implements ICustomerRepository {
     private static final String GET_BY_ID = "CALL get_customer_by_id(?);";
     private static final String DELETE = "CALL delete_by_id(?);";
     private static final String UPDATE_BY_ID = "CALL edit_customer(?,?,?,?,?,?,?,?,?);";
+    private static final String ADD = "CALL add_customer(?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String SEARCH = "call search_customer(?);";
 
     @Override
     public List<Customer> getList() {
@@ -141,5 +143,74 @@ public class CustomerRepository implements ICustomerRepository {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean add(Customer customer) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(ADD);
+            callableStatement.setInt(1, Integer.parseInt(customer.getCustomerType()));
+            callableStatement.setString(2, customer.getName());
+            callableStatement.setString(3, customer.getBirthday());
+            int gender;
+            switch (customer.getGender()) {
+                case "Nam":
+                    gender = 1;
+                    break;
+                default:
+                    gender = 0;
+                    break;
+            }
+            callableStatement.setInt(4, gender);
+            callableStatement.setString(5, customer.getIdCard());
+            callableStatement.setString(6, customer.getPhoneNumber());
+            callableStatement.setString(7, customer.getEmail());
+            callableStatement.setString(8, customer.getAddress());
+
+            return callableStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public List<Customer> search(String search) {
+        List<Customer> customerList = new ArrayList<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(SEARCH);
+            callableStatement.setString(1, "%" + search + "%");
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()){
+                String id = resultSet.getString("id");
+                String name = resultSet.getString("name");
+                String customerType = resultSet.getString("customer_type_id");
+                String nameCustomerType = resultSet.getString("type_customer_name");
+                String birthday = resultSet.getString("date_of_birth");
+                String gender = resultSet.getString("gender");
+                String genderName;
+                switch (gender) {
+                    case "1":
+                        genderName = "Nam";
+                        break;
+                    case "0":
+                        genderName = "Nữ";
+                        break;
+                    default:
+                        genderName = "Khác";
+                        break;
+                }
+                String idCard = resultSet.getString("id_card");
+                String phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                customerList.add(new Customer(id, name, customerType, nameCustomerType, birthday, genderName, idCard, phoneNumber, email, address));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return customerList;
     }
 }

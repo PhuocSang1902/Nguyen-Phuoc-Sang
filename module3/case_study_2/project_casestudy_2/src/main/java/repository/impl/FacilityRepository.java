@@ -1,4 +1,4 @@
-package repository.customer;
+package repository.impl;
 
 public class FacilityRepository {
 }

@@ -25,23 +25,42 @@
                 <input type="text" class="form-control" id="formInput" name="name" value="${customer.getName()}">
             </div>
             <div class="form-group">
-                <label for="formInput1">Loại khách hàng</label>
-<%--                <select class="form-control" name="nameCustomerType" id="nameCustomerType">--%>
-<%--                    <option value="1">Diamond</option>--%>
-<%--                    <option value="2">Platinium</option>--%>
-<%--                    <option value="3">Gold</option>--%>
-<%--                    <option value="4">Silver</option>--%>
-<%--                    <option value="5">Member</option>--%>
-<%--                </select>--%>
-                <input type="text" class="form-control" id="formInput1" name="nameCustomerType" value="${customer.getNameCustomerType()}">
+                <label>Loại khách hàng</label>
+                <select class="form-control" id="formInput1" name="customerType" id="customerType">
+                    <c:forEach var="customerType" items="${customerTypeList}">
+                        <c:if test="${customerType.getId()==customer.getCustomerType()}">
+                            <option value="${customerType.getId()}" selected>${customerType.getName()}</option>
+                        </c:if>
+                        <c:if test="${customerType.getId()!=customer.getCustomerType()}">
+                            <option value="${customerType.getId()}">${customerType.getName()}</option>
+                        </c:if>
+                    </c:forEach>
+                </select>
             </div>
             <div class="form-group">
                 <label for="formInput2">Ngày sinh</label>
-                <input type="text" class="form-control" id="formInput2" name="birthday" value="${customer.getBirthday()}">
+                <input type="date" class="form-control" id="formInput2" name="birthday"
+                       value="${customer.getBirthday()}"
+                       min="1920-01-01" max="${nowDateEndYear}">
+                <%--                <input type="text" class="form-control" id="formInput2" name="birthday" value="${customer.getBirthday()}">--%>
             </div>
             <div class="form-group">
                 <label for="formInput3">Giới tính</label>
-                <input type="text" class="form-control" id="formInput3" name="gender" value="${customer.getGender()}">
+                <select class="form-control" id="formInput3" name="gender" id="formInput3">
+                    <c:if test="${customer.getGender()=='Nữ'}">
+                        <option value="Nữ" selected>Nữ</option>
+                    </c:if>
+                    <c:if test="${customer.getGender()=='Nam'}">
+                        <option value="Nam" selected>Nam</option>
+                    </c:if>
+                    <c:if test="${customer.getGender()!='Nữ'}">
+                        <option value="Nữ" >Nữ</option>
+                    </c:if>
+                    <c:if test="${customer.getGender()!='Nam'}">
+                        <option value="Nam" >Nam</option>
+                    </c:if>
+                </select>
+                <%--                <input type="text" class="form-control" id="formInput3" name="gender" value="${customer.getGender()}">--%>
             </div>
             <div class="form-group">
                 <label for="formInput4">Số CCCD</label>
@@ -49,7 +68,8 @@
             </div>
             <div class="form-group">
                 <label for="formInput5">Số điện thoại</label>
-                <input type="text" class="form-control" id="formInput5" name="phoneNumber" value="${customer.getPhoneNumber()}">
+                <input type="text" class="form-control" id="formInput5" name="phoneNumber"
+                       value="${customer.getPhoneNumber()}">
             </div>
             <div class="form-group">
                 <label for="formInput6">Email</label>

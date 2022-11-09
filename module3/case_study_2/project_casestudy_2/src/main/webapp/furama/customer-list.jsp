@@ -14,7 +14,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="datatables/scc/dataTables.bootstrap5.min.css">
 </head>
 <body>
 
@@ -44,7 +44,7 @@
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-xxl-8 col-xl-8 col-lg-6 col-md-6 col-sm-6 justify-content-center">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="https://furamavietnam.com/the-resort/">THE
+                            <a class="nav-link active" aria-current="page" href="/index.jsp">THE
                                 RESORT</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -53,10 +53,8 @@
                                 DỊCH VỤ
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Danh sách dịch vụ</a></li>
-                                <li><a class="dropdown-item" href="#">Thêm mới dịch vụ</a></li>
-                                <li><a class="dropdown-item" href="#">Chỉnh sửa dịch vụ</a></li>
-                                <li><a class="dropdown-item" href="#">Xóa dịch vụ</a></li>
+                                <li><a class="dropdown-item" href="/facility?action=display">Danh sách dịch vụ</a></li>
+                                <li><a class="dropdown-item" href="/facility?action=add">Thêm mới dịch vụ</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -68,8 +66,6 @@
                                 <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a>
                                 </li>
                                 <li><a class="dropdown-item" href="/customer?action=add">Thêm mới khách hàng</a></li>
-                                <li><a class="dropdown-item" href="/customer?action=edit">Chỉnh sửa khách hàng</a></li>
-                                <li><a class="dropdown-item" href="/customer?action=display">Xóa khách hàng</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -98,10 +94,12 @@
                         </li>
                     </ul>
 
-                    <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;">
+                    <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;"
+                          action="/customer">
                         <div class="d-flex align-items-center" style="height: 40px;">
-                            <input class="form-control me-2" type="search" placeholder="Tim kiếm"
-                                   aria-label="Tiềm kiếm">
+                            <input type="text" hidden name="action" value="search">
+                            <input class="form-control me-2" name="search" type="search" placeholder="Tim kiếm"
+                                   aria-label="Tìm kiếm">
                         </div>
                         <div class="d-flex align-items-center" style="height: 40px;">
                             <button class="btn btn-info" type="submit" style="height: 40px;">Tìm</button>
@@ -112,6 +110,9 @@
             </div>
         </nav>
     </div>
+    <c:if test="${mess != null}">
+        <h5 style="color: red">${mess}</h5>
+    </c:if>
 
     <div>
         <div class="row text-center align-items-center" style="border-bottom: 2px black solid">
@@ -120,12 +121,12 @@
                 <h1>DANH SÁCH KHÁCH HÀNG</h1>
             </div>
             <div class="col-1">
-                <button type="button" class="btn btn-outline-success"><a style="text-decoration: none; color: black"
-                                                                         href="/furama/customer-add-form.jsp">Thêm
-                    mới</a></button>
+                <button type="button" class="btn btn-outline-success">
+                    <a style="text-decoration: none; color: black" href="/customer?action=add ">Thêm mới</a>
+                </button>
             </div>
         </div>
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" style="width: 100%" id="tableCustomer">
             <thead>
             <tr class="align-middle text-center">
                 <th scope="col">Stt</th>
@@ -140,32 +141,34 @@
                 <th scope="col">Sửa</th>
                 <th scope="col">Xóa</th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="customer" items="${customerList}" varStatus="status">
-            <tr class="align-middle text-center">
-                <th>${status.count}</th>
-                <td>${customer.getName()}</td>
-                <td>${customer.getNameCustomerType()}</td>
-                <td>${customer.getBirthday()}</td>
-                <td>${customer.getGender()}</td>
-                <td>${customer.getIdCard()}</td>
-                <td>${customer.getPhoneNumber()}</td>
-                <td>${customer.getEmail()}</td>
-                <td>${customer.getAddress()}</td>
-                <td>
-                    <button type="button" class="btn btn-outline-warning"><a
-                            style="text-decoration: none; color: #ffc107"
-                            href="/customer?action=edit&id=${customer.getId()}">Sửa</a>
-                    </button>
-                </td>
-                <td>
-                    <button onclick="getId('${customer.getId()}','${customer.getName()}')" type="button"
-                            class="btn btn-outline-danger" data-bs-toggle="modal"
-                            data-bs-target="#deleteProduct">Xóa
-                    </button>
-                </td>
-            </tr>
+                <tr class="align-middle text-center">
+                    <th>${status.count}</th>
+                    <td>${customer.getName()}</td>
+                    <td>${customer.getNameCustomerType()}</td>
+                    <td>${customer.getBirthday()}</td>
+                    <td>${customer.getGender()}</td>
+                    <td>${customer.getIdCard()}</td>
+                    <td>${customer.getPhoneNumber()}</td>
+                    <td>${customer.getEmail()}</td>
+                    <td>${customer.getAddress()}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning"><a
+                                style="text-decoration: none; color: #ffc107"
+                                href="/customer?action=edit&id=${customer.getId()}">Sửa</a>
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="getId('${customer.getId()}','${customer.getName()}')" type="button"
+                                class="btn btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteProduct">Xóa
+                        </button>
+                    </td>
+                </tr>
             </c:forEach>
-
+            </tbody>
         </table>
 
         <form action="/customer" method="post">
@@ -199,7 +202,7 @@
 
     </div>
 
-    <footer class="bg-light text-center text-lg-start">
+    <footer class=" bg-light text-center text-lg-start fixed-bottom" style="height: 50px">
         <div class="text-center p-3" style="background-color: #157347;">
             © 2022 Copyright:
             <a class="text-dark" href="/index.jsp">Furama Resort</a>
@@ -211,13 +214,23 @@
 
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
 <script>
     function getId(id, name) {
         document.getElementById("deleteId").value = id;
         document.getElementById("deleteName").innerText = name;
     }
+</script>
+
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<script src="datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tableCustomer').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        });
+    });
 </script>
 </html>
