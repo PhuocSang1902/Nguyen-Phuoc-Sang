@@ -56,10 +56,10 @@
                 <select class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId" value="${facility.getFacilityTypeId()}">
                     <option value="-- Hãy chọn loại dịch vụ --" selected>-- Hãy chọn loại dịch vụ --</option>
                     <c:forEach var="facilityType" items="${facilityTypeList}">
-                        <c:if test="${facility.getFacilityTypeId() == facilityType.getName()}">
+                        <c:if test="${facility.getFacilityTypeId() == facilityType.getId()}">
                             <option selected value="${facilityType.getId()}">${facilityType.getName()}</option>
                         </c:if>
-                        <c:if test="${facility.getFacilityTypeId() != facilityType.getName()}">
+                        <c:if test="${facility.getFacilityTypeId() != facilityType.getId()}">
                             <option value="${facilityType.getId()}">${facilityType.getName()}</option>
                         </c:if>
                     </c:forEach>
@@ -87,18 +87,25 @@
                 <label for="formInput7">Mô tả</label>
                 <input type="text" class="form-control" id="formInput7" name="description" value="${facility.getDescription()}">
             </div>
-            <div class="form-group">
-                <label for="formInput8">Dt hồ bơi</label>
-                <input type="text" class="form-control" id="formInput8" name="poolArea" value="${facility.getPoolArea()}">
-            </div>
-            <div class="form-group">
-                <label for="formInput9">Số tầng</label>
-                <input type="text" class="form-control" id="formInput9" name="numberOfFloor" value="${facility.getNumberOfFloor()}">
-            </div>
-            <div class="form-group">
-                <label for="formInput10">Dịch vụ miễn phí</label>
-                <input type="text" class="form-control" id="formInput10" name="facilityFree" value="${facility.getFacilityFree()}">
-            </div>
+            <c:if test="${facility.getFacilityTypeName() == 'House' || facility.getFacilityTypeName() == 'Villa'}">
+                <div class="form-group">
+                    <label for="formInput8">Dt hồ bơi</label>
+                    <input type="text" class="form-control" id="formInput8" name="poolArea" value="${facility.getPoolArea()}">
+                </div>
+            </c:if>
+            <c:if test="${facility.getFacilityTypeName() == 'House' || facility.getFacilityTypeName() == 'Villa'}">
+                <div class="form-group">
+                    <label for="formInput9">Số tầng</label>
+                    <input type="text" class="form-control" id="formInput9" name="numberOfFloor" value="${facility.getNumberOfFloor()}">
+                </div>
+            </c:if>
+            <c:if test="${facility.getFacilityTypeName() == 'Room'}">
+                <div class="form-group">
+                    <label for="formInput10">Dịch vụ miễn phí</label>
+                    <input type="text" class="form-control" id="formInput10" name="facilityFree" value="${facility.getFacilityFree()}">
+                </div>
+            </c:if>
+
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
                 <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
                         id="formInput11">
