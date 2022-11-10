@@ -73,30 +73,35 @@ public class FacilittyServlet extends HttpServlet {
         List<RentType> rentTypeList = renTypeService.getList();
         Facility facility = facilityService.findById(id);
         facility.setName(request.getParameter("name"));
-        facility.setArea(request.getParameter("customerType"));
-        facility.setCost(request.getParameter("birthday"));
-        facility.setMaxPeople(request.getParameter("gender"));
-        facility.setRentTypeId(request.getParameter("idCard"));
-        facility.setFacilityTypeId(request.getParameter("phoneNumber"));
-        facility.setStandardRoom(request.getParameter("email"));
-        facility.setDescription(request.getParameter("address"));
-        facility.setPoolArea(request.getParameter("address"));
-        facility.setNumberOfFloor(request.getParameter("address"));
-        String numberOfFloor = request.getParameter("address");
+        facility.setArea(request.getParameter("area"));
+        facility.setCost(request.getParameter("cost"));
+        facility.setMaxPeople(request.getParameter("maxPeople"));
+        facility.setRentTypeId(request.getParameter("rentTypeId"));
+        facility.setFacilityTypeId(request.getParameter("facilityTypeId"));
+        facility.setStandardRoom(request.getParameter("standardRoom"));
+        facility.setDescription(request.getParameter("description"));
+        String poolArea = request.getParameter("poolArea");
+        if (poolArea != null) {
+            facility.setPoolArea(poolArea);
+        }else {
+            poolArea = "Không áp dụng";
+            facility.setPoolArea(poolArea);
+        }
+        String numberOfFloor = request.getParameter("numberOfFloor");
         if (numberOfFloor != null) {
             facility.setNumberOfFloor(numberOfFloor);
         }else {
             numberOfFloor = "Không áp dụng";
             facility.setNumberOfFloor(numberOfFloor);
         }
-        String facilityFree = request.getParameter("address");
+        String facilityFree = request.getParameter("facilityFree");
         if (facilityFree != null) {
             facility.setFacilityFree(facilityFree);
         }else {
             facilityFree = "Không áp dụng";
             facility.setFacilityFree(facilityFree);
         }
-        boolean checkEdit = customerService.edit(id, facility);
+        boolean checkEdit = facilityService.edit(id, facility);
         String mess;
         if (checkEdit){
             mess= "Chỉnh sửa thành công";

@@ -19,7 +19,7 @@
 <div class="d-flex justify-content-center">
     <div class="col-6">
         <div class="my-5"><h1>Chỉnh sửa dịch vụ</h1></div>
-        <form class="my-5" action="/facility?action=edit" method="post">
+        <form class="my-5" action="/facility?action=edit&id=${facility.getId()}" method="post">
             <div class="form-group">
                 <label for="formInput">Tên dịch vụ</label>
                 <input type="text" class="form-control" name="name" id="formInput" value="${facility.getName()}">

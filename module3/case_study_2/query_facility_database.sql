@@ -35,3 +35,26 @@ END//
 DELIMITER ;
 
 CALL get_facility_by_id(2);
+
+DELIMITER //
+CREATE PROCEDURE edit_facility(IN id INT, name VARCHAR(50), area INT, cost DOUBLE, max_people INT, rent_type_id INT, facility_type_id INT, standard_room VARCHAR(50), description_other_convenience VARCHAR(50), pool_area DOUBLE, number_of_floors INT, facility_free TEXT)
+BEGIN
+	UPDATE facility 
+	SET 
+        facility.name=name, 
+        facility.area=area, 
+        facility.cost=cost, 
+        facility.max_people=max_people, 
+        facility.rent_type_id=rent_type_id, 
+        facility.facility_type_id=facility_type_id, 
+        facility.standard_room=standard_room, 
+        facility.description_other_convenience=description_other_convenience, 
+        facility.pool_area=pool_area, 
+        facility.number_of_floors=number_of_floors, 
+        facility.facility_free=facility_free
+	WHERE
+		facility.id=id;
+END//
+DELIMITER ;
+
+CALL edit_facility(2, 'House Princess 01', 14000, 5000000, 7, 2, 2, 'vip', 'Có thêm bếp nướng', 0, 3, 'Không áp dụng');

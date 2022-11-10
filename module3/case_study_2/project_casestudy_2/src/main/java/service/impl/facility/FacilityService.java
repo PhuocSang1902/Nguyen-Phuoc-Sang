@@ -24,4 +24,9 @@ public class FacilityService implements IFacilityService {
     public Facility findById(int id) {
         return facilityRepository.findById(id);
     }
+
+    @Override
+    public boolean edit(int id, Facility facility) {
+        return facilityRepository.edit(id, facility);
+    }
 }

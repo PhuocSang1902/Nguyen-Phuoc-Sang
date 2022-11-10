@@ -16,6 +16,7 @@ public class FacilityRepository implements IFacilityRepository {
     private static final String SELECT_ALL = "CALL select_facility();";
     private static final String ADD = "CALL add_facility(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String GET_BY_ID = "CALL get_facility_by_id(?);";
+    private static final String UPDATE_BY_ID = "CALL edit_facility(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     @Override
     public List<Facility> getList() {
@@ -101,5 +102,27 @@ public class FacilityRepository implements IFacilityRepository {
             throwables.printStackTrace();
         }
         return facility;
+    }
+
+    @Override
+    public boolean edit(int id, Facility facility) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(UPDATE_BY_ID);
+            callableStatement.setInt(1, id);
+            callableStatement.setInt(2, Integer.parseInt(facility.getCustomerType()));
+            callableStatement.setString(3, facility.getName());
+            callableStatement.setString(4, facility.getBirthday());
+            callableStatement.setInt(5, facility.getBirthday());
+            callableStatement.setString(6, facility.getIdCard());
+            callableStatement.setString(7, facility.getPhoneNumber());
+            callableStatement.setString(8, facility.getEmail());
+            callableStatement.setString(9, facility.getAddress());
+            return callableStatement.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
     }
 }
