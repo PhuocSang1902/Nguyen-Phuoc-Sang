@@ -1,11 +1,11 @@
 package controller;
 
-import model.Customer;
-import model.CustomerType;
+import model.customer.Customer;
+import model.customer.CustomerType;
 import service.ICustomerService;
 import service.ICustomerTypeService;
-import service.impl.CustomerService;
-import service.impl.CustomerTypeService;
+import service.impl.customer.CustomerService;
+import service.impl.customer.CustomerTypeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customer")
@@ -39,33 +38,16 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void add(HttpServletRequest request, HttpServletResponse response) {
+        List<CustomerType> customerTypeList = customerTypeService.getList();
         String name = request.getParameter("name");
         String customerType = request.getParameter("customerType");
-        String nameCustomerType;
-        switch (customerType){
-            case "1":
-                nameCustomerType = "Diamond";
-                break;
-            case "2":
-                nameCustomerType = "Platinum";
-                break;
-            case "3":
-                nameCustomerType = "Gold";
-                break;
-            case "4":
-                nameCustomerType = "Silver";
-                break;
-            default:
-                nameCustomerType = "Member";
-                break;
-        }
         String birthday = request.getParameter("birthday");
         String gender = request.getParameter("gender");
         String idCard = request.getParameter("idCard");
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        Customer customer = new Customer(name, customerType, nameCustomerType, birthday, gender, idCard, phoneNumber, email, address);
+        Customer customer = new Customer(name, customerType, birthday, gender, idCard, phoneNumber, email, address);
         boolean checkAdd = customerService.add(customer);
         String mess;
         if (checkAdd){
@@ -81,27 +63,7 @@ public class CustomerServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Customer customer = customerService.findById(id);
         customer.setName(request.getParameter("name"));
-        String customerType = request.getParameter("customerType");
-        customer.setCustomerType(customerType);
-        String nameCustomerType;
-        switch (customerType){
-            case "1":
-                nameCustomerType = "Diamond";
-                break;
-            case "2":
-                nameCustomerType = "Platinum";
-                break;
-            case "3":
-                nameCustomerType = "Gold";
-                break;
-            case "4":
-                nameCustomerType = "Silver";
-                break;
-            default:
-                nameCustomerType = "Member";
-                break;
-        }
-        customer.setNameCustomerType(nameCustomerType);
+        customer.setCustomerType(request.getParameter("customerType"));
         customer.setBirthday(request.getParameter("birthday"));
         customer.setGender(request.getParameter("gender"));
         customer.setIdCard(request.getParameter("idCard"));
@@ -122,6 +84,13 @@ public class CustomerServlet extends HttpServlet {
     private void remove(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("deleteId");
         boolean checkRemove = customerService.remove(id);
+        String mess;
+        if (checkRemove){
+            mess= "Chỉnh sửa thành công";
+        }else {
+            mess = "Chỉnh sửa không thành công";
+        }
+        request.setAttribute("mess", mess);
         displayList(request, response);
     }
 
@@ -151,7 +120,7 @@ public class CustomerServlet extends HttpServlet {
         List<Customer> customerList = customerService.search(search);
         request.setAttribute("customerList", customerList);
         try {
-            request.getRequestDispatcher("furama/customer-list.jsp").forward(request, response);
+            request.getRequestDispatcher("view/customer/list1.jsp").forward(request, response);
             response.sendRedirect("/customer?action=search");
         } catch (ServletException e) {
             e.printStackTrace();
@@ -173,7 +142,7 @@ public class CustomerServlet extends HttpServlet {
         request.setAttribute("nowDateEndYear", nowDateEndYear);
 
         try {
-            request.getRequestDispatcher("furama/customer-edit-form.jsp").forward(request, response);
+            request.getRequestDispatcher("view/customer/edit-form.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -191,7 +160,7 @@ public class CustomerServlet extends HttpServlet {
         request.setAttribute("customerTypeList", customerTypeList);
 
         try {
-            request.getRequestDispatcher("furama/customer-add-form.jsp").forward(request, response);
+            request.getRequestDispatcher("view/customer/add-form.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -203,7 +172,7 @@ public class CustomerServlet extends HttpServlet {
         List<Customer> customerList = customerService.getList();
         request.setAttribute("customerList", customerList);
         try {
-            request.getRequestDispatcher("furama/customer-list.jsp").forward(request, response);
+            request.getRequestDispatcher("view/customer/list1.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

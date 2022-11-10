@@ -1,7 +1,6 @@
 package service;
 
-import model.CustomerType;
-import service.impl.CustomerTypeService;
+import model.customer.CustomerType;
 
 import java.util.List;
 

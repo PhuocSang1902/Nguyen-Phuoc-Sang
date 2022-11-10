@@ -1,5 +1,5 @@
 CREATE DATABASE furamaresort_database;
-DROP DATABASE furamaresort_database;
+-- DROP DATABASE furamaresort_database;
 USE furamaresort_database;
 CREATE TABLE position (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -14,6 +14,10 @@ CREATE TABLE education_degree (
 CREATE TABLE division (
     id INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(45)
+);
+CREATE TABLE `user` (
+    username VARCHAR(255) PRIMARY KEY,
+    `password` VARCHAR(255)
 );
 CREATE TABLE employee (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -60,7 +64,37 @@ CREATE TABLE attach_facility (
     unit VARCHAR(10),
     `status` VARCHAR(45)
 );
-
+CREATE TABLE customer (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_type_id INT,
+    FOREIGN KEY (customer_type_id)
+        REFERENCES customer_type (id),
+    `name` VARCHAR(45),
+    date_of_birth DATE,
+    gender BIT(1),
+    id_card VARCHAR(45),
+    phone_number VARCHAR(45),
+    email VARCHAR(45),
+    address VARCHAR(45)
+);
+CREATE TABLE facility (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    `name` VARCHAR(45),
+    area INT,
+    cost DOUBLE,
+    max_people INT,
+    rent_type_id INT,
+    FOREIGN KEY (rent_type_id)
+        REFERENCES rent_type (id),
+    facility_type_id INT,
+    FOREIGN KEY (facility_type_id)
+        REFERENCES facility_type (id),
+    standard_room VARCHAR(45),
+    description_other_convenience VARCHAR(45),
+    pool_area DOUBLE,
+    number_of_floors INT,
+    facility_free TEXT
+);
 CREATE TABLE contract (
     id INT PRIMARY KEY AUTO_INCREMENT,
     start_date DATETIME,
@@ -102,43 +136,3 @@ CREATE TABLE user_role (
     FOREIGN KEY (username)
         REFERENCES `user` (username)
 );
-
-CREATE TABLE `user` (
-    username VARCHAR(255) PRIMARY KEY,
-    `password` VARCHAR(255)
-);
-
-CREATE TABLE facility (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    `name` VARCHAR(45),
-    area INT,
-    cost DOUBLE,
-    max_people INT,
-    rent_type_id INT,
-    FOREIGN KEY (rent_type_id)
-        REFERENCES rent_type (id),
-    facility_type_id INT,
-    FOREIGN KEY (facility_type_id)
-        REFERENCES facility_type (id),
-    standard_room VARCHAR(45),
-    description_other_convenience VARCHAR(45),
-    pool_area DOUBLE,
-    number_of_floors INT,
-    facility_free TEXT
-);
-
-CREATE TABLE customer (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    customer_type_id INT,
-    FOREIGN KEY (customer_type_id)
-        REFERENCES customer_type (id),
-    `name` VARCHAR(45),
-    date_of_birth DATE,
-    gender BIT(1),
-    id_card VARCHAR(45),
-    phone_number VARCHAR(45),
-    email VARCHAR(45),
-    address VARCHAR(45)
-);
-
-
