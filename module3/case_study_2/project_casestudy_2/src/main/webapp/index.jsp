@@ -52,7 +52,9 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="/facility?action=display">Danh sách dịch vụ</a></li>
-                  <li><a class="dropdown-item" href="/facility?action=add">Thêm mới dịch vụ</a></li>
+                  <li><a class="dropdown-item" href="/facility?action=add&facilityType=Villa">Thêm mới villa</a></li>
+                  <li><a class="dropdown-item" href="/facility?action=add&facilityType=House">Thêm mới house</a></li>
+                  <li><a class="dropdown-item" href="/facility?action=add&facilityType=Room">Thêm mới room</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">

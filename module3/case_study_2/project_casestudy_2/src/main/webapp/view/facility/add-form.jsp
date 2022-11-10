@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="formInput4">Kiểu thuê</label>
-                <%--                <input type="text" class="form-control" id="formInput4" name="rentTypeName">--%>
+<%--                <input type="text" class="form-control" id="formInput4" name="rentTypeName" value="${facilityType}">--%>
                 <select class="form-select" aria-label="Default select example" id="formInput4" name="rentTypeId">
                     <option value="-- Hãy chọn kiểu thuê --" selected>-- Hãy chọn kiểu thuê --</option>
                     <c:forEach var="rentType" items="${rentTypeList}">
@@ -51,7 +51,12 @@
                 <select class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId">
                     <option value="-- Hãy chọn loại dịch vụ --" selected>-- Hãy chọn loại dịch vụ --</option>
                     <c:forEach var="facilityType" items="${facilityTypeList}">
-                        <option value="${facilityType.getId()}">${facilityType.getName()}</option>
+                        <c:if test="${facilityType == facilityType.getName()}">
+                            <option selected value="${facilityType.getId()}">${facilityType.getName()}</option>
+                        </c:if>
+                        <c:if test="${facilityType != facilityType.getName()}">
+                            <option value="${facilityType.getId()}">${facilityType.getName()}</option>
+                        </c:if>
                     </c:forEach>
                 </select>
                 <%--                <input type="text" class="form-control" id="formInput5" name="facilityTypeId">--%>
@@ -69,24 +74,31 @@
                 <label for="formInput7">Mô tả</label>
                 <input type="text" class="form-control" id="formInput7" name="description">
             </div>
-            <div class="form-group">
-                <label for="formInput8">Dt hồ bơi</label>
-                <input type="text" class="form-control" id="formInput8" name="poolArea">
-            </div>
-            <div class="form-group">
-                <label for="formInput9">Số tầng</label>
-                <select class="form-select" aria-label="Default select example" id="formInput9" name="numberOfFloor">
-                    <option value="-- Hãy chọn số tầng --" selected>-- Hãy chọn số tầng --</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-<%--                <input type="text" class="form-control" id="formInput9" name="numberOfFloor">--%>
-            </div>
-            <div class="form-group">
-                <label for="formInput10">Dịch vụ miễn phí</label>
-                <input type="text" class="form-control" id="formInput10" name="facilityFree">
-            </div>
+            <c:if test="${facilityType == 'House' || facilityType == 'Villa'}">
+                <div class="form-group">
+                    <label for="formInput8">Dt hồ bơi</label>
+                    <input type="text" class="form-control" id="formInput8" name="poolArea">
+                </div>
+            </c:if>
+            <c:if test="${facilityType == 'House' || facilityType == 'Villa'}">
+                <div class="form-group">
+                    <label for="formInput9">Số tầng</label>
+                    <select class="form-select" aria-label="Default select example" id="formInput9" name="numberOfFloor">
+                        <option value="-- Hãy chọn số tầng --" selected>-- Hãy chọn số tầng --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                        <%--                <input type="text" class="form-control" id="formInput9" name="numberOfFloor">--%>
+                </div>
+            </c:if>
+
+            <c:if test="${facilityType == 'Room'}">
+                <div class="form-group">
+                    <label for="formInput10">Dịch vụ miễn phí</label>
+                    <input type="text" class="form-control" id="formInput10" name="facilityFree">
+                </div>
+            </c:if>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
                 <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
                         id="formInput11">

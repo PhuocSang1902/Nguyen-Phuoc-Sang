@@ -120,8 +120,7 @@ public class CustomerServlet extends HttpServlet {
         List<Customer> customerList = customerService.search(search);
         request.setAttribute("customerList", customerList);
         try {
-            request.getRequestDispatcher("view/customer/list1.jsp").forward(request, response);
-            response.sendRedirect("/customer?action=search");
+            request.getRequestDispatcher("view/customer/list.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -172,7 +171,7 @@ public class CustomerServlet extends HttpServlet {
         List<Customer> customerList = customerService.getList();
         request.setAttribute("customerList", customerList);
         try {
-            request.getRequestDispatcher("view/customer/list1.jsp").forward(request, response);
+            request.getRequestDispatcher("view/customer/list.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

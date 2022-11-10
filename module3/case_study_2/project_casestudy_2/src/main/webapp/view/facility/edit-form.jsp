@@ -56,10 +56,10 @@
                 <select class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId" value="${facility.getFacilityTypeId()}">
                     <option value="-- Hãy chọn loại dịch vụ --" selected>-- Hãy chọn loại dịch vụ --</option>
                     <c:forEach var="facilityType" items="${facilityTypeList}">
-                        <c:if test="${facility.getFacilityTypeId() == facilityType.getId()}">
+                        <c:if test="${facility.getFacilityTypeId() == facilityType.getName()}">
                             <option selected value="${facilityType.getId()}">${facilityType.getName()}</option>
                         </c:if>
-                        <c:if test="${facility.getFacilityTypeId() != facilityType.getId()}">
+                        <c:if test="${facility.getFacilityTypeId() != facilityType.getName()}">
                             <option value="${facilityType.getId()}">${facilityType.getName()}</option>
                         </c:if>
                     </c:forEach>
@@ -94,7 +94,6 @@
             <div class="form-group">
                 <label for="formInput9">Số tầng</label>
                 <input type="text" class="form-control" id="formInput9" name="numberOfFloor" value="${facility.getNumberOfFloor()}">
-<
             </div>
             <div class="form-group">
                 <label for="formInput10">Dịch vụ miễn phí</label>

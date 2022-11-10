@@ -12,4 +12,6 @@ public interface IFacilityRepository {
     Facility findById(int id);
 
     boolean edit(int id, Facility facility);
+
+    List<Facility> search(String search);
 }

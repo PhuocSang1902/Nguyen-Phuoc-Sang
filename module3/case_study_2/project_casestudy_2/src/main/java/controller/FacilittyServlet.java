@@ -53,8 +53,18 @@ public class FacilittyServlet extends HttpServlet {
         String standardRoom = request.getParameter("standardRoom");
         String description = request.getParameter("description");
         String poolArea = request.getParameter("poolArea");
+        if (poolArea != null) {
+            poolArea = "0";
+        }
         String numberOfFloor = request.getParameter("numberOfFloor");
+        if (numberOfFloor != null) {
+            numberOfFloor = "0";
+        }
         String facilityFree = request.getParameter("facilityFree");
+        if (facilityFree != null) {
+            facilityFree = "Không có";
+        }
+
         Facility facility = new Facility(name, area, cost, maxPeople, rentTypeId, facilityTypeId, standardRoom, description, poolArea, numberOfFloor, facilityFree);
         boolean checkAdd = facilityService.add(facility);
         String mess;
@@ -69,8 +79,6 @@ public class FacilittyServlet extends HttpServlet {
 
     private void edit(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        List<FacilityType> facilityTypeList = facilityTypeService.getList();
-        List<RentType> rentTypeList = renTypeService.getList();
         Facility facility = facilityService.findById(id);
         facility.setName(request.getParameter("name"));
         facility.setArea(request.getParameter("area"));
@@ -84,23 +92,24 @@ public class FacilittyServlet extends HttpServlet {
         if (poolArea != null) {
             facility.setPoolArea(poolArea);
         }else {
-            poolArea = "Không áp dụng";
+            poolArea = "0";
             facility.setPoolArea(poolArea);
         }
         String numberOfFloor = request.getParameter("numberOfFloor");
         if (numberOfFloor != null) {
             facility.setNumberOfFloor(numberOfFloor);
         }else {
-            numberOfFloor = "Không áp dụng";
+            numberOfFloor = "0";
             facility.setNumberOfFloor(numberOfFloor);
         }
         String facilityFree = request.getParameter("facilityFree");
         if (facilityFree != null) {
             facility.setFacilityFree(facilityFree);
         }else {
-            facilityFree = "Không áp dụng";
+            facilityFree = "Không có";
             facility.setFacilityFree(facilityFree);
         }
+
         boolean checkEdit = facilityService.edit(id, facility);
         String mess;
         if (checkEdit){
@@ -137,6 +146,16 @@ public class FacilittyServlet extends HttpServlet {
     }
 
     private void search(HttpServletRequest request, HttpServletResponse response) {
+        String search = request.getParameter("search");
+        List<Facility> facilityList = facilityService.search(search);
+        request.setAttribute("facilityList", facilityList);
+        try {
+            request.getRequestDispatcher("view/facility/list.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void displayEditForm(HttpServletRequest request, HttpServletResponse response) {
@@ -160,10 +179,13 @@ public class FacilittyServlet extends HttpServlet {
     private void displayAddForm(HttpServletRequest request, HttpServletResponse response) {
         List<FacilityType> facilityTypeList = facilityTypeService.getList();
         List<RentType> rentTypeList = renTypeService.getList();
+        String facilityType = request.getParameter("facilityType");
+
         request.setAttribute("facilityTypeList", facilityTypeList);
         request.setAttribute("rentTypeList", rentTypeList);
+        request.setAttribute("facilityType", facilityType);
         try {
-            request.getRequestDispatcher("view/customer/").forward(request, response);
+            request.getRequestDispatcher("view/facility/add-form.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

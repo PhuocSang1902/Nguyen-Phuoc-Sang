@@ -29,4 +29,9 @@ public class FacilityService implements IFacilityService {
     public boolean edit(int id, Facility facility) {
         return facilityRepository.edit(id, facility);
     }
+
+    @Override
+    public List<Facility> search(String search) {
+        return facilityRepository.search(search);
+    }
 }
