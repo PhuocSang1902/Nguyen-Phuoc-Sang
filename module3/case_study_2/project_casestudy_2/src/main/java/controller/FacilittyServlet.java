@@ -88,26 +88,15 @@ public class FacilittyServlet extends HttpServlet {
         facility.setFacilityTypeId(request.getParameter("facilityTypeId"));
         facility.setStandardRoom(request.getParameter("standardRoom"));
         facility.setDescription(request.getParameter("description"));
-        String poolArea = request.getParameter("poolArea");
-        if (poolArea != null) {
-            facility.setPoolArea(poolArea);
-        }else {
-            poolArea = "0";
-            facility.setPoolArea(poolArea);
+
+        if (facility.getFacilityTypeName().equals("House")||facility.getFacilityTypeName().equals("Villa")) {
+            facility.setPoolArea(request.getParameter("poolArea"));
         }
-        String numberOfFloor = request.getParameter("numberOfFloor");
-        if (numberOfFloor != null) {
-            facility.setNumberOfFloor(numberOfFloor);
-        }else {
-            numberOfFloor = "0";
-            facility.setNumberOfFloor(numberOfFloor);
+        if (facility.getFacilityTypeName().equals("House")||facility.getFacilityTypeName().equals("Villa")) {
+            facility.setNumberOfFloor(request.getParameter("numberOfFloor"));
         }
-        String facilityFree = request.getParameter("facilityFree");
-        if (facilityFree != null) {
-            facility.setFacilityFree(facilityFree);
-        }else {
-            facilityFree = "Không có";
-            facility.setFacilityFree(facilityFree);
+        if (facility.getFacilityTypeName().equals("Room")) {
+            facility.setFacilityFree(request.getParameter("facilityFree"));
         }
 
         boolean checkEdit = facilityService.edit(id, facility);
