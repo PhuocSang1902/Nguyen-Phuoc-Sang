@@ -15,6 +15,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="datatables/scc/dataTables.bootstrap5.min.css">
+    <script>
+        $(document).ready(function () {
+            $("#attachFacility").modal('show');
+        });
+    </script>
 </head>
 <body>
 
@@ -43,7 +48,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent d-md">
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
 
-                    <%@include file="/nav.jsp" %>
+                    <c:import url="/nav.jsp"></c:import>
 
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;"
                           action="/customer">
@@ -92,67 +97,75 @@
                 <th scope="col">Ngày bắt đầu</th>
                 <th scope="col">Ngày kết thúc</th>
                 <th scope="col">Đặt cọc</th>
-                <th scope="col">Sửa</th>
-                <th scope="col">Xóa</th>
+                <th scope="col">Dịch vụ đi kèm</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="customer" items="${customerList}" varStatus="status">
+            <c:forEach var="contract" items="${contractList}" varStatus="status">
                 <tr class="align-middle text-center">
                     <th>${status.count}</th>
-                    <td>${customer.getName()}</td>
-                    <td>${customer.getNameCustomerType()}</td>
-                    <td>${customer.getBirthday()}</td>
-                    <td>${customer.getGender()}</td>
-                    <td>${customer.getIdCard()}</td>
-                    <td>${customer.getPhoneNumber()}</td>
-                    <td>${customer.getEmail()}</td>
-                    <td>${customer.getAddress()}</td>
+                    <td>${contract.getCustomer().getName()}</td>
+                    <td>${contract.getCustomer().getPhoneNumber()}</td>
+                    <td>${contract.getCustomer().getEmail()}</td>
+                    <td>${contract.getId()}</td>
+                    <td>${contract.getStartDate()}</td>
+                    <td>${contract.getEndDate()}</td>
+                    <td>${contract.getDeposit()}</td>
                     <td>
-                        <button type="button" class="btn btn-outline-warning"><a
-                                style="text-decoration: none; color: #ffc107"
-                                href="/customer?action=edit&id=${customer.getId()}">Sửa</a>
-                        </button>
-                    </td>
-                    <td>
-                        <button onclick="getId('${customer.getId()}','${customer.getName()}')" type="button"
-                                class="btn btn-outline-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteProduct">Xóa
-                        </button>
+                        <form action="/facility?action=displayListAttachFacility&contractId=${contract.getId()}"
+                              method="post">
+                            <button onclick="getContractId('${contract.getId()}')" type="submit"
+                                    class="btn btn-outline-danger" data-bs-toggle="modal"
+                                    data-bs-target="#attachFacility">Dịch vụ đi kèm
+                            </button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
 
-        <form action="/customer" method="post">
-            <div class="modal fade" id="deleteProduct" tabindex="-1"
-                 aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">XÓA KHÁCH HÀNG</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <input type="text" hidden name="action" value="remove">
-                            <input type="text" hidden id="deleteId" name="deleteId">
-                            <p>Bạn có chắc chắn muốn xóa?</p>
-                            <p id="deleteName"></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
-                            </button>
-
-                            <button class="btn btn-primary">Xóa</button>
-
+        <c:if test="${contractDetailList != null}">
+            <form action="/customer" method="get">
+                <div class="modal d-block" id="attachFacility" tabindex="-1"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">DANH SÁCH DỊCH VỤ ĐI KÈM</h5>
+                            </div>
+                            <c:if test="${!contractDetailList.isEmpty()}">
+                                <table class="table table-striped table-hover" style="width: 100%" id="tableFacility">
+                                    <thead>
+                                    <tr class="align-middle text-center">
+                                        <th scope="col">Stt</th>
+                                        <th scope="col">Dịch vụ đi kèm</th>
+                                        <th scope="col">Số lượng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="contractDetail" items="${contractDetailList}" varStatus="status">
+                                        <tr class="align-middle text-center">
+                                            <th>${status.count}</th>
+                                            <td>${contractDetail.getAttachFacility().getName()}</td>
+                                            <td>${contractDetail.getQuantity()}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </c:if>
+                            <c:if test="${contractDetailList.isEmpty()}">
+                                <p>Không có dịch vụ đi kèm.</p>
+                            </c:if>
+                            <input type="text" hidden name="action" value="displayUseFacility">
+                                <%--                           <input type="text" hidden id="contractId" name="contractId">--%>
+                            <button style="width: 60px" class="btn btn-primary">Đóng</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </c:if>
 
     </div>
 
@@ -169,10 +182,19 @@
 </body>
 
 <script>
-    function getId(id, name) {
-        document.getElementById("deleteId").value = id;
-        document.getElementById("deleteName").innerText = name;
+    function getContractId(id, name) {
+        document.getElementById("contractId").value = id;
+        // document.getElementById("deleteName").innerText = name;
     }
+
+    // function getContractId(id) {
+    //     document.getElementById("contractId").value = id;
+    // }
+    // $(document).ready(function(){
+    //     $(".btn").click(function(){
+    //         $("#attachFacility").modal('show');
+    //     });
+    // });
 </script>
 
 <script src="jquery/jquery-3.5.1.min.js"></script>

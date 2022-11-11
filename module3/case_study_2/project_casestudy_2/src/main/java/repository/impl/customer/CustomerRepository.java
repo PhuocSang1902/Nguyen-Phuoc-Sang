@@ -1,5 +1,6 @@
 package repository.impl.customer;
 
+import model.contract.Contract;
 import model.customer.Customer;
 import repository.BaseRepository;
 import repository.ICustomerRepository;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerRepository implements ICustomerRepository {
     private static final String SELECT_ALL = "CALL select_customer();";
@@ -216,41 +218,26 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public List<Customer> getListUseFacility() {
-        List<Customer> customerList = new ArrayList<>();
-        Connection connection = BaseRepository.getConnectDB();
-        try {
-            CallableStatement ps = connection.prepareCall(SELECT_USE_FACILITY);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                String id = resultSet.getString("id");
-                String name = resultSet.getString("name");
-                String customerType = resultSet.getString("customer_type_id");
-                String nameCustomerType = resultSet.getString("type_customer_name");
-                String birthday = resultSet.getString("date_of_birth");
-                String gender = resultSet.getString("gender");
-                String genderName;
-                switch (gender) {
-                    case "1":
-                        genderName = "Nam";
-                        break;
-                    case "0":
-                        genderName = "Nữ";
-                        break;
-                    default:
-                        genderName = "Khác";
-                        break;
-                }
-                String idCard = resultSet.getString("id_card");
-                String phoneNumber = resultSet.getString("phone_number");
-                String email = resultSet.getString("email");
-                String address = resultSet.getString("address");
-                customerList.add(new Customer(id, name, customerType, nameCustomerType, birthday, genderName, idCard, phoneNumber, email, address));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return customerList;
+    public Map<Contract, Customer> getListUseFacility() {
+//        CustomerService customerService = new CustomerService();
+//        ContractService contractService = new ContractService();
+//        Map<Contract, Customer> customerListMap = new TreeMap<>();
+//        Connection connection = BaseRepository.getConnectDB();
+//        try {
+//            CallableStatement ps = connection.prepareCall(SELECT_USE_FACILITY);
+//            ResultSet resultSet = ps.executeQuery();
+//            while (resultSet.next()) {
+//                int contractId = resultSet.getInt("contract_id");
+//                int customerId = resultSet.getInt("customer_id");
+//
+//                Contract contract = contractService.findById(contractId);
+//                Customer customer = customerService.findById(customerId);
+//                customerListMap.put(contract, customer);
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+        return null;
     }
 
 }

@@ -48,18 +48,15 @@
             </div>
             <div class="form-group">
                 <label for="formInput5">Loại dịch vụ</label>
-                <select class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId">
-                    <option value="-- Hãy chọn loại dịch vụ --" selected>-- Hãy chọn loại dịch vụ --</option>
-                    <c:forEach var="facilityType1" items="${facilityTypeList}">
-                        <c:if test="${facilityType.equals(facilityType1.getName()) }">
-                            <option selected value="${facilityType1.getId()}">${facilityType1.getName()}</option>
-                        </c:if>
-                        <c:if test="${!facilityType.equals(facilityType1.getName())}">
-                            <option value="${facilityType1.getId()}">${facilityType1.getName()}</option>
-                        </c:if>
-                    </c:forEach>
-                </select>
-                <%--                <input type="text" class="form-control" id="formInput5" name="facilityTypeId">--%>
+                <input readonly type="text" class="form-control" id="formInput5" value="${facilityTypeInput.getName()}">
+                <input hidden type="text" class="form-control" id="formInput5" name="facilityTypeId" value="${facilityTypeInput.getId()}">
+<%--                <select class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId">--%>
+<%--                    <c:forEach var="facilityType1" items="${facilityTypeList}">--%>
+<%--                        <c:if test="${facilityType.equals(facilityType1.getName()) }">--%>
+<%--                            <option selected value="${facilityType1.getId()}">${facilityType1.getName()}</option>--%>
+<%--                        </c:if>--%>
+<%--                    </c:forEach>--%>
+<%--                </select>--%>
             </div>
             <div class="form-group">
                 <label for="formInput6">Tiêu chuẩn phòng</label>
@@ -74,12 +71,13 @@
                 <label for="formInput7">Mô tả</label>
                 <input type="text" class="form-control" id="formInput7" name="description">
             </div>
-            <c:if test="${facilityType == 'House' || facilityType == 'Villa'}">
+            <c:if test="${facilityType == 'Villa'}">
                 <div class="form-group">
                     <label for="formInput8">Dt hồ bơi</label>
                     <input type="text" class="form-control" id="formInput8" name="poolArea">
                 </div>
             </c:if>
+
             <c:if test="${facilityType == 'House' || facilityType == 'Villa'}">
                 <div class="form-group">
                     <label for="formInput9">Số tầng</label>

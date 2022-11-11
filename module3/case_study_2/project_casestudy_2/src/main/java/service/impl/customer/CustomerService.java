@@ -1,11 +1,13 @@
 package service.impl.customer;
 
+import model.contract.Contract;
 import model.customer.Customer;
 import repository.ICustomerRepository;
 import repository.impl.customer.CustomerRepository;
 import service.ICustomerService;
 
 import java.util.List;
+import java.util.Map;
 
 public class CustomerService implements ICustomerService {
 
@@ -43,7 +45,7 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public List<Customer> getListUseFacility() {
+    public Map<Contract, Customer> getListUseFacility() {
         return customerRepository.getListUseFacility();
     }
 }

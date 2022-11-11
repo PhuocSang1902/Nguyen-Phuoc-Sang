@@ -14,4 +14,4 @@ BEGIN
 		em.id = id;
 END//
 DELIMITER ;
-call get_employee_by_id(2);
+-- call get_employee_by_id(2);

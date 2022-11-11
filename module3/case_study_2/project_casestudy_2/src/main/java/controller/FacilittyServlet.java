@@ -3,11 +3,14 @@ package controller;
 import model.Facility.Facility;
 import model.Facility.FacilityType;
 import model.Facility.RentType;
+import model.contract.Contract;
+import model.contract.ContractDetail;
 import model.customer.Customer;
 import model.customer.CustomerType;
-import service.IFacilityService;
-import service.IFacilityTypeService;
-import service.IRenTypeService;
+import repository.IContractRepository;
+import service.*;
+import service.impl.contract.ContractDetailService;
+import service.impl.contract.ContractService;
 import service.impl.facility.FacilityService;
 import service.impl.facility.FacilityTypeService;
 import service.impl.facility.RentTypeService;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "FacilittyServlet", urlPatterns = "/facility")
@@ -27,6 +31,8 @@ public class FacilittyServlet extends HttpServlet {
     private static IFacilityService facilityService = new FacilityService();
     private static IFacilityTypeService facilityTypeService = new FacilityTypeService();
     private static IRenTypeService renTypeService = new RentTypeService();
+    private static IContractDetailService contractDetailService = new ContractDetailService();
+    private static IContractService contractService = new ContractService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -40,6 +46,24 @@ public class FacilittyServlet extends HttpServlet {
             case "add":
                 add(request, response);
                 break;
+            case "displayListAttachFacility":
+                displayListAttachFacility(request, response);
+                break;
+        }
+    }
+
+    private void displayListAttachFacility(HttpServletRequest request, HttpServletResponse response) {
+        String contractId = request.getParameter("contractId");
+        List<ContractDetail> contractDetailList = contractDetailService.getListInContract(Integer.parseInt(contractId));
+        List<Contract> contractList = contractService.getList();
+        request.setAttribute("contractList", contractList);
+        request.setAttribute("contractDetailList", contractDetailList);
+        try {
+            request.getRequestDispatcher("view/customer/list-use-facility.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -169,10 +193,17 @@ public class FacilittyServlet extends HttpServlet {
         List<FacilityType> facilityTypeList = facilityTypeService.getList();
         List<RentType> rentTypeList = renTypeService.getList();
         String facilityType = request.getParameter("facilityType");
-
+        FacilityType facilityTypeInput = new FacilityType();
+        for (FacilityType type : facilityTypeList) {
+            if (type.getName().equals(facilityType)){
+                facilityTypeInput = type;
+                break;
+            }
+        }
         request.setAttribute("facilityTypeList", facilityTypeList);
         request.setAttribute("rentTypeList", rentTypeList);
         request.setAttribute("facilityType", facilityType);
+        request.setAttribute("facilityTypeInput", facilityTypeInput);
         try {
             request.getRequestDispatcher("view/facility/add-form.jsp").forward(request, response);
         } catch (ServletException e) {

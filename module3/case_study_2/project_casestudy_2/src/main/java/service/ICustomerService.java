@@ -1,8 +1,10 @@
 package service;
 
+import model.contract.Contract;
 import model.customer.Customer;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ICustomerService {
     List<Customer> getList();
@@ -17,5 +19,5 @@ public interface ICustomerService {
 
     List<Customer> search(String search);
 
-    List<Customer> getListUseFacility();
+    Map<Contract, Customer> getListUseFacility();
 }

@@ -36,7 +36,7 @@
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/customer?action=display">Danh sách khách hàng</a></li>
             <li><a class="dropdown-item" href="/customer?action=add">Thêm mới khách hàng</a></li>
-            <li><a class="dropdown-item" href="/customer?action=displayUseFacility">Danh sách khách hàng dùng dịch vụ</a></li>
+            <li><a class="dropdown-item" href="/customer?action=displayUseFacility">Khách hàng dùng dịch vụ</a></li>
         </ul>
     </li>
     <li class="nav-item dropdown">

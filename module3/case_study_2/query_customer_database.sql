@@ -8,7 +8,7 @@ BEGIN
 		customer c LEFT JOIN customer_type t ON c.customer_type_id = t.id;
 END//
 DELIMITER ;
-Call select_customer();
+-- Call select_customer();
 DELIMITER //
 CREATE PROCEDURE get_customer_by_id(IN id INT)
 BEGIN
@@ -84,13 +84,10 @@ DELIMITER //
 CREATE PROCEDURE select_customer_use_facility()
 BEGIN
 SELECT
-	c.*,
-    ctr.id AS contract_id,
-    ctr.start_date,
-    ctr.end_date,
-    deposit
+	c.id AS customer_id,
+    ctr.id AS contract_id
 FROM
 	customer c JOIN contract ctr ON c.id = ctr.customer_id;
 END//
 DELIMITER ;
-CALL select_customecontractr_use_facility();
+-- CALL select_customer_use_facility();

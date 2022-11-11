@@ -34,27 +34,25 @@
             </div>
             <div class="form-group">
                 <label for="formInput3">Số người</label>
-                <input type="text" class="form-control" id="formInput3" name="maxPeople" value="${facility.getMaxPeople()}">
+                <input type="text" class="form-control" id="formInput3" name="maxPeople"
+                       value="${facility.getMaxPeople()}">
             </div>
             <div class="form-group">
                 <label for="formInput4">Kiểu thuê</label>
                 <%--                <input type="text" class="form-control" id="formInput4" name="rentTypeName">--%>
-                <select class="form-select" aria-label="Default select example" id="formInput4" name="rentTypeId" value="${facility.getRentTypeId()}">
-                    <option value="-- Hãy chọn kiểu thuê --" selected>-- Hãy chọn kiểu thuê --</option>
+                <select class="form-select" aria-label="Default select example" id="formInput4" name="rentTypeId"
+                        value="${facility.getRentTypeId()}">
                     <c:forEach var="rentType" items="${rentTypeList}">
                         <c:if test="${facility.getRentTypeId() == rentType.getId()}">
                             <option selected value="${rentType.getId()}">${rentType.getName()}</option>
-                        </c:if>
-                        <c:if test="${facility.getRentTypeId() != rentType.getId()}">
-                            <option value="${rentType.getId()}">${rentType.getName()}</option>
                         </c:if>
                     </c:forEach>
                 </select>
             </div>
             <div class="form-group">
                 <label for="formInput5">Loại dịch vụ</label>
-                <select class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId" value="${facility.getFacilityTypeId()}">
-                    <option value="-- Hãy chọn loại dịch vụ --" selected>-- Hãy chọn loại dịch vụ --</option>
+                <select readonly="true" class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId"
+                        value="${facility.getFacilityTypeId()}">
                     <c:forEach var="facilityType" items="${facilityTypeList}">
                         <c:if test="${facility.getFacilityTypeId() == facilityType.getId()}">
                             <option selected value="${facilityType.getId()}">${facilityType.getName()}</option>
@@ -67,52 +65,45 @@
             </div>
             <div class="form-group">
                 <label for="formInput6">Tiêu chuẩn phòng</label>
-                <select class="form-select" aria-label="Default select example" id="formInput6" name="standardRoom" value="${facility.getStandardRoom()}">
-                    <option value="-- Hãy chọn tiêu chuẩn phòng --" selected>-- Hãy chọn tiêu chuẩn phòng --</option>
-                    <c:if test="${facility.getStandardRoom().equals('vip')}">
-                        <option selected value="vip">Vip</option>
-                    </c:if>
-                    <c:if test="${facility.getStandardRoom().equals('normal')}">
-                        <option selected value="normal">Normal</option>
-                    </c:if>
-                    <c:if test="${facility.getStandardRoom().equals('vip')}">
-                        <option selected value="vip">Vip</option>
-                    </c:if>
-                    <c:if test="${facility.getStandardRoom().equals('normal')}">
-                        <option selected value="normal">Normal</option>
-                    </c:if>
+                <select class="form-select" aria-label="Default select example" id="formInput6" name="standardRoom"
+                        value="${facility.getStandardRoom()}">
+                    <option ${facility.getStandardRoom().equals('vip') ? "selected":""} value="vip">
+                        Vip
+                    </option>
+                    <option ${facility.getStandardRoom().equals('normal') ? "selected":""} value="normal">
+                        Normal
+                    </option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="formInput7">Mô tả</label>
-                <input type="text" class="form-control" id="formInput7" name="description" value="${facility.getDescription()}">
+                <input type="text" class="form-control" id="formInput7" name="description"
+                       value="${facility.getDescription()}">
             </div>
             <c:if test="${facility.getFacilityTypeName() == 'House' || facility.getFacilityTypeName() == 'Villa'}">
                 <div class="form-group">
                     <label for="formInput8">Dt hồ bơi</label>
-                    <input type="text" class="form-control" id="formInput8" name="poolArea" value="${facility.getPoolArea()}">
+                    <input type="text" class="form-control" id="formInput8" name="poolArea"
+                           value="${facility.getPoolArea()}">
                 </div>
             </c:if>
             <c:if test="${facility.getFacilityTypeName() == 'House' || facility.getFacilityTypeName() == 'Villa'}">
                 <div class="form-group">
                     <label for="formInput9">Số tầng</label>
-                    <div class="form-group">
-                        <label for="formInput9">Số tầng</label>
-                        <select class="form-select" aria-label="Default select example" id="formInput9" name="numberOfFloor" value="${facility.getNumberOfFloor()}">
-                            <option value="chooseFloor" ${facility.getNumberOfFloor() == 'chooseFloor' ? "selected" : ""}>-- Hãy chọn số tầng --</option>
-                            <option value="1" ${facility.getNumberOfFloor() == 1 ? "selected" : ""}>1</option>
-                            <option value="2" ${facility.getNumberOfFloor() == 2 ? "selected" : ""}>2</option>
-                            <option value="3" ${facility.getNumberOfFloor() == 3 ? "selected" : ""}>3</option>
-                            <option value="4" ${facility.getNumberOfFloor() == 4 ? "selected" : ""}>4</option>
-                        </select>
-                    </div>
-<%--                    <input type="text" class="form-control" id="formInput9" name="numberOfFloor" value="${facility.getNumberOfFloor()}">--%>
+                    <select class="form-select" aria-label="Default select example" id="formInput9" name="numberOfFloor"
+                            value="${facility.getNumberOfFloor()}">
+                        <option value="1" ${facility.getNumberOfFloor() == 1 ? "selected" : ""}>1</option>
+                        <option value="2" ${facility.getNumberOfFloor() == 2 ? "selected" : ""}>2</option>
+                        <option value="3" ${facility.getNumberOfFloor() == 3 ? "selected" : ""}>3</option>
+                        <option value="4" ${facility.getNumberOfFloor() == 4 ? "selected" : ""}>4</option>
+                    </select>
                 </div>
             </c:if>
             <c:if test="${facility.getFacilityTypeName() == 'Room'}">
                 <div class="form-group">
                     <label for="formInput10">Dịch vụ miễn phí</label>
-                    <input type="text" class="form-control" id="formInput10" name="facilityFree" value="${facility.getFacilityFree()}">
+                    <input type="text" class="form-control" id="formInput10" name="facilityFree"
+                           value="${facility.getFacilityFree()}">
                 </div>
             </c:if>
 

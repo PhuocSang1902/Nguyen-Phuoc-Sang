@@ -1,9 +1,12 @@
 package controller;
 
+import model.contract.Contract;
 import model.customer.Customer;
 import model.customer.CustomerType;
+import service.IContractService;
 import service.ICustomerService;
 import service.ICustomerTypeService;
+import service.impl.contract.ContractService;
 import service.impl.customer.CustomerService;
 import service.impl.customer.CustomerTypeService;
 
@@ -21,6 +24,7 @@ public class CustomerServlet extends HttpServlet {
 
     private ICustomerService customerService = new CustomerService();
     private ICustomerTypeService customerTypeService = new CustomerTypeService();
+    private IContractService contractService = new ContractService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -119,8 +123,8 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void displayUseFacility(HttpServletRequest request, HttpServletResponse response) {
-        List<Customer> customerList = customerService.getListUseFacility();
-        request.setAttribute("customerList", customerList);
+        List<Contract> contractList = contractService.getList();
+        request.setAttribute("contractList", contractList);
         try {
             request.getRequestDispatcher("view/customer/list-use-facility.jsp").forward(request, response);
         } catch (ServletException e) {

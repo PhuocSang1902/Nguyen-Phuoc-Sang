@@ -10,8 +10,8 @@ FROM
 			   LEFT JOIN facility_type t ON f.facility_type_id = t.id;
 END//
 DELIMITER ;
-CALL select_faccustomerility();
-SELECT * FROM furamaresort_database.facility;
+-- CALL select_faccustomerility();
+-- SELECT * FROM furamaresort_database.facility;
 DELIMITER //
 CREATE PROCEDURE add_facility(IN name VARCHAR(50), area INT, cost DOUBLE, max_people INT, rent_type_id INT, facility_type_id INT, standard_room VARCHAR(50), description_other_convenience VARCHAR(50), pool_area DOUBLE, number_of_floors INT, facility_free TEXT)
 BEGIN
@@ -34,7 +34,7 @@ WHERE f.id = id;
 END//
 DELIMITER ;
 
-CALL get_facility_by_id(2);
+-- CALL get_facility_by_id(2);
 
 DELIMITER //
 CREATE PROCEDURE edit_facility(IN id INT, name VARCHAR(50), area INT, cost DOUBLE, max_people INT, rent_type_id INT, facility_type_id INT, standard_room VARCHAR(50), description_other_convenience VARCHAR(50), pool_area DOUBLE, number_of_floors INT, facility_free TEXT)
@@ -57,7 +57,7 @@ BEGIN
 END//
 DELIMITER ;
 
-CALL edit_facility(2, 'House Princess 01', 14000, 5000000, 7, 2, 2, 'vip', 'Có thêm bếp nướng', 0, 3, 'Không áp dụng');
+-- CALL edit_facility(2, 'House Princess 01', 14000, 5000000, 7, 2, 2, 'vip', 'Có thêm bếp nướng', 0, 3, 'Không áp dụng');
 
 DELIMITER //
 CREATE PROCEDURE search_facility(IN search VARCHAR(50))
@@ -76,4 +76,18 @@ WHERE x.name LIKE search OR x.rent_type_name LIKE search;
 END//
 DELIMITER ;
 
-CALL search_facility('%villa%');
+-- CALL search_facility('%villa%');
+
+DELIMITER //
+CREATE PROCEDURE get_attach_facility_by_id(IN id INT)
+BEGIN
+	SELECT 
+		* 
+	FROM 
+		attach_facility af
+	WHERE
+		af.id = id;
+END//
+DELIMITER ;
+
+CALL get_attach_facility_by_id(2);
