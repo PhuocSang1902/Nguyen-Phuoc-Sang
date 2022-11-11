@@ -16,4 +16,6 @@ public interface ICustomerService {
     boolean add(Customer customer);
 
     List<Customer> search(String search);
+
+    List<Customer> getListUseFacility();
 }

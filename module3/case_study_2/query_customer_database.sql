@@ -5,16 +5,10 @@ BEGIN
 		c.*, 
         t.name AS type_customer_name
     FROM 
-		customer c LEFT JOIN customer_type t ON c.customer_type_id = t.id
-	UNION
-		SELECT 
-		c.*, 
-        t.name AS type_customer_name
-    FROM 
-		customer c RIGHT JOIN customer_type t ON c.customer_type_id = t.id;
+		customer c LEFT JOIN customer_type t ON c.customer_type_id = t.id;
 END//
 DELIMITER ;
-
+Call select_customer();
 DELIMITER //
 CREATE PROCEDURE get_customer_by_id(IN id INT)
 BEGIN
@@ -85,3 +79,18 @@ FROM (
 WHERE x.name LIKE search OR x.address LIKE search;
 END//
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE select_customer_use_facility()
+BEGIN
+SELECT
+	c.*,
+    ctr.id AS contract_id,
+    ctr.start_date,
+    ctr.end_date,
+    deposit
+FROM
+	customer c JOIN contract ctr ON c.id = ctr.customer_id;
+END//
+DELIMITER ;
+CALL select_customecontractr_use_facility();

@@ -16,4 +16,6 @@ public interface ICustomerRepository {
     boolean add(Customer customer);
 
     List<Customer> search(String search);
+
+    List<Customer> getListUseFacility();
 }

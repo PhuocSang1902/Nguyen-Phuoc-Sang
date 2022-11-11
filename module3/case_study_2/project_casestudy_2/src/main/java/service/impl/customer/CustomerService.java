@@ -41,4 +41,9 @@ public class CustomerService implements ICustomerService {
     public List<Customer> search(String search) {
         return customerRepository.search(search);
     }
+
+    @Override
+    public List<Customer> getListUseFacility() {
+        return customerRepository.getListUseFacility();
+    }
 }

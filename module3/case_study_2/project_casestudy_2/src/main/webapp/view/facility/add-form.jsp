@@ -50,12 +50,12 @@
                 <label for="formInput5">Loại dịch vụ</label>
                 <select class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId">
                     <option value="-- Hãy chọn loại dịch vụ --" selected>-- Hãy chọn loại dịch vụ --</option>
-                    <c:forEach var="facilityType" items="${facilityTypeList}">
-                        <c:if test="${facilityType == facilityType.getName()}">
-                            <option selected value="${facilityType.getId()}">${facilityType.getName()}</option>
+                    <c:forEach var="facilityType1" items="${facilityTypeList}">
+                        <c:if test="${facilityType.equals(facilityType1.getName()) }">
+                            <option selected value="${facilityType1.getId()}">${facilityType1.getName()}</option>
                         </c:if>
-                        <c:if test="${facilityType != facilityType.getName()}">
-                            <option value="${facilityType.getId()}">${facilityType.getName()}</option>
+                        <c:if test="${!facilityType.equals(facilityType1.getName())}">
+                            <option value="${facilityType1.getId()}">${facilityType1.getName()}</option>
                         </c:if>
                     </c:forEach>
                 </select>
@@ -88,8 +88,8 @@
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="3">4</option>
                     </select>
-                        <%--                <input type="text" class="form-control" id="formInput9" name="numberOfFloor">--%>
                 </div>
             </c:if>
 

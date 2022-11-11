@@ -53,15 +53,15 @@ public class FacilittyServlet extends HttpServlet {
         String standardRoom = request.getParameter("standardRoom");
         String description = request.getParameter("description");
         String poolArea = request.getParameter("poolArea");
-        if (poolArea != null) {
+        if (poolArea == null) {
             poolArea = "0";
         }
         String numberOfFloor = request.getParameter("numberOfFloor");
-        if (numberOfFloor != null) {
+        if (numberOfFloor == null) {
             numberOfFloor = "0";
         }
         String facilityFree = request.getParameter("facilityFree");
-        if (facilityFree != null) {
+        if (facilityFree == null) {
             facilityFree = "Không có";
         }
 
@@ -95,7 +95,7 @@ public class FacilittyServlet extends HttpServlet {
         if (facility.getFacilityTypeName().equals("House")||facility.getFacilityTypeName().equals("Villa")) {
             facility.setNumberOfFloor(request.getParameter("numberOfFloor"));
         }
-        if (facility.getFacilityTypeName().equals("Room")) {
+           if (facility.getFacilityTypeName().equals("Room")) {
             facility.setFacilityFree(request.getParameter("facilityFree"));
         }
 

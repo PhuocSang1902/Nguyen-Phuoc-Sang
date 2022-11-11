@@ -96,7 +96,17 @@
             <c:if test="${facility.getFacilityTypeName() == 'House' || facility.getFacilityTypeName() == 'Villa'}">
                 <div class="form-group">
                     <label for="formInput9">Số tầng</label>
-                    <input type="text" class="form-control" id="formInput9" name="numberOfFloor" value="${facility.getNumberOfFloor()}">
+                    <div class="form-group">
+                        <label for="formInput9">Số tầng</label>
+                        <select class="form-select" aria-label="Default select example" id="formInput9" name="numberOfFloor" value="${facility.getNumberOfFloor()}">
+                            <option value="chooseFloor" ${facility.getNumberOfFloor() == 'chooseFloor' ? "selected" : ""}>-- Hãy chọn số tầng --</option>
+                            <option value="1" ${facility.getNumberOfFloor() == 1 ? "selected" : ""}>1</option>
+                            <option value="2" ${facility.getNumberOfFloor() == 2 ? "selected" : ""}>2</option>
+                            <option value="3" ${facility.getNumberOfFloor() == 3 ? "selected" : ""}>3</option>
+                            <option value="4" ${facility.getNumberOfFloor() == 4 ? "selected" : ""}>4</option>
+                        </select>
+                    </div>
+<%--                    <input type="text" class="form-control" id="formInput9" name="numberOfFloor" value="${facility.getNumberOfFloor()}">--%>
                 </div>
             </c:if>
             <c:if test="${facility.getFacilityTypeName() == 'Room'}">

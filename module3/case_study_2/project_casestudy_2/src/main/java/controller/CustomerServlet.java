@@ -109,9 +109,24 @@ public class CustomerServlet extends HttpServlet {
             case "search":
                 search(request, response);
                 break;
+            case "displayUseFacility":
+                displayUseFacility(request, response);
+                break;
             default:
                 displayHomePage(request, response);
                 break;
+        }
+    }
+
+    private void displayUseFacility(HttpServletRequest request, HttpServletResponse response) {
+        List<Customer> customerList = customerService.getListUseFacility();
+        request.setAttribute("customerList", customerList);
+        try {
+            request.getRequestDispatcher("view/customer/list-use-facility.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
