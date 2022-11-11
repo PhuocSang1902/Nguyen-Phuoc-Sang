@@ -38,7 +38,6 @@
             </div>
             <div class="form-group">
                 <label for="formInput4">Kiểu thuê</label>
-<%--                <input type="text" class="form-control" id="formInput4" name="rentTypeName" value="${facilityType}">--%>
                 <select class="form-select" aria-label="Default select example" id="formInput4" name="rentTypeId">
                     <option value="-- Hãy chọn kiểu thuê --" selected>-- Hãy chọn kiểu thuê --</option>
                     <c:forEach var="rentType" items="${rentTypeList}">
@@ -49,14 +48,7 @@
             <div class="form-group">
                 <label for="formInput5">Loại dịch vụ</label>
                 <input readonly type="text" class="form-control" id="formInput5" value="${facilityTypeInput.getName()}">
-                <input hidden type="text" class="form-control" id="formInput5" name="facilityTypeId" value="${facilityTypeInput.getId()}">
-<%--                <select class="form-select" aria-label="Default select example" id="formInput5" name="facilityTypeId">--%>
-<%--                    <c:forEach var="facilityType1" items="${facilityTypeList}">--%>
-<%--                        <c:if test="${facilityType.equals(facilityType1.getName()) }">--%>
-<%--                            <option selected value="${facilityType1.getId()}">${facilityType1.getName()}</option>--%>
-<%--                        </c:if>--%>
-<%--                    </c:forEach>--%>
-<%--                </select>--%>
+                <input hidden type="text" class="form-control" name="facilityTypeId" value="${facilityTypeInput.getId()}">
             </div>
             <div class="form-group">
                 <label for="formInput6">Tiêu chuẩn phòng</label>

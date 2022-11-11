@@ -20,4 +20,9 @@ public class ContractService implements IContractService {
     public List<Contract> getList() {
         return contractRepository.getList();
     }
+
+    @Override
+    public List<Contract> search(String search) {
+        return contractRepository.search(search);
+    }
 }

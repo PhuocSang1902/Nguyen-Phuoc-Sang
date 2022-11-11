@@ -47,20 +47,9 @@
             <div class="form-group">
                 <label for="formInput3">Giới tính</label>
                 <select class="form-control" id="formInput3" name="gender" id="formInput3">
-                    <c:if test="${customer.getGender()=='Nữ'}">
-                        <option value="Nữ" selected>Nữ</option>
-                    </c:if>
-                    <c:if test="${customer.getGender()=='Nam'}">
-                        <option value="Nam" selected>Nam</option>
-                    </c:if>
-                    <c:if test="${customer.getGender()!='Nữ'}">
-                        <option value="Nữ" >Nữ</option>
-                    </c:if>
-                    <c:if test="${customer.getGender()!='Nam'}">
-                        <option value="Nam" >Nam</option>
-                    </c:if>
+                    <option value="Nữ" ${customer.getGender()=='Nữ' ? "selected" : ""} >Nữ</option>
+                    <option value="Nam" ${customer.getGender()=='Nam' ? "selected" : ""}>Nam</option>
                 </select>
-                <%--                <input type="text" class="form-control" id="formInput3" name="gender" value="${customer.getGender()}">--%>
             </div>
             <div class="form-group">
                 <label for="formInput4">Số CCCD</label>

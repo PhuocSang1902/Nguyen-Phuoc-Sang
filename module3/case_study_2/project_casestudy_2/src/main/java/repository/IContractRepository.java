@@ -8,4 +8,6 @@ public interface IContractRepository {
     Contract findById(int id);
 
     List<Contract> getList();
+
+    List<Contract> search(String search);
 }

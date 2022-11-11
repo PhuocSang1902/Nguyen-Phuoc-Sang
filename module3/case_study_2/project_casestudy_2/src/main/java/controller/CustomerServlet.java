@@ -87,7 +87,10 @@ public class CustomerServlet extends HttpServlet {
 
     private void remove(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("deleteId");
-        boolean checkRemove = customerService.remove(id);
+        boolean checkRemove = false;
+        if(id != null){
+            checkRemove = customerService.remove(id);
+        }
         String mess;
         if (checkRemove){
             mess= "Chỉnh sửa thành công";
@@ -116,9 +119,26 @@ public class CustomerServlet extends HttpServlet {
             case "displayUseFacility":
                 displayUseFacility(request, response);
                 break;
+            case "searchCustomerUseFacility":
+                searchCustomerUseFacility(request, response);
+                break;
             default:
                 displayHomePage(request, response);
                 break;
+
+        }
+    }
+
+    private void searchCustomerUseFacility(HttpServletRequest request, HttpServletResponse response) {
+        String search = request.getParameter("search");
+        List<Contract> contractList = contractService.search(search);
+        request.setAttribute("contractList", contractList);
+        try {
+            request.getRequestDispatcher("view/customer/list-use-facility.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

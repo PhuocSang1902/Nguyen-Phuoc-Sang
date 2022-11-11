@@ -50,8 +50,8 @@
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;"
                           action="/customer">
                         <div class="d-flex align-items-center" style="height: 40px;">
-                            <input type="text" hidden name="action" value="search">
-                            <input class="form-control me-2" name="search" type="search" placeholder="Tim kiếm"
+                            <input type="text" hidden name="action" value="searchCustomerUseFacility">
+                            <input class="form-control me-2" name="search" type="search" placeholder="Tim tên và địa chỉ"
                                    aria-label="Tìm kiếm">
                         </div>
                         <div class="d-flex align-items-center" style="height: 40px;">

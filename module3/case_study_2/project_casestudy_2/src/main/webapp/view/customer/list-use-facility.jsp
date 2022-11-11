@@ -54,7 +54,7 @@
                           action="/customer">
                         <div class="d-flex align-items-center" style="height: 40px;">
                             <input type="text" hidden name="action" value="search">
-                            <input class="form-control me-2" name="search" type="search" placeholder="Tim kiếm"
+                            <input class="form-control me-2" name="search" type="search" placeholder="Tim kiếm tên khách hàng"
                                    aria-label="Tìm kiếm">
                         </div>
                         <div class="d-flex align-items-center" style="height: 40px;">
@@ -81,9 +81,6 @@
                 <h1>DANH SÁCH KHÁCH HÀNG</h1>
             </div>
             <div class="col-1">
-                <button type="button" class="btn btn-outline-success">
-                    <a style="text-decoration: none; color: #198754" href="/customer?action=add ">Thêm mới</a>
-                </button>
             </div>
         </div>
         <table class="table table-striped table-hover" style="width: 100%" id="tableCustomer">
@@ -112,13 +109,15 @@
                     <td>${contract.getEndDate()}</td>
                     <td>${contract.getDeposit()}</td>
                     <td>
-                        <form action="/facility?action=displayListAttachFacility&contractId=${contract.getId()}"
-                              method="post">
-                            <button onclick="getContractId('${contract.getId()}')" type="submit"
-                                    class="btn btn-outline-danger" data-bs-toggle="modal"
-                                    data-bs-target="#attachFacility">Dịch vụ đi kèm
-                            </button>
-                        </form>
+                        <div class="d-flex justify-content-center">
+                            <form action="/facility?action=displayListAttachFacility&contractId=${contract.getId()}"
+                                  method="post">
+                                <button onclick="getContractId('${contract.getId()}')" type="submit"
+                                        class="btn btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#attachFacility">Dịch vụ đi kèm
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>
@@ -205,7 +204,7 @@
         $('#tableCustomer').dataTable({
             "dom": 'lrtip',
             "lengthChange": false,
-            "pageLength": 5
+            "pageLength": 4
         });
     });
 </script>

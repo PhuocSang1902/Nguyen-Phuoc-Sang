@@ -14,4 +14,6 @@ public interface IFacilityRepository {
     boolean edit(int id, Facility facility);
 
     List<Facility> search(String search);
+
+    boolean remove(String id);
 }

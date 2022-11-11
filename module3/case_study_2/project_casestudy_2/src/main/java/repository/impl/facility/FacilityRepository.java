@@ -17,6 +17,7 @@ public class FacilityRepository implements IFacilityRepository {
     private static final String GET_BY_ID = "CALL get_facility_by_id(?);";
     private static final String UPDATE_BY_ID = "CALL edit_facility(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SEARCH = "CALL search_facility(?);";
+    private static final String DELETE = "CALL delete_facility_by_id(?);";
 
     @Override
     public List<Facility> getList() {
@@ -158,5 +159,18 @@ public class FacilityRepository implements IFacilityRepository {
             throwables.printStackTrace();
         }
         return facilityList;
+    }
+
+    @Override
+    public boolean remove(String id) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(DELETE);
+            callableStatement.setInt(1, Integer.parseInt(id));
+            return callableStatement.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

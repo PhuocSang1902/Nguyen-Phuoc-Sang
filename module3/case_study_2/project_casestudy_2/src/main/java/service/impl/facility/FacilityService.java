@@ -34,4 +34,9 @@ public class FacilityService implements IFacilityService {
     public List<Facility> search(String search) {
         return facilityRepository.search(search);
     }
+
+    @Override
+    public boolean remove(String id) {
+        return facilityRepository.remove(id);
+    }
 }

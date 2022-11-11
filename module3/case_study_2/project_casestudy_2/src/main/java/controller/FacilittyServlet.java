@@ -77,17 +77,17 @@ public class FacilittyServlet extends HttpServlet {
         String standardRoom = request.getParameter("standardRoom");
         String description = request.getParameter("description");
         String poolArea = request.getParameter("poolArea");
-        if (poolArea == null) {
-            poolArea = "0";
-        }
+//        if (poolArea == null) {
+//            poolArea = "0";
+//        }
         String numberOfFloor = request.getParameter("numberOfFloor");
-        if (numberOfFloor == null) {
-            numberOfFloor = "0";
-        }
+//        if (numberOfFloor == null) {
+//            numberOfFloor = "0";
+//        }
         String facilityFree = request.getParameter("facilityFree");
-        if (facilityFree == null) {
-            facilityFree = "Không có";
-        }
+//        if (facilityFree == null) {
+//            facilityFree = "Không có";
+//        }
 
         Facility facility = new Facility(name, area, cost, maxPeople, rentTypeId, facilityTypeId, standardRoom, description, poolArea, numberOfFloor, facilityFree);
         boolean checkAdd = facilityService.add(facility);
@@ -135,6 +135,19 @@ public class FacilittyServlet extends HttpServlet {
     }
 
     private void remove(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("deleteId");
+        boolean checkRemove = false;
+        if(id != null){
+            checkRemove = facilityService.remove(id);
+        }
+        String mess;
+        if (checkRemove){
+            mess= "Chỉnh sửa thành công";
+        }else {
+            mess = "Chỉnh sửa không thành công";
+        }
+        request.setAttribute("mess", mess);
+        displayList(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
