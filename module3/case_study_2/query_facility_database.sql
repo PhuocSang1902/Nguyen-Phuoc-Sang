@@ -91,3 +91,16 @@ END//
 DELIMITER ;
 
 CALL get_attach_facility_by_id(2);
+
+DELIMITER //
+CREATE PROCEDURE delete_facility_by_id(IN id INT)
+BEGIN
+SET SQL_SAFE_UPDATES = 0;
+SET foreign_key_checks = 0;
+DELETE FROM facility WHERE facility.id=id;
+SET SQL_SAFE_UPDATES = 1;
+SET foreign_key_checks = 1;
+END //
+DELIMITER ;
+
+-- CALL delete_facility_by_id(7);

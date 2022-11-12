@@ -8,7 +8,7 @@ BEGIN
 END//
 DELIMITER ;
 
-CALL select_contract();
+-- CALL select_contract();
 
 DELIMITER //
 CREATE PROCEDURE select_contract_detail()
@@ -34,7 +34,7 @@ BEGIN
 END//
 DELIMITER ;
 
-CALL select_detail_in_contract(3); 
+-- CALL select_detail_in_contract(3); 
 
 DELIMITER //
 CREATE PROCEDURE get_contract_by_id(IN id INT)
@@ -47,4 +47,14 @@ BEGIN
 END//
 DELIMITER ;
 
-CALL get_contract_by_id(2);
+-- CALL get_contract_by_id(2);
+
+DELIMITER //
+CREATE PROCEDURE select_contract()
+BEGIN
+	SELECT 
+		*
+    FROM 
+		contract;
+END//
+DELIMITER ;
