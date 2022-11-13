@@ -57,10 +57,10 @@
             HỢP ĐỒNG
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Danh sách hợp đồng</a></li>
-            <li><a class="dropdown-item" href="#">Thêm mới hợp đồng</a></li>
-            <li><a class="dropdown-item" href="#">Chỉnh sửa hợp đồng</a></li>
-            <li><a class="dropdown-item" href="#">Xóa hợp đồng</a></li>
+            <li><a class="dropdown-item" href="/contract?action=display">Danh sách hợp đồng</a></li>
+            <li><a class="dropdown-item" href="/contract?action=add">Thêm mới hợp đồng</a></li>
+<%--            <li><a class="dropdown-item" href="#">Chỉnh sửa hợp đồng</a></li>--%>
+<%--            <li><a class="dropdown-item" href="#">Xóa hợp đồng</a></li>--%>
         </ul>
     </li>
 </ul>

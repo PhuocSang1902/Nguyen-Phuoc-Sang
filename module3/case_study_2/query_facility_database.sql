@@ -19,7 +19,7 @@ INSERT INTO facility(name, area, cost, max_people, rent_type_id, facility_type_i
 VALUES(name, area, cost, max_people, rent_type_id, facility_type_id, standard_room, description_other_convenience, pool_area, number_of_floors, facility_free);
 END//
 DELIMITER ;
-
+-- CALL add_facility('abc123', '5000', '5', '1', '3', '3', 'vip', 'abc', nullif(0,0), null, 'Tắm miễn phí');
 DELIMITER //
 CREATE PROCEDURE get_facility_by_id(IN id INT)
 BEGIN

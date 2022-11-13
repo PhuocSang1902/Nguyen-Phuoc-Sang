@@ -29,6 +29,10 @@ public class CustomerServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+
         switch (action) {
             case "remove":
                 remove(request, response);
@@ -118,6 +122,10 @@ public class CustomerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+
         switch (action) {
             case "display":
                 displayList(request, response);

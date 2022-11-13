@@ -30,8 +30,8 @@
             <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('customerName') : ""}</p>
             <div class="form-group">
                 <label for="formInput1">Loại khách hàng</label>
-                <select class="form-select" aria-label="Default select example" id="formInput1" name="customerType" id="customerType">
-                    <option value="chooseType">Hãy chọn loại khách hàng</option>
+                <select class="form-select" aria-label="Default select example" id="formInput1" name="customerType" onmouseover="disappear()">
+                    <option id="disappearId1">Hãy chọn loại khách hàng</option>
                     <c:forEach var="customerType" items="${customerTypeList}">
                         <c:if test="${customerType.getId()==customer.getCustomerType()}">
                             <option value="${customerType.getId()}" selected>${customerType.getName()}</option>
@@ -42,35 +42,42 @@
                     </c:forEach>
                 </select>
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('customerType') : ""}</p>
             <div class="form-group">
                 <label for="formInput2">Ngày sinh</label>
                 <input type="date" class="form-control" id="formInput2" name="birthday"
-                       value="${customer != null ? customer.getBirthday() : nowDate}"
+                       value="${customer != null ? customer.getBirthday() : ""}"
                        min="1920-01-01" max="${nowDateEndYear}">
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('birthday') : ""}</p>
             <div class="form-group">
                 <label for="formInput3">Giới tính</label>
-                <select class="form-control" id="formInput3" name="gender" id="formInput3">
-                        <option value="Hãy chọn giới tính">Hãy chọn giới tính</option>
+                <select class="form-control" id="formInput3" name="gender" id="formInput3" onmouseover="disappear()">
+                        <option id="disappearId">Hãy chọn giới tính</option>
                         <option value="Nam" ${customer.getGender()=='Nam' ? "selected" : ""}>Nam</option>
                         <option value="Nữ" ${customer.getGender()=='Nữ' ? "selected" : ""} >Nữ</option>
                 </select>
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('gender') : ""}</p>
             <div class="form-group">
                 <label for="formInput4">Số CCCD</label>
-                <input type="text" class="form-control" id="formInput4" name="idCard" value="${customer.getIdCard()}">
+                <input type="text" class="form-control" id="formInput4" name="idCard" placeholder="9 hoặc 12 số" value="${customer.getIdCard()}">
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('idCard') : ""}</p>
             <div class="form-group">
                 <label for="formInput5">Số điện thoại</label>
-                <input type="text" class="form-control" id="formInput5" name="phoneNumber" value="${customer.getPhoneNumber()}">
+                <input type="text" class="form-control" id="formInput5" name="phoneNumber" placeholder="09xxxxxxxx/+849xxxxxxxx" value="${customer.getPhoneNumber()}">
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('phoneNumber') : ""}</p>
             <div class="form-group">
                 <label for="formInput6">Email</label>
                 <input type="text" class="form-control" id="formInput6" name="email" value="${customer.getEmail()}">
+                <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('email') : ""}</p>
             </div>
             <div class="form-group">
-                <label for="formInput7">Địa chỉ</label>
+                <label for="formInput7">Địa chỉ</label>address
                 <input type="text" class="form-control" id="formInput7" name="address" value="${customer.getAddress()}">
+                <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('address') : ""}</p>
             </div>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
                 <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
@@ -83,14 +90,19 @@
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
                 <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
                         id="formInput13">
-                    <a href="/customer?action=display" style="text-decoration: none; color: #0dcaf0">Danh sách khách
-                        hàng</a>
+                    <a href="/index.jsp" style="text-decoration: none; color: #0dcaf0">Trang chủ</a>
                 </button>
             </div>
         </form>
     </div>
 </div>
 </body>
+<script>
+    function disappear() {
+        document.getElementById("disappearId").style.display = "none";
+        document.getElementById("disappearId1").style.display = "none";
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

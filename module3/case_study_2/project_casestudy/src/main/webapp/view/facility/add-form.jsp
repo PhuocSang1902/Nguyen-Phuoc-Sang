@@ -25,81 +25,98 @@
         <form class="my-5" action="/facility?action=add" method="post">
             <div class="form-group">
                 <label for="formInput">Tên dịch vụ</label>
-                <input type="text" class="form-control" name="name" id="formInput" value="${facility.getName()}">
+                <input type="text" class="form-control" name="name" id="formInput" value="${facility.getName()}"
+                       placeholder="Chữ cái đầu viết hoa">
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('facilityName') : ""}</p>
             <div class="form-group">
                 <label for="formInput1">Diện tích</label>
-                <input type="text" class="form-control" name="area" id="formInput1" value="${facility.getArea()}">
+                <input type="text" class="form-control" name="area" id="formInput1" value="${facility.getArea()}"
+                       placeholder="Diện tích lớn hơn 0">
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('area') : ""}</p>
             <div class="form-group">
                 <label for="formInput2">Giá</label>
-                <input type="text" class="form-control" id="formInput2" name="cost" value="${facility.getCost()}">
+                <input type="text" class="form-control" id="formInput2" name="cost" value="${facility.getCost()}"
+                       placeholder="Giá lớn hơn 0">
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('cost') : ""}</p>
             <div class="form-group">
                 <label for="formInput3">Số người</label>
-                <input type="text" class="form-control" id="formInput3" name="maxPeople" value="${facility.getMaxPeople()}">
+                <input type="text" class="form-control" id="formInput3" name="maxPeople"
+                       value="${facility.getMaxPeople()}" placeholder="Số nguyên lớn hơn 0">
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('maxPeople') : ""}</p>
             <div class="form-group">
                 <label for="formInput4">Kiểu thuê</label>
-                <select class="form-select" aria-label="Default select example" id="formInput4" name="rentTypeId">
-                    <option value="-- Hãy chọn kiểu thuê --">-- Hãy chọn kiểu thuê --</option>
+                <select class="form-select" aria-label="Default select example" id="formInput4" name="rentTypeId"
+                        onmouseover="disappear()">
+                    <option id="disappearId">-- Hãy chọn kiểu thuê --</option>
                     <c:forEach var="rentType" items="${rentTypeList}">
-                        <option value="${rentType.getId()}">${rentType.getName()}</option>
-                    </c:forEach>
-                    <c:forEach var="rentType" items="${rentTypeList}">
-                        <c:if test="${facility.getRentTypeId() == rentType.getId()}">
-                            <option selected value="${rentType.getId()}">${rentType.getName()}</option>
-                        </c:if>
+                        <option value="${rentType.getId()}"${facility.getRentTypeId() == rentType.getId() ? "selected" : ""}>
+                                ${rentType.getName()}
+                        </option>
                     </c:forEach>
                 </select>
             </div>
+            <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('rentType') : ""}</p>
             <div class="form-group">
                 <label for="formInput5">Loại dịch vụ</label>
-                <input readonly type="text" class="form-control" name="facilityTypeName" id="formInput5" value="${facilityTypeInput.getName()}">
-                <input hidden type="text" class="form-control" name="facilityTypeId" value="${facilityTypeInput.getId()}">
+                <input readonly type="text" class="form-control" name="facilityTypeName" id="formInput5"
+                       value="${facilityTypeInput.getName()}">
             </div>
-            <div class="form-group">
-                <label for="formInput6">Tiêu chuẩn phòng</label>
-                <select class="form-select" aria-label="Default select example" id="formInput6" name="standardRoom">
-                    <option value="standardRoom">-- Hãy chọn tiêu chuẩn phòng --</option>
-                    <option ${facility.getStandardRoom().equals('vip') ? "selected":""} value="vip">
-                        Vip
-                    </option>
-                    <option ${facility.getStandardRoom().equals('normal') ? "selected":""} value="normal">
-                        Normal
-                    </option>
-                </select>
-                <%--                <input type="text" class="form-control" id="formInput6" name="standardRoom">--%>
-            </div>
+            <c:if test="${facilityType == 'House' || facilityType == 'Villa'}">
+                <div class="form-group">
+                    <label for="formInput6">Tiêu chuẩn phòng</label>
+                    <select class="form-select" aria-label="Default select example" id="formInput6" name="standardRoom"
+                            onmouseover="disappear()">
+                        <option id="disappearId1">-- Hãy chọn tiêu chuẩn phòng --</option>
+                        <option ${facility.getStandardRoom().equals('vip') ? "selected":""} value="vip">
+                            Vip
+                        </option>
+                        <option ${facility.getStandardRoom().equals('normal') ? "selected":""} value="normal">
+                            Normal
+                        </option>
+                    </select>
+                </div>
+                <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('standardRoom') : ""}</p>
+            </c:if>
             <div class="form-group">
                 <label for="formInput7">Mô tả</label>
-                <input type="text" class="form-control" id="formInput7" name="description" value="${facility.getDescription()}">
+                <input type="text" class="form-control" id="formInput7" name="description"
+                       value="${facility.getDescription()}">
             </div>
             <c:if test="${facilityType == 'Villa'}">
                 <div class="form-group">
                     <label for="formInput8">Dt hồ bơi</label>
-                    <input type="text" class="form-control" id="formInput8" name="poolArea" value="${facility.getPoolArea()}">
+                    <input type="text" class="form-control" id="formInput8" name="poolArea"
+                           value="${facility.getPoolArea()}">
                 </div>
+                <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('area') : ""}</p>
             </c:if>
 
             <c:if test="${facilityType == 'House' || facilityType == 'Villa'}">
                 <div class="form-group">
                     <label for="formInput9">Số tầng</label>
-                    <select class="form-select" aria-label="Default select example" id="formInput9" name="numberOfFloor">
-                        <option value="floorNumber">-- Hãy chọn số tầng --</option>
+                    <select class="form-select" aria-label="Default select example" id="formInput9"
+                            name="numberOfFloor" onmouseover="disappear()">
+                        <option id="disappearId2">-- Hãy chọn số tầng --</option>
                         <option value="1" ${facility.getNumberOfFloor() == 1 ? "selected" : ""}>1</option>
                         <option value="2" ${facility.getNumberOfFloor() == 2 ? "selected" : ""}>2</option>
                         <option value="3" ${facility.getNumberOfFloor() == 3 ? "selected" : ""}>3</option>
                         <option value="3" ${facility.getNumberOfFloor() == 4 ? "selected" : ""}>4</option>
                     </select>
                 </div>
+                <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('numberOfFloor') : ""}</p>
             </c:if>
 
             <c:if test="${facilityType == 'Room'}">
                 <div class="form-group">
                     <label for="formInput10">Dịch vụ miễn phí</label>
-                    <input type="text" class="form-control" id="formInput10" name="facilityFree" value="${facility.getFacilityFree()}">
+                    <input type="text" class="form-control" id="formInput10" name="facilityFree"
+                           value="${facility.getFacilityFree()}">
                 </div>
+                <p style="color: red">${!errorMap.isEmpty() ? errorMap.get('facilityFree') : ""}</p>
             </c:if>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
                 <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
@@ -112,15 +129,24 @@
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
                 <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
                         id="formInput13">
-                    <a href="/facility?action=display" style="text-decoration: none; color: #0dcaf0">Danh sách dịch
-                        vu</a>
+                    <a href="/index.jsp" style="text-decoration: none; color: #0dcaf0">Trang chủ</a>
                 </button>
             </div>
         </form>
     </div>
 </div>
+
+
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+<script>
+    function disappear() {
+        document.getElementById("disappearId").style.display = "none";
+        document.getElementById("disappearId1").style.display = "none";
+        document.getElementById("disappearId2").style.display = "none";
+    }
+</script>
 </html>

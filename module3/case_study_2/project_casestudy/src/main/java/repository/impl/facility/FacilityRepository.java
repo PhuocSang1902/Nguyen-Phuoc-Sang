@@ -62,20 +62,8 @@ public class FacilityRepository implements IFacilityRepository {
             callableStatement.setInt(6, Integer.parseInt(facility.getFacilityTypeId()));
             callableStatement.setString(7, facility.getStandardRoom());
             callableStatement.setString(8, facility.getDescription());
-
-            try{
-                Double poolAreaParse = Double.parseDouble(facility.getPoolArea());
-                callableStatement.setDouble(9, poolAreaParse);
-            }catch (NumberFormatException e){
-                callableStatement.setDouble(9, null);
-            }
-            
-            String numberOfFloor = facility.getNumberOfFloor();
-            Integer number = null;
-            if (numberOfFloor != null){
-                number = Integer.parseInt(numberOfFloor);
-            }
-            callableStatement.setInt(10, number);
+            callableStatement.setString(9, facility.getPoolArea());
+            callableStatement.setString(10, facility.getNumberOfFloor());
             callableStatement.setString(11, facility.getFacilityFree());
 
             return callableStatement.executeUpdate() > 0;

@@ -183,9 +183,8 @@
 </body>
 
 <script>
-    function getContractId(id, name) {
+    function getContractId(id) {
         document.getElementById("contractId").value = id;
-        // document.getElementById("deleteName").innerText = name;
     }
 
     // function getContractId(id) {

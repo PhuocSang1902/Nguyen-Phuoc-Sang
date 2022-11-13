@@ -25,6 +25,7 @@ public class ContractDetailRepository implements IContractDetailRepository {
     private IAttachFacilityService attachFacilityService = new AttachFacilityService();
     private static final String SELECT_CONTRACT_DETAIL = "CALL select_contract_detail();";
     private static final String SELECT_DETAIL_IN_CONTRACT = "CALL select_detail_in_contract(?);";
+    private static final String ADD = "CALL add_contract_detail(?,?,?);";
     @Override
     public List<ContractDetail> getList() {
         List<ContractDetail> contractDetailList = new ArrayList<>();
@@ -71,5 +72,21 @@ public class ContractDetailRepository implements IContractDetailRepository {
             throwables.printStackTrace();
         }
         return contractDetailList;
+    }
+
+    @Override
+    public boolean add(ContractDetail contractDetail) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(ADD);
+            callableStatement.setString(1, contractDetail.getContract().getId());
+            callableStatement.setString(2, contractDetail.getAttachFacility().getId());
+            callableStatement.setString(3, contractDetail.getQuantity());
+
+            return callableStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

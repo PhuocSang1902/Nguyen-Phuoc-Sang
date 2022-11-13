@@ -68,18 +68,21 @@
 <%--                    </c:forEach>--%>
 <%--                </select>--%>
             </div>
-            <div class="form-group">
-                <label for="formInput6">Tiêu chuẩn phòng</label>
-                <select class="form-select" aria-label="Default select example" id="formInput6" name="standardRoom"
-                        value="${facility.getStandardRoom()}">
-                    <option ${facility.getStandardRoom().equals('vip') ? "selected":""} value="vip">
-                        Vip
-                    </option>
-                    <option ${facility.getStandardRoom().equals('normal') ? "selected":""} value="normal">
-                        Normal
-                    </option>
-                </select>
-            </div>
+            <c:if test="${facility.getFacilityTypeName() == 'House' || facility.getFacilityTypeName() == 'Villa'}">
+                <div class="form-group">
+                    <label for="formInput6">Tiêu chuẩn phòng</label>
+                    <select class="form-select" aria-label="Default select example" id="formInput6" name="standardRoom"
+                            value="${facility.getStandardRoom()}">
+                        <option ${facility.getStandardRoom().equals('vip') ? "selected":""} value="vip">
+                            Vip
+                        </option>
+                        <option ${facility.getStandardRoom().equals('normal') ? "selected":""} value="normal">
+                            Normal
+                        </option>
+                    </select>
+                </div>
+            </c:if>
+
             <div class="form-group">
                 <label for="formInput7">Mô tả</label>
                 <input type="text" class="form-control" id="formInput7" name="description"

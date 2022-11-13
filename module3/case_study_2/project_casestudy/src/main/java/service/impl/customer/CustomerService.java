@@ -44,9 +44,37 @@ public class CustomerService implements ICustomerService {
         }else if (!CustomerValidation.checkName(customer.getName())){
             errorMap.put("customerName", "Không đúng định dạng");
         }
+        if("".equals(customer.getPhoneNumber())){
+            errorMap.put("phoneNumber", "Không được để trống");
+        }else if (!CustomerValidation.checkPhoneNumber(customer.getPhoneNumber())){
+            errorMap.put("phoneNumber", "Không đúng định dạng");
+        }
+        if("".equals(customer.getIdCard())){
+            errorMap.put("idCard", "Không được để trống");
+        }else if (!CustomerValidation.checkIdCard(customer.getIdCard())){
+            errorMap.put("idCard", "Không đúng định dạng");
+        }
+        if("".equals(customer.getEmail())){
+            errorMap.put("email", "Không được để trống");
+        }else if (!CustomerValidation.checkEmail(customer.getEmail())){
+            errorMap.put("email", "Không đúng định dạng");
+        }
+        if("".equals(customer.getAddress())){
+            errorMap.put("address", "Không được để trống");
+        }
+        if("".equals(customer.getGender())){
+            errorMap.put("gender", "Không được để trống");
+        }
+        if("".equals(customer.getBirthday())){
+            errorMap.put("birthday", "Không được để trống");
+        }
+        if("".equals(customer.getCustomerType())){
+            errorMap.put("customerType", "Không được để trống");
+        }
         if (errorMap.isEmpty()){
             customerRepository.add(customer);
         }
+
         return errorMap;
     }
 

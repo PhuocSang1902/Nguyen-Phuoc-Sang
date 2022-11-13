@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 <head>
     <meta charset="UTF-8">
@@ -45,7 +44,6 @@
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
 
                     <c:import url="/nav.jsp"></c:import>
-<%--                    <%@include file="/nav.jsp" %>--%>
 
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;"
                           action="/customer">
@@ -187,6 +185,8 @@
             "lengthChange": false,
             "pageLength": 4
         });
+
     });
+
 </script>
 </html>
