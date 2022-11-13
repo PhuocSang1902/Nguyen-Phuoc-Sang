@@ -175,8 +175,8 @@
             </form>
         </c:if>
 
-        <form action="/contract" method="get">
-            <div class="modal fade" id="addContractDetail" tabindex="-1"
+        <form action="/contract" method="post">
+            <div class="modal fade" id="addAttachFacility" tabindex="-1"
                  aria-labelledby="exampleModalLabel1"
                  aria-hidden="true">
                 <div class="modal-dialog">

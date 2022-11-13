@@ -20,4 +20,14 @@ public class EmployeeService implements IEmployeeService {
     public List<Employee> getList() {
         return employeeRepository.getList();
     }
+
+    @Override
+    public boolean remove(String id) {
+        return employeeRepository.remove(id);
+    }
+
+    @Override
+    public List<Employee> search(String search) {
+        return employeeRepository.search(search);
+    }
 }

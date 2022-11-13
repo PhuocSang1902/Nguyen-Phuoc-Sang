@@ -1,6 +1,5 @@
 package service.impl.contract;
 
-import model.contract.Contract;
 import model.contract.ContractDetail;
 import repository.IContractDetailRepository;
 import repository.impl.contract.ContractDetailRepository;
@@ -23,12 +22,9 @@ public class ContractDetailService implements IContractDetailService {
     }
 
     @Override
-    public Map<String, String> add(ContractDetail contractDetail) {
+    public boolean add(ContractDetail contractDetail) {
         Map<String, String> errorMap = new HashMap<>();
 
-        if (errorMap.isEmpty()){
-            contractDetailRepository.add(contractDetail);
-        }
-        return errorMap;
+        return contractDetailRepository.add(contractDetail);
     }
 }

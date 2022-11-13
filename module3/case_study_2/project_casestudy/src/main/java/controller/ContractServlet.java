@@ -50,10 +50,42 @@ public class ContractServlet extends HttpServlet {
             case "add":
                 add(request, response);
                 break;
+            case "addContractDetail":
+                addContractDetail(request, response);
+                break;
             default:
                 displayHomePage(request, response);
                 break;
 
+        }
+    }
+
+    private void addContractDetail(HttpServletRequest request, HttpServletResponse response) {
+        Map<Contract, String> contractMap = contractService.getListWithValue();
+        Set<Contract> contractList = contractMap.keySet();
+        List<AttachFacility> attachFacilityList = attachFacilityService.getList();
+        request.setAttribute("contractList", contractList);
+        request.setAttribute("contractMap", contractMap);
+        request.setAttribute("attachFacilityList", attachFacilityList);
+        String contractId = request.getParameter("contractId");
+        Contract contract = contractService.findById(Integer.parseInt(contractId));
+        String attachFacilityId = request.getParameter("attachFacilityId");
+        AttachFacility attachFacility = attachFacilityService.findById(Integer.parseInt(attachFacilityId));
+        String quantity = request.getParameter("quantity");
+        ContractDetail contractDetail = new ContractDetail(contract, attachFacility, quantity);
+        String mess;
+        if (contractDetailService.add(contractDetail)){
+            mess= "Thêm mới thành công";
+        }else {
+            mess = "Thêm mới không thành công";
+        }
+        request.setAttribute("mess", mess);
+        try {
+            request.getRequestDispatcher("view/contract/list.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

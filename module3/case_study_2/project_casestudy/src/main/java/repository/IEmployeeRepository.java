@@ -8,4 +8,8 @@ public interface IEmployeeRepository {
     Employee findById(int id);
 
     List<Employee> getList();
+
+    boolean remove(String id);
+
+    List<Employee> search(String search);
 }
