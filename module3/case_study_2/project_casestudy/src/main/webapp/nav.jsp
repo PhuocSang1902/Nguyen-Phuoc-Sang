@@ -1,16 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: phuoc
-  Date: 10/11/2022
-  Time: 19:09
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>navbar</title>
-</head>
-<body>
 <ul class="navbar-nav me-auto mb-2 mb-lg-0 col-xxl-8 col-xl-8 col-lg-6 col-md-6 col-sm-6 justify-content-center">
     <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="/index.jsp">THE
@@ -62,5 +50,3 @@
         </ul>
     </li>
 </ul>
-</body>
-</html>

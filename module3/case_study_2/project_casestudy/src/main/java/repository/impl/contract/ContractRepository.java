@@ -17,10 +17,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ContractRepository implements IContractRepository {
     private IEmployeeService employeeService = new EmployeeService();
@@ -89,7 +86,7 @@ public class ContractRepository implements IContractRepository {
 
     @Override
     public Map<Contract, String> getListWithValue() {
-        Map<Contract, String> contractMap = new HashMap<>();
+        Map<Contract, String> contractMap = new LinkedHashMap<>();
         Connection connection = BaseRepository.getConnectDB();
         try {
             CallableStatement callableStatement = connection.prepareCall(SELECT_CONTRACT_WITH_VALUE);

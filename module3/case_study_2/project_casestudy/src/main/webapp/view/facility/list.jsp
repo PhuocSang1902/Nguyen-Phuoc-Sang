@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent d-md">
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
 
-                    <c:import url="/nav.jsp"></c:import>
+                    <%@ include file="/nav.jsp"%>
 
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;"
                           action="/facility">

@@ -48,7 +48,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent d-md">
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
 
-                    <c:import url="/nav.jsp"></c:import>
+                    <%@ include file="/nav.jsp"%>
 
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;"
                           action="/customer">
@@ -111,7 +111,7 @@
                     <td>
                         <div class="d-flex justify-content-center">
                             <form action="/facility?action=displayListAttachFacility&contractId=${contract.getId()}"
-                                  method="post">
+                                  method="post" class="m-auto">
                                 <button onclick="getContractId('${contract.getId()}')" type="submit"
                                         class="btn btn-outline-danger" data-bs-toggle="modal"
                                         data-bs-target="#attachFacility">Dịch vụ đi kèm

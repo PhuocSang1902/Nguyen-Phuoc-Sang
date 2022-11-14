@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent d-md">
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
 
-                    <c:import url="/nav.jsp"></c:import>
+                    <%@ include file="/nav.jsp" %>
 
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;">
                         <div class="d-flex align-items-center" style="height: 40px;">
@@ -111,13 +111,14 @@
                             +
                         </button>
                     </td>
-                    <td>
-                        <div class="d-flex justify-content-center">
+                    <td class="d-flex align-items-center">
+                        <div>
                             <form action="/contract?action=displayListAttachFacility&contractId=${contract.getId()}"
-                                  method="post">
+                                  method="post" class="m-auto">
                                 <button onclick="getContractId('${contract.getId()}')" type="submit"
                                         class="btn btn-outline-danger" data-bs-toggle="modal"
-                                        data-bs-target="#attachFacility">Dịch vụ đi kèm
+                                        data-bs-target="#attachFacility">
+                                    Dịch vụ đi kèm
                                 </button>
                             </form>
                         </div>
@@ -231,9 +232,6 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
 <script src="jquery/jquery-3.5.1.min.js"></script>
 <script src="datatables/js/jquery.dataTables.min.js"></script>
 <script src="datatables/js/dataTables.bootstrap5.min.js"></script>
