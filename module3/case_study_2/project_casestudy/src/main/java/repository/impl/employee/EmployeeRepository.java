@@ -1,6 +1,5 @@
 package repository.impl.employee;
 
-import model.customer.Customer;
 import model.employee.Employee;
 import repository.BaseRepository;
 import repository.IEmployeeRepository;
@@ -18,6 +17,8 @@ public class EmployeeRepository implements IEmployeeRepository {
     private static final String GET_LIST = "call get_employee_list();";
     private static final String DELETE = "CALL delete_employee_by_id(?);";
     private static final String SEARCH = "call search_employee(?);";
+    private static final String ADD = "CALL add_employee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String UPDATE_BY_ID = "CALL edit_employee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     @Override
     public Employee findById(int id) {
@@ -130,5 +131,52 @@ public class EmployeeRepository implements IEmployeeRepository {
             throwables.printStackTrace();
         }
         return employeeList;
+    }
+
+    @Override
+    public boolean add(Employee employee) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(ADD);
+            callableStatement.setString(1, employee.getName());
+            callableStatement.setString(2, employee.getBirthday());
+            callableStatement.setString(3, employee.getIdCard());
+            callableStatement.setString(4, employee.getSalary());
+            callableStatement.setString(5, employee.getPhoneNumber());
+            callableStatement.setString(6, employee.getEmail());
+            callableStatement.setString(7, employee.getAddress());
+            callableStatement.setString(8, employee.getPositionId());
+            callableStatement.setString(9, employee.getEducationDegreeId());
+            callableStatement.setString(10, employee.getDivisionId());
+
+            return callableStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean edit(int id, Employee employee) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            CallableStatement callableStatement = connection.prepareCall(UPDATE_BY_ID);
+            callableStatement.setInt(1, id);
+            callableStatement.setString(2, employee.getName());
+            callableStatement.setString(3, employee.getBirthday());
+            callableStatement.setString(4, employee.getIdCard());
+            callableStatement.setString(5, employee.getSalary());
+            callableStatement.setString(6, employee.getPhoneNumber());
+            callableStatement.setString(7, employee.getEmail());
+            callableStatement.setString(8, employee.getAddress());
+            callableStatement.setString(9, employee.getPositionId());
+            callableStatement.setString(10, employee.getEducationDegreeId());
+            callableStatement.setString(11, employee.getDivisionId());
+            return callableStatement.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
     }
 }

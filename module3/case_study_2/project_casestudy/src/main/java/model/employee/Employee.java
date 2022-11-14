@@ -70,7 +70,7 @@ public class Employee {
         this.username = username;
     }
 
-    public Employee(String name, String birthday, String idCard, String salary, String phoneNumber, String email, String address, String positionId, String educationDegreeId, String divisionId, String username) {
+    public Employee(String name, String birthday, String idCard, String salary, String phoneNumber, String email, String address, String positionId, String educationDegreeId, String divisionId) {
         this.name = name;
         this.birthday = birthday;
         this.idCard = idCard;
@@ -81,7 +81,6 @@ public class Employee {
         this.positionId = positionId;
         this.educationDegreeId = educationDegreeId;
         this.divisionId = divisionId;
-        this.username = username;
     }
 
     public String getId() {

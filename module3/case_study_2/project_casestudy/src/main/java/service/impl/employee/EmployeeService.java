@@ -6,6 +6,7 @@ import repository.impl.employee.EmployeeRepository;
 import service.IEmployeeService;
 
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeService implements IEmployeeService {
 
@@ -29,5 +30,16 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public List<Employee> search(String search) {
         return employeeRepository.search(search);
+    }
+
+    @Override
+    public Map<String, String> add(Employee employee) {
+        employeeRepository.add(employee);
+        return null;
+    }
+
+    @Override
+    public boolean edit(int id, Employee employee) {
+        return employeeRepository.edit(id, employee);
     }
 }

@@ -34,7 +34,7 @@
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/employee?action=display">Danh sách nhân viên</a></li>
-            <li><a class="dropdown-item" href="#">Thêm mới nhân viên</a></li>
+<%--            <li><a class="dropdown-item" href="#">Thêm mới nhân viên</a></li>--%>
         </ul>
     </li>
     <li class="nav-item dropdown">

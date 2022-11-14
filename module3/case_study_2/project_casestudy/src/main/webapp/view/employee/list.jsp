@@ -43,13 +43,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent d-md">
                     <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3"></div>
 
-                    <%@ include file="/nav.jsp"%>
+                    <%@ include file="/nav.jsp" %>
 
                     <form class="d-flex col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-3 mt-4" style="height: 50px;"
                           action="/employee">
                         <div class="d-flex align-items-center" style="height: 40px;">
                             <input type="text" hidden name="action" value="search">
-                            <input class="form-control me-2" name="search" type="search" placeholder="Tim tên và địa chỉ"
+                            <input class="form-control me-2" name="search" type="search"
+                                   placeholder="Tim tên và địa chỉ"
                                    aria-label="Tìm kiếm">
                         </div>
                         <div class="d-flex align-items-center" style="height: 40px;">
@@ -73,8 +74,9 @@
                 <h1>DANH SÁCH NHÂN VIÊN</h1>
             </div>
             <div class="col-1">
-                <button type="button" class="btn btn-outline-success">
-                    <a style="text-decoration: none; color: #198754" href="/employee?action=add ">Thêm mới</a>
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                        data-bs-target="#addEmployee">
+                    Thêm mới
                 </button>
             </div>
         </div>
@@ -111,15 +113,16 @@
                     <td>${employee.getEducationDegreeName()}</td>
                     <td>${employee.getDivisionName()}</td>
                     <td>
-                        <button type="button" class="btn btn-outline-warning"><a
-                                style="text-decoration: none; color: #ffc107"
-                                href="/employee?action=edit&id=${employee.getId()}">Sửa</a>
+                        <button onclick="getEditEmployee('${employee.getId()}','${employee.getName()}','${employee.getBirthday()}','${employee.getIdCard()}','${employee.getSalary()}','${employee.getPhoneNumber()}','${employee.getEmail()}','${employee.getAddress()}','${employee.getPositionId()}','${employee.getEducationDegreeId()}','${employee.getDivisionId()}')"
+                                type="button"
+                                class="btn btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#editEmployee">Sửa
                         </button>
                     </td>
                     <td>
                         <button onclick="getId('${employee.getId()}','${employee.getName()}')" type="button"
                                 class="btn btn-outline-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteProduct">Xóa
+                                data-bs-target="#deleteEmployee">Xóa
                         </button>
                     </td>
                 </tr>
@@ -127,14 +130,132 @@
             </tbody>
         </table>
 
-        <form action="/employee" method="post">
-            <div class="modal fade" id="deleteProduct" tabindex="-1"
+        <form action="/employee?action=add" method="post">
+            <div class="modal fade" id="addEmployee" tabindex="-1"
                  aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">XÓA NHÂN VIÊN</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Thêm mới nhân viên</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="formInput">Tên nhân viên</label>
+                                <input type="text" class="form-control" id="formInput" name="name"
+                                       value="${employee.getName()}">
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput1">Ngày sinh</label>
+                                <input type="date" class="form-control" id="formInput1" name="birthday"
+                                       value="${employee.getBirthday()}"
+                                       min="1920-01-01" max="${nowDateEndYear}">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput2">Số CCCD</label>
+                                <input type="text" class="form-control" id="formInput2" name="idCard"
+                                       value="${employee.getIdCard()}">
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput3">Lương</label>
+                                <input type="text" class="form-control" id="formInput3" name="salary"
+                                       value="${employee.getIdCard()}">
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput4">Số điện thoại</label>
+                                <input type="text" class="form-control" id="formInput4" name="phoneNumber"
+                                       value="${employee.getPhoneNumber()}">
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput6">Email</label>
+                                <input type="text" class="form-control" id="formInput6" name="email"
+                                       value="${employee.getEmail()}">
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput7">Địa chỉ</label>
+                                <input type="text" class="form-control" id="formInput7" name="address"
+                                       value="${employee.getAddress()}">
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput8">Vị trí</label>
+                                <select class="form-control" id="formInput8" name="educationDegreeId">
+                                    <option id="disappearId">Hãy chọn chức vụ</option>
+                                    <option value="1" ${employee.setPositionId() == '1' ? "select" : ""}>Quản lý
+                                    </option>
+                                    <option value="2" ${employee.setPositionId() == '2' ? "select" : ""}>Nhân viên
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput9">Trình độ</label>
+                                <select class="form-control" id="formInput9" name="educationDegreeId">
+                                    <option id="disappearId1">Hãy chọn Trình độ</option>
+                                    <option value="1" ${employee.getEducationDegreeId() == '1' ? "select" : ""}>Sau đại
+                                        học
+                                    </option>
+                                    <option value="2" ${employee.getEducationDegreeId() == '2' ? "select" : ""}>Đại
+                                        học
+                                    </option>
+                                    <option value="3" ${employee.getEducationDegreeId() == '3' ? "select" : ""}>Cao
+                                        đẵng
+                                    </option>
+                                    <option value="4" ${employee.getEducationDegreeId() == '4' ? "select" : ""}>Trung
+                                        cấp
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="formInput10">Phòng ban</label>
+                                <select class="form-control" id="formInput10" name="divisionId">
+                                    <option id="disappearId2">Hãy chọn phòng</option>
+                                    <option value="1" ${employee.getDivisionId() == '1' ? "select" : ""}>Bán hàng
+                                    </option>
+                                    <option value="2" ${employee.getDivisionId() == '2' ? "select" : ""}>Hành chính
+                                    </option>
+                                    <option value="3" ${employee.getDivisionId() == '3' ? "select" : ""}>Phục vụ
+                                    </option>
+                                    <option value="4" ${employee.getDivisionId() == '4' ? "select" : ""}>Quản lý
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-center"
+                                 style="margin-top: 25px">
+                                <button style="width: 30%" type="button"
+                                        class="form-control btn btn-outline-warning mx-5"
+                                        id="formInput11">
+                                    <a style="text-decoration: none; color: #ffc107"
+                                       href="/employee?action=display">Hủy</a>
+                                </button>
+                                <button style="width: 30%" type="submit"
+                                        class="form-control btn btn-outline-success mx-5"
+                                        id="formInput12">
+                                    Lưu thông tin
+                                </button>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
+                            </button>
+
+                            <button class="btn btn-primary">Xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form action="/employee" method="post">
+            <div class="modal fade" id="deleteEmployee" tabindex="-1"
+                 aria-labelledby="exampleModalLabel1"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel1">XÓA NHÂN VIÊN</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
@@ -143,6 +264,115 @@
                             <input type="text" hidden id="deleteId" name="deleteId">
                             <p>Bạn có chắc chắn muốn xóa?</p>
                             <p id="deleteName"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
+                            </button>
+
+                            <button class="btn btn-primary">Xóa</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form action="/employee?action=edit" method="post">
+            <div class="modal fade" id="editEmployee" tabindex="-1"
+                 aria-labelledby="exampleModalLabel2"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel2">Chỉnh sửa nhân viên</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Tên nhân viên</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" hidden id="id" name="id">
+                            </div>
+                            <div class="form-group">
+                                <label for="birthday">Ngày sinh</label>
+                                <input type="date" class="form-control" id="birthday" name="birthday"
+                                       min="1920-01-01" max="${nowDateEndYear}">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="idCard">Số CCCD</label>
+                                <input type="text" class="form-control" id="idCard" name="idCard">
+                            </div>
+                            <div class="form-group">
+                                <label for="salary">Lương</label>
+                                <input type="text" class="form-control" id="salary" name="salary">
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Số điện thoại</label>
+                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Địa chỉ</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                            <div class="form-group">
+                                <label for="positionId">Vị trí</label>
+                                <select class="form-control" id="positionId" name="positionId">
+                                    <option value="1" ${positionId2 == 1 ? "selected" : ""}  id="positionId1" name="positionId1">Quản lý
+                                    </option>
+                                    <option value="2" ${positionId2 == 2 ? "selected" : ""} id="positionId2" name="positionId2">Nhân viên
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="educationDegreeId">Trình độ</label>
+                                <select class="form-control" id="educationDegreeId" name="educationDegreeId">
+                                    <option value="4">Sau đại
+                                        học
+                                    </option>
+                                    <option value="3">Đại
+                                        học
+                                    </option>
+                                    <option value="2">Cao
+                                        đẵng
+                                    </option>
+                                    <option value="1">Trung
+                                        cấp
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="divisionId">Phòng ban</label>
+                                <select class="form-control" id="divisionId" name="divisionId">
+                                    <option value="1">Bán hàng
+                                    </option>
+                                    <option value="2">Hành chính
+                                    </option>
+                                    <option value="3">Phục vụ
+                                    </option>
+                                    <option value="4">Quản lý
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-center"
+                                 style="margin-top: 25px">
+                                <button style="width: 30%" type="button"
+                                        class="form-control btn btn-outline-warning mx-5"
+                                        id="form11">
+                                    <a style="text-decoration: none; color: #ffc107"
+                                       href="/employee?action=display">Hủy</a>
+                                </button>
+                                <button style="width: 30%" type="submit"
+                                        class="form-control btn btn-outline-success mx-5"
+                                        id="form12">
+                                    Lưu thông tin
+                                </button>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
@@ -171,9 +401,29 @@
 </body>
 
 <script>
+    function getEditEmployee(id, name, birthday, idCard, salary, phoneNumber, email, address, positionId, educationDegreeId, divisionId) {
+        document.getElementById("id").value = id;
+        document.getElementById("name").value = name;
+        document.getElementById("birthday").value = birthday;
+        document.getElementById("idCard").value = idCard;
+        document.getElementById("salary").value = salary;
+        document.getElementById("phoneNumber").value = phoneNumber;
+        document.getElementById("email").value = email;
+        document.getElementById("address").value = address;
+        document.getElementById("positionId").value = positionId;
+        document.getElementById("educationDegreeId").value = educationDegreeId;
+        document.getElementById("divisionId").value = divisionId;
+    }
+
     function getId(id, name) {
         document.getElementById("deleteId").value = id;
         document.getElementById("deleteName").innerText = name;
+    }
+
+    function disappear() {
+        document.getElementById("disappearId").style.display = "none";
+        document.getElementById("disappearId1").style.display = "none";
+        document.getElementById("disappearId2").style.display = "none";
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
