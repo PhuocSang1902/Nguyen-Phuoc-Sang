@@ -5,13 +5,13 @@ public class EmailConfig {
     private String password;
     private String language;
     private String pageSize;
-    private String spamsFilter;
+    private Boolean spamsFilter;
     private String signature;
 
     public EmailConfig() {
     }
 
-    public EmailConfig(String account, String password, String language, String pageSize, String spamsFilter, String signature) {
+    public EmailConfig(String account, String password, String language, String pageSize, Boolean spamsFilter, String signature) {
         this.account = account;
         this.password = password;
         this.language = language;
@@ -52,11 +52,11 @@ public class EmailConfig {
         this.pageSize = pageSize;
     }
 
-    public String getSpamsFilter() {
+    public Boolean getSpamsFilter() {
         return spamsFilter;
     }
 
-    public void setSpamsFilter(String spamsFilter) {
+    public void setSpamsFilter(Boolean spamsFilter) {
         this.spamsFilter = spamsFilter;
     }
 

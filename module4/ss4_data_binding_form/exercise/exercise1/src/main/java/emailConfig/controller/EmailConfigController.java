@@ -10,25 +10,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class EmailConfigController {
     @Autowired
     EmailConfigService emailConfigService;
 
     @GetMapping("/")
-    public String home(Model model){
+    public String home(Model model) {
         Login login = new Login();
         model.addAttribute("login", login);
         return "home";
     }
 
+    @GetMapping("list")
+    public String info(Model model, @ModelAttribute("emailConfig") EmailConfig emailConfig) {
+        return "list";
+
+    }
+
+    @PostMapping("edit")
+    public String edit(Model model, @ModelAttribute("emailConfig") EmailConfig emailConfig) {
+        model.addAttribute("emailConfig", emailConfig);
+        return "list";
+
+    }
     @PostMapping("login")
-    public String login(Model model, @ModelAttribute("login")Login login){
+    public String login(Model model, @ModelAttribute("login") Login login) {
         EmailConfig emailConfig = emailConfigService.login(login);
-        if (emailConfig != null){
+        if (emailConfig != null) {
             model.addAttribute("emailConfig", emailConfig);
             return "email-config";
-        }else {
+        } else {
             return "error";
         }
     }

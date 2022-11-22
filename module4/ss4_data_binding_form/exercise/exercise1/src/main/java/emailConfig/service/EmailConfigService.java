@@ -11,10 +11,10 @@ import java.util.List;
 public class EmailConfigService {
     private static List<EmailConfig> emailConfigList = new ArrayList<>();
     static{
-        emailConfigList.add(new EmailConfig("sang", "1234", "english", "25","1", "Sang"));
-        emailConfigList.add(new EmailConfig("bao", "1234", "vietnam", "20","0", "Bao"));
-        emailConfigList.add(new EmailConfig("phuong", "1234", "usa", "15","1", "Phuong"));
-        emailConfigList.add(new EmailConfig("dat", "1234", "english", "10","0", "Dat"));
+        emailConfigList.add(new EmailConfig("sang", "1234", "english", "25",true, "Sang"));
+        emailConfigList.add(new EmailConfig("bao", "1234", "vietnam", "20",null, "Bao"));
+        emailConfigList.add(new EmailConfig("phuong", "1234", "usa", "15",true, "Phuong"));
+        emailConfigList.add(new EmailConfig("dat", "1234", "english", "10",null, "Dat"));
     }
     public EmailConfig login(Login login) {
         for (int i = 0; i < emailConfigList.size(); i++) {
@@ -23,5 +23,8 @@ public class EmailConfigService {
             }
         }
         return null;
+    }
+    public List<EmailConfig> getList(){
+        return emailConfigList;
     }
 }

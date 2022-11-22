@@ -15,7 +15,6 @@ public class UserController {
 
     @GetMapping("/")
     public String home(Model model) {
-//        ModelAndView modelAndView = new ModelAndView("home", "login", new Login());
         model.addAttribute("login", new Login());
         return "home";
     }

@@ -30,7 +30,6 @@
     }
 </style>
 <body>
-<h3>Home</h3>
 <section class="vh-100">
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -43,7 +42,7 @@
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <form:input type="email" path="account" class="form-control form-control-lg"
+                        <form:input type="text" path="account" class="form-control form-control-lg"
                                placeholder="Enter a valid email address"/>
                         <form:label class="form-label" path="account">Account</form:label>
                     </div>
@@ -56,7 +55,7 @@
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <form:button type="button" class="btn btn-primary btn-lg"
+                        <form:button type="submit" class="btn btn-primary btn-lg"
                                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Login
                         </form:button>
                     </div>

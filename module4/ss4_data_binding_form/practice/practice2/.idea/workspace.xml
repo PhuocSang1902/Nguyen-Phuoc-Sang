@@ -2,47 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d032aa72-1a16-446b-822f-2373b8d895ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/controller/EmailConfigController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/model/EmailConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/model/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/service/EmailConfigService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/views/email-config.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/views/error.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice1/src/main/java/practice/controller/EmployeeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice1/src/main/java/practice/model/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice1/src/main/java/practice/service/EmployeeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice1/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice1/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice1/src/main/webapp/WEB-INF/views/create.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice1/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice1/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/practice2/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/practice2/model/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/practice2/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/practice2/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/error.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/views/list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss1_tong_quan_spring_mvc/practice/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1_tong_quan_spring_mvc/practice/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/build/classes/java/main/emailConfig/controller/EmailConfigController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/build/classes/java/main/emailConfig/controller/EmailConfigController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/build/classes/java/main/emailConfig/model/EmailConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/build/classes/java/main/emailConfig/model/EmailConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/build/classes/java/main/emailConfig/service/EmailConfigService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/build/classes/java/main/emailConfig/service/EmailConfigService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/build/libs/exercise1-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/build/libs/exercise1-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/controller/EmailConfigController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/controller/EmailConfigController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/model/EmailConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/model/EmailConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/service/EmailConfigService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/java/emailConfig/service/EmailConfigService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/views/email-config.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/views/email-config.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/exercise1/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/practice2/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/practice2/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +159,9 @@
       <updated>1669031425879</updated>
       <workItem from="1669031431733" duration="2436000" />
       <workItem from="1669035929581" duration="2247000" />
+      <workItem from="1669042546381" duration="440000" />
+      <workItem from="1669079302420" duration="83000" />
+      <workItem from="1669087598584" duration="2038000" />
     </task>
     <servers />
   </component>
@@ -193,9 +177,10 @@
       <screen x="1920" y="0" width="1440" height="840" />
     </state>
     <state width="400" height="466" key="DebuggerActiveHint/1920.0.1440.840/0.0.1536.816@1920.0.1440.840" timestamp="1669034643205" />
-    <state x="2420" y="181" key="FileChooserDialogImpl" timestamp="1669035353803">
-      <screen x="1920" y="0" width="1440" height="840" />
+    <state x="533" y="176" key="FileChooserDialogImpl" timestamp="1669079384347">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state x="533" y="176" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1669079384347" />
     <state x="2420" y="181" key="FileChooserDialogImpl/1920.0.1440.840/0.0.1536.816@1920.0.1440.840" timestamp="1669035353803" />
     <state width="957" height="220" key="GridCell.Tab.0.bottom" timestamp="1669035369237">
       <screen x="1920" y="0" width="1440" height="840" />
@@ -271,7 +256,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/practice2/controller/UserController.java</url>
-          <line>23</line>
+          <line>22</line>
           <properties class="practice2.controller.UserController" method="login">
             <option name="EMULATED" value="true" />
           </properties>
