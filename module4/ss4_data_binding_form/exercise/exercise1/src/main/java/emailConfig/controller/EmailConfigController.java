@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
 
 @Controller
-public class EmailConfigController {
+public class  EmailConfigController {
+
     @Autowired
-    EmailConfigService emailConfigService;
+    private EmailConfigService emailConfigService;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -25,7 +25,7 @@ public class EmailConfigController {
     }
 
     @GetMapping("list")
-    public String info(Model model, @ModelAttribute("emailConfig") EmailConfig emailConfig) {
+    public String info(@ModelAttribute("emailConfig") EmailConfig emailConfig) {
         return "list";
 
     }
