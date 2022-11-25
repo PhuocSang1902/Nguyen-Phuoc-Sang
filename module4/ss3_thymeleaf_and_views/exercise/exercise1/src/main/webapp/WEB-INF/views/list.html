@@ -11,7 +11,7 @@
 </head>
 <body>
 <div >
-    <a class="btn btn-success" th:href="@{/showAddForm}">Add</a>
+    <a class="btn btn-success" th:href="@{/show-add-form}">Add</a>
 </div>
 <form action="search" method="get">
     <div class="form-floating mb-3">
@@ -37,7 +37,7 @@
         <td th:text="${iteam.describe}">Describe</td>
         <td th:text="${iteam.producer}">Produce</td>
         <td>
-            <a th:href="@{/showEditForm(id=${iteam.id})}" class="btn btn-warning">Edit</a>
+            <a th:href="@{/show-edit-form(id=${iteam.id})}" class="btn btn-warning">Edit</a>
         </td>
         <td>
             <button class="btn btn-danger"  th:onclick="'javascript:getId(\''+${iteam.id}+'\',\''+${iteam.name}+'\');'" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>

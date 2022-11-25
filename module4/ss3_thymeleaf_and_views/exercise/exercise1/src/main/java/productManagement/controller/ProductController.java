@@ -7,14 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import productManagement.model.Product;
-import productManagement.service.ProductService;
+import productManagement.service.impl.ProductService;
 
 import java.util.List;
 
 @Controller
 public class ProductController {
+    private final ProductService productService;
+
     @Autowired
-    private ProductService productService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("")
     public String showList(Model model){
@@ -22,7 +26,7 @@ public class ProductController {
         model.addAttribute("productList",productList);
         return "list";
     }
-    @GetMapping("showAddForm")
+    @GetMapping("show-add-form")
     public String showAddForm(Model model){
         model.addAttribute("product", new Product());
         return "create";
@@ -32,7 +36,7 @@ public class ProductController {
         productService.save(product);
         return "redirect:/";
     }
-    @GetMapping("showEditForm")
+    @GetMapping("show-edit-form")
     public String showEditForm(Model model, int id){
         Product product = productService.findById(id);
         model.addAttribute("product", product);
