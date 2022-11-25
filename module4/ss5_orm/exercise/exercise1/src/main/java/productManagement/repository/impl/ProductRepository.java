@@ -1,16 +1,17 @@
-package productManagement.repository;
+package productManagement.repository.impl;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import productManagement.model.Product;
+import productManagement.repository.IProductRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProductRepository {
+public class ProductRepository implements IProductRepository {
 
+    @Override
     public List<Product> getList() {
         Session session = null;
         List<Product> productList = null;
@@ -25,6 +26,7 @@ public class ProductRepository {
         return productList;
     }
 
+    @Override
     public void add(Product product) {
         Session session = null;
         Transaction transaction;
@@ -40,6 +42,7 @@ public class ProductRepository {
         }
     }
 
+    @Override
     public void edit(Product product) {
         Session session = null;
         Transaction transaction;
@@ -55,6 +58,7 @@ public class ProductRepository {
         }
     }
 
+    @Override
     public void remove(Product product) {
         Session session = null;
         Transaction transaction;
@@ -70,6 +74,7 @@ public class ProductRepository {
         }
     }
 
+    @Override
     public Product findById(int id) {
         Session session = null;
         Product product;
@@ -84,6 +89,7 @@ public class ProductRepository {
         return product;
     }
 
+    @Override
     public List<Product> search(String search) {
         Session session = null;
         List<Product> productList;

@@ -1,4 +1,4 @@
-package productManagement.repository;
+package productManagement.repository.impl;
 
 
 import org.hibernate.HibernateException;
