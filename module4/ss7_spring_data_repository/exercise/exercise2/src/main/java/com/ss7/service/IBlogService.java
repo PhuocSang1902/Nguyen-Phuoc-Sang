@@ -1,10 +1,10 @@
 package com.ss7.service;
 
 import com.ss7.model.Blog;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface IBlogService extends IGeneralService<Blog> {
 
-    List<Blog> findByTitleContainingOrAuthor(String content, String author);
+    Page<Blog> findByTitleContainingOrAuthor(String content, String author, Pageable pageable);
 }

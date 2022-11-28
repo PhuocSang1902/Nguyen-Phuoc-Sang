@@ -13,6 +13,12 @@
 <div>
     <span><a class="btn btn-success" href="/blog/create">Add</a></span>
     <span><a class="btn btn-primary" href="/">Home</a></span>
+    <form action="/blog" method="get">
+
+        <input class="form-control" th:name="search"/>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
     <table class="table">
 
         <tr>
@@ -27,7 +33,7 @@
         </tr>
 
         <tr th:each="blog, status : ${blogList}">
-            <td th:text="${status.count}"></td>
+            <td th:text="${status.count + blogList.number * blogList.size}"></td>
             <td th:text="${blog.title}"></td>
             <td th:text="${blog.author}"></td>
             <td th:text="${blog.writingDate}"></td>
@@ -39,13 +45,18 @@
                 <a class="btn btn-warning" th:href="@{/blog/edit/__${blog.id}__}">Edit</a>
             </td>
             <td>
-            <button th:attr="onclick=|getNameId('${blog.id}','${blog.title}')|" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                Remove
-            </button>
+                <button th:attr="onclick=|getNameId('${blog.id}','${blog.title}')|" type="button"
+                        class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    Remove
+                </button>
             </td>
         </tr>
 
     </table>
+    <span>
+        <a th:href="@{/blog(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}">Previous</a>
+        <a th:href="@{/blog(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}">Next</a>
+    </span>
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -71,9 +82,9 @@
 </div>
 </body>
 <script th:inline="javascript">
-    function getNameId(id, name){
-        document.getElementById("deleteId").value=id;
-        document.getElementById("deleteName").innerText=name;
+    function getNameId(id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
     }
 </script>
 </html>
