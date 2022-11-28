@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div>
+    <span><a class="btn btn-success" href="/blog/create">Add</a></span>
+    <span><a class="btn btn-primary" href="/">Home</a></span>
+    <table class="table">
+
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date Of Writing</th>
+            <th scope="col">Category</th>
+            <th scope="col">Detail</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Remove</th>
+        </tr>
+
+        <tr th:each="blog, status : ${blogList}">
+            <td th:text="${status.count}"></td>
+            <td th:text="${blog.title}"></td>
+            <td th:text="${blog.author}"></td>
+            <td th:text="${blog.writingDate}"></td>
+            <td th:text="${blog.category.categoryName}"></td>
+            <td>
+                <a class="btn btn-success" th:href="@{/blog/detail/__${blog.id}__}">Detail</a>
+            </td>
+            <td>
+                <a class="btn btn-warning" th:href="@{/blog/edit/__${blog.id}__}">Edit</a>
+            </td>
+            <td>
+            <button th:attr="onclick=|getNameId('${blog.id}','${blog.title}')|" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Remove
+            </button>
+            </td>
+        </tr>
+
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Blog</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/blog/remove" method="post">
+                    <div class="modal-body">
+                        <p>Are you sure to delete</p>
+                        <p id="deleteName"></p>
+                        <input type="hidden" id="deleteId" name="id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script th:inline="javascript">
+    function getNameId(id, name){
+        document.getElementById("deleteId").value=id;
+        document.getElementById("deleteName").innerText=name;
+    }
+</script>
+</html>
