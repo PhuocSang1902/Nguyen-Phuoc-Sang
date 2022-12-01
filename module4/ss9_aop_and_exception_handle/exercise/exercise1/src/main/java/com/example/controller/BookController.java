@@ -69,27 +69,65 @@ public class BookController {
         }
         return "/errorPage";
     }
+
     @GetMapping("give-book-back")
-    public String giveBookBack(@RequestParam long code){
+    public String giveBookBack(@RequestParam long code, RedirectAttributes redirectAttributes) {
         Optional<BorrowedBook> borrowedBook = borrowedBookService.findByCode(code);
-        if (borrowedBook.isPresent()){
+        if (borrowedBook.isPresent() && borrowedBook.get().isStatus()) {
             borrowedBook.get().setStatus(false);
             Set<Book> bookList = borrowedBook.get().getBookList();
-            for (Book book:bookList) {
-                book.setQuantityAvailable(book.getQuantityAvailable()+1);
+            for (Book book : bookList) {
+                book.setQuantityAvailable(book.getQuantityAvailable() + 1);
                 bookService.save(book);
             }
             borrowedBookService.save(borrowedBook.get());
+            redirectAttributes.addFlashAttribute("mess", "Give book back successfully");
+            return "redirect:/";
+        }
+        if (borrowedBook.isPresent() && !borrowedBook.get().isStatus()) {
+            redirectAttributes.addFlashAttribute("mess", "This borrow code given back before");
+            return "redirect:/";
+        }
+        redirectAttributes.addFlashAttribute("mess", "This borrow code is wrong");
+        return "redirect:/";
+    }
+
+    @GetMapping("detail/{id}")
+    public String bookDetail(@PathVariable("id") Integer id, Model model) {
+        Optional<Book> book = bookService.findById(id);
+        if (book.isPresent()) {
+            model.addAttribute("book", book.get());
+            return "/book/detail";
         }
         return "redirect:/";
     }
-    @GetMapping("detail/{id}")
-    public String bookDetail(@PathVariable("id")Integer id, Model model){
-    Optional<Book>book = bookService.findById(id);
-    if (book.isPresent()){
-        model.addAttribute("book", book.get());
-        return"/book/detail";
+
+    @GetMapping("edit/{id}")
+    public String showEditForm(@PathVariable("id") Integer id, Model model) {
+        Optional<Book> book = bookService.findById(id);
+        if (book.isPresent()) {
+            model.addAttribute("book", book.get());
+            return "/book/edit";
+        }
+        return "redirect:/";
     }
-    return"redirect:/";
+
+    @PostMapping("edit")
+    public String saveEdit(@ModelAttribute("book") Book book, RedirectAttributes redirectAttributes) {
+
+        book.setQuantityAvailable(book.getTotalQuantity() - book.getBorrowedBookList().size());
+        if (book.getQuantityAvailable()>=0) {
+            bookService.save(book);
+            redirectAttributes.addFlashAttribute("mess", "Book is edited successfully");
+            return "redirect:/";
+        }
+        redirectAttributes.addFlashAttribute("mess", "Total Quantity is not correct");
+        return "redirect:/";
+    }
+    @GetMapping("remove/{id}")
+    public String removeBook(@PathVariable("id")Integer id, Model model){
+        bookService.removeById(id);
+        model.addAttribute("mess", "This book is removed successfully");
+        return showList(model);
     }
 }

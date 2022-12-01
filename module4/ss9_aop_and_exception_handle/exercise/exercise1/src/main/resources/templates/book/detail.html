@@ -9,7 +9,7 @@
 <p>Tên sách</p>
 <p th:text="${book.name}"></p>
 <p>Những mã đang mượn sách</p>
-<!--<p th:if="${book.borrowedBookList!=null}" th:text="Không có ai mượn sách"></p>-->
+<p th:if="${book.borrowedBookList.size()==0}">Không có ai mượn sách</p>
 <p th:each="book:${book.borrowedBookList}" th:text="${book.getCode()}"></p>
 </body>
 </html>

@@ -10,7 +10,7 @@ public class BorrowedBook {
     private Integer id;
     private long code;
     private boolean status= true;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private Set<Book> bookList;
 
     public BorrowedBook() {

@@ -32,4 +32,9 @@ public class BookService implements IBookService {
     public void borrow(Book book, long code) {
 
     }
+
+    @Override
+    public void removeById(Integer id) {
+        bookRepository.deleteById(id);
+    }
 }

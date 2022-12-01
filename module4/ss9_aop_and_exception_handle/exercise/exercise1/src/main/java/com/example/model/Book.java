@@ -11,7 +11,7 @@ public class Book {
     private String name;
     private int quantityAvailable;
     private int totalQuantity;
-    @ManyToMany(mappedBy = "bookList")
+    @ManyToMany(mappedBy = "bookList", cascade = CascadeType.ALL)
     private Set<BorrowedBook> borrowedBookList;
 
     public Book() {

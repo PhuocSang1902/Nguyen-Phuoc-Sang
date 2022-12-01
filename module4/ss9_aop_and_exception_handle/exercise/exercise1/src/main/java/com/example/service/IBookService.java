@@ -13,4 +13,6 @@ public interface IBookService {
     Optional<Book> findById(Integer id);
 
     void borrow(Book book, long code);
+
+    void removeById(Integer id);
 }
