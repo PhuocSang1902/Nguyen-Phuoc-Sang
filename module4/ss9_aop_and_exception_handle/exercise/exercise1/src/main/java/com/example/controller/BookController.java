@@ -43,7 +43,7 @@ public class BookController {
     }
 
     @GetMapping("borrow/{id}")
-    public String borrow(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+    public String saveBorrow(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
         BorrowedBook borrowedBook = new BorrowedBook();
         Optional<Book> book = bookService.findById(id);
         if (book.isPresent() && book.get().getQuantityAvailable() != 0) {
@@ -71,7 +71,7 @@ public class BookController {
     }
 
     @GetMapping("give-book-back")
-    public String giveBookBack(@RequestParam long code, RedirectAttributes redirectAttributes) {
+    public String saveGiveBookBack(@RequestParam long code, RedirectAttributes redirectAttributes) {
         Optional<BorrowedBook> borrowedBook = borrowedBookService.findByCode(code);
         if (borrowedBook.isPresent() && borrowedBook.get().isStatus()) {
             borrowedBook.get().setStatus(false);
@@ -125,9 +125,9 @@ public class BookController {
         return "redirect:/";
     }
     @GetMapping("remove/{id}")
-    public String removeBook(@PathVariable("id")Integer id, Model model){
+    public String saveRemoveBook(@PathVariable("id")Integer id, Model model){
         bookService.removeById(id);
         model.addAttribute("mess", "This book is removed successfully");
-        return showList(model);
+        return "redirect:/";
     }
 }
