@@ -1,7 +1,7 @@
 package com.repository;
 
-import com.model.User;
+import com.model.MyUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IUserRepository extends JpaRepository<User, Integer> {
+public interface IUserRepository extends JpaRepository<MyUser, Integer> {
 }

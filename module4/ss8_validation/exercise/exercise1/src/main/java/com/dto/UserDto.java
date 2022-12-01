@@ -1,11 +1,11 @@
 package com.dto;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-public class UserDto {
+import javax.validation.constraints.*;
+
+public class UserDto implements Validator {
     private Integer id;
     @NotBlank
     @Size(min = 5, max = 45, message = "Có ít nhất 5 ký tự và tối đa 45 ký tự")
@@ -15,10 +15,13 @@ public class UserDto {
     private String lastName;
     @Pattern(regexp = "^\\d{10}$", message = "{invalid}")
     private String phoneNumber;
-    @Min(value = 18, message = "{ageBigger18}")
+//    @Min(value = 18, message = "{ageBigger18}")
+    @NotNull(message = "null các bạn")
     private Integer age;
     @Pattern(regexp = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$", message = "{invalid}")
     private String email;
+    @NotNull(message = "null các bạn")
+    private int number;
 
     public UserDto() {
     }
@@ -30,6 +33,15 @@ public class UserDto {
         this.phoneNumber = phoneNumber;
         this.age = age;
         this.email = email;
+
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public Integer getId() {
@@ -78,5 +90,19 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        UserDto userDto = (UserDto) target;
+//        if (userDto.age==null) {
+//            errors.rejectValue("age","age.errors",
+//                    "Tuổi không hợp lệ (a>= 18)");
+//        }
     }
 }

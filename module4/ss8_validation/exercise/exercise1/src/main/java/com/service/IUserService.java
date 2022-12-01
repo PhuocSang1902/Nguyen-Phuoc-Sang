@@ -1,7 +1,7 @@
 package com.service;
 
-import com.model.User;
+import com.model.MyUser;
 
 public interface IUserService {
-    void save(User user);
+    void save(MyUser user);
 }

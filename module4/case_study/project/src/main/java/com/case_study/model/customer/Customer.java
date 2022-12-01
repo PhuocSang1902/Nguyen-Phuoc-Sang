@@ -16,12 +16,12 @@ public class Customer {
     private String phoneNumber;
     private String email;
     private String address;
-    private boolean flagRemove;
+    private boolean flagRemove = true;
 
     public Customer() {
     }
 
-    public Customer(Integer id, String name, CustomerType customerType, String birthday, String gender, String idCard, String phoneNumber, String email, String address) {
+    public Customer(Integer id, String name, CustomerType customerType, String birthday, String gender, String idCard, String phoneNumber, String email, String address, boolean flagRemove) {
         this.id = id;
         this.name = name;
         this.customerType = customerType;
@@ -31,7 +31,7 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-        this.flagRemove = true;
+        this.flagRemove = flagRemove;
     }
 
     public Integer getId() {

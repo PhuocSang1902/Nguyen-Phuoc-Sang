@@ -35,6 +35,7 @@
             <label th:for="age" class="form-label">Age</label>
             <input type="number" class="form-control" th:field="*{age}" placeholder="Tuổi từ 18 trở lên">
         </div>
+        <p th:errors="*{age}" class="text-danger"></p>
         <div class="mb-3">
             <label th:for="email" class="form-label">Email</label>
             <input type="text" class="form-control" th:field="*{email}" placeholder="Email">
