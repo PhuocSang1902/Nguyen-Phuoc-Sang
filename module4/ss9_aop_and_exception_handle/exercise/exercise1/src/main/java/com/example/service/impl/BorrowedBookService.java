@@ -1,22 +1,32 @@
 package com.example.service.impl;
 
+import com.example.model.Book;
 import com.example.model.BorrowedBook;
 import com.example.repository.IBorrowedBookRepository;
 import com.example.service.IBorrowedBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class BorrowedBookService implements IBorrowedBookService {
     @Autowired
     IBorrowedBookRepository borrowedBookRepository;
     @Override
-    public void save(BorrowedBook borrowedBook) {
-        borrowedBookRepository.save(borrowedBook);
+    public boolean save(BorrowedBook borrowedBook) {
+        if(borrowedBook.isStatus()){
+            borrowedBook.setStatus(false);
+            Set<Book> bookList = borrowedBook.getBookList();
+            for (Book book : bookList) {
+                book.setQuantityAvailable(book.getQuantityAvailable() + 1);
+                borrowedBookRepository.save(borrowedBook);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

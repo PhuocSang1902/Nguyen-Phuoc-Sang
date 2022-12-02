@@ -42,56 +42,6 @@ public class BookController {
         return "/book/list";
     }
 
-    @GetMapping("borrow/{id}")
-    public String saveBorrow(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-        BorrowedBook borrowedBook = new BorrowedBook();
-        Optional<Book> book = bookService.findById(id);
-        if (book.isPresent() && book.get().getQuantityAvailable() != 0) {
-            long code;
-            do {
-                code = (long) (Math.random() * (99999 - 10000) + 10000);
-            } while (borrowedBookService.exist(code));
-            Set<Book> bookSet;
-            if (borrowedBook.getBookList() != null) {
-                bookSet = borrowedBook.getBookList();
-            } else {
-                bookSet = new LinkedHashSet<>();
-            }
-            bookSet.add(book.get());
-            borrowedBook.setBookList(bookSet);
-            borrowedBook.setCode(code);
-            borrowedBookService.save(borrowedBook);
-            book.get().setQuantityAvailable(book.get().getQuantityAvailable() - 1);
-            bookService.save(book.get());
-            redirectAttributes.addFlashAttribute("mess", "Book is borrowed successfully");
-            redirectAttributes.addFlashAttribute("code", code);
-            return "redirect:/";
-        }
-        return "/errorPage";
-    }
-
-    @GetMapping("give-book-back")
-    public String saveGiveBookBack(@RequestParam long code, RedirectAttributes redirectAttributes) {
-        Optional<BorrowedBook> borrowedBook = borrowedBookService.findByCode(code);
-        if (borrowedBook.isPresent() && borrowedBook.get().isStatus()) {
-            borrowedBook.get().setStatus(false);
-            Set<Book> bookList = borrowedBook.get().getBookList();
-            for (Book book : bookList) {
-                book.setQuantityAvailable(book.getQuantityAvailable() + 1);
-                bookService.save(book);
-            }
-            borrowedBookService.save(borrowedBook.get());
-            redirectAttributes.addFlashAttribute("mess", "Give book back successfully");
-            return "redirect:/";
-        }
-        if (borrowedBook.isPresent() && !borrowedBook.get().isStatus()) {
-            redirectAttributes.addFlashAttribute("mess", "This borrow code given back before");
-            return "redirect:/";
-        }
-        redirectAttributes.addFlashAttribute("mess", "This borrow code is wrong");
-        return "redirect:/";
-    }
-
     @GetMapping("detail/{id}")
     public String bookDetail(@PathVariable("id") Integer id, Model model) {
         Optional<Book> book = bookService.findById(id);

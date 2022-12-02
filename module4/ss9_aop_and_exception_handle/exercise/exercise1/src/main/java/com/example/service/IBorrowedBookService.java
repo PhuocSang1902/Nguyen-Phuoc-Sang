@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IBorrowedBookService {
-    void save(BorrowedBook borrowedBook);
+    boolean save(BorrowedBook borrowedBook);
 
     boolean exist(long code);
 

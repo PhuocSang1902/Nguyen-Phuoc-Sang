@@ -1,6 +1,5 @@
-package com.example.config;
+package com.example.aspect;
 
-import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,10 +14,9 @@ import java.time.LocalDateTime;
 public class LogAspect {
     static private int number = 0;
 
-    @Pointcut("execution(* com.example.controller.BookController.showList(..))")
+    @Pointcut("within(com.example.controller.BorrowedBookController)")
     public void accessApplication() {
     }
-
     @Before("accessApplication()")
     public void beforeAccess() {
         System.out.println("Access number is: " + ++number + " on " + LocalDateTime.now());
