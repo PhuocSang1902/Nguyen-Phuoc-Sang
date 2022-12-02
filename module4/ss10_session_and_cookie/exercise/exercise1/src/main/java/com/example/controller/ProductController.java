@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Controller
@@ -28,8 +30,12 @@ public class ProductController {
 
 
     @GetMapping("/shop")
-    public ModelAndView showShop() {
+    public ModelAndView showShop(Model model, @CookieValue(value = "idProduct", defaultValue = "-1")Long idProduct) {
         ModelAndView modelAndView = new ModelAndView("/shop");
+        if(idProduct!=-1){
+            modelAndView.addObject("historyProduct", productService.findById(idProduct).get());
+        }
+
         modelAndView.addObject("products", productService.findAll());
         return modelAndView;
     }
@@ -61,7 +67,11 @@ public class ProductController {
         return "redirect:/shop";
     }
     @GetMapping("detail/{id}")
-    public String productDetail(@PathVariable("id")Long id, Model model){
+    public String productDetail(@PathVariable("id")Long id, Model model, HttpServletResponse response){
+        Cookie cookie = new Cookie("idProduct", String.valueOf(id));
+        cookie.setMaxAge(30);
+        cookie.setPath("/");
+        response.addCookie(cookie);
         Optional<Product> product = productService.findById(id);
         product.ifPresent(model::addAttribute);
         return "/detail";
