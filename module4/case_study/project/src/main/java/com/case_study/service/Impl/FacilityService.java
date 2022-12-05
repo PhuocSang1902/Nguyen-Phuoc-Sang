@@ -1,5 +1,6 @@
 package com.case_study.service.Impl;
 
+import com.case_study.model.customer.Customer;
 import com.case_study.model.facility.Facility;
 import com.case_study.service.IFacilityService;
 import org.springframework.data.domain.Page;
@@ -10,10 +11,6 @@ import java.util.Optional;
 
 @Service
 public class FacilityService implements IFacilityService {
-    @Override
-    public Page<Facility> findAllAndByName(String search, Pageable pageable) {
-        return null;
-    }
 
     @Override
     public Optional<Facility> findById(Integer id) {
@@ -21,12 +18,12 @@ public class FacilityService implements IFacilityService {
     }
 
     @Override
-    public void remove(Integer id) {
-
+    public Page<Customer> findAll(Pageable pageable) {
+        return null;
     }
 
     @Override
-    public void edit(Integer id) {
+    public void save(Customer customer) {
 
     }
 }

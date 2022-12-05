@@ -29,47 +29,42 @@
 
     </header>
 
-    <div class="row sticky-top" style="height: 50px;">
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #20c997">
+    <div class="row sticky-top" style="height: 50px">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0f5132">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}" style="color: white">The Resort</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                        <li class="nav-item active dropdown mx-3">
+                            <a class="nav-link text-light" href="#" id="customer" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Customer
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu" aria-labelledby="customer">
+                                <li><a class="dropdown-item" th:href="@{/customer}">Customer List</a></li>
+                                <li><a class="dropdown-item" th:href="@{/customer/create}">Create New</a></li>
+                                <li><a class="dropdown-item" th:href="@{/customer/edit}">Edit Customer</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item active dropdown mx-3">
+                            <a class="nav-link text-light" href="#" id="service" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Service
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="service">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
-                        </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-primary" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>
     </div>
 
     <div class="row">
-        <aside class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 d-flex flex-column align-items-center justify-content-center" style="background-color: #5c636a">
+        <aside class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-12 d-flex flex-column align-items-center justify-content-center" style="background-color: #0f5132">
             <div class="card m-3" style="width: 85%;">
                 <img src="https://furamavietnam.com/wp-content/uploads/2018/07/CULIRARY.jpg" class="card-img-top"
                      alt="...">
