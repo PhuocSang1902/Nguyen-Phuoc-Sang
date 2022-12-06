@@ -8,10 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("customer")
@@ -36,5 +33,10 @@ public class CustomerController {
         customerService.save(customer);
         model.addAttribute("mess", "Khách hàng được thêm mới thành công!");
         return "/customer/create-form";
+    }
+    @GetMapping("remove/{id}")
+    public String removeCustomer(@PathVariable("id")Integer id){
+        customerService.removeById(id);
+        return "redirect:/customer";
     }
 }
