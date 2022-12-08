@@ -1,9 +1,14 @@
 package com.case_study.model.facility;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
+@SQLDelete(sql = "UPDATE employee SET flag_remove = false WHERE id = ?")
+@Where(clause = "flag_remove = true")
 public class Facility {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

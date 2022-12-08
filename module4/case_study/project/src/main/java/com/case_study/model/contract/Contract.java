@@ -3,11 +3,15 @@ package com.case_study.model.contract;
 import com.case_study.model.customer.Customer;
 import com.case_study.model.employee.Employee;
 import com.case_study.model.facility.Facility;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@SQLDelete(sql = "UPDATE employee SET flag_remove = false WHERE id = ?")
+@Where(clause = "flag_remove = true")
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,8 +1,13 @@
 package com.case_study.model.contract;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 
 @Entity
+@SQLDelete(sql = "UPDATE employee SET flag_remove = false WHERE id = ?")
+@Where(clause = "flag_remove = true")
 public class ContractDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

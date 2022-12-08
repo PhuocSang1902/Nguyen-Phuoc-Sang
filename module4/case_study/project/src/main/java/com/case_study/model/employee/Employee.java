@@ -1,11 +1,15 @@
 package com.case_study.model.employee;
 
 import com.case_study.model.user.User;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@SQLDelete(sql = "UPDATE employee SET flag_remove = false WHERE id = ?")
+@Where(clause = "flag_remove = true")
 public class Employee {
     @Id
     private Integer id;
@@ -22,7 +26,6 @@ public class Employee {
     private EducationDegree educationDegree;
     @ManyToOne
     private Division division;
-    @Column(columnDefinition = "boolean")
     private boolean flagRemove = true;
     @OneToOne(mappedBy = "employee")
     private User user;
