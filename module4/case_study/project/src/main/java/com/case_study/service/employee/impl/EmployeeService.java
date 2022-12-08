@@ -1,8 +1,7 @@
-package com.case_study.service.Impl;
+package com.case_study.service.employee.impl;
 
-import com.case_study.model.customer.Customer;
 import com.case_study.model.employee.Employee;
-import com.case_study.service.IEmployeeService;
+import com.case_study.service.employee.IEmployeeService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,12 +17,17 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Page<Customer> findAll(Pageable pageable) {
+    public Page<Employee> findAll(Pageable pageable) {
         return null;
     }
 
     @Override
-    public void save(Customer customer) {
+    public boolean save(Employee employee) {
+        return false;
+    }
 
+    @Override
+    public boolean removeById(Integer id) {
+        return false;
     }
 }

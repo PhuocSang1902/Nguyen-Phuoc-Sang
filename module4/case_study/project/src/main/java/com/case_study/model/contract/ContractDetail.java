@@ -12,17 +12,9 @@ public class ContractDetail {
     @ManyToOne
     private AttachFacility attachFacility;
     private Integer quantity;
-    private boolean flagRemove;
+    private boolean flagRemove = true;
 
     public ContractDetail() {
-    }
-
-    public ContractDetail(Integer id, Contract contract, AttachFacility attachFacility, Integer quantity) {
-        this.id = id;
-        this.contract = contract;
-        this.attachFacility = attachFacility;
-        this.quantity = quantity;
-        this.flagRemove = true;
     }
 
     public Integer getId() {

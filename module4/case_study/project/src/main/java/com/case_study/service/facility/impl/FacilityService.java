@@ -1,8 +1,7 @@
-package com.case_study.service.Impl;
+package com.case_study.service.facility.impl;
 
-import com.case_study.model.customer.Customer;
 import com.case_study.model.facility.Facility;
-import com.case_study.service.IFacilityService;
+import com.case_study.service.facility.IFacilityService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,12 +17,17 @@ public class FacilityService implements IFacilityService {
     }
 
     @Override
-    public Page<Customer> findAll(Pageable pageable) {
+    public Page<Facility> findAll(Pageable pageable) {
         return null;
     }
 
     @Override
-    public void save(Customer customer) {
+    public boolean save(Facility facility) {
+        return false;
+    }
 
+    @Override
+    public boolean removeById(Integer id) {
+        return false;
     }
 }

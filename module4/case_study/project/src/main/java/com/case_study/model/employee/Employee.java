@@ -1,15 +1,14 @@
 package com.case_study.model.employee;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.case_study.model.user.User;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Employee {
     @Id
     private Integer id;
-    @Column(name = "employee_name")
     private String name;
     private String birthday;
     private String idCard;
@@ -24,24 +23,15 @@ public class Employee {
     @ManyToOne
     private Division division;
     @Column(columnDefinition = "boolean")
-    private boolean flagRemove;
+    private boolean flagRemove = true;
+    @OneToOne(mappedBy = "employee")
+    private User user;
 
     public Employee() {
     }
 
-    public Employee(Integer id, String name, String birthday, String idCard, Double salary, String phone, String email, String address, Position position, EducationDegree educationDegree, Division division) {
-        this.id = id;
-        this.name = name;
-        this.birthday = birthday;
-        this.idCard = idCard;
-        this.salary = salary;
-        this.phoneNumber = phone;
-        this.email = email;
-        this.address = address;
-        this.position = position;
-        this.educationDegree = educationDegree;
-        this.division = division;
-        this.flagRemove = true;
+    public Employee(String email){
+        this.user.setUsername(email);
     }
 
     public Integer getId() {
@@ -138,5 +128,13 @@ public class Employee {
 
     public void setFlagRemove(boolean flagRemove) {
         this.flagRemove = flagRemove;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

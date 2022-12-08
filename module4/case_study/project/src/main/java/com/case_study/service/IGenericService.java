@@ -10,7 +10,9 @@ public interface IGenericService<T> {
 
     Optional<T> findById(Integer id);
 
-    Page<Customer> findAll(Pageable pageable);
+    Page<T> findAll(Pageable pageable);
 
-    void save(Customer customer);
+    boolean save(T t);
+
+    boolean removeById(Integer id);
 }

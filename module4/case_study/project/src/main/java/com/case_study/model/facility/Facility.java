@@ -17,31 +17,15 @@ public class Facility {
     @ManyToOne
     private FacilityType facilityType;
     private String standardRoom;
-    private String descritionOtherConvenience;
+    private String descriptionOtherConvenience;
     private Double poolArea;
     private Integer numberOfFloor;
     @Column(columnDefinition = "text")
     private String facilityFree;
     @Column(columnDefinition = "boolean")
-    private Boolean flagRemove;
+    private Boolean flagRemove = true;
 
     public Facility() {
-    }
-
-    public Facility(Integer id, String name, Integer area, Double cost, Integer maxPeople, RentType rentType, FacilityType facilityType, String standardRoom, String descritionOtherConvenience, Double poolArea, Integer numberOfFloor, String facilityFree) {
-        this.id = id;
-        this.name = name;
-        this.area = area;
-        this.cost = cost;
-        this.maxPeople = maxPeople;
-        this.rentType = rentType;
-        this.facilityType = facilityType;
-        this.standardRoom = standardRoom;
-        this.descritionOtherConvenience = descritionOtherConvenience;
-        this.poolArea = poolArea;
-        this.numberOfFloor = numberOfFloor;
-        this.facilityFree = facilityFree;
-        this.flagRemove = true;
     }
 
     public Integer getId() {
@@ -108,12 +92,12 @@ public class Facility {
         this.standardRoom = standardRoom;
     }
 
-    public String getDescritionOtherConvenience() {
-        return descritionOtherConvenience;
+    public String getDescriptionOtherConvenience() {
+        return descriptionOtherConvenience;
     }
 
-    public void setDescritionOtherConvenience(String descritionOtherConvenience) {
-        this.descritionOtherConvenience = descritionOtherConvenience;
+    public void setDescriptionOtherConvenience(String descriptionOtherConvenience) {
+        this.descriptionOtherConvenience = descriptionOtherConvenience;
     }
 
     public Double getPoolArea() {

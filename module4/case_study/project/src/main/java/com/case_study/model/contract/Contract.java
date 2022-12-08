@@ -3,8 +3,6 @@ package com.case_study.model.contract;
 import com.case_study.model.customer.Customer;
 import com.case_study.model.employee.Employee;
 import com.case_study.model.facility.Facility;
-import com.case_study.service.Impl.CustomerService;
-import org.hibernate.engine.spi.Mapping;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -23,14 +21,12 @@ public class Contract {
     private Customer customer;
     @ManyToOne
     private Facility facility;
-    @OneToMany(mappedBy="contract")
+    @OneToMany(mappedBy = "contract")
     private Set<ContractDetail> contractDetailSet;
-    private boolean flagRemove;
+    private boolean flagRemove = true;
 
     public Contract() {
     }
-
-
 
     public Integer getId() {
         return id;
