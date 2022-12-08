@@ -2,6 +2,7 @@ package com.case_study.controller;
 
 import com.case_study.model.customer.Customer;
 import com.case_study.service.customer.ICustomerService;
+import com.case_study.viewDto.CustomerView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,8 +18,8 @@ public class CustomerController {
     ICustomerService customerService;
 
     @GetMapping("")
-    public String showList(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model){
-        Page<Customer> customerList = customerService.findAll(pageable);
+    public String showList(@PageableDefault(size = 5) Pageable pageable, Model model){
+        Page<CustomerView> customerList = customerService.showList(pageable);
         model.addAttribute("customerList", customerList);
         return "/customer/list";
     }

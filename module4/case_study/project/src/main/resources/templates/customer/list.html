@@ -106,9 +106,9 @@
             </thead>
             <tbody>
             <tr th:each="customer, status : ${customerList}" class="align-middle text-center">
-                <th th:text="${status.count}"></th>
+                <th th:text="${status.count + customerList.size*customerList.number}"></th>
                 <td th:text="${customer.getName()}"></td>
-                <td th:text="${customer.getCustomerType().getName()}"></td>
+                <td th:text="${customer.getCustomerType()}"></td>
                 <td th:text="${customer.getBirthday()}"></td>
                 <td th:text="${customer.getGender()}"></td>
                 <td th:text="${customer.getIdCard()}"></td>
@@ -118,51 +118,66 @@
                 <td>
                     <button type="button" class="btn btn-outline-warning"><a
                             style="text-decoration: none; color: #ffc107"
-                            th:href="@{/customer/edit/__${customer.id}__}">Sửa</a>
+                            th:href="@{/customer/edit/__${customer.getId()}__}">Sửa</a>
                     </button>
                 </td>
                 <td>
                     <button type="button" class="btn btn-outline-warning"><a
                             style="text-decoration: none; color: #ffc107"
-                            th:href="@{/customer/remove/__${customer.id}__}">Sửa</a>
+                            th:href="@{/customer/remove/__${customer.getId()}__}">Sửa</a>
                     </button>
-<!--                    <button type="button"-->
-<!--                            class="btn btn-outline-danger" data-bs-toggle="modal"-->
-<!--                            data-bs-target="#deleteProduct">Xóa-->
-<!--                    </button>-->
+                    <!--                    <button type="button"-->
+                    <!--                            class="btn btn-outline-danger" data-bs-toggle="modal"-->
+                    <!--                            data-bs-target="#deleteProduct">Xóa-->
+                    <!--                    </button>-->
                 </td>
             </tr>
             </tbody>
         </table>
+        <div class="row" style="margin: 0; padding: 0">
+            <div class="col-4"></div>
+            <div class="col-1">
+                <a class="btn btn-outline-success" th:href="@{/customer(page=${customerList.number-1})}"
+                   th:if="${customerList.hasPrevious()}">Previous</a>
+            </div>
+            <div class="col-2">
+                <p class="text-success text-center justify-content-center"
+                   th:text="'Page ' + ${customerList.number +1}+'/'+${customerList.totalPages} + ' pages'"></p>
+            </div>
+            <div class="col-1">
+                <a class="btn btn-outline-success" th:href="@{/customer(page=${customerList.number+1})}"
+                   th:if="${customerList.hasNext()}">Next</a>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <!--        <form action="/customer" method="post">-->
+        <!--            <div class="modal fade" id="deleteProduct" tabindex="-1"-->
+        <!--                 aria-labelledby="exampleModalLabel"-->
+        <!--                 aria-hidden="true">-->
+        <!--                <div class="modal-dialog">-->
+        <!--                    <div class="modal-content">-->
+        <!--                        <div class="modal-header">-->
+        <!--                            <h5 class="modal-title" id="exampleModalLabel">XÓA KHÁCH HÀNG</h5>-->
+        <!--                            <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+        <!--                                    aria-label="Close"></button>-->
+        <!--                        </div>-->
+        <!--                        <div class="modal-body">-->
+        <!--                            <input type="text" hidden name="action" value="remove">-->
+        <!--                            <input type="text" hidden id="deleteId" name="deleteId">-->
+        <!--                            <p>Bạn có chắc chắn muốn xóa?</p>-->
+        <!--                            <p id="deleteName"></p>-->
+        <!--                        </div>-->
+        <!--                        <div class="modal-footer">-->
+        <!--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy-->
+        <!--                            </button>-->
 
-<!--        <form action="/customer" method="post">-->
-<!--            <div class="modal fade" id="deleteProduct" tabindex="-1"-->
-<!--                 aria-labelledby="exampleModalLabel"-->
-<!--                 aria-hidden="true">-->
-<!--                <div class="modal-dialog">-->
-<!--                    <div class="modal-content">-->
-<!--                        <div class="modal-header">-->
-<!--                            <h5 class="modal-title" id="exampleModalLabel">XÓA KHÁCH HÀNG</h5>-->
-<!--                            <button type="button" class="btn-close" data-bs-dismiss="modal"-->
-<!--                                    aria-label="Close"></button>-->
-<!--                        </div>-->
-<!--                        <div class="modal-body">-->
-<!--                            <input type="text" hidden name="action" value="remove">-->
-<!--                            <input type="text" hidden id="deleteId" name="deleteId">-->
-<!--                            <p>Bạn có chắc chắn muốn xóa?</p>-->
-<!--                            <p id="deleteName"></p>-->
-<!--                        </div>-->
-<!--                        <div class="modal-footer">-->
-<!--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy-->
-<!--                            </button>-->
+        <!--                            <button class="btn btn-primary">Xóa</button>-->
 
-<!--                            <button class="btn btn-primary">Xóa</button>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </form>-->
 
     </div>
 

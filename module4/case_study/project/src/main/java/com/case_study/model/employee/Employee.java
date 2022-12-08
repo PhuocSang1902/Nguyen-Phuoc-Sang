@@ -33,10 +33,6 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String email){
-        this.user.setUsername(email);
-    }
-
     public Integer getId() {
         return id;
     }
