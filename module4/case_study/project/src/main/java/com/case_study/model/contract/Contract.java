@@ -14,7 +14,7 @@ import java.util.Set;
 @Where(clause = "flag_remove = true")
 public class Contract {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String startDate;
     private String endDate;

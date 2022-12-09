@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Where(clause = "flag_remove = true")
 public class ContractDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
     private Contract contract;

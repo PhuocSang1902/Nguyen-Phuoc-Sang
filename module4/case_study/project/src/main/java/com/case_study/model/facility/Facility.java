@@ -11,7 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Where(clause = "flag_remove = true")
 public class Facility {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private Integer area;

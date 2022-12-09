@@ -12,6 +12,7 @@ import java.util.Set;
 @Where(clause = "flag_remove = true")
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String birthday;

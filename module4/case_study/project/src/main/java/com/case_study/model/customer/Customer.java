@@ -6,11 +6,11 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 
 @Entity
-@SQLDelete(sql = "UPDATE employee SET flag_remove = false WHERE id = ?")
+@SQLDelete(sql = "UPDATE customer SET flag_remove = false WHERE id = ?")
 @Where(clause = "flag_remove = true")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     @ManyToOne
