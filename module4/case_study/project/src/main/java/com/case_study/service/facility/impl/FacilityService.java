@@ -1,7 +1,11 @@
 package com.case_study.service.facility.impl;
 
 import com.case_study.model.facility.Facility;
+import com.case_study.model.facility.FacilityType;
+import com.case_study.repository.facility.IFacilityRepository;
 import com.case_study.service.facility.IFacilityService;
+import com.case_study.service.facility.IFacilityTypeService;
+import com.case_study.dtoView.FacilityView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -10,6 +14,14 @@ import java.util.Optional;
 
 @Service
 public class FacilityService implements IFacilityService {
+    final
+    IFacilityRepository facilityRepository;
+    IFacilityTypeService facilityTypeService;
+
+    public FacilityService(IFacilityRepository facilityRepository, IFacilityTypeService facilityTypeService) {
+        this.facilityRepository = facilityRepository;
+        this.facilityTypeService = facilityTypeService;
+    }
 
     @Override
     public Optional<Facility> findById(Integer id) {
@@ -29,5 +41,14 @@ public class FacilityService implements IFacilityService {
     @Override
     public boolean removeById(Integer id) {
         return false;
+    }
+
+    @Override
+    public Page<FacilityView> showList(String facilityName, int facilityTypeId, Pageable pageable) {
+        Optional<FacilityType> facilityType = facilityTypeService.findById(facilityTypeId);
+        if (facilityTypeId == -1 || !facilityType.isPresent()) {
+            return facilityRepository.findByNameContaining(facilityName, pageable);
+        }
+        return facilityRepository.findByNameContainingAndFacilityType(facilityName, facilityType.get(), pageable);
     }
 }

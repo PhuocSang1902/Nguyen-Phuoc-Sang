@@ -5,7 +5,7 @@ import com.case_study.model.customer.Customer;
 import com.case_study.model.customer.CustomerType;
 import com.case_study.service.customer.ICustomerService;
 import com.case_study.service.customer.ICustomerTypeService;
-import com.case_study.viewDto.CustomerView;
+import com.case_study.dtoView.CustomerView;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -50,21 +50,6 @@ public class CustomerController {
         model.addAttribute("customerTypeList", customerTypeList);
         return "/customer/form";
     }
-//    @PostMapping("create")
-//    public String saveCreateCustomer(@Validated @ModelAttribute("customer") CustomerDto customerDto, BindingResult bindingResult, Model model){
-//        new CustomerDto().validate(customerDto, bindingResult);//kích hoạt customer validate
-//        if (!bindingResult.hasErrors()){
-//            Customer customer = new Customer();
-//            BeanUtils.copyProperties(customerDto, customer);
-//            customerService.save(customer);
-//            model.addAttribute("mess", "Khách hàng được thêm mới thành công!");
-//            return "/customer/form";
-//        }
-//        List<CustomerType> customerTypeList = customerTypeService.findAll();
-//        model.addAttribute("customerTypeList", customerTypeList);
-//        model.addAttribute("mess", "Thông tin không chính xác");
-//        return "/customer/form";
-//    }
     @GetMapping("edit/{id}")
     public String showEditForm(@PathVariable("id")Integer id, Model model){
         Optional<Customer> customer = customerService.findById(id);

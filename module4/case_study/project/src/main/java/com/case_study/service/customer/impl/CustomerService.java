@@ -5,21 +5,24 @@ import com.case_study.model.customer.CustomerType;
 import com.case_study.repository.customer.ICustomerRepository;
 import com.case_study.service.customer.ICustomerService;
 import com.case_study.service.customer.ICustomerTypeService;
-import com.case_study.viewDto.CustomerView;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.case_study.dtoView.CustomerView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
 @Service
 public class CustomerService implements ICustomerService {
 
-    @Autowired
-    ICustomerRepository customerRepository;
-    ICustomerTypeService customerTypeService;
+
+    private ICustomerRepository customerRepository;
+    private ICustomerTypeService customerTypeService;
+
+    public CustomerService(ICustomerRepository customerRepository,ICustomerTypeService customerTypeService) {
+        this.customerRepository = customerRepository;
+        this.customerTypeService = customerTypeService;
+    }
 
     @Override
     public Optional<Customer> findById(Integer id) {
@@ -45,8 +48,8 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Page<CustomerView> showList(String name, String email, int customerTypeId, Pageable pageable) {
-
-        if (customerTypeId == -1 || customerTypeService.findById(customerTypeId).isPresent()) {
+        Optional<CustomerType> customerType = customerTypeService.findById(customerTypeId);
+        if (customerTypeId == -1 || !customerType.isPresent()) {
             return customerRepository.findByNameContainingAndEmailContaining(name, email, pageable);
         }
         return customerRepository.findByNameContainingAndEmailContainingAndCustomerType(name, email, customerTypeService.findById(customerTypeId).get(), pageable);

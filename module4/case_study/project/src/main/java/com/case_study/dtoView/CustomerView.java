@@ -1,4 +1,4 @@
-package com.case_study.viewDto;
+package com.case_study.dtoView;
 
 import com.case_study.model.customer.CustomerType;
 import lombok.AllArgsConstructor;
@@ -6,10 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 @Builder
 @Getter
 @AllArgsConstructor
