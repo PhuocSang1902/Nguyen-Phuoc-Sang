@@ -26,7 +26,7 @@
                 <label th:for="facilityType">Loại dịch vụ</label>
                 <select class="form-select hideDefaultSelect" th:field="*{facilityType}"
                         th:attr="onload=|checkFacilityType()|">
-                    <option class="defaultSelect" value="">Hãy chọn kiểu thuê</option>
+                    <option class="defaultSelect" value="">Hãy chọn loại dịch vụ</option>
                     <option th:each="facilityType : ${facilityTypeList}" th:value="${facilityType.id}"
                             th:text="${facilityType.name}"></option>
                 </select>
@@ -35,13 +35,13 @@
             <!--            ----------Form nhập tên------------>
             <div class="form-group">
                 <label th:for="name">Tên dịch vụ</label>
-                <input type="text" class="form-control" th:field="*{name}" placeholder="Nhập đầy đủ họ tên">
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Tên gồm chứ và số. Vd: Abc123">
             </div>
             <p th:errors="*{name}" class="text-danger"></p>
             <!--            ----------Form nhập diện tích------------>
             <div class="form-group">
                 <label th:for="area">Diện tích</label>
-                <input type="text" class="form-control" th:field="*{area}" placeholder="Tên gồm chứ và số. Vd: Abc123">
+                <input type="text" class="form-control" th:field="*{area}" placeholder="Diện tích phải lớn hơn không">
             </div>
             <p th:errors="*{area}" class="text-danger"></p>
             <!--            ----------Form nhập giá------------>
@@ -99,13 +99,13 @@
             </div>
             <!--            ----------Form nhập dịch vụ miễn phí------------>
             <div class="form-group facilityFree">
-                <label th:for="email">Dịch vụ miễn phí</label>
+                <label th:for="facilityFree">Dịch vụ miễn phí</label>
                 <input type="text" class="form-control" th:field="*{facilityFree}">
                 <p th:errors="*{facilityFree}" class="text-danger"></p>
             </div>
             <!--            ----------Nút tuỳ chọn------------>
             <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
-                <a th:href="@{/customer}" style="text-decoration: none; width: 30%"
+                <a th:href="@{/facility}" style="text-decoration: none; width: 30%"
                    class="form-control btn btn-outline-info mx-5">
                     Hủy
                 </a>

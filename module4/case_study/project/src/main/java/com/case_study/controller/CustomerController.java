@@ -67,6 +67,8 @@ public class CustomerController {
     public String saveCustomer(@Validated @ModelAttribute("customer")CustomerDto customerDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
         new CustomerDto().validate(customerDto, bindingResult);
         if(bindingResult.hasErrors()){
+            List<CustomerType> customerTypeList = customerTypeService.findAll();
+            model.addAttribute("customerTypeList", customerTypeList);
             model.addAttribute("mess","Thông tin không chính xác");
             return "/customer/form";
         }

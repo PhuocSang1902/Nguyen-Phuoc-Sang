@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
-@SQLDelete(sql = "UPDATE employee SET flag_remove = false WHERE id = ?")
+@SQLDelete(sql = "UPDATE facility SET flag_remove = false WHERE id = ?")
 @Where(clause = "flag_remove = true")
 @Builder
 @Getter

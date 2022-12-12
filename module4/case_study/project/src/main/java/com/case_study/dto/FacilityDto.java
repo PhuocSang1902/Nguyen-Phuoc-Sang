@@ -2,10 +2,7 @@ package com.case_study.dto;
 
 import com.case_study.model.facility.FacilityType;
 import com.case_study.model.facility.RentType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -16,8 +13,9 @@ import java.io.Serializable;
 
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
-@FieldDefaults(makeFinal = true)
+@NoArgsConstructor
 public class FacilityDto implements Serializable, Validator {
     private Integer id;
     @NotEmpty(message = "{NotEmpty}")
@@ -32,9 +30,9 @@ public class FacilityDto implements Serializable, Validator {
     @NotNull(message = "{NotEmpty}")
     @Min(value = 1, message = "{NotCorrect}")
     private Integer maxPeople;
-    @NotBlank(message = "{NotEmpty}")
+    @NotNull(message = "{NotEmpty}")
     private RentType rentType;
-    @NotBlank(message = "{NotEmpty}")
+    @NotNull(message = "{NotEmpty}")
     private FacilityType facilityType;
     @NotBlank(message = "{NotEmpty}")
     private String standardRoom;
@@ -78,7 +76,7 @@ public class FacilityDto implements Serializable, Validator {
             }
         }
         if (facilityDto.facilityType.getId().equals(3)) {
-            if (facilityDto.numberOfFloor == null) {
+            if (facilityDto.facilityFree == null) {
                 errors.rejectValue("facilityFree", "NotEmpty");
             }
         }

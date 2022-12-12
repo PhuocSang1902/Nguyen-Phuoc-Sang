@@ -63,14 +63,13 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
+                    <form class="d-flex" action="/facility" method="get">
                         <input class="form-control me-1" type="search" placeholder="Tên" name="facilityName"
                                aria-label="Search" th:value="${facilityName}">
-                        <select class="form-select me-1" name="facilityTypeId" id="" th:value="${facilityTypeId}">
-                            <option value="-1">---Chọn---</option>
+                        <select class="form-select me-1" name="facilityTypeId" id="facilityTypeId" th:value="${{facilityTypeId}}">
+                            <option th:value="-1">---Chọn---</option>
                             <option th:each="facilityType:${facilityTypeList}" th:value="${facilityType.id}"
                                     th:text="${facilityType.name}"></option>
-
                         </select>
                         <button class="btn btn-primary" type="submit">Tìm</button>
                     </form>
