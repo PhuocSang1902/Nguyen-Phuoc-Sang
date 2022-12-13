@@ -35,43 +35,19 @@
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0f5132">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item mx-3">
-                            <a class="nav-link active" aria-current="page" th:href="@{/}" style="color: white">The
-                                Resort</a>
-                        </li>
-                        <li class="nav-item active dropdown mx-3">
-                            <a class="nav-link text-light" href="#" id="customer" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Customer
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="customer">
-                                <li><a class="dropdown-item" th:href="@{/customer}">Customer List</a></li>
-                                <li><a class="dropdown-item" th:href="@{/customer/create}">Create New</a></li>
-                                <li><a class="dropdown-item" th:href="@{/customer/edit}">Edit Customer</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item active dropdown mx-3">
-                            <a class="nav-link text-light" href="#" id="service" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                Service
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="service">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
+                    <ul th:replace="home::headerNavbar" class="navbar-nav me-auto mb-2 mb-lg-0">
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-1" type="search" placeholder="Tên" name="customerName"
                                aria-label="Search" th:value="${customerName}">
                         <input class="form-control me-1" type="search" placeholder="Email" name="email"
                                aria-label="Search" th:value="${email}">
-                        <select class="form-select me-1" name="customerTypeId" id="" th:value="${customerTypeId}">
+                        <select class="form-select me-1" name="customerTypeId" id="customerTypeId1"
+                                th:value="${customerTypeId}">
                             <option value="-1">---Chọn---</option>
                             <option th:each="customerType:${customerTypeList}" th:value="${customerType.id}"
-                                    th:text="${customerType.name}"></option>
+                                    th:text="${customerType.name}"
+                                    th:selected="${customerTypeId==customerType.id}"></option>
 
                         </select>
                         <button class="btn btn-primary" type="submit">Tìm</button>

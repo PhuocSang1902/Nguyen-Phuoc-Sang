@@ -6,6 +6,10 @@ import com.case_study.dtoView.FacilityView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface IFacilityService extends IGenericService<Facility> {
     Page<FacilityView> showList(String facilityName, int facilityTypeId, Pageable pageable);
+
+    List<Facility> findAll();
 }

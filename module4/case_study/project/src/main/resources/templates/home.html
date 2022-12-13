@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Furama Resort</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -33,7 +34,7 @@
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0f5132">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul th:fragment="headerNavbar" class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item mx-3">
                             <a class="nav-link active" aria-current="page" th:href="@{/}" style="color: white">The Resort</a>
                         </li>
@@ -43,8 +44,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="customer">
                                 <li><a class="dropdown-item" th:href="@{/customer}">Danh sách khách hàng</a></li>
-                                <li><a class="dropdown-item" th:href="@{/customer/create}">Create New</a></li>
-                                <li><a class="dropdown-item" th:href="@{/customer/edit}">Edit Customer</a></li>
+                                <li><a class="dropdown-item" th:href="@{/customer/create}">Tạo mới</a></li>
                             </ul>
                         </li>
                         <li class="nav-item active dropdown mx-3">
@@ -53,7 +53,11 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="service">
                                 <li><a class="dropdown-item" th:href="@{/facility}">Danh sách dịch vụ</a></li>
+                                <li><a class="dropdown-item" th:href="@{/facility/create}">Tạo mới</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link active" id="btn-contract" href="/contract" aria-current="page" style="color: white">Contract</a>
                         </li>
                     </ul>
                 </div>
@@ -178,4 +182,6 @@
 </div>
 
 </body>
+<script>
+</script>
 </html>

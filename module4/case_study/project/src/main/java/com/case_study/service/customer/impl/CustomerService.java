@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,6 +53,11 @@ public class CustomerService implements ICustomerService {
         if (customerTypeId == -1 || !customerType.isPresent()) {
             return customerRepository.findByNameContainingAndEmailContaining(name, email, pageable);
         }
-        return customerRepository.findByNameContainingAndEmailContainingAndCustomerType(name, email, customerTypeService.findById(customerTypeId).get(), pageable);
+        return customerRepository.findByNameContainingAndEmailContainingAndCustomerType(name, email, customerType.get(), pageable);
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
     }
 }

@@ -44,7 +44,7 @@ public class CustomerController {
     }
     @GetMapping("create")
     public String showCreateForm(Model model){
-        Customer customer = new Customer();
+        Customer customer = Customer.builder().build();
         List<CustomerType> customerTypeList = customerTypeService.findAll();
         model.addAttribute("customer", customer);
         model.addAttribute("customerTypeList", customerTypeList);
@@ -54,7 +54,7 @@ public class CustomerController {
     public String showEditForm(@PathVariable("id")Integer id, Model model){
         Optional<Customer> customer = customerService.findById(id);
         if (customer.isPresent()){
-            CustomerDto customerDto = new CustomerDto();
+            CustomerDto customerDto = CustomerDto.builder().build();
             BeanUtils.copyProperties(customer.get(), customerDto);
             model.addAttribute("customer", customerDto);
             List<CustomerType> customerTypeList = customerTypeService.findAll();
@@ -72,7 +72,7 @@ public class CustomerController {
             model.addAttribute("mess","Thông tin không chính xác");
             return "/customer/form";
         }
-        Customer customer = new Customer();
+        Customer customer = Customer.builder().build();
         BeanUtils.copyProperties(customerDto, customer);
         customerService.save(customer);
         redirectAttributes.addFlashAttribute("mess","Lưu thành công");

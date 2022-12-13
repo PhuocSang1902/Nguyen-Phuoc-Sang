@@ -6,6 +6,10 @@ import com.case_study.dtoView.CustomerView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface ICustomerService extends IGenericService<Customer> {
-    Page<CustomerView> showList(String name,String email, int customerTypeId, Pageable pageable);
+    Page<CustomerView> showList(String name, String email, int customerTypeId, Pageable pageable);
+
+    List<Customer> findAll();
 }
