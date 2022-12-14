@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,5 +49,10 @@ public class ContractService implements IContractService {
             return contractRepository.showList(pageable);
         }
         return contractRepository.showListWithCustomer(customerId,pageable);
+    }
+
+    @Override
+    public List<ContractView> showListByCustomer(int customerId) {
+        return contractRepository.showListWithCustomer(customerId);
     }
 }

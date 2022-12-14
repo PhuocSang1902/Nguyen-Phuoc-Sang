@@ -1,5 +1,6 @@
 package com.case_study.service.customer.impl;
 
+import com.case_study.dtoView.CustomerUseFacilityView;
 import com.case_study.model.customer.Customer;
 import com.case_study.model.customer.CustomerType;
 import com.case_study.repository.customer.ICustomerRepository;
@@ -59,5 +60,14 @@ public class CustomerService implements ICustomerService {
     @Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
+    }
+
+    @Override
+    public Page<CustomerUseFacilityView> showListUseFacility(String customerName, String email, int customerTypeId, Pageable pageable) {
+        Optional<CustomerType> customerType = customerTypeService.findById(customerTypeId);
+        if (customerTypeId == -1 || !customerType.isPresent()) {
+            return customerRepository.showListUseFacilityByNameAndEmail(customerName, email, pageable);
+        }
+        return customerRepository.showListUseFacilityByNameAndEmailAndCustomerType(customerName, email, customerTypeId, pageable);
     }
 }

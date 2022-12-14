@@ -21,6 +21,4 @@ public class CustomerView {
     private String email;
     private String address;
     private boolean flagRemove = true;
-
-
 }

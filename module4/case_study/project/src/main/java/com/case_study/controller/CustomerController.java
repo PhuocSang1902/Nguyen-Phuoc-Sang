@@ -1,6 +1,7 @@
 package com.case_study.controller;
 
 import com.case_study.dto.CustomerDto;
+import com.case_study.dtoView.CustomerUseFacilityView;
 import com.case_study.model.customer.Customer;
 import com.case_study.model.customer.CustomerType;
 import com.case_study.service.customer.ICustomerService;
@@ -41,6 +42,17 @@ public class CustomerController {
         List<CustomerType> customerTypeList = customerTypeService.findAll();
         model.addAttribute("customerTypeList", customerTypeList);
         return "/customer/list";
+    }
+    @GetMapping("use-facility")
+    public String showListUseFacility(@RequestParam(defaultValue = "")String customerName,@RequestParam(defaultValue = "")String email,@RequestParam(defaultValue = "-1")int customerTypeId,@PageableDefault(size = 5) Pageable pageable, Model model){
+        Page<CustomerUseFacilityView> customerList = customerService.showListUseFacility(customerName,email,customerTypeId,pageable);
+        model.addAttribute("customerList", customerList);
+        model.addAttribute("customerName", customerName);
+        model.addAttribute("email", email);
+        model.addAttribute("customerTypeId", customerTypeId);
+        List<CustomerType> customerTypeList = customerTypeService.findAll();
+        model.addAttribute("customerTypeList", customerTypeList);
+        return "/customer/list-use-facility";
     }
     @GetMapping("create")
     public String showCreateForm(Model model){

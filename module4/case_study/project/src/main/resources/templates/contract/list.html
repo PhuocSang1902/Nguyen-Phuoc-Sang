@@ -133,28 +133,6 @@
 
     </footer>
 
-    <!-- Modal xoá -->
-    <form action="/facility/remove">
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Xoá dịch vụ</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Bạn có muốn xoá <span id="deleteName"></span> không?</p>
-                        <input type="text" hidden id="deleteId" name="id">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-
     <!-- Modal thêm mới -->
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -178,7 +156,7 @@
                                placeholder="Đặt cọc không nhỏ hơn 0">
                     </div>
                     <div class="form-group">
-                        <label for="customer">Khách hàng thuê dịch vụ</label>
+                        <label for="customerId">Khách hàng thuê dịch vụ</label>
                         <select class="form-select" aria-label="Default select example" id="customerId"
                                 name="customer">
                             <option class="defaultSelect">---Chọn---</option>

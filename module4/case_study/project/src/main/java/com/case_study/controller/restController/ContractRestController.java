@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -37,6 +38,11 @@ public class ContractRestController {
     @GetMapping("")
     public ResponseEntity<Page<ContractView>> showList(@PageableDefault(size = 5) Pageable pageable, @RequestParam(defaultValue = "-1") int customerId) {
         Page<ContractView> contractList = contractService.showList(customerId, pageable);
+        return new ResponseEntity<>(contractList, HttpStatus.OK);
+    }
+    @GetMapping("by-customer/{id}")
+    public ResponseEntity<List<ContractView>> showListByCustomer(@PathVariable("id") int customerId) {
+        List<ContractView> contractList = contractService.showListByCustomer(customerId);
         return new ResponseEntity<>(contractList, HttpStatus.OK);
     }
     @PostMapping("")

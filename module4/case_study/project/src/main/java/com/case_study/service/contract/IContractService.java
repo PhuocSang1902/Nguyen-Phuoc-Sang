@@ -11,4 +11,6 @@ import java.util.List;
 public interface IContractService extends IGenericService<Contract> {
 
     Page<ContractView> showList(int customerId, Pageable pageable);
+
+    List<ContractView> showListByCustomer(int customerId);
 }
