@@ -161,6 +161,12 @@
                 </table>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger backDetailCustomerUseFacilityButton"
+                         data-bs-toggle="modal"
+                        data-bs-target="#detailCustomerUseFacilityModal">
+                    Trở lại
+                </button>
+                <input type="text" hidden id="backDetailCustomerUseFacility">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
             </div>
         </div>
@@ -200,9 +206,7 @@
 
 </body>
 <script>
-    $('.detailCustomerUseFacilityButton').click(function () {
-        alert(this.value);
-        let customerId = this.value;
+    function showDetail(customerId){
         $.ajax({
             url: 'http://localhost:8080/contracts/by-customer/' + customerId,
             type: 'GET',
@@ -231,6 +235,8 @@
                 $("#detailCustomerUseFacilityBody").append(detailCustomerUseFacility);
                 $('.showAttachFacilityButton').click(function () {
                     let contractId = this.value;
+                    document.getElementById("backDetailCustomerUseFacility").value = customerId;
+                    debugger
                     $.ajax({
                         url: 'http://localhost:8080/contract-details/' + contractId,
                         type: 'GET',
@@ -256,6 +262,14 @@
                 })
             }
         })
+    }
+    $('.backDetailCustomerUseFacilityButton').click(function () {
+        let customerId = $("#backDetailCustomerUseFacility").val();
+        showDetail(customerId)
+    })
+    $('.detailCustomerUseFacilityButton').click(function () {
+        let customerId = this.value;
+        showDetail(customerId)
     })
 </script>
 </html>
