@@ -12,10 +12,11 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserEmployee {
     @Id
     private String username;
     private String password;
+    private boolean isEnabled;
     @OneToOne
     private Employee employee;
     @ManyToMany(fetch = FetchType.EAGER)

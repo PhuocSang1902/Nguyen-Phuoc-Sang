@@ -139,14 +139,18 @@
                     $(".numberOfFloor").show();
                     $(".poolArea").show();
                     $(".facilityFree").hide();
-                    debugger
+                    $("#facilityFree").val(null);
                 } else if (facilityType == 2) {
                     $(".numberOfFloor").show();
                     $(".poolArea").hide();
+                    $("#poolArea").val(null);
                     $(".facilityFree").hide();
+                    $("#facilityFree").val(null);
                 } else if (facilityType == 3) {
                     $(".numberOfFloor").hide();
+                    $("#numberOfFloor").val(null);
                     $(".poolArea").hide();
+                    $("#poolArea").val(null);
                     $(".facilityFree").show();
                 }
             }

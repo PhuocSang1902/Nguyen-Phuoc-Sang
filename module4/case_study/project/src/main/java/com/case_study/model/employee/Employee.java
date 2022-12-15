@@ -1,7 +1,7 @@
 package com.case_study.model.employee;
 
 import com.case_study.model.contract.Contract;
-import com.case_study.model.user.User;
+import com.case_study.model.user.UserEmployee;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -40,5 +40,5 @@ public class Employee {
     @JsonBackReference
     private Set<Contract> contractSet;
     @OneToOne(mappedBy = "employee")
-    private User user;
+    private UserEmployee user;
 }
