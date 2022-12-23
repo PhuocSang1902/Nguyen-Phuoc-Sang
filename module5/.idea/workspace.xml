@@ -20,71 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fcfdd89-d7d5-4c67-9ade-32effbf8d7fc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/case_study/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/java/com/case_study/CaseStudyApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/java/com/case_study/model/ViTri.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/img/img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/img/img_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/img/img_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-grid.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-grid.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-grid.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-grid.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-grid.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-grid.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-reboot.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-reboot.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-reboot.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-reboot.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-reboot.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-reboot.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-reboot.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-reboot.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-utilities.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-utilities.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-utilities.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-utilities.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-utilities.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-utilities.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-utilities.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap-utilities.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/css/bootstrap.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.esm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.esm.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.esm.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.esm.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/bootstrap-5.1.3-dist/js/bootstrap.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/facility/form-create.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/facility/form-edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/facility/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/main/resources/templates/navbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/case_study/src/test/java/com/case_study/CaseStudyApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +32,7 @@
       <list>
         <option value="JavaScript File" />
         <option value="TypeScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -109,11 +46,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="ts.external.directory.path" value="D:\02.Cong viec\Hoc\Lap trinh\Code gym\C0722G1---Nguyen-Phuoc-Sang\module5\module5\node_modules\typescript\lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/exercise-angular" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="D:\02.Cong viec\Hoc\Lap trinh\Code gym\C0722G1---Nguyen-Phuoc-Sang\module5\empty-project\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -134,6 +76,10 @@
       <workItem from="1671608516491" duration="268000" />
       <workItem from="1671608785735" duration="690000" />
       <workItem from="1671609498909" duration="26000" />
+      <workItem from="1671697112476" duration="1237000" />
+      <workItem from="1671698367347" duration="309000" />
+      <workItem from="1671698713110" duration="1129000" />
+      <workItem from="1671716798608" duration="13000" />
     </task>
     <servers />
   </component>
@@ -153,9 +99,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1671609510416">
+    <state x="223" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1671698370177">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state x="223" y="63" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.816@0.0.1536.816" timestamp="1671698370177" />
+    <state x="2469" y="163" key="FileChooserDialogImpl" timestamp="1671716809576">
+      <screen x="1920" y="0" width="1536" height="816" />
+    </state>
+    <state x="2469" y="163" key="FileChooserDialogImpl/0.0.1536.816/1920.0.1536.816@1920.0.1536.816" timestamp="1671716809576" />
     <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1671609510416" />
   </component>
 </project>

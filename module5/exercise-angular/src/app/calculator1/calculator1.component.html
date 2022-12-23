@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <td><input style="width: 100px" class="form-control" type="text" (change)="getNum1($event.target)"></td>
+    <td><select style="width: 80px" class="form-select" #operator name="operator" id="operator">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select></td>
+    <td><input style="width: 100px" class="form-control" type="text" (change)="getNum2($event.target)"></td>
+    <td><button class="btn btn-primary" (click)="getResult(operator.value)">=</button></td>
+    <td><p>{{result}}</p></td>
+  </tr>
+</table>
