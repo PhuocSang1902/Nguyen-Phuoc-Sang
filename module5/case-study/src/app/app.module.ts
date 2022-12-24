@@ -8,8 +8,8 @@ import { FooterComponent } from './common/footer/footer.component';
 import { HomeComponent } from './common/home/home.component';
 import { NavComponent } from './common/nav/nav.component';
 import { FacilityListComponent } from './facility/facility-list/facility-list.component';
-import { EditFormFacilityComponent } from './facility/edit-form-facility/edit-form-facility.component';
-import { CreateFormFacilityComponent } from './facility/create-form-facility/create-form-facility.component';
+import { FacilityEditFormComponent } from './facility/facility-edit-form/facility-edit-form.component';
+import { FacilityCreateFormComponent } from './facility/facility-create-form/facility-create-form.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,8 @@ import { CreateFormFacilityComponent } from './facility/create-form-facility/cre
     HomeComponent,
     NavComponent,
     FacilityListComponent,
-    EditFormFacilityComponent,
-    CreateFormFacilityComponent
+    FacilityEditFormComponent,
+    FacilityCreateFormComponent
   ],
   imports: [
     BrowserModule,
