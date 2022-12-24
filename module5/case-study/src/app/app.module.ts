@@ -13,6 +13,8 @@ import { FacilityCreateFormComponent } from './facility/facility-create-form/fac
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerEditFormComponent } from './customer/customer-edit-form/customer-edit-form.component';
 import { CustomerCreateFormComponent } from './customer/customer-create-form/customer-create-form.component';
+import { ContractCreateFormComponent } from './contract/contract-create-form/contract-create-form.component';
+import { ContractListComponent } from './contract/contract-list/contract-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { CustomerCreateFormComponent } from './customer/customer-create-form/cus
     FacilityCreateFormComponent,
     CustomerListComponent,
     CustomerEditFormComponent,
-    CustomerCreateFormComponent
+    CustomerCreateFormComponent,
+    ContractCreateFormComponent,
+    ContractListComponent
   ],
   imports: [
     BrowserModule,

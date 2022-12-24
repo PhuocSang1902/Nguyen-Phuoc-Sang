@@ -1,0 +1,66 @@
+<app-header></app-header>
+<div class="d-flex justify-content-center">
+  <div class="col-6">
+    <!--            ----------Tiêu đề------------>
+    <div class="my-5"><h1>Thêm mới hợp đồng</h1></div>
+    <form class="my-5" action="/customer/save" method="post">
+      <!--            ----------Form bắt đầu------------>
+      <div class="form-group">
+        <label for="startDate">Ngày bắt đầu</label>
+        <input type="date" class="form-control" id="startDate" name="startDate" min="1920-01-01">
+      </div>
+      <!--            ----------Ngày kết thúc------------>
+      <div class="form-group">
+        <label for="endDate">Ngày kết thúc</label>
+        <input type="date" class="form-control" id="endDate" name="endDate" min="1920-01-01">
+      </div>
+      <!--            ----------Thêm tiền đặt cọc------------>
+      <div class="form-group">
+        <label for="deposit">Đặt cọc</label>
+        <input type="text" class="form-control" id="deposit" name="deposit"
+               placeholder="Đặt cọc không nhỏ hơn 0">
+      </div>
+      <!--            ----------Thêm khách hàng thuê dịch vụ------------>
+      <div class="form-group">
+        <label for="customerId">Khách hàng thuê dịch vụ</label>
+        <select class="form-select" aria-label="Default select example" id="customerId"
+                name="customer">
+          <option class="defaultSelect">---Chọn---</option>
+        </select>
+      </div>
+      <!--            ----------Thêm dịch vụ------------>
+      <div class="form-group">
+        <label for="facility">Dịch vụ</label>
+        <select class="form-select" aria-label="Default select example" id="facility"
+                name="facility">
+          <option class="defaultSelect">---Chọn---</option>
+        </select>
+      </div>
+      <!--            ----------Thêm nhân viên------------>
+      <div class="form-group">
+        <label for="employee">Nhân viên</label>
+        <select class="form-select" aria-label="Default select example" id="employee"
+                name="employee" onmouseover="disappear()">
+          <option class="defaultSelect">---Chọn---</option>
+        </select>
+      </div>
+      <!--            ----------Nút tuỳ chọn------------>
+      <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
+        <a href="@{/customer}" style="text-decoration: none; width: 30%"
+           class="form-control btn btn-outline-info mx-5">
+          Hủy
+        </a>
+        <button style="width: 30%" type="submit" class="btn btn-outline-success mx-5">
+          Lưu
+        </button>
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
+        <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
+                id="formInput13">
+          <a href="/" style="text-decoration: none; color: #0dcaf0">Trang chủ</a>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>
