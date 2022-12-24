@@ -50,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/exercise-angular" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -80,6 +80,7 @@
       <workItem from="1671698367347" duration="309000" />
       <workItem from="1671698713110" duration="1129000" />
       <workItem from="1671716798608" duration="13000" />
+      <workItem from="1671782336418" duration="1442000" />
     </task>
     <servers />
   </component>
