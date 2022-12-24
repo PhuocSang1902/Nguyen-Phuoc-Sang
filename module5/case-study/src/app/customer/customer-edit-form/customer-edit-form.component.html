@@ -1,0 +1,76 @@
+<app-header></app-header>
+<div class="d-flex justify-content-center">
+  <div class="col-6">
+    <!--            ----------Tiêu đề------------>
+    <div class="my-5"><h1>Chỉnh sửa khách hàng</h1></div>
+    <form class="my-5" action="/customer/save" method="post">
+      <!--            ----------ID khách hàng------------>
+      <input type="text" hidden class="form-control" id="id" name="id">
+      <!--            ----------Form nhập tên------------>
+      <div class="form-group">
+        <label for="name">Tên khách hàng</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập đầy đủ họ tên">
+      </div>
+      <!--            ----------Form chọn loại khách------------>
+      <div class="form-group">
+        <label for="customerType">Loại khách hàng</label>
+        <select class="form-select hideDefaultSelect" id="customerType" name="customerType">
+          <option class="defaultSelect" value="">Hãy chọn loại khách hàng</option>
+        </select>
+      </div>
+      <!--            ----------Form nhập ngày sinh------------>
+      <div class="form-group">
+        <label for="birthday">Ngày sinh</label>
+        <input type="date" class="form-control" id="birthday" name="birthday"
+               min="1920-01-01">
+      </div>
+      <!--            ----------Form chọn giới tính------------>
+      <div class="form-group">
+        <label for="gender">Giới tính</label>
+        <select class="form-select hideDefaultSelect" id="gender" name="gender">
+          <option class="defaultSelect" value="">Hãy chọn giới tính</option>
+          <option value="Nam">Nam</option>
+          <option value="Nữ">Nữ</option>
+        </select>
+      </div>
+      <!--            ----------Form nhập CCCD------------>
+      <div class="form-group">
+        <label for="idCard">Số CCCD</label>
+        <input type="text" class="form-control" id="idCard" name="idCard" placeholder="9 hoặc 12 số">
+      </div>
+      <!--            ----------Form nhập số điện thoại------------>
+      <div class="form-group">
+        <label for="phoneNumber">Số điện thoại</label>
+        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+               placeholder="09xxxxxxxx/+849xxxxxxxx">
+      </div>
+      <!--            ----------Form nhập email------------>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="abc@abc.abc">
+      </div>
+      <!--            ----------Form nhập địa chỉ------------>
+      <div class="form-group">
+        <label for="address">Địa chỉ</label>
+        <input type="text" class="form-control" id="address" name="address">
+      </div>
+      <!--            ----------Nút tuỳ chọn------------>
+      <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
+        <a href="@{/customer}" style="text-decoration: none; width: 30%"
+           class="form-control btn btn-outline-info mx-5">
+          Hủy
+        </a>
+        <button style="width: 30%" type="submit" class="btn btn-outline-success mx-5">
+          Lưu
+        </button>
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
+        <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
+                id="formInput13">
+          <a href="/" style="text-decoration: none; color: #0dcaf0">Trang chủ</a>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

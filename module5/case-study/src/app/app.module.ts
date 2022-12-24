@@ -10,6 +10,9 @@ import { NavComponent } from './common/nav/nav.component';
 import { FacilityListComponent } from './facility/facility-list/facility-list.component';
 import { FacilityEditFormComponent } from './facility/facility-edit-form/facility-edit-form.component';
 import { FacilityCreateFormComponent } from './facility/facility-create-form/facility-create-form.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { CustomerEditFormComponent } from './customer/customer-edit-form/customer-edit-form.component';
+import { CustomerCreateFormComponent } from './customer/customer-create-form/customer-create-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { FacilityCreateFormComponent } from './facility/facility-create-form/fac
     NavComponent,
     FacilityListComponent,
     FacilityEditFormComponent,
-    FacilityCreateFormComponent
+    FacilityCreateFormComponent,
+    CustomerListComponent,
+    CustomerEditFormComponent,
+    CustomerCreateFormComponent
   ],
   imports: [
     BrowserModule,
