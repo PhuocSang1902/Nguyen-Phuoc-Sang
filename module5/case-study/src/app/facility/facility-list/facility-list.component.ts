@@ -9,41 +9,9 @@ import {Facility} from "../../../model/facility/facility";
   styleUrls: ['./facility-list.component.css']
 })
 export class FacilityListComponent implements OnInit {
+  rentType: RentType[] = [{id: 1, name: "year"}, {id: 1, name: "month"}, {id: 1, name: "date"}, {id: 1, name: "hours"}]
 
-  year: RentType = {
-    id: 1,
-    name: "year"
-  };
-
-  month: RentType = {
-    id: 1,
-    name: "month"
-  };
-
-  date: RentType = {
-    id: 1,
-    name: "date"
-  };
-
-  hours: RentType = {
-    id: 1,
-    name: "hours"
-  };
-
-  villa: FacilityType = {
-    id: 1,
-    name: "villa"
-  }
-
-  house: FacilityType = {
-    id: 1,
-    name: "house"
-  }
-
-  room: FacilityType = {
-    id: 1,
-    name: "room"
-  }
+  facilityType: FacilityType[] = [{id: 1, name: "villa"}, {id: 2, name: "house"}, {id: 3, name: "room"}]
 
   facilities: Facility[] = [
     {
@@ -52,8 +20,8 @@ export class FacilityListComponent implements OnInit {
       area: 2500,
       cost: 1000000,
       maxPeople: 10,
-      facilityType: this.villa,
-      rentType: this.date,
+      facilityType: this.facilityType[0],
+      rentType: this.rentType[2],
       standardRoom: "vip",
       descriptionOtherConvenience: "Có hồ bơi",
       poolArea: 500,
@@ -66,8 +34,8 @@ export class FacilityListComponent implements OnInit {
       area: 14000,
       cost: 5000000,
       maxPeople: 7,
-      facilityType: this.house,
-      rentType: this.month,
+      facilityType: this.facilityType[1],
+      rentType: this.rentType[1],
       standardRoom: "vip",
       descriptionOtherConvenience: "Có thêm bếp nướng",
       numberOfFloors: 3,
@@ -79,8 +47,8 @@ export class FacilityListComponent implements OnInit {
       area: 5000,
       cost: 1000000,
       maxPeople: 2,
-      facilityType: this.room,
-      rentType: this.hours,
+      facilityType: this.facilityType[2],
+      rentType: this.rentType[3],
       facilityFree: "1 xe máy, 1 xe đạp",
       flagDelete: false
     },
@@ -90,8 +58,8 @@ export class FacilityListComponent implements OnInit {
       area: 22000,
       cost: 9000000,
       maxPeople: 8,
-      facilityType: this.villa,
-      rentType: this.year,
+      facilityType: this.facilityType[0],
+      rentType: this.rentType[0],
       standardRoom: "normal",
       descriptionOtherConvenience: "Có hồ bơi",
       poolArea: 300,
@@ -104,8 +72,8 @@ export class FacilityListComponent implements OnInit {
       area: 10000,
       cost: 4000000,
       maxPeople: 5,
-      facilityType: this.house,
-      rentType: this.date,
+      facilityType: this.facilityType[1],
+      rentType: this.rentType[1],
       standardRoom: "normal",
       descriptionOtherConvenience: "Có thêm bếp nướng",
       numberOfFloors: 2,
@@ -117,8 +85,8 @@ export class FacilityListComponent implements OnInit {
       area: 3000,
       cost: 900000,
       maxPeople: 2,
-      facilityType: this.room,
-      rentType: this.hours,
+      facilityType: this.facilityType[2],
+      rentType: this.rentType[3],
       facilityFree: "1 xe máy",
       flagDelete: false
     },

@@ -10,6 +10,11 @@ import {FormsModule} from '@angular/forms';
 import { LikeComponent } from './hackernews/like/like.component';
 import { NavbarComponent } from './hackernews/navbar/navbar.component';
 import { FooterComponent } from './hackernews/footer/footer.component';
+import { NameCardComponent } from './name-card/name-card.component';
+import { NameCardParentComponent } from './name-card-parent/name-card-parent.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { RatingBarComponent } from './rating-bar/rating-bar.component';
+import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,12 @@ import { FooterComponent } from './hackernews/footer/footer.component';
     ArticleComponent,
     LikeComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    NameCardComponent,
+    NameCardParentComponent,
+    ProgressBarComponent,
+    RatingBarComponent,
+    CountdownTimerComponent
   ],
     imports: [
         BrowserModule,

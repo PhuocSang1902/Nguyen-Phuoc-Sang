@@ -13,8 +13,8 @@
 <div class="text-center my-2">
   <h1>DANH SÁCH DỊCH VỤ</h1>
 </div>
-<div class="d-flex flex-wrap">
-  <div *ngFor="let facility of facilities;" class="card p-0 m-2" style="width: 350px">
+<div class="d-flex flex-wrap justify-content-center">
+  <div *ngFor="let facility of facilities;" class="card p-0 m-2" style="width: 22rem">
     <img
       src="https://premiervillagehalongbayresort.com/wp-content/uploads/2021/06/Nha-hang-tai-PRemier-Village-Halong-Bay-1-scaled.jpg"
       class="card-img-top" alt="..." style="height: 250px">
@@ -30,6 +30,9 @@
           Có số người tối đa là {{facility.maxPeople}}.
         </span>
         <br>
+      </p>
+      <hr>
+      <p class="card-text">
         <br>
         <span *ngIf="facility.facilityType?.name  == 'villa'">
           Có tiêu chuẩn phòng là {{facility.standardRoom}}, với diện tích hồ bơi là {{facility.poolArea}}, với số tầng là {{facility.numberOfFloors}}
