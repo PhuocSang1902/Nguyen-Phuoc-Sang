@@ -45,16 +45,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th></th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+    <tr *ngFor="let item of customers, let i = index">
+      <th>{{i+1}}</th>
+      <td>{{item.name}}</td>
+      <td>{{item.customerType?.name}}</td>
+      <td>{{item.birthday}}</td>
+      <td>{{item.gender}}</td>
+      <td>{{item.idCard}}</td>
+      <td>{{item.phoneNumber}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.address}}</td>
       <td>
         <a class="btn btn-outline-warning text-warning">
           Sửa
