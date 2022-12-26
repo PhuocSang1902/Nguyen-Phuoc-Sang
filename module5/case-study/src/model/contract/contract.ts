@@ -4,8 +4,8 @@ import {Facility} from "../facility/facility";
 
 export interface Contract {
   id?: number;
-  startDate?: number;
-  endDate?: number;
+  startDate?: string;
+  endDate?: string;
   deposit?: number;
   customer?: Customer;
   employee?: Employee;
