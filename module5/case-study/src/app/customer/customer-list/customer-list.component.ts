@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerType} from "../../../model/customer/customer-type";
-import {Customer} from "../../../model/customer/customer";
+import {CustomerType} from "../customer-type";
+import {Customer} from "../customer";
 
 @Component({
   selector: 'app-customer-list',

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Division} from "../../../model/employee/division";
-import {Position} from "../../../model/employee/position";
-import {EducationDegree} from "../../../model/employee/education-degree";
-import {Employee} from "../../../model/employee/employee";
-import {Contract} from "../../../model/contract/contract";
+import {Division} from "../../employee/division";
+import {Position} from "../../employee/position";
+import {EducationDegree} from "../../employee/education-degree";
+import {Employee} from "../../employee/employee";
+import {Contract} from "../contract";
 import {CustomerListComponent} from "../../customer/customer-list/customer-list.component";
-import {Customer} from "../../../model/customer/customer";
-import {Facility} from "../../../model/facility/facility";
+import {Customer} from "../../customer/customer";
+import {Facility} from "../../facility/facility";
 
 @Component({
   selector: 'app-contract-list',

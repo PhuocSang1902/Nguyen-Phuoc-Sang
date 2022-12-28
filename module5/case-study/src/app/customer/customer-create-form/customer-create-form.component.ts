@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CustomerType} from "../customer-type";
 
 @Component({
   selector: 'app-customer-create-form',
@@ -7,15 +8,46 @@ import {FormBuilder, FormGroup} from "@angular/forms";
   styleUrls: ['./customer-create-form.component.css']
 })
 export class CustomerCreateFormComponent implements OnInit {
-  private formBuilder: FormBuilder;
+  customerTypes: CustomerType[] = [
+    {id: 1, name: "Diamond"},
+    {id: 2, name: "Platinium"},
+    {id: 3, name: "Gold"},
+    {id: 4, name: "Slive"},
+    {id: 5, name: "Member"}];
   createCustomerForm: FormGroup;
-  constructor() {
-    this.createCustomerForm = this.formBuilder.group({
 
+  regexIdCard: RegExp = /^\d{9}|\d{12}$/;
+  regexPhoneNumber: RegExp = /(09)\d{8}|(\+849)\d{8}/;
+  regexGender: RegExp = /(Nam)|(Nữ)|(Khác)/;
+  regexEmail: RegExp = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/;
+  regexDate: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+  regexName: RegExp = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.createCustomerForm = this.formBuilder.group({
+      id: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern(this.regexName)]],
+      customerType: ['', [Validators.required]],
+      birthday: ['', [Validators.required, Validators.pattern(this.regexDate), this.validateBirthday]],
+      idCard: ['', [Validators.required, Validators.pattern(this.regexIdCard)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(this.regexPhoneNumber)]],
+      gender: ['', [Validators.required, Validators.pattern(this.regexGender)]],
+      email: ['', [Validators.required, Validators.pattern(this.regexEmail)]],
+      address: ['', [Validators.required]]
     })
+  }
+
+  validateBirthday(c: AbstractControl) {
+    let date = new Date(c.value);
+    let age = Date.now() - +(date);
+    return (age <= 18) ? {'greaterThan18': true} : null;
   }
 
   ngOnInit(): void {
   }
 
+  submitCustomer() {
+    console.log(this.createCustomerForm)
+    console.log(this.customerTypes)
+  }
 }
