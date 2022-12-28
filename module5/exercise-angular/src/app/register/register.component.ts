@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
       age: ['', [Validators.required, Validators.min(18)]],
       gender: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern('^{+84}[0-9]{9}$')]]
-    },{validators:Validators.required});
+    },[Validators.required]);
   }
 
 
@@ -61,8 +61,7 @@ export class RegisterComponent implements OnInit {
   }
 
   comparePassword(c: any) {
-    let v = c;
-    return (v?.controls.password?.value === v?.controls.confirmPassword?.value) ? null : {'duplicated': true};
+    return (c?.controls.password?.value === c?.controls.confirmPassword?.value) ? null : {'duplicated': true};
   }
 
   submitForm() {
