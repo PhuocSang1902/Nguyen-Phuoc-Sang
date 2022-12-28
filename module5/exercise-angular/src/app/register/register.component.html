@@ -35,7 +35,7 @@
   <label class="form-label" for="age">Age</label>
   <input class="form-control" type="number" placeholder="age" id="age" name="age" formControlName="age">
   <div *ngIf="!age?.valid && (age?.dirty || age?.touched)">
-    <p *ngIf="age?.errors?.required">Không được để trống</p>
+    <p *ngIf="registerForm.errors?.required">Không được để trống</p>
     <p *ngIf="age?.errors?.min">Không được nhỏ hơn 18 tuổi</p>
   </div>
   <div class="form-check">
