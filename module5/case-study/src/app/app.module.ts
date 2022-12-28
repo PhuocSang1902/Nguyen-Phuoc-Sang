@@ -18,6 +18,7 @@ import { ContractListComponent } from './contract/contract-list/contract-list.co
 import { ModalDeleteCustomerComponent } from './customer/modal-delete-customer/modal-delete-customer.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { EmployeeComponent } from './employee/employee.component';
+import {CustomerService} from "./customer/customer.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { EmployeeComponent } from './employee/employee.component';
         AppRoutingModule,
         ReactiveFormsModule
     ],
-  providers: [],
+  providers: [CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

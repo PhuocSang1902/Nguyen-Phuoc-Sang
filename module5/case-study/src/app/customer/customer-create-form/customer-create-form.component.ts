@@ -14,11 +14,12 @@ export class CustomerCreateFormComponent implements OnInit {
     {id: 3, name: "Gold"},
     {id: 4, name: "Slive"},
     {id: 5, name: "Member"}];
+
   createCustomerForm: FormGroup;
 
-  regexIdCard: RegExp = /^\d{9}|\d{12}$/;
+  regexIdCard: RegExp = /^[0-9]{9}$|^[0-9]{12}$/;
   regexPhoneNumber: RegExp = /(09)\d{8}|(\+849)\d{8}/;
-  regexGender: RegExp = /(Nam)|(Nữ)|(Khác)/;
+  regexGender: RegExp = /^Nam$|^Nữ$|^Khác$/;
   regexEmail: RegExp = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/;
   regexDate: RegExp = /^\d{4}-\d{2}-\d{2}$/;
   regexName: RegExp = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/;
