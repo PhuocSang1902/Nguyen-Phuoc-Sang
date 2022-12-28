@@ -13,15 +13,15 @@
     <input class="form-control" type="password" placeholder="password" id="password" name="password" formControlName="password">
     <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
       <p *ngIf="password?.errors?.required">Không được để trống</p>
-      <p *ngIf="password?.errors?.minLength">Ít nhất 6 ký tự</p>
+      <p *ngIf="password?.errors?.minlength">Ít nhất 6 ký tự</p>
     </div>
     <label class="form-label" for="confirmPassword">Confirm Password</label>
     <input class="form-control" type="password" placeholder="confirm password" id="confirmPassword" name="confirmPassword"
            formControlName="confirmPassword">
     <div *ngIf="!confirmPassword?.valid && (confirmPassword?.dirty || confirmPassword?.touched)">
       <p *ngIf="confirmPassword?.errors?.required">Không được để trống</p>
-      <p *ngIf="confirmPassword?.errors?.comparePassword">Phải giống nhau</p>
     </div>
+    <p *ngIf="registerForm.controls.passwordGroup.hasError('duplicated')">Phải giống nhau</p>
   </div>
   <div>
     <label class="form-label" for="country">Country</label>
@@ -55,5 +55,5 @@
     <p *ngIf="phone?.errors?.required">Không được để trống</p>
     <p *ngIf="phone?.errors?.pattern">Không đúng định dạng</p>
   </div>
-  <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid">Submit</button>
+  <button type="submit" class="btn btn-success" >Submit</button>
 </form>

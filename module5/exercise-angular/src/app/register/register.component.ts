@@ -16,15 +16,15 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.registerForm = this.formBuilder.group({
-      email: ['', Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
       passwordGroup: this.formBuilder.group({
-        password: ['', Validators.required, Validators.minLength(6)],
+        password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required]
-      }, {validators:this.comparePassword}),
+      }, {validators: this.comparePassword}),
       country: ['', Validators.required],
-      age: ['', Validators.required, Validators.min(18)],
+      age: ['', [Validators.required, Validators.min(18)]],
       gender: ['', Validators.required],
-      phone: ['', Validators.required, Validators.pattern('^{+84}[0-9]{9}$')]
+      phone: ['', [Validators.required, Validators.pattern('^{+84}[0-9]{9}$')]]
     });
   }
 
@@ -60,12 +60,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  comparePassword(c: AbstractControl): any {
-    const v = c.value;
-    return (v.password === v.confirmPassword) ? null : {passwordnotmatch: true};
+  comparePassword(c: any) {
+    let v = c;
+    return (v?.controls.password?.value === v?.controls.confirmPassword?.value) ? null : {'duplicated': true};
   }
 
   submitForm() {
-    console.log(this.registerForm.value);
+    console.log(this.registerForm.controls.passwordGroup);
+    console.log(this.registerForm);
   }
 }
