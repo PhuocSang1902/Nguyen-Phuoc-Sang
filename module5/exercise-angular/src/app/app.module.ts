@@ -18,6 +18,13 @@ import { CountdownTimerComponent } from './countdown-timer/countdown-timer.compo
 import { TodoComponent } from './todo/todo.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { YoutubePlaylistComponent } from './youtube-playlist/youtube-playlist.component';
+import { YoutubePlayerComponent } from './youtube-playlist/youtube-player/youtube-player.component';
+import { DictionaryComponent } from './dictionary/dictionary.component';
+import { DictionaryDetailComponent } from './dictionary/dictionary-detail/dictionary-detail.component';
+import { ProductListComponent } from './productManager/product-list/product-list.component';
+import { ProductCreateComponent } from './productManager/product-create/product-create.component';
+import { ProductEditComponent } from './productManager/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +42,14 @@ import { LoginComponent } from './login/login.component';
     CountdownTimerComponent,
     TodoComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    YoutubePlaylistComponent,
+    YoutubePlayerComponent,
+    DictionaryComponent,
+    DictionaryDetailComponent,
+    ProductListComponent,
+    ProductCreateComponent,
+    ProductEditComponent
   ],
     imports: [
         BrowserModule,

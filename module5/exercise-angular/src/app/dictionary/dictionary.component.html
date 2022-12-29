@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>Word</th>
+    <th>Detail</th>
+  </tr>
+  <tr *ngFor="let word of dictionaryList">
+    <td>{{word.id}}</td>
+    <td><a [routerLink]="['detail/', word.id]">Detail</a></td>
+  </tr>
+</table>
+<router-outlet></router-outlet>
+
