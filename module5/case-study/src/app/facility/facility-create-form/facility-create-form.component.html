@@ -21,7 +21,6 @@
       <div class="text-danger"
            *ngIf="facilityForm.controls.facilityType.invalid && facilityForm.controls.facilityType.touched else elseBlock">
         <span *ngIf="facilityForm.controls.facilityType.hasError('required')">Không được để trống</span>
-        <span *ngIf="facilityForm.controls.facilityType.hasError('pattern')">Không đúng định dạng</span>
       </div>
       <ng-template #elseBlock><br></ng-template>
       <!--            ----------Form nhập tên------------>
@@ -44,6 +43,8 @@
            *ngIf="facilityForm.controls.area.invalid && facilityForm.controls.area.touched else elseBlock">
         <span *ngIf="facilityForm.controls.area.hasError('required')">Không được để trống</span>
         <span *ngIf="facilityForm.controls.area.hasError('pattern')">Không đúng định dạng</span>
+        <span *ngIf="facilityForm.controls.area.hasError('min')">Không được nhỏ hơn không</span>
+
       </div>
       <ng-template #elseBlock><br></ng-template>
       <!--            ----------Form nhập giá------------>
@@ -55,6 +56,7 @@
            *ngIf="facilityForm.controls.cost.invalid && facilityForm.controls.cost.touched else elseBlock">
         <span *ngIf="facilityForm.controls.cost.hasError('required')">Không được để trống</span>
         <span *ngIf="facilityForm.controls.cost.hasError('pattern')">Không đúng định dạng</span>
+        <span *ngIf="facilityForm.controls.cost.hasError('min')">Không được nhỏ hơn không</span>
       </div>
       <ng-template #elseBlock><br></ng-template>
       <!--            ----------Form nhập số người tối đa------------>
@@ -67,6 +69,7 @@
            *ngIf="facilityForm.controls.maxPeople.invalid && facilityForm.controls.maxPeople.touched else elseBlock">
         <span *ngIf="facilityForm.controls.maxPeople.hasError('required')">Không được để trống</span>
         <span *ngIf="facilityForm.controls.maxPeople.hasError('pattern')">Không đúng định dạng</span>
+        <span *ngIf="facilityForm.controls.maxPeople.hasError('min')">Không được nhỏ hơn không</span>
       </div>
       <ng-template #elseBlock><br></ng-template>
       <!--            ----------Form chọn kiểu thuê------------>
