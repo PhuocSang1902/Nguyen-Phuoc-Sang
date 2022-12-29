@@ -62,7 +62,8 @@
       </td>
       <td>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                (click)="temp = item">
           Xóa
         </button>
       </td>
@@ -88,4 +89,4 @@
 </div>
 <app-footer></app-footer>
 <!--------modal xoá khách hàng--------->
-<app-modal-delete-customer></app-modal-delete-customer>
+<app-modal-delete-customer [customer]=temp></app-modal-delete-customer>

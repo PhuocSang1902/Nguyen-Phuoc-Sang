@@ -88,6 +88,7 @@ export class CustomerListComponent implements OnInit {
       flagDelete: false
     }
   ]
+  temp: Customer = {};
 
   constructor() {
   }
