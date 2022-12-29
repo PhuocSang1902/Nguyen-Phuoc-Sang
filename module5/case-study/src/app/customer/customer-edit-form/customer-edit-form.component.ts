@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CustomerType} from "../customer-type";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { differenceInYears } from 'date-fns';
 
 @Component({
   selector: 'app-customer-edit-form',
@@ -40,7 +41,7 @@ export class CustomerEditFormComponent implements OnInit {
 
   validateBirthday(c: AbstractControl) {
     let date = new Date(c.value);
-    let age = Date.now() - +(date);
+    let age = differenceInYears(new Date(), date);
     return (age <= 18) ? {'greaterThan18': true} : null;
   }
 
