@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Product} from '../product';
 import {ProductService} from '../product.service';
+import {Router} from '@angular/router';
+import {Category} from '../../category/model/category';
 
 @Component({
   selector: 'app-product-create',
@@ -10,13 +12,18 @@ import {ProductService} from '../product.service';
 })
 export class ProductCreateComponent implements OnInit {
   productForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder,private productService: ProductService) {
+  category: Category[] = [
+    {id: 1, name: "IPhone"},
+    {id: 2, name: "Samsung"},
+    {id: 3, name: "LG"},
+  ]
+  constructor(private formBuilder: FormBuilder, private productService: ProductService, private route: Router) {
     this.productForm = this.formBuilder.group({
       id: [''],
       name: [''],
       price: [''],
-      description: ['']
+      description: [''],
+      category: ['']
     });
   }
 
@@ -24,9 +31,15 @@ export class ProductCreateComponent implements OnInit {
   }
 
   saveProduct() {
-    let product:Product;
+    let product: Product;
     product = this.productForm.value;
-    this.productService.saveProduct(product);
-    this.productForm.reset();
+    this.productService.saveProduct(product).subscribe(data => {
+      this.route.navigateByUrl('/product/list');
+      this.productForm.reset();
+    }, error => {
+    }, () => {
+    });
+
+
   }
 }

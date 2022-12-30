@@ -4,9 +4,7 @@ import {YoutubePlaylistComponent} from './youtube-playlist/youtube-playlist.comp
 import {YoutubePlayerComponent} from './youtube-playlist/youtube-player/youtube-player.component';
 import {DictionaryComponent} from './dictionary/dictionary.component';
 import {DictionaryDetailComponent} from './dictionary/dictionary-detail/dictionary-detail.component';
-import {ProductListComponent} from './productManager/product-list/product-list.component';
-import {ProductCreateComponent} from './productManager/product-create/product-create.component';
-import {ProductEditComponent} from './productManager/product-edit/product-edit.component';
+import {TodoComponent} from './todo/todo.component';
 
 const routes: Routes = [
   {
@@ -19,9 +17,9 @@ const routes: Routes = [
       {path: 'detail/:id', component: DictionaryDetailComponent}
     ]
   },
-  {path:'product/list', component:ProductListComponent},
-  {path:'product/create', component:ProductCreateComponent},
-  {path:'product/edit/:id', component:ProductEditComponent}
+  {path: 'product', loadChildren: () => import('./productManager/product.module').then(module => module.ProductModule)},
+  {path: 'category', loadChildren: () => import('./category/category/category.module').then(module =>module.CategoryModule)},
+  {path: 'todo', component: TodoComponent}
 ];
 
 @NgModule({

@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Product} from './product';
 import {FormBuilder} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,45 +35,27 @@ export class ProductService {
     description: 'Like new'
   }];
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
   }
 
-  getAll() {
-    return this.products;
+  getAll(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>('http://localhost:3000/products');
   }
 
   saveProduct(product: Product) {
-    let productById = this.products.filter(item => item.id === product.id);
-    if (productById.length === 0) {
-      this.products.push(product);
-    } else {
-      for (let i = 0; i < this.products.length; i++) {
-        if (this.products[i].id === product.id) {
-          this.products[i] = product;
-          break;
-        }
-      }
-    }
+    return this.httpClient.post<Product>('http://localhost:3000/products', product);
   }
 
-  findById(number: number): Product | null {
-    let temp = this.products.filter(item => item.id === number);
-    if (temp.length != 0) {
-      return temp[0];
-    }
-    return null;
+  findById(number: number): Observable<Product> {
+    console.log(number);
+    return this.httpClient.get('http://localhost:3000/products/' + number);
   }
 
-  deleteProduct(id: number) {
-    let temp = this.products.filter(item => item.id === id);
-    if (temp.length != 0) {
-      let length = this.products.length
-      for (let i = 0; i < length; i++) {
-        if (this.products[i].id === id) {
-          this.products.splice(i, 1);
-          break;
-        }
-      }
-    }
+  deleteProduct(id: number):Observable<Product> {
+    return this.httpClient.delete('http://localhost:3000/products/'+ id)
+  }
+
+  updateProduct(product: Product) {
+    return this.httpClient.patch('http://localhost:3000/products/'+ product.id, product);
   }
 }

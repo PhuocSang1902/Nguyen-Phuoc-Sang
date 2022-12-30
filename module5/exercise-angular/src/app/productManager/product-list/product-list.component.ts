@@ -9,8 +9,10 @@ import {Product} from '../product';
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  temp: Product = {};
 
   constructor(private productService: ProductService) {
+    this.getAll();
   }
 
   ngOnInit(): void {
@@ -18,12 +20,16 @@ export class ProductListComponent implements OnInit {
   }
 
   getAll() {
-    this.products = this.productService.getAll();
+    this.productService.getAll().subscribe(data => {
+      this.products = data;
+    }, error => {
+    }, () => {
+    });
   }
 
-  deleteProduct(id: number | undefined) {
-    if (id != undefined) {
-      this.productService.deleteProduct(id);
-    }
+
+  reload(event: boolean) {
+    console.log(23);
+    this.getAll();
   }
 }

@@ -1,0 +1,99 @@
+{
+  "toDos": [],
+  "categories": [
+    {
+      "id": 1,
+      "name": "IPhone"
+    },
+    {
+      "id": 2,
+      "name": "Samsung"
+    },
+    {
+      "id": 3,
+      "name": "LG"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "IPhone 12",
+      "price": 2400000,
+      "description": "New",
+      "category": {
+        "id": 1,
+        "name": "IPhone"
+      }
+    },
+    {
+      "id": 2,
+      "name": "IPhone 11",
+      "price": 1560000,
+      "description": "Like new",
+      "category": {
+        "id": 1,
+        "name": "IPhone"
+      }
+    },
+    {
+      "id": 4,
+      "name": "IPhone 8",
+      "price": 7540000,
+      "description": "dfsafsad",
+      "category": {
+        "id": 3,
+        "name": "LG"
+      }
+    },
+    {
+      "id": 5,
+      "name": "rqewrqer",
+      "price": 43121,
+      "description": "qẻqewf",
+      "category": {
+        "id": 2,
+        "name": "Samsung"
+      }
+    },
+    {
+      "id": 6,
+      "name": "14314",
+      "price": 431412,
+      "description": "4132413241234",
+      "category": {
+        "id": 1,
+        "name": "IPhone"
+      }
+    },
+    {
+      "id": 7,
+      "name": "3214312",
+      "price": 412341234,
+      "description": "321412",
+      "category": {
+        "id": 1,
+        "name": "IPhone"
+      }
+    },
+    {
+      "id": 8,
+      "name": "41343214",
+      "price": 1432143214312,
+      "description": "431234",
+      "category": {
+        "id": 2,
+        "name": "Samsung"
+      }
+    },
+    {
+      "id": 9,
+      "name": "14123424312",
+      "price": 43243132,
+      "description": "432413241",
+      "category": {
+        "id": 3,
+        "name": "LG"
+      }
+    }
+  ]
+}

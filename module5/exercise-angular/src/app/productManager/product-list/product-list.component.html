@@ -7,6 +7,7 @@
     <td>Tên</td>
     <td>Giá</td>
     <td>Mô tả</td>
+    <td>Hãng</td>
     <td>Sửa</td>
     <td>Xoá</td>
   </tr>
@@ -15,8 +16,10 @@
     <td>{{product.name}}</td>
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
+    <td>{{product.category?.name}}</td>
     <td><a [routerLink]="['/product/edit',product.id]">Sửa</a></td>
-    <td><button type="button" (click)="deleteProduct(product.id)">Xoá</button></td>
+    <td><button type="button" (click)="temp = product" data-bs-toggle="modal" data-bs-target="#deleteModal">Xoá</button></td>
   </tr>
 </table>
 <a routerLink="/product/create">Tạo mới sản phẩm</a>
+<app-product-delete [product]="temp" (eventDelete)="reload($event)"></app-product-delete>
