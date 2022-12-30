@@ -12,7 +12,7 @@
     <td>Xoá</td>
   </tr>
   <tr *ngFor="let product of products; index as i">
-    <td>{{i + 1}}</td>
+    <td>{{product.id}}</td>
     <td>{{product.name}}</td>
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
@@ -22,4 +22,4 @@
   </tr>
 </table>
 <a routerLink="/product/create">Tạo mới sản phẩm</a>
-<app-product-delete [product]="temp" (eventDelete)="reload($event)"></app-product-delete>
+<app-product-delete [product]="temp" (eventDelete)="reload()"></app-product-delete>

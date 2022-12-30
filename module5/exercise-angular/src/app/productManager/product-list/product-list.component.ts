@@ -12,11 +12,10 @@ export class ProductListComponent implements OnInit {
   temp: Product = {};
 
   constructor(private productService: ProductService) {
-    this.getAll();
   }
 
   ngOnInit(): void {
-    this.getAll();
+    this.getAll()
   }
 
   getAll() {
@@ -25,11 +24,11 @@ export class ProductListComponent implements OnInit {
     }, error => {
     }, () => {
     });
+
   }
 
 
-  reload(event: boolean) {
-    console.log(23);
+  reload() {
     this.getAll();
   }
 }

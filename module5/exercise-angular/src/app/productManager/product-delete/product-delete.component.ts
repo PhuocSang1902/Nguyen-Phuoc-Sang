@@ -22,9 +22,9 @@ export class ProductDeleteComponent implements OnInit {
 
   deleteProduct(id: number | undefined) {
     if (id != undefined) {
-      this.productService.deleteProduct(id).subscribe();
+      this.productService.deleteProduct(id).subscribe(data => {
+        this.eventDelete.emit();
+      });
     }
-    this.eventDelete.emit(true);
-    this.route.navigateByUrl('/product/list');
   }
 }
