@@ -7,10 +7,11 @@ import { ContractCreateComponent } from './contract-create/contract-create.compo
 import {HomeModule} from '../home/home.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ModalAttachFacilityComponent } from './modal-attach-facility/modal-attach-facility.component';
+import { ModalAddContractDetailComponent } from './modal-add-contract-detail/modal-add-contract-detail.component';
 
 
 @NgModule({
-  declarations: [ContractListComponent, ContractCreateComponent, ModalAttachFacilityComponent],
+  declarations: [ContractListComponent, ContractCreateComponent, ModalAttachFacilityComponent, ModalAddContractDetailComponent],
     imports: [
         CommonModule,
         ContractRoutingModule,

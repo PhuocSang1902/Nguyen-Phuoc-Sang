@@ -16,6 +16,8 @@ export class ContractListComponent implements OnInit {
   page: number = 0;
   totalPage: number = 0;
   size: number = 0;
+  contractTemp: Contract = {};
+
   constructor(private contractService: ContractService, private fb: FormBuilder) {
     this.formSearch = this.fb.group({
       search: ['']
@@ -72,4 +74,11 @@ export class ContractListComponent implements OnInit {
     }, () => {
     });
   }
+
+
+  //load lại list
+  reloadList() {
+    this.getAll(this.page, this.formSearch.controls.search.value);
+  }
+
 }

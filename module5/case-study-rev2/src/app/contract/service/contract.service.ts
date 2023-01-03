@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Contract} from '../model/contract';
 import {Customer} from '../../customer/model/customer';
 import {ContractDetail} from '../model/contract-detail';
+import {AttachFacility} from '../model/attach-facility';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,12 @@ export class ContractService {
 
   findContractDetailById(contract: Contract): Observable<ContractDetail[]> {
     return this.httpClient.get<ContractDetail[]>('http://localhost:8080/contract-details/' + contract.id);
+  }
+  getAllAttachFacility(): Observable<AttachFacility[]> {
+    return this.httpClient.get<AttachFacility[]>('http://localhost:8080/attach-facilities');
+  }
+
+  addContractDetail(contractDetail: ContractDetail) {
+    return this.httpClient.post('http://localhost:8080/contract-details', contractDetail);
   }
 }

@@ -44,7 +44,7 @@ export class CustomerService {
   }
 
   getAllUseFacilityBySearch(page: number, search: string): Observable<any> {
-    // return this.httpClient.get(this.urlCustomer);
+    // return this.httpClient.get(this.urlCustomer + '/name_like=' + search);
     return this.httpClient.get('http://localhost:8080/customers/use-facility/search/' + search + '?page=' + page);
   }
 
