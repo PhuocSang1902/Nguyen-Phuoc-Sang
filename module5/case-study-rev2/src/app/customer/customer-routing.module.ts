@@ -4,12 +4,14 @@ import {CustomerListComponent} from './customer-list/customer-list.component';
 import {CustomerCreateComponent} from './customer-create/customer-create.component';
 import {CustomerEditComponent} from './customer-edit/customer-edit.component';
 import {CustomerDeleteComponent} from './customer-delete/customer-delete.component';
+import {CustomerUseFacilityComponent} from './customer-use-facility/customer-use-facility.component';
 
 const routes: Routes = [
   {path: '', component: CustomerListComponent},
   {path: 'create', component: CustomerCreateComponent},
   {path: 'edit/:id', component: CustomerEditComponent},
   {path: 'delete/:id', component: CustomerDeleteComponent},
+  {path: 'use-facility', component: CustomerUseFacilityComponent},
 ];
 
 @NgModule({

@@ -44,11 +44,11 @@ export class CustomerCreateComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  //Phương thức để select chọn theo giá trị
   compareWith(o1: CustomerType, o2: CustomerType): boolean {
     return o1 && o2 ? o1.id === o2.id : o1 === o2;
   }
-
+  //Validate ngày sinh phải lớn hơn 18 tuổi
   validateBirthday(c: AbstractControl): any {
     const date = new Date(c.value);
     const age = differenceInYears(new Date(), date);
@@ -66,6 +66,7 @@ export class CustomerCreateComponent implements OnInit {
   getAllCustomerType(): void {
     this.customerTypeService.getAll().subscribe(data => {
       this.customerTypes = data;
+      console.log(this.customerTypes);
     }, error => {
     }, () => {
     });

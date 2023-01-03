@@ -7,7 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface IFacilityRepository extends JpaRepository<Facility, Integer> {
     Page<FacilityView> findByNameContaining(String name, Pageable pageable);
     Page<FacilityView> findByNameContainingAndFacilityType(String name, FacilityType facilityType, Pageable pageable);
+
 }

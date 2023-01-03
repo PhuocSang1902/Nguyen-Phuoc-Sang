@@ -34,40 +34,24 @@
     <tr class="align-middle">
       <th scope="col">Stt</th>
       <th scope="col">Tên khách hàng</th>
-      <th scope="col">Loại khách hàng</th>
       <th scope="col">Ngày sinh</th>
       <th scope="col">Giới tính</th>
       <th scope="col">Số CCCD</th>
       <th scope="col">Số điện thoại</th>
       <th scope="col">Email</th>
       <th scope="col">Địa chỉ</th>
-      <th scope="col">Sửa</th>
-      <th scope="col">Xóa</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let item of customers, let i = index" class="align-middle">
       <th>{{i + 1 + size * page}}</th>
       <td>{{item.name}}</td>
-      <td>{{item.customerType?.name}}</td>
       <td>{{item.birthday}}</td>
       <td>{{item.gender}}</td>
       <td>{{item.idCard}}</td>
       <td>{{item.phoneNumber}}</td>
       <td>{{item.email}}</td>
       <td>{{item.address}}</td>
-      <td>
-        <a class="btn btn-outline-warning text-warning" [routerLink]="['/customer/edit/',item.id]">
-          Sửa
-        </a>
-      </td>
-      <td>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                (click)="temp = item">
-          Xóa
-        </button>
-      </td>
     </tr>
     </tbody>
   </table>
@@ -87,5 +71,3 @@
     <div class="col-4"></div>
   </div>
 </div>
-<!--------modal xoá khách hàng--------->
-<app-customer-delete [customer]=temp (deleteEvent)="reloadList()"></app-customer-delete>

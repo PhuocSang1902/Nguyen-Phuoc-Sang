@@ -8,10 +8,11 @@ import { CustomerCreateComponent } from './customer-create/customer-create.compo
 import { CustomerDeleteComponent } from './customer-delete/customer-delete.component';
 import {HomeModule} from '../home/home.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import { CustomerUseFacilityComponent } from './customer-use-facility/customer-use-facility.component';
 
 
 @NgModule({
-  declarations: [CustomerListComponent, CustomerEditComponent, CustomerCreateComponent, CustomerDeleteComponent],
+  declarations: [CustomerListComponent, CustomerEditComponent, CustomerCreateComponent, CustomerDeleteComponent, CustomerUseFacilityComponent],
   imports: [
     CommonModule,
     CustomerRoutingModule,

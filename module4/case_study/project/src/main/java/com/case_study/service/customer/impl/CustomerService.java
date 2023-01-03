@@ -70,4 +70,9 @@ public class CustomerService implements ICustomerService {
         }
         return customerRepository.showListUseFacilityByNameAndEmailAndCustomerType(customerName, email, customerTypeId, pageable);
     }
+
+    @Override
+    public List<Customer> showListSelect() {
+        return customerRepository.findAll();
+    }
 }

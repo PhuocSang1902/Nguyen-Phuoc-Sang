@@ -1,36 +1,35 @@
-import {Component, OnInit} from '@angular/core';
-import {ContractService} from '../service/contract.service';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Contract} from '../model/contract';
-import {ContractDetail} from '../model/contract-detail';
+import {Customer} from '../model/customer';
+import {CustomerService} from '../service/customer.service';
 
 @Component({
-  selector: 'app-contract-list',
-  templateUrl: './contract-list.component.html',
-  styleUrls: ['./contract-list.component.css']
+  selector: 'app-customer-use-facility',
+  templateUrl: './customer-use-facility.component.html',
+  styleUrls: ['./customer-use-facility.component.css']
 })
-export class ContractListComponent implements OnInit {
+export class CustomerUseFacilityComponent implements OnInit {
   formSearch: FormGroup;
-  temp: ContractDetail[] = [];
-  contracts: Contract[] = [];
+  customers: Customer[] = [];
   page: number = 0;
   totalPage: number = 0;
   size: number = 0;
-  constructor(private contractService: ContractService, private fb: FormBuilder) {
+
+  constructor(private customerService: CustomerService, private fb: FormBuilder) {
     this.formSearch = this.fb.group({
       search: ['']
     });
-    this.getAll(this.page, this.formSearch.controls.search.value);
   }
 
   ngOnInit(): void {
+    this.getAll(this.page, this.formSearch.controls.search.value);
   }
 
-  // lấy danh sách hợp đồng
+  // lấy danh sách khách hàng
   getAll(page: number, search: string): void {
     if (search !== '') {
-      this.contractService.getAllBySearch(this.page, search).subscribe(data => {
-        this.contracts = data['content'];
+      this.customerService.getAllUseFacilityBySearch(this.page, search).subscribe(data => {
+        this.customers = data['content'];
         this.totalPage = data['totalPages'];
         this.page = data.pageable['pageNumber'];
         this.size = data['size'];
@@ -38,8 +37,9 @@ export class ContractListComponent implements OnInit {
       }, () => {
       });
     } else {
-      this.contractService.getAll(this.page).subscribe(data => {
-        this.contracts = data['content'];
+      this.customerService.getAllUseFacility(this.page).subscribe(data => {
+        console.log(data);
+        this.customers = data['content'];
         this.totalPage = data['totalPages'];
         this.page = data.pageable['pageNumber'];
         this.size = data['size'];
@@ -47,6 +47,7 @@ export class ContractListComponent implements OnInit {
       }, () => {
       });
     }
+
   }
 
   //Tới trang sau
@@ -65,11 +66,8 @@ export class ContractListComponent implements OnInit {
     }
   }
 
-  findContractDetail(item: Contract) {
-    this.contractService.findContractDetailById(item).subscribe(data => {
-      this.temp = data;
-    }, error => {
-    }, () => {
-    });
+  //tìm kiếm theo tên
+  search() {
+    this.getAll(this.page, this.formSearch.controls.search.value);
   }
 }

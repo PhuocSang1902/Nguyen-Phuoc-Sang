@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 
     //    @Query(value = "select id,name,birthday, customer_type_id, gender, id_card as idCard, phone_number as phoneNumber, email, address from customer where flag_remove = true ", nativeQuery = true,
@@ -31,4 +33,5 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
             nativeQuery = true,
             countQuery = "select *from (SELECT cu.id, cu.name, ct.name as customerTypeName, cu.birthday, cu.gender, cu.id_card as idCard, cu.phone_number as phoneNumber, cu.email, cu.address FROM customer cu JOIN contract c on cu.id = c.customer_id JOIN customer_type ct on ct.id = cu.customer_type_id where cu.email like CONCAT('%',:email,'%') and cu.name like CONCAT('%',:name,'%') AND cu.flag_remove = true GROUP BY cu.id)as A")
     Page<CustomerUseFacilityView> showListUseFacilityByNameAndEmail(@Param("name") String name, @Param("email") String email, Pageable pageable);
+
 }

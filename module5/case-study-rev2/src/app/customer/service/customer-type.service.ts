@@ -13,6 +13,6 @@ export class CustomerTypeService {
   }
 
   getAll(): Observable<CustomerType[]> {
-    return this.httpClient.get<CustomerType[]>('http://localhost:3000/customer-type');
+    return this.httpClient.get<CustomerType[]>('http://localhost:8080/customer-types');
   }
 }

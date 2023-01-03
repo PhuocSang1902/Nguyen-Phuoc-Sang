@@ -1,0 +1,32 @@
+<div class="modal fade" id="attachFacilityModal" tabindex="-1" aria-labelledby="attachFacilityModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="attachFacilityModalLabel">Dịch vụ đính kèm</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-hover" style="width: 100%" id="tableAttractFacility">
+          <thead>
+          <tr class="align-middle text-center">
+            <th scope="col">Stt</th>
+            <th scope="col">Tên dịch vụ</th>
+            <th scope="col">Số lượng</th>
+          </tr>
+          </thead>
+          <tbody id="attractFacilityBody">
+          <tr *ngFor="let item of contractDetails, let i = index">
+            <td scope="col">{{i + 1}}</td>
+            <td scope="col">{{item.attachFacilityName}}</td>
+            <td scope="col">{{item.quantity}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

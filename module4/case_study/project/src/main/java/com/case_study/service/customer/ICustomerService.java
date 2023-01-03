@@ -15,4 +15,6 @@ public interface ICustomerService extends IGenericService<Customer> {
     List<Customer> findAll();
 
     Page<CustomerUseFacilityView> showListUseFacility(String customerName, String email, int customerTypeId, Pageable pageable);
+
+    List<Customer> showListSelect();
 }

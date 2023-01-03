@@ -21,7 +21,7 @@
           <option [ngValue]="{}">Hãy chọn loại khách hàng</option>
           <option *ngFor="let item of customerTypes" [ngValue]="item">
             {{item.name}}
-          <option>
+          </option>
         </select>
         <div class="text-danger"
              *ngIf="createCustomerForm.controls.customerType.invalid && createCustomerForm.controls.customerType.touched else elseBlock">
@@ -104,18 +104,12 @@
       </div>
       <!--            ----------Nút tuỳ chọn------------>
       <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
-        <a href="@{/customer}" style="text-decoration: none; width: 30%"
+        <a routerLink="/customer" style="text-decoration: none; width: 30%"
            class="form-control btn btn-outline-info mx-5">
           Hủy
         </a>
         <button style="width: 30%" type="submit" class="btn btn-outline-success mx-5">
           Lưu
-        </button>
-      </div>
-      <div class="form-group d-flex align-items-center justify-content-center" style="margin-top: 25px">
-        <button style="width: 30%" type="button" class="form-control btn btn-outline-info mx-5"
-                id="formInput13">
-          <a href="/" style="text-decoration: none; color: #0dcaf0">Trang chủ</a>
         </button>
       </div>
     </form>

@@ -12,4 +12,6 @@ public interface IFacilityService extends IGenericService<Facility> {
     Page<FacilityView> showList(String facilityName, int facilityTypeId, Pageable pageable);
 
     List<Facility> findAll();
+
+    List<Facility> showListSelect();
 }

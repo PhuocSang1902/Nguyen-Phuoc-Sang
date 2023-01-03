@@ -1,4 +1,4 @@
-export interface RentType {
+export interface Position {
   id?: number;
   name?: string;
 }

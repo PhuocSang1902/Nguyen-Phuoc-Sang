@@ -6,13 +6,17 @@ import { FacilityListComponent } from './facility-list/facility-list.component';
 import { FacilityCreateComponent } from './facility-create/facility-create.component';
 import { FacilityEditComponent } from './facility-edit/facility-edit.component';
 import { FacilityDeleteComponent } from './facility-delete/facility-delete.component';
+import {HomeModule} from '../home/home.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [FacilityListComponent, FacilityCreateComponent, FacilityEditComponent, FacilityDeleteComponent],
   imports: [
     CommonModule,
-    FacilityRoutingModule
+    FacilityRoutingModule,
+    HomeModule,
+    ReactiveFormsModule
   ]
 })
 export class FacilityModule { }

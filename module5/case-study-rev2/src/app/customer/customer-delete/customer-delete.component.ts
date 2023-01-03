@@ -13,15 +13,15 @@ export class CustomerDeleteComponent implements OnInit {
   @Input('customer') customer: Customer = {};
   //Tạo output để goi phương thức reload lại trang list
   @Output() deleteEvent = new EventEmitter();
-  constructor(private customerService: CustomerService, private route: Router) {
+
+  constructor(private customerService: CustomerService) {
   }
 
   ngOnInit(): void {
   }
 
-// Xoá khách hàng
+  // Xoá khách hàng
   deleteCustomer() {
-    console.log(this.customer);
     this.customerService.deleteById(this.customer).subscribe(data => {
       this.deleteEvent.emit();
     });

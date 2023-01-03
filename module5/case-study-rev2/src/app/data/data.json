@@ -170,7 +170,7 @@
       "maxPeople": 10,
       "facilityType": {
         "id": 1,
-        "name": "villa"
+        "name": "Villa"
       },
       "rentType": {
         "id": 3,
@@ -191,7 +191,7 @@
       "maxPeople": 7,
       "facilityType": {
         "id": 2,
-        "name": "house"
+        "name": "House"
       },
       "rentType": {
         "id": 2,
@@ -212,7 +212,7 @@
       "maxPeople": 2,
       "facilityType": {
         "id": 3,
-        "name": "room"
+        "name": "Room"
       },
       "rentType": {
         "id": 4,
@@ -233,7 +233,7 @@
       "maxPeople": 8,
       "facilityType": {
         "id": 1,
-        "name": "villa"
+        "name": "Villa"
       },
       "rentType": {
         "id": 1,
@@ -254,7 +254,7 @@
       "maxPeople": 5,
       "facilityType": {
         "id": 2,
-        "name": "house"
+        "name": "House"
       },
       "rentType": {
         "id": 3,
@@ -275,7 +275,7 @@
       "maxPeople": 2,
       "facilityType": {
         "id": 3,
-        "name": "room"
+        "name": "Room"
       },
       "rentType": {
         "id": 2,
@@ -287,6 +287,66 @@
       "numberOfFloors": 0,
       "facilityFree": "1 xe máy",
       "flagDelete": false
+    },
+    {
+      "id": 7,
+      "name": "Hoa Cúc 3e",
+      "area": "200",
+      "cost": "900000",
+      "maxPeople": "5",
+      "facilityType": {
+        "id": 1,
+        "name": "Villa"
+      },
+      "rentType": {
+        "id": 3,
+        "name": "day"
+      },
+      "standardRoom": "Vip",
+      "descriptionOtherConvenience": "Có nhiều dịch vụ đi kèm",
+      "poolArea": "80",
+      "numberOfFloors": "2",
+      "facilityFree": "Tắm miễn phí",
+      "flagDelete": true
+    },
+    {
+      "id": 8,
+      "name": "Hoa đồng tiền",
+      "area": "200",
+      "cost": "900000",
+      "maxPeople": "10",
+      "facilityType": {
+        "id": 1,
+        "name": "Villa"
+      },
+      "rentType": {
+        "id": 2,
+        "name": "month"
+      },
+      "standardRoom": "Vip",
+      "descriptionOtherConvenience": "Nhiều dịch vụ đi kèm",
+      "poolArea": "50",
+      "numberOfFloors": "2",
+      "facilityFree": "",
+      "flagDelete": true
+    },
+    {
+      "id": 9,
+      "name": "",
+      "area": "",
+      "cost": "",
+      "maxPeople": "",
+      "facilityType": {
+        "id": 1,
+        "name": "Villa"
+      },
+      "rentType": {},
+      "standardRoom": "Vip",
+      "descriptionOtherConvenience": "",
+      "poolArea": "",
+      "numberOfFloors": "2",
+      "facilityFree": "",
+      "flagDelete": true
     }
   ],
   "contract": [

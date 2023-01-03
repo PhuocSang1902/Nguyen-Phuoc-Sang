@@ -8,7 +8,7 @@ import {FacilityEditComponent} from './facility-edit/facility-edit.component';
 const routes: Routes = [
   {path: '', component: FacilityListComponent},
   {path: 'create', component: FacilityCreateComponent},
-  {path: 'edit', component: FacilityEditComponent},
+  {path: 'edit/:id', component: FacilityEditComponent},
   {path: 'delete', component: FacilityDeleteComponent},
 ];
 

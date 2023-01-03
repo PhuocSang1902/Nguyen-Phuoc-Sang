@@ -25,7 +25,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("customer")
 public class CustomerController {
-    private final ICustomerService customerService;
+    private ICustomerService customerService;
     private ICustomerTypeService customerTypeService;
 
     public CustomerController(ICustomerService customerService, ICustomerTypeService customerTypeService) {
