@@ -1,0 +1,95 @@
+<!-- Modal -->
+<form class="my-5" [formGroup]="formCreateLoHang" (ngSubmit)="editLoHang()">
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Xoá khách hàng</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!--            ----------Form nhập mã lô hàng------------>
+          <div class="form-group">
+            <label for="ma">Mã lô hàng</label>
+            <input type="text" class="form-control" formControlName="ma" id="ma" placeholder="LH-XXXX, X: là số">
+            <div class="text-danger"
+                 *ngIf="formCreateLoHang.controls.ma.invalid && formCreateLoHang.controls.ma.touched else elseBlock">
+              <span *ngIf="formCreateLoHang.controls.ma.hasError('required')">Không được để trống</span>
+              <span *ngIf="formCreateLoHang.controls.ma.hasError('pattern')">Không đúng định dạng</span>
+            </div>
+            <ng-template #elseBlock><br></ng-template>
+          </div>
+          <!--            ----------Form chọn sản phẩm------------>
+          <div class="form-group">
+            <label for="sanPham">Sản phẩm</label>
+            <select class="form-select" id="sanPham" formControlName="sanPham" [compareWith]="compareWith">
+              <option [ngValue]="{}">Hãy chọn</option>
+              <option *ngFor="let item of sanPhamList" [ngValue]="item">
+                {{item.ten}}
+              </option>
+            </select>
+            <div class="text-danger"
+                 *ngIf="formCreateLoHang.controls.sanPham.invalid && formCreateLoHang.controls.sanPham.touched else elseBlock">
+              <span *ngIf="formCreateLoHang.controls.sanPham.hasError('required')">Không được để trống</span>
+            </div>
+            <ng-template #elseBlock><br></ng-template>
+          </div>
+          <!--            ----------Form số lượng------------>
+          <div class="form-group">
+            <label for="soLuong">Số lượng</label>
+            <input type="number" class="form-control" formControlName="soLuong" id="soLuong"
+                   placeholder="Số nguyên dương lớn hơn không">
+            <div class="text-danger"
+                 *ngIf="formCreateLoHang.controls.soLuong.invalid && formCreateLoHang.controls.soLuong.touched else elseBlock">
+              <span *ngIf="formCreateLoHang.controls.soLuong.hasError('required')">Không được để trống</span>
+              <span *ngIf="formCreateLoHang.controls.soLuong.hasError('min')">Phải lớn hơn 0</span>
+            </div>
+            <ng-template #elseBlock><br></ng-template>
+          </div>
+          <!--            ----------Form nhập ngày nhập hàng------------>
+          <div class="form-group">
+            <label for="ngayNhapHang">Ngày nhập hàng</label>
+            <input type="date" class="form-control" id="ngayNhapHang" formControlName="ngayNhapHang"
+                   min="1920-01-01">
+            <div class="text-danger"
+                 *ngIf="formCreateLoHang.controls.ngayNhapHang.invalid && formCreateLoHang.controls.ngayNhapHang.touched else elseBlock">
+              <span *ngIf="formCreateLoHang.controls.ngayNhapHang.hasError('required')">Không được để trống</span>
+              <span *ngIf="formCreateLoHang.controls.ngayNhapHang.hasError('pattern')">Không đúng định dạng</span>
+            </div>
+            <ng-template #elseBlock><br></ng-template>
+          </div>
+          <!--            ----------Form nhập ngày sản xuất------------>
+          <div class="form-group">
+            <label for="ngaySanXuat">Ngày sản xuất</label>
+            <input type="date" class="form-control" id="ngaySanXuat" formControlName="ngaySanXuat"
+                   min="1920-01-01">
+            <div class="text-danger"
+                 *ngIf="(formCreateLoHang.controls.ngaySanXuat.invalid || formCreateLoHang.invalid) && formCreateLoHang.controls.ngaySanXuat.touched else elseBlock">
+              <span *ngIf="formCreateLoHang.controls.ngaySanXuat.hasError('required')">Không được để trống</span>
+              <span *ngIf="formCreateLoHang.controls.ngaySanXuat.hasError('pattern')">Không đúng định dạng</span>
+              <span *ngIf="formCreateLoHang.hasError('endDateAfterStartDate') else elseBlock">Ngày hết hạn phải sau ngày nhập hàng, ngày sản xuất phải trước ngày nhập hàng</span>
+            </div>
+            <ng-template #elseBlock><br></ng-template>
+          </div>
+          <!--            ----------Form nhập ngày hết hạn------------>
+          <div class="form-group">
+            <label for="ngayHetHan">Ngày hết hạn</label>
+            <input type="date" class="form-control" id="ngayHetHan" formControlName="ngayHetHan"
+                   min="1920-01-01">
+            <div class="text-danger"
+                 *ngIf="(formCreateLoHang.controls.ngayHetHan.invalid || formCreateLoHang.invalid) && formCreateLoHang.controls.ngayHetHan.touched else elseBlock">
+              <span *ngIf="formCreateLoHang.controls.ngayHetHan.hasError('required')">Không được để trống</span>
+              <span *ngIf="formCreateLoHang.controls.ngayHetHan.hasError('pattern')">Không đúng định dạng</span>
+              <span *ngIf="formCreateLoHang.hasError('endDateAfterStartDate') else elseBlock">Ngày hết hạn phải sau ngày nhập hàng, ngày sản xuất phải trước ngày nhập hàng</span>
+            </div>
+            <ng-template #elseBlock><br></ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Sửa</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3E469E">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="col-8">
+      </div>
+      <form [formGroup]="formSearch" (ngSubmit)="search()" class="d-flex col-4">
+        <input class="form-control me-2" type="search" formControlName="name" placeholder="Tìm theo mã sản phẩm" aria-label="Search">
+        <input class="form-control me-2" type="search" formControlName="ngayHetHan" placeholder="Tìm theo ngày hêt hạn" aria-label="Search">
+        <button class="btn btn-warning" type="submit">Tìm</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!-----------------Nút trở lại thêm mới tiêu đề----------------->
+<div>
+  <div class="row text-center align-items-center" style="border-bottom: 2px black solid; margin: 0px">
+    <div class="col-1">
+    </div>
+    <div class="col-10">
+      <h1 class="my-1">DANH SÁCH LÔ HÀNG</h1>
+    </div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success">
+        <a style="text-decoration: none; color: #198754" routerLink="/lo-hang/create">Thêm mới</a>
+      </button>
+    </div>
+  </div>
+  <!-----------------Bảng dảnh sách----------------->
+  <table class="table table-striped table-hover" style="width: 100%; height: 320px" id="tableCustomer">
+    <thead>
+    <tr>
+      <th scope="col">Mã lô hàng</th>
+      <th scope="col">Tên sản phẩm</th>
+      <th scope="col">Giá tiền</th>
+      <th scope="col">Đơn vị</th>
+      <th scope="col">Số lượng</th>
+      <th scope="col">Ngày nhập hàng</th>
+      <th scope="col">Ngày sản xuất</th>
+      <th scope="col">Ngày hết hạn</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of loHangs, let i = index" class="align-middle">
+      <th>{{item.ma}}</th>
+      <td>{{item.tenSanPham}}</td>
+      <td>{{item.giaTien}}</td>
+      <td>{{item.donVi}}</td>
+      <td>{{item.soLuong}}</td>
+      <td>{{item.ngayNhapHang}}</td>
+      <td>{{item.ngaySanXuat}}</td>
+      <td>{{item.ngayHetHan}}</td>
+      <td>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                (click)="temp = item">
+          Xóa
+        </button>
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editModal"
+                (click)="temp = item">
+          Sửa
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--        ---------------Nút phân trang----------------->
+  <div class="row" style="margin: 0; padding: 0">
+    <div class="col-4"></div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success" (click)="previousPage()" *ngIf="page > 0">Trước</button>
+    </div>
+    <div class="col-2 text-center">
+      <p class="text-success" style="margin-top: 5px">Trang {{page + 1}}/ {{totalPage}} trang</p>
+    </div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success" (click)="nextPage()" *ngIf="page < totalPage - 1">Sau
+      </button>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+<!--------modal xoá--------->
+<app-lo-hang-delete [loHang]=temp (deleteEvent)="reloadList()"></app-lo-hang-delete>
+<!--------modal edit--------->
+<app-lo-hang-edit [loHang]="temp" (editEvent)="reloadList()"></app-lo-hang-edit>
