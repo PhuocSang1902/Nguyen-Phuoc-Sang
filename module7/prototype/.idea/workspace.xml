@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0987815f-af32-4ee9-8d84-7c8b5d07995c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../module2/src/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../module2/src/test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module4/case_study/project/src/main/java/com/case_study/model/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../module4/case_study/project/src/main/java/com/case_study/model/customer/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module5/case_study_html/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../module5/case_study_html/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module6/5.6.1. Xem danh sách bất động sản/5.1.4.Header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module6/5.6.1. Xem danh sách bất động sản/5.1.5.Footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module6/5.6.1. Xem danh sách bất động sản/5.6.1.XemDanhSachBatDongSan.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module6/5.6.1. Xem danh sách bất động sản/logo/z4028034056705_a0107c09c984b5b9ba1c7fcf6d764c86.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module6/[C0722G1]_Prototype_SangNP/logo/logoSang.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2LqkTNGXHwkps6o1GpFcdhsgdQx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Module6/Source Code/FE/C0722G1-Repo-FE/C0722G1-Repo-FE" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\02.Cong viec\Hoc\Lap trinh\Code gym\C0722G1---Nguyen-Phuoc-Sang\module7\prototype" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0987815f-af32-4ee9-8d84-7c8b5d07995c" name="Default Changelist" comment="" />
+      <created>1676606006231</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676606006231</updated>
+      <workItem from="1676606008248" duration="6855000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1676617301649">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1676617301649" />
+  </component>
+</project>
