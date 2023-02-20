@@ -20,6 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0987815f-af32-4ee9-8d84-7c8b5d07995c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../frontend/sprint2/src/assets/webfonts/fa-brands-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/sprint2/src/assets/webfonts/fa-brands-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/sprint2/src/assets/webfonts/fa-brands-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/sprint2/src/assets/webfonts/fa-solid-900.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/sprint2/src/assets/webfonts/fa-solid-900.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/sprint2/src/assets/webfonts/fa-solid-900.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../module2/src/ss2_loops/exercise/Lesson3DisplayPrimesLessThan100.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../module2/src/ss2_loops/exercise/Lesson3DisplayPrimesLessThan100.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../module2/src/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../module2/src/test/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../module4/case_study/project/src/main/java/com/case_study/model/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../module4/case_study/project/src/main/java/com/case_study/model/customer/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../module5/case_study_html/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../module5/case_study_html/.idea/workspace.xml" afterDir="false" />
@@ -28,6 +35,11 @@
       <change beforePath="$PROJECT_DIR$/../../module6/5.6.1. Xem danh sách bất động sản/5.6.1.XemDanhSachBatDongSan.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../module6/5.6.1. Xem danh sách bất động sản/logo/z4028034056705_a0107c09c984b5b9ba1c7fcf6d764c86.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../module6/[C0722G1]_Prototype_SangNP/logo/logoSang.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/backend/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/backend/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/backend/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/backend/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/backend/entity/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/backend/entity/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/backend/entity/RoleName.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/backend/entity/RoleName.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Đăng nhập/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Đăng nhập/Login.html" afterDir="false" />
     </list>
@@ -75,6 +87,9 @@
       <option name="presentableId" value="Default" />
       <updated>1676606006231</updated>
       <workItem from="1676606008248" duration="7720000" />
+      <workItem from="1676620404493" duration="622000" />
+      <workItem from="1676694321486" duration="2338000" />
+      <workItem from="1676862003369" duration="3999000" />
     </task>
     <servers />
   </component>
@@ -91,11 +106,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1676617301649">
+    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1676866973180">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1676617301649" />
+    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1676866973180" />
   </component>
 </project>
