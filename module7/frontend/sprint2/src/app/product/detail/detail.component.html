@@ -1,89 +1,48 @@
-<div class="container-fluid">
+<div *ngIf="flagDisplay == true; else elseBlock" class="container-fluid">
   <div class="row my-5">
     <div class="col-lg-2">
     </div>
     <div class="col-lg-4">
-      <div class="card card-body w-100">
-        <div class="card card-body w-100">
-          <div id="carouselExampleCaptions" class="carousel slide mb-3" data-bs-ride="false">
-            <div class="carousel-indicators">
-              <button style="width: 5rem;" type="button" data-bs-target="#carouselExampleCaptions"
-                      data-bs-slide-to="0" class="active rounded"
-                      aria-current="true" aria-label="Slide 1">
-                <img style="border: inset #585858 4px; border-radius: 1px"
-                     src="https://salt.tikicdn.com/cache/750x750/ts/product/45/3b/fc/aa81d0a534b45706ae1eee1e344e80d9.jpg.webp"
-                     class="d-block w-100" alt="...">
-              </button>
-              <button style="width: 5rem" type="button" data-bs-target="#carouselExampleCaptions"
-                      data-bs-slide-to="1"
-                      aria-label="Slide 2">
-                <img style="border: inset #585858 4px; border-radius: 1px"
-                     src="https://salt.tikicdn.com/cache/750x750/ts/review/17/bf/15/6c0b3a2c48a38d51b1cd62afd846dd5d.jpg.webp"
-                     class="d-block w-100" alt="...">
-              </button>
-              <button style="width: 5rem" type="button" data-bs-target="#carouselExampleCaptions"
-                      data-bs-slide-to="2"
-                      aria-label="Slide 3">
-                <img style="border: inset #585858 4px; border-radius: 1px"
-                     src="https://salt.tikicdn.com/cache/750x750/ts/review/58/7d/1c/f212027caeb976b61d4a4e0fe1dd492e.jpg.webp"
-                     class="d-block w-100" alt="...">
-              </button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img
-                  src="https://salt.tikicdn.com/cache/750x750/ts/product/45/3b/fc/aa81d0a534b45706ae1eee1e344e80d9.jpg.webp"
-                  class="d-block w-100" alt="...">
-                <!--                        <div class="carousel-caption d-none d-md-block">-->
-                <!--                            <h5>First slide label</h5>-->
-                <!--                            <p>Some representative placeholder content for the first slide.</p>-->
-                <!--                        </div>-->
-              </div>
-              <div class="carousel-item">
-                <img
-                  src="https://salt.tikicdn.com/cache/750x750/ts/review/17/bf/15/6c0b3a2c48a38d51b1cd62afd846dd5d.jpg.webp"
-                  class="d-block w-100" alt="...">
-                <!--                        <div class="carousel-caption d-none d-md-block">-->
-                <!--                            <h5>Second slide label</h5>-->
-                <!--                            <p>Some representative placeholder content for the second slide.</p>-->
-                <!--                        </div>-->
-              </div>
-              <div class="carousel-item">
-                <img
-                  src="https://salt.tikicdn.com/cache/750x750/ts/review/58/7d/1c/f212027caeb976b61d4a4e0fe1dd492e.jpg.webp"
-                  class="d-block w-100" alt="...">
-                <!--                        <div class="carousel-caption d-none d-md-block">-->
-                <!--                            <h5>Third slide label</h5>-->
-                <!--                            <p>Some representative placeholder content for the third slide.</p>-->
-                <!--                        </div>-->
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+      <div class="card card-body w-100" style="max-height: 475px">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+          <div class="carousel-indicators" style="margin-bottom: -1rem">
+            <button (click)="changeImage(item.url)" *ngFor="let item of productDetail.imageSet" style="width: 5rem;"
+                    type="button"
+                    class="active rounded ms-1">
+              <img src="{{item.url}}"
+                   class="d-block w-100" alt="Click me!">
+              <!--                style="border: inset #585858 4px; border-radius: 1px"-->
+
             </button>
           </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active d-flex justify-content-center">
+              <img
+                src="{{url}}"
+                class="d-block" style="max-width: 100%; max-height: 400px" alt="...">
+            </div>
+          </div>
+          <br>
         </div>
       </div>
     </div>
     <div class="col-lg-4">
       <span class="link">Tác giả: </span>
-      <span class="link">Paulo Coelho</span>
-      <h4 class="mt-2" style="height: 90px;">Nhà Giả Kim (Tái Bản 2020)</h4>
+      <span class="link">{{productDetail.author}}</span>
+      <h4 class="mt-2" style="max-height: 90px;">{{productDetail.name}}</h4>
       <hr>
       <div class="row mt-2">
-        <h1 class="text-danger">Giá 57.300đ</h1>
+        <h1 class="text-danger">Giá {{productDetail.cost|number}} VNĐ</h1>
       </div>
       <hr>
-      <p>Số lượng</p>
-      <button class="btn btn-primary">
-        <h5>Thêm vào giỏ hàng</h5>
+      <div class="d-flex align-items-center my-3">
+        <span>Số lượng: </span>
+        <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="subAmountOrder()">-</button>
+        <input class="form-control-sm mx-1" style="width: 35px; text-align: center" type="number" [(ngModel)]="numberOrder">
+        <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="addAmountOrder()">+</button>
+      </div>
+      <button class="btn btn-primary" (click)="addToCart()">
+        <span>Thêm vào giỏ hàng</span>
       </button>
     </div>
     <div class="col-lg-2">
@@ -101,31 +60,31 @@
           <p><b>Công ty phát hành</b></p>
         </div>
         <div class="col-lg-8 my-1" style="background-color: #f8f9fa">
-          <p>Nhã Nam</p>
+          <p>{{productDetail.issuingCompany}}</p>
         </div>
         <div class="col-lg-4 my-1" style="background-color: #f2f2f2">
           <p><b>Ngày xuất bản</b></p>
         </div>
         <div class="col-lg-8 my-1" style="background-color: #f8f9fa">
-          <p>01/04/2020</p>
+          <p>{{productDetail.publicationDate}}</p>
         </div>
         <div class="col-lg-4 my-1" style="background-color: #f2f2f2">
           <p><b>Loại bìa</b></p>
         </div>
         <div class="col-lg-8 my-1" style="background-color: #f8f9fa">
-          <p>Bìa mềm</p>
+          <p>{{productDetail.coverType}}</p>
         </div>
         <div class="col-lg-4 my-1" style="background-color: #f2f2f2">
           <p><b>Số trang</b></p>
         </div>
         <div class="col-lg-8 my-1" style="background-color: #f8f9fa">
-          <p>228</p>
+          <p>{{productDetail.numberOfPages}}</p>
         </div>
         <div class="col-lg-4 my-1" style="background-color: #f2f2f2">
           <p><b>Nhà xuất bản</b></p>
         </div>
         <div class="col-lg-8 my-1" style="background-color: #f8f9fa">
-          <p>01/04/2020</p>
+          <p>{{productDetail.publisher}}</p>
         </div>
       </div>
     </div>
@@ -142,21 +101,7 @@
       <div class="hr_value"><h3>Mô tả sản phẩm</h3></div>
       <div>
         <p style="font-family: Arial,serif, sans-serif" class="mt-2">
-          Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý
-          nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người. Tiểu thuyết Nhà giả kim của Paulo Coelho như
-          một câu chuyện cổ tích giản dị, nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông.
-          Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900 bản. Nhưng, với số phận đặc biệt
-          của cuốn sách dành cho toàn nhân loại, vượt ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng
-          triệu tâm hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có thể làm thay đổi cuộc đời
-          người đọc. “Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng thấy nhiều người đến rồi
-          đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này,
-          cái biển cát thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà ông đã biết từ thuở
-          nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm thấy vui trước hạnh phúc của mỗi người lữ khách, sau
-          bao ngày chỉ có cát vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể Thượng đế tạo
-          ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông nghĩ.”
-          Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và
-          địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập
-          khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....
+          {{productDetail.description}}
         </p>
       </div>
     </div>
@@ -168,3 +113,6 @@
     </div>
   </div>
 </div>
+<ng-template #elseBlock class="align-center">
+  <h1>Không có nội dung.</h1>
+</ng-template>

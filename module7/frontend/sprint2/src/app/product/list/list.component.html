@@ -25,10 +25,10 @@
 
     <div class="row">
       <div class="col-md-3" *ngFor="let item of productList">
-        <div href="#" class="card card-product-grid">
-          <a href="#" class="img-wrap mt-4"> <img src="{{item.image}}"> </a>
+        <div [routerLink]="['/product/detail', item.id]" class="card card-product-grid">
+          <a [routerLink]="['/product/detail', item.id]" class="img-wrap mt-4"> <img src="{{item.image}}"> </a>
           <figcaption class="info px-3 py-4">
-            <a href="#" class="title" style="height: 50px; text-decoration: none">{{item.name}}</a>
+            <a [routerLink]="['/product/detail', item.id]" class="title" style="height: 50px; text-decoration: none">{{item.name}}</a>
             <div class="price mt-1"><h5>{{item.cost|number:'.0-0'}} VND</h5></div> <!-- price-wrap.// -->
           </figcaption>
         </div>

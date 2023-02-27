@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,9 +40,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @JsonBackReference
     private Set<OrderDetail> orderDetailSet;
-    @ManyToMany
-    @JoinTable(name = "product_cart",
-            joinColumns = { @JoinColumn(name = "product_id") },
-            inverseJoinColumns = {@JoinColumn(name = "cart_id") })
-    private Set<Cart> cartSet;
+    @OneToMany(mappedBy = "product")
+    @JsonBackReference
+    private List<Cart> carts;
 }

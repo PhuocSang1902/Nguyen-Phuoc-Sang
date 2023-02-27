@@ -10,6 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface IProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "select p.id, p.code, p.name, p.cost, i.url as image\n" +
@@ -18,7 +20,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "where flag_deleted = false\n" +
             "  and (p.author like concat('%', :search, '%')\n" +
             "  or p.name like concat('%', :search, '%')\n" +
-            "  or p.kind_of_book like concat('%', :search, '%'))\n" +
+            "  or p.kind_of_book like concat('%', :kindOfBook, '%'))\n" +
             "group by i.product_id\n" +
             "order by p.id desc",
             nativeQuery = true,
@@ -28,8 +30,8 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
                     "where flag_deleted = false\n" +
                     "  and (p.author like concat('%', :search, '%')\n" +
                     "  or p.name like concat('%', :search, '%')\n" +
-                    "  or p.kind_of_book like concat('%', :search, '%'))\n" +
+                    "  or p.kind_of_book like concat('%', :kindOfBook, '%'))\n" +
                     "group by i.product_id\n" +
                     "order by p.id desc")
-    Page<ProductHome> findAll(@Param("search") String search, Pageable pageable);
+    Page<ProductHome> findAll(@Param("search") String search,@Param("kindOfBook") String kindOfBook, Pageable pageable);
 }

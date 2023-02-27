@@ -21,7 +21,7 @@ public class AccountPrinciple implements UserDetails {
     private Collection<? extends GrantedAuthority> roles;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends GrantedAuthority>getAuthorities() {
         return roles;
     }
 

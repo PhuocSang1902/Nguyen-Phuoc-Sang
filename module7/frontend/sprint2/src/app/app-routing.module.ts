@@ -11,6 +11,9 @@ const routes: Routes = [
   {
     path: 'order', loadChildren: () => import('./orders/orders.module').then(module => module.OrdersModule)
   },
+  {
+    path: 'login', component: LoginComponent
+  },
 ];
 
 @NgModule({

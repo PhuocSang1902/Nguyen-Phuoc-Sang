@@ -7,13 +7,15 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
 import { DetailComponent } from './detail/detail.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [ListComponent, CreateComponent, EditComponent, DeleteComponent, DetailComponent],
   imports: [
     CommonModule,
-    ProductRoutingModule
+    ProductRoutingModule,
+    FormsModule
   ]
 })
 export class ProductModule { }
