@@ -28,14 +28,21 @@
         <div [routerLink]="['/product/detail', item.id]" class="card card-product-grid">
           <a [routerLink]="['/product/detail', item.id]" class="img-wrap mt-4"> <img src="{{item.image}}"> </a>
           <figcaption class="info px-3 py-4">
-            <a [routerLink]="['/product/detail', item.id]" class="title" style="height: 50px; text-decoration: none">{{item.name}}</a>
+            <a [routerLink]="['/product/detail', item.id]" class="title"
+               style="height: 50px; text-decoration: none">{{item.name|slice:0:40}}</a>
             <div class="price mt-1"><h5>{{item.cost|number:'.0-0'}} VND</h5></div> <!-- price-wrap.// -->
           </figcaption>
         </div>
       </div> <!-- col.// -->
     </div> <!-- row.// -->
     <div class="text-center my-3">
-      <button class="btn btn-outline-dark">Xem thêm</button>
+      <button class="btn btn-outline-dark" style="width: 7rem" *ngIf="page<totalPage-1 && flagDisplay == true"
+              (click)="showMore()">Xem thêm
+      </button>
+      <button class="btn btn-outline-dark" style="width: 7rem"
+              *ngIf="page==totalPage-1 && flagDisplay == true && totalPage>1" (click)="showLess()">
+        Ẩn đi
+      </button>
     </div>
 
   </div><!-- container // -->

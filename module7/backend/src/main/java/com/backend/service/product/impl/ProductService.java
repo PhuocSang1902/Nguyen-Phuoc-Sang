@@ -18,7 +18,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Page<ProductHome> findAll(String search,String kindOfBook, Pageable pageable) {
-        return this.productRepository.findAll(search, kindOfBook, pageable);
+        return this.productRepository.findAllProduct(search, kindOfBook, pageable);
     }
 
     @Override

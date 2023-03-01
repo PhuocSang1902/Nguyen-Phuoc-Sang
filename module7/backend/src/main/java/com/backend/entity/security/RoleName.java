@@ -1,6 +1,6 @@
 package com.backend.entity.security;
 
 public enum RoleName {
-    ADMIN,
-    USER
+    ROLE_ADMIN,
+    ROLE_USER
 }

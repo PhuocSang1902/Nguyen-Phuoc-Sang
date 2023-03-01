@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TokenService} from "../../service/token.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {ProductService} from "../../product/service/product.service";
 
 @Component({
   selector: 'app-header',
@@ -12,10 +14,17 @@ export class HeaderComponent implements OnInit {
   name: string | null | undefined;
   roles: string[] = [];
   idAccount: string | null | undefined;
+  searchForm: FormGroup;
+  page = 0;
+  kindOfBook = "";
 
   constructor(private tokenService: TokenService,
               private router: Router,
-  ) {
+              private fb: FormBuilder,
+              private productService: ProductService) {
+    this.searchForm = this.fb.group({
+      search: [""]
+    })
   }
 
   ngOnInit(): void {
@@ -26,6 +35,7 @@ export class HeaderComponent implements OnInit {
       this.idAccount = this.tokenService.getId();
     }
   }
+
   logOut(): void {
     window.localStorage.clear();
     this.router.navigateByUrl('/').then(() => {
@@ -33,4 +43,64 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  search() {
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    // this.router.navigateByUrl("/")
+  }
+
+  home() {
+    this.searchForm.patchValue({search: ""})
+    this.kindOfBook = ""
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    this.router.navigateByUrl("/")
+  }
+
+  politicsLaw() {
+    this.searchForm.patchValue({search: ""})
+    this.kindOfBook = "Chính trị-Pháp luật"
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    this.router.navigateByUrl("/")
+  }
+
+  scienceEconomy() {
+    this.searchForm.patchValue({search: ""})
+    this.kindOfBook = "Khoa học-Kinh tế"
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    this.router.navigateByUrl("/")
+  }
+
+  literatureArt() {
+    this.searchForm.patchValue({search: ""})
+    this.kindOfBook = "Văn học-Nghệ thuật"
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    this.router.navigateByUrl("/")
+  }
+
+  socialCultureHistory() {
+    this.searchForm.patchValue({search: ""})
+    this.kindOfBook = "Văn hoá xã hội-Lịch sử"
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    this.router.navigateByUrl("/")
+  }
+
+  mentalityReligion() {
+    this.searchForm.patchValue({search: ""})
+    this.kindOfBook = "Tâm lý-Tôn giáo"
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    this.router.navigateByUrl("/")
+  }
+
+  storyNovel() {
+    this.searchForm.patchValue({search: ""})
+    this.kindOfBook = "Truyện-Tiểu thuyết"
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    this.router.navigateByUrl("/")
+  }
+
+  children() {
+    this.searchForm.patchValue({search: ""})
+    this.kindOfBook = "Sách thiếu nhi"
+    this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
+    this.router.navigateByUrl("/")
+  }
 }

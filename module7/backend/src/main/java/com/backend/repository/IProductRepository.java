@@ -14,24 +14,24 @@ import java.util.Optional;
 
 @Repository
 public interface IProductRepository extends JpaRepository<Product, Integer> {
-    @Query(value = "select p.id, p.code, p.name, p.cost, i.url as image\n" +
-            "from product p\n" +
-            "         left join image i on p.id = i.product_id\n" +
-            "where flag_deleted = false\n" +
-            "  and (p.author like concat('%', :search, '%')\n" +
-            "  or p.name like concat('%', :search, '%')\n" +
-            "  or p.kind_of_book like concat('%', :kindOfBook, '%'))\n" +
-            "group by i.product_id\n" +
-            "order by p.id desc",
+        @Query(value = "select p.id, p.code, p.name, p.cost, i.url as image\n" +
+                "from product p\n" +
+                "         left join image i on p.id = i.product_id\n" +
+                "where flag_deleted = false\n" +
+                "  and (p.author like concat('%', :search, '%')\n" +
+                "    or p.name like concat('%', :search, '%'))\n" +
+                "    and p.kind_of_book like concat('%', :kindOfBook, '%')\n" +
+                "group by i.product_id\n" +
+                "order by p.id desc",
             nativeQuery = true,
             countQuery = "select p.id, p.code, p.name, p.cost, i.url as image\n" +
                     "from product p\n" +
                     "         left join image i on p.id = i.product_id\n" +
                     "where flag_deleted = false\n" +
                     "  and (p.author like concat('%', :search, '%')\n" +
-                    "  or p.name like concat('%', :search, '%')\n" +
-                    "  or p.kind_of_book like concat('%', :kindOfBook, '%'))\n" +
+                    "    or p.name like concat('%', :search, '%'))\n" +
+                    "    and p.kind_of_book like concat('%', :kindOfBook, '%')\n" +
                     "group by i.product_id\n" +
                     "order by p.id desc")
-    Page<ProductHome> findAll(@Param("search") String search,@Param("kindOfBook") String kindOfBook, Pageable pageable);
+    Page<ProductHome> findAllProduct(@Param("search") String search,@Param("kindOfBook") String kindOfBook, Pageable pageable);
 }
