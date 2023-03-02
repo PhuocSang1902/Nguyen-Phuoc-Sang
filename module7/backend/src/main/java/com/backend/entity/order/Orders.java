@@ -6,11 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@SQLDelete(sql = "UPDATE orders SET flag_deleted = true WHERE id = ?")
+@Where(clause = "flag_deleted = false")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -25,7 +29,7 @@ public class Orders {
     private boolean paymentStatus;
     private String deliveryAddress;
     private String deliveryPhone;
-    private boolean flagDeleted;
+    private boolean flagDeleted = false;
     @OneToMany(mappedBy = "orders")
     @JsonBackReference
     private Set<OrderDetail> orderDetailSet;

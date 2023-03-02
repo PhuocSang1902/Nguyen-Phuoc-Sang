@@ -29,7 +29,7 @@
     <div class="col-lg-4">
       <span class="link">Tác giả: </span>
       <span class="link">{{productDetail.author}}</span>
-      <h4 class="mt-2" style="max-height: 90px;">{{productDetail.name}}</h4>
+      <h4 class="mt-2" style="max-height: 90px">{{productDetail.name}}</h4>
       <hr>
       <div class="row mt-2">
         <h1 class="text-danger">Giá {{productDetail.cost|number}} VNĐ</h1>
@@ -38,7 +38,7 @@
       <div class="d-flex align-items-center my-3">
         <span>Số lượng: </span>
         <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="subAmountOrder()">-</button>
-        <input class="form-control-sm mx-1" style="width: 35px; text-align: center" type="number" [(ngModel)]="numberOrder">
+        <input class="form-control-sm mx-1" style="width: 35px;text-align: center" type="number" [(ngModel)]="numberOrder">
         <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="addAmountOrder()">+</button>
       </div>
       <button class="btn btn-primary" (click)="addToCart()">

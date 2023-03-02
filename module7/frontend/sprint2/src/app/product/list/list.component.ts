@@ -2,6 +2,13 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
 import {ProductService} from "../service/product.service";
 import {ProductHome} from "../entiry/productHome";
 import {Subscription} from "rxjs";
+import {Title} from "@angular/platform-browser";
+import {TokenService} from "../../service/token.service";
+import {ToastrService} from "ngx-toastr";
+import {OrdersService} from "../../orders/service/orders.service";
+import {Cart} from "../../orders/entity/cart";
+import {ProductDetail} from "../entiry/product-detail";
+import {Customer} from "../../customer/entity/customer";
 
 @Component({
   selector: 'app-list',
@@ -17,25 +24,41 @@ export class ListComponent implements OnInit {
   kindOfBook: string = "";
   flag = false;
   flagDisplay = false;
+  checkLogin = false;
+  name: string | null | undefined;
+  roles: string[] = [];
+  idAccount: string | null | undefined;
+  cart: Cart = {};
 
   constructor(private productService: ProductService,
-              private cd: ChangeDetectorRef) {
+              private cd: ChangeDetectorRef,
+              private title: Title,
+              private tokenService: TokenService,
+              private ordersService: OrdersService,
+              private toast: ToastrService) {
+    this.title.setTitle('Trang chủ')
   }
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.checkLogin = true;
+      this.name = this.tokenService.getName();
+      this.roles = this.tokenService.getRole();
+      this.idAccount = this.tokenService.getId();
+    }
     this.getList();
   }
 
   getList() {
     this.productService.productBehaviorSubject.subscribe(data => {
-      if (!this.flag){
-        this.productList = data.content;
-      }else {
+      if (!this.flag) {
+        this.productList = data['content'];
+      } else {
         this.productList = this.productList.concat(data.content);
       }
       this.flagDisplay = true;
-      this.totalPage = data.totalPages;
-      this.page = data.number;
+      this.totalPage = data['totalPages'];
+      this.page = data['number'];
       this.cd.markForCheck();
     }, error => {
     }, () => {
@@ -56,5 +79,21 @@ export class ListComponent implements OnInit {
       this.flag = false;
       this.productService.showHomePageWithPage(this.page);
     }
+  }
+
+  addProductToCart(product: ProductDetail) {
+    this.cart.productHome = product;
+    this.cart.numberOfProduct = 1;
+    this.cart.idAccount = Number(this.idAccount);
+    console.log(this.cart)
+    this.ordersService.addProductToCart(this.cart).subscribe(data => {
+      this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.");
+    }, error => {
+      if (error.status == 400){
+        this.toast.error("Thêm giỏ hàng không thành công");
+      }
+      this.toast.error("Lỗi rồi");
+    }, () => {
+    });
   }
 }

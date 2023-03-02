@@ -5,10 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
 @Entity
+@SQLDelete(sql = "UPDATE order_detail SET flag_deleted = true WHERE id = ?")
+@Where(clause = "flag_deleted = false")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -22,5 +26,5 @@ public class OrderDetail {
     @ManyToOne
     private Orders orders;
     private int amount;
-    private boolean flagDeleted;
+    private boolean flagDeleted = false;
 }

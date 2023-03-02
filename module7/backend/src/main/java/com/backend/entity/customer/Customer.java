@@ -5,10 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
 @Entity
+@SQLDelete(sql = "UPDATE customer SET flag_deleted = true WHERE id = ?")
+@Where(clause = "flag_deleted = false")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -23,7 +27,7 @@ public class Customer {
     private String address;
     private String birthday;
     private boolean gender;
-    private boolean flagDeleted;
+    private boolean flagDeleted = false;
     @OneToOne
     private Account account;
 }

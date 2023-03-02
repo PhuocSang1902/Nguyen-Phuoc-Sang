@@ -5,6 +5,7 @@ import {TokenService} from "../../service/token.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {Title} from "@angular/platform-browser";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-login',
@@ -48,7 +49,7 @@ export class LoginComponent implements OnInit {
         if (data.token !== undefined) {
           if (this.signInForm?.value.rememberMe) {
             this.tokenService.rememberMe(data.roles, data.name, data.token);
-            location.href = 'http://localhost:4200';
+            location.href="/"
           } else {
             this.tokenService.setToken(data.token);
             this.tokenService.setName(data.name);
@@ -57,17 +58,18 @@ export class LoginComponent implements OnInit {
             this.tokenService.setEmail(data.email);
             this.tokenService.setId(data.id);
             this.tokenService.setAvatar(data.avatar);
-            location.href = 'http://localhost:4200';
+            location.href="/"
             this.toast.info('Đăng nhập thành công.', 'Thông báo', {
-              timeOut: 3000
+              timeOut: 3000,
+              extendedTimeOut: 1500
             });
+
           }
         }
         // @ts-ignore
         if (data.status === 202) {
           this.toast.error('Mật khẩu không đúng vui lòng nhập lại.', 'Thông báo', {
             timeOut: 3000,
-            extendedTimeOut: 1500
           });
         }
       }, error => {

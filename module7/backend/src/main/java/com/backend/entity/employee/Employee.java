@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@SQLDelete(sql = "UPDATE employee SET flag_deleted = true WHERE id = ?")
+@Where(clause = "flag_deleted = false")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -26,5 +30,5 @@ public class Employee {
     private Integer salary;
     private String birthday;
     private boolean gender;
-    private boolean flagDeleted;
+    private boolean flagDeleted = false;
 }

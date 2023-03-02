@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../service/product.service";
 import {ProductDetail} from "../entiry/product-detail";
 import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-detail',
@@ -16,7 +17,10 @@ export class DetailComponent implements OnInit {
   url: string | undefined = "";
   numberOrder: number = 1;
 
-  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute) {
+  constructor(private productService: ProductService,
+              private activatedRoute: ActivatedRoute,
+              private title: Title) {
+    this.title.setTitle('Trang chi tiết')
   }
 
   ngOnInit(): void {
@@ -52,16 +56,17 @@ export class DetailComponent implements OnInit {
   }
 
   addAmountOrder() {
-    if (this.numberOrder <= 100 ){
+    if (this.numberOrder <= 100) {
       this.numberOrder = this.numberOrder + 1;
-    }else {
+    } else {
       this.numberOrder = 100;
     }
   }
-  subAmountOrder(){
-    if (this.numberOrder > 0 ){
+
+  subAmountOrder() {
+    if (this.numberOrder > 0) {
       this.numberOrder = this.numberOrder - 1;
-    }else {
+    } else {
       this.numberOrder = 0;
     }
   }

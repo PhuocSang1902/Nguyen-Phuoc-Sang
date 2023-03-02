@@ -38,7 +38,12 @@ export class ProductService {
     }, () => {
     })
   }
-  showHomePageWithPage(page: number){
+
+  showHomePageWithPage(page: number) {
     this.getListForHomePage(this.search, this.kindOfBook, page)
+  }
+
+  showHomePageWithKindOfBook(kindOfBook: string){
+    this.getListForHomePage(this.search, kindOfBook, this.page)
   }
 }

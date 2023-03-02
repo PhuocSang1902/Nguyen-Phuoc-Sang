@@ -7,12 +7,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@SQLDelete(sql = "UPDATE product SET flag_deleted = true WHERE id = ?")
+@Where(clause = "flag_deleted = false")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -34,7 +38,7 @@ public class Product {
     private String author;
     private String coverType;
     private String numberOfPages;
-    private boolean flagDeleted;
+    private boolean flagDeleted = false;
     @OneToMany(mappedBy = "product")
     private Set<Image> imageSet;
     @OneToMany(mappedBy = "product")

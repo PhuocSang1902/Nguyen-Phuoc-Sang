@@ -1,5 +1,5 @@
 <!-- ========================= SECTION MAIN ========================= -->
-<section class="section-main bg padding-y">
+<body class="section-main bg padding-y">
   <div class="container">
 
     <div class="row">
@@ -11,40 +11,46 @@
       </div> <!-- col.// -->
     </div> <!-- row.// -->
   </div> <!-- container //  -->
-</section>
+</body>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
 <!-- ========================= SECTION  ========================= -->
 <section class="section-name padding-y-sm">
   <div class="container">
-
     <header class="section-heading">
       <h3 class="section-title">Sản phẩm mới nhất</h3>
     </header><!-- sect-heading -->
-
-
     <div class="row">
-      <div class="col-md-3" *ngFor="let item of productList">
-        <div [routerLink]="['/product/detail', item.id]" class="card card-product-grid">
-          <a [routerLink]="['/product/detail', item.id]" class="img-wrap mt-4"> <img src="{{item.image}}"> </a>
-          <figcaption class="info px-3 py-4">
-            <a [routerLink]="['/product/detail', item.id]" class="title"
-               style="height: 50px; text-decoration: none">{{item.name|slice:0:40}}</a>
-            <div class="price mt-1"><h5>{{item.cost|number:'.0-0'}} VND</h5></div> <!-- price-wrap.// -->
-          </figcaption>
-        </div>
-      </div> <!-- col.// -->
-    </div> <!-- row.// -->
-    <div class="text-center my-3">
-      <button class="btn btn-outline-dark" style="width: 7rem" *ngIf="page<totalPage-1 && flagDisplay == true"
-              (click)="showMore()">Xem thêm
-      </button>
-      <button class="btn btn-outline-dark" style="width: 7rem"
-              *ngIf="page==totalPage-1 && flagDisplay == true && totalPage>1" (click)="showLess()">
-        Ẩn đi
-      </button>
+      <div class="row ">
+        <div class="col-md-3" *ngFor="let item of productList">
+          <div class="card card-product-grid">
+            <a [routerLink]="['/product/detail', item.id]" class="img-wrap mt-4"> <img src="{{item.image}}"> </a>
+            <figcaption class="info px-3 py-4">
+              <a [routerLink]="['/product/detail', item.id]" class="title"
+                 style="height: 50px; text-decoration: none">{{item.name|slice:0:40}}</a>
+              <div class="row d-flex align-content-center justify-content-center mt-1" *ngIf="roles[0]=='ROLE_USER' && checkLogin">
+                <h4 class="col-9 text-danger">{{item.cost|number:'.0-0'}} VND</h4>
+                <button class="col-2 btn btn-sm btn-outline-primary" (click)="addProductToCart(item)">
+                  <i class="fa fa-cart-plus"></i>
+                </button>
+              </div> <!-- price-wrap.// -->
+              <div class="row d-flex align-content-center justify-content-center mt-1" *ngIf="!checkLogin">
+                <h4 class="text-danger">{{item.cost|number:'.0-0'}} VND</h4>
+              </div> <!-- price-wrap.// -->
+            </figcaption>
+          </div>
+        </div> <!-- col.// -->
+      </div> <!-- row.// -->
+      <div class="text-center my-3">
+        <button class="btn btn-outline-dark" style="width: 7rem" *ngIf="page<totalPage-1 && flagDisplay == true"
+                (click)="showMore()">Xem thêm
+        </button>
+        <button class="btn btn-outline-dark" style="width: 7rem"
+                *ngIf="page==totalPage-1 && flagDisplay == true && totalPage>1" (click)="showLess()">
+          Ẩn đi
+        </button>
+      </div>
     </div>
-
   </div><!-- container // -->
 </section>
 <!-- ========================= SECTION  END// ========================= -->
@@ -55,9 +61,9 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-10">
       </div>
-      <div class="col-md-6 text-md-right">
+      <div class="col-md-2 text-md-right">
         <a href="#"><img src="../../../assets/image/appstore.png" height="40"/></a>
         <!--                <a href="#"><img src="images/misc/appstore.png" height="40"></a>-->
       </div>

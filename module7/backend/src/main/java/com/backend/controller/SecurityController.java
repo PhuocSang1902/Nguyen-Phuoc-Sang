@@ -90,7 +90,7 @@ public class SecurityController {
         message.setSubject(mailSubject);
         message.setText(mailContent);
         javaMailSender.send(message);
-        Role customerRole = roleService.findByName(RoleName.USER).orElse(new Role());
+        Role customerRole = roleService.findByName(RoleName.ROLE_USER).orElse(new Role());
         roles.add(customerRole);
         account.setRoles(roles);
         accountService.save(account);
