@@ -18,4 +18,8 @@ export class OrdersService {
   getList(email: string | null): Observable<Cart[]> {
     return this.httpClient.get<Cart[]>("http://localhost:8080/api/user/cart/list-cart?email=" + email);
   }
+
+  deleteCart(id: number): Observable<Cart> {
+    return this.httpClient.delete("http://localhost:8080/api/user/cart/delete/" + id)
+  }
 }

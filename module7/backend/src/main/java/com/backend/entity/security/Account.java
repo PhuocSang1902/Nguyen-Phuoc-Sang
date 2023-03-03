@@ -30,7 +30,7 @@ public class Account {
     private String encryptPassword;
 
     @Column(columnDefinition = "bit default false")
-    private boolean flagDelete;
+    private boolean flagDeleted;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -45,7 +45,7 @@ public class Account {
         this.avatar = avatar;
         this.email = email;
         this.encryptPassword = encryptPassword;
-        this.flagDelete = flagDelete;
+        this.flagDeleted = flagDelete;
         this.roles = roles;
     }
 
@@ -90,11 +90,11 @@ public class Account {
     }
 
     public boolean isFlagDelete() {
-        return flagDelete;
+        return flagDeleted;
     }
 
     public void setFlagDelete(boolean flagDelete) {
-        this.flagDelete = flagDelete;
+        this.flagDeleted = flagDelete;
     }
 
     public Set<Role> getRoles() {

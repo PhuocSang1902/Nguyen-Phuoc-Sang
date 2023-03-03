@@ -14,4 +14,6 @@ export interface CartList {
   idCustomer?: number;
 
   numberOfProduct?: number;
+
+  totalCost?: number;
 }

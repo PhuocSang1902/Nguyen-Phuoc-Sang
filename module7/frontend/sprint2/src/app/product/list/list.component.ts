@@ -61,6 +61,7 @@ export class ListComponent implements OnInit {
       this.page = data['number'];
       this.cd.markForCheck();
     }, error => {
+      this.flagDisplay = false;
     }, () => {
     })
   }
@@ -85,14 +86,10 @@ export class ListComponent implements OnInit {
     this.cart.productHome = product;
     this.cart.numberOfProduct = 1;
     this.cart.idAccount = Number(this.idAccount);
-    console.log(this.cart)
     this.ordersService.addProductToCart(this.cart).subscribe(data => {
-      this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.");
+      this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.",'Thông báo',{timeOut:500});
     }, error => {
-      if (error.status == 400){
-        this.toast.error("Thêm giỏ hàng không thành công");
-      }
-      this.toast.error("Lỗi rồi");
+        this.toast.error("Thêm giỏ hàng không thành công",'Thông báo',{timeOut:500});
     }, () => {
     });
   }

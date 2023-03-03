@@ -3,6 +3,10 @@ import {ProductService} from "../service/product.service";
 import {ProductDetail} from "../entiry/product-detail";
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
+import {TokenService} from "../../service/token.service";
+import {Cart} from "../../orders/entity/cart";
+import {OrdersService} from "../../orders/service/orders.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-detail',
@@ -16,10 +20,18 @@ export class DetailComponent implements OnInit {
   flagDisplay: boolean = false;
   url: string | undefined = "";
   numberOrder: number = 1;
+  checkLogin = false;
+  name: string | null | undefined;
+  roles: string[] = [];
+  idAccount: string | null | undefined;
+  cart: Cart = {};
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
-              private title: Title) {
+              private title: Title,
+              private tokenService: TokenService,
+              private ordersService: OrdersService,
+              private toast: ToastrService) {
     this.title.setTitle('Trang chi tiết')
   }
 
@@ -33,6 +45,12 @@ export class DetailComponent implements OnInit {
     }, error => {
     }, () => {
     })
+    if (this.tokenService.getToken()) {
+      this.checkLogin = true;
+      this.name = this.tokenService.getName();
+      this.roles = this.tokenService.getRole();
+      this.idAccount = this.tokenService.getId();
+    }
   }
 
   findById(id: number) {
@@ -71,6 +89,17 @@ export class DetailComponent implements OnInit {
     }
   }
 
-  addToCart() {
+  addProductToCart(product: ProductDetail) {
+    this.cart.productHome = product;
+    this.cart.numberOfProduct = this.numberOrder;
+    this.cart.idAccount = Number(this.idAccount);
+    this.ordersService.addProductToCart(this.cart).subscribe(data => {
+      this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.",'Thông báo',{timeOut:500});
+    }, error => {
+      if (error.status == 400) {
+        this.toast.error("Thêm giỏ hàng không thành công",'Thông báo',{timeOut:500});
+      }
+    }, () => {
+    });
   }
 }

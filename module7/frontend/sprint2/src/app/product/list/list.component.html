@@ -1,5 +1,5 @@
 <!-- ========================= SECTION MAIN ========================= -->
-<body class="section-main bg padding-y">
+<body class="section-main bg padding-y" *ngIf="flagDisplay == true">
   <div class="container">
 
     <div class="row">
@@ -15,7 +15,7 @@
 <!-- ========================= SECTION MAIN END// ========================= -->
 
 <!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y-sm">
+<section class="section-name padding-y-sm" *ngIf="flagDisplay == true">
   <div class="container">
     <header class="section-heading">
       <h3 class="section-title">Sản phẩm mới nhất</h3>
@@ -27,7 +27,7 @@
             <a [routerLink]="['/product/detail', item.id]" class="img-wrap mt-4"> <img src="{{item.image}}"> </a>
             <figcaption class="info px-3 py-4">
               <a [routerLink]="['/product/detail', item.id]" class="title"
-                 style="height: 50px; text-decoration: none">{{item.name|slice:0:40}}</a>
+                 style="height: 50px; text-decoration: none">{{item.name|slice:0:70}}</a>
               <div class="row d-flex align-content-center justify-content-center mt-1" *ngIf="roles[0]=='ROLE_USER' && checkLogin">
                 <h4 class="col-9 text-danger">{{item.cost|number:'.0-0'}} VND</h4>
                 <button class="col-2 btn btn-sm btn-outline-primary" (click)="addProductToCart(item)">
@@ -35,7 +35,10 @@
                 </button>
               </div> <!-- price-wrap.// -->
               <div class="row d-flex align-content-center justify-content-center mt-1" *ngIf="!checkLogin">
-                <h4 class="text-danger">{{item.cost|number:'.0-0'}} VND</h4>
+                <h4 class="col-9 text-danger">{{item.cost|number:'.0-0'}} VND</h4>
+                <button class="col-2 btn btn-sm btn-outline-primary" routerLink="/login">
+                  <i class="fa fa-cart-plus"></i>
+                </button>
               </div> <!-- price-wrap.// -->
             </figcaption>
           </div>
@@ -57,7 +60,7 @@
 
 
 <!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y bg">
+<section class="section-name padding-y bg" *ngIf="flagDisplay == true">
   <div class="container">
 
     <div class="row">
@@ -70,3 +73,10 @@
     </div> <!-- row.// -->
   </div><!-- container // -->
 </section>
+<div *ngIf="flagDisplay==false">
+  <div class="row" style="height: 34.5rem; margin: 0; padding: 0">
+    <div class="d-flex align-items-center justify-content-center col-12">
+      <h2 class="text-primary">Không có dữ liệu</h2>
+    </div>
+  </div>
+</div>

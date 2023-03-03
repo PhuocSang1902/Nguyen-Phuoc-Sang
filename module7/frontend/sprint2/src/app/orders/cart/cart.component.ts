@@ -4,6 +4,7 @@ import {Cart} from "../entity/cart";
 import {TokenService} from "../../service/token.service";
 import {Title} from "@angular/platform-browser";
 import {CartList} from "../entity/cart-list";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-cart',
@@ -18,9 +19,12 @@ export class CartComponent implements OnInit {
   idAccount: string | null | undefined;
   email: string | null = "";
   mess = "";
+  flagDisplay = false;
+
   constructor(private ordersService: OrdersService,
               private tokenService: TokenService,
-              private title: Title) {
+              private title: Title,
+              private toast: ToastrService) {
     this.title.setTitle('Trang chủ')
   }
 
@@ -38,10 +42,31 @@ export class CartComponent implements OnInit {
   getList() {
     this.ordersService.getList(this.email).subscribe(data => {
       this.cartList = data;
+      if (data != null) {
+        this.flagDisplay = true;
+      }else {
+        this.flagDisplay = false;
+        this.mess = "Không có sản phẩm nào trong giỏ hàng.";
+      }
     }, error => {
-      this.mess = "Không có sản phẩm nào trong giỏ hàng."
+      this.mess = "Không có sản phẩm nào trong giỏ hàng.";
     }, () => {
     })
   }
 
+  deleteCart(id: number | undefined) {
+    if (id != undefined) {
+      this.ordersService.deleteCart(id).subscribe(data => {
+        if (data != null) {
+          this.toast.info("Xoá thành công.", "Thông báo", {timeOut: 500});
+          this.getList();
+        }else {
+          this.toast.error("Xoá không thành công.", "Thông báo", {timeOut: 500});
+        }
+      }, error => {
+        this.toast.error("Xoá không thành công.", "Thông báo", {timeOut: 500});
+      }, () => {
+      })
+    }
+  }
 }

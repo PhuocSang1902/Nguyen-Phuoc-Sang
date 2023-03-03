@@ -1,5 +1,6 @@
 package com.backend.controller;
 
+import com.backend.dto.cart.CartList;
 import com.backend.dto.cart.CreatCartDto;
 import com.backend.entity.cart.Cart;
 import com.backend.entity.customer.Customer;
@@ -36,28 +37,49 @@ public class CartController {
         Optional<Product> product = productService.findById(creatCart.getProductHome().getId());
         Optional<Customer> customer = customerService.findByIdAccount(creatCart.getIdAccount());
         if (product.isPresent() && customer.isPresent()) {
-            Cart cart = new Cart();
-            BeanUtils.copyProperties(creatCart, cart);
-            cart.setCustomer(customer.get());
-            cart.setProduct(product.get());
-            cartService.save(cart);
-            return new ResponseEntity<>(HttpStatus.OK);
+            Optional<Cart> cart = cartService.findByProductAndCustomer(product.get(), customer.get());
+            if (cart.isPresent()){
+                Cart cartOld = cart.get();
+                cartOld.setNumberOfProduct(cartOld.getNumberOfProduct() + creatCart.getNumberOfProduct());
+                cartService.save(cartOld);
+                return new ResponseEntity<>(cartOld, HttpStatus.OK);
+            }else {
+                Cart cartNew = new Cart();
+                BeanUtils.copyProperties(creatCart, cart);
+                cartNew.setCustomer(customer.get());
+                cartNew.setProduct(product.get());
+                if (cartNew.getNumberOfProduct() <= 0) {
+                    cartNew.setNumberOfProduct(1);
+                }
+                cartService.save(cartNew);
+                return new ResponseEntity<>(cartNew, HttpStatus.OK);
+            }
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("user/cart/list-cart")
-    public ResponseEntity<List<Cart>> getList(@RequestParam(defaultValue = "")String email) {
+    public ResponseEntity<List<CartList>> getList(@RequestParam(defaultValue = "") String email) {
         boolean checkEmail = accountService.existsByEmail(email);
         if (checkEmail) {
             Optional<Account> account = accountService.findByEmail(email);
-            if (account.isPresent()){
-                List<Cart> cartList = cartService.findAllByIdAccount(account.get().getIdAccount());
+            if (account.isPresent()) {
+                List<CartList> cartList = cartService.findAllByIdAccount(account.get().getIdAccount());
                 if (!cartList.isEmpty()) {
                     return new ResponseEntity<>(cartList, HttpStatus.OK);
                 }
             }
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("user/cart/delete/{id}")
+    public ResponseEntity<Cart> removeCart(@PathVariable("id") int id) {
+        Optional<Cart> cart = cartService.findById(id);
+        if (cart.isPresent()) {
+            cartService.removeById(id);
+            return new ResponseEntity<>(cart.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

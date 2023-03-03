@@ -16,4 +16,6 @@ public interface CartList {
     Integer getIdCustomer();
 
     Integer getNumberOfProduct();
+
+    Integer getTotalCost();
 }

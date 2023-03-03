@@ -1,5 +1,6 @@
 package com.backend.controller;
 
+import com.backend.dto.cart.CartTotal;
 import com.backend.dto.customer.CustomerDto;
 import com.backend.dto.security.JwtResponse;
 import com.backend.dto.security.SignInForm;
@@ -10,6 +11,7 @@ import com.backend.entity.security.RoleName;
 import com.backend.jwt.jwt.JwtProvider;
 import com.backend.jwt.jwt.JwtTokenFilter;
 import com.backend.jwt.userprincal.AccountPrinciple;
+import com.backend.service.cart.ICartService;
 import com.backend.service.customer.ICustomerService;
 import com.backend.service.security.IRoleService;
 import com.backend.service.security.impl.AccountService;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -56,6 +59,8 @@ public class SecurityController {
     private ICustomerService customerService;
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private ICartService cartService;
 
     @PostMapping(value = "/signup")
     public ResponseEntity<Customer> register(@Valid @RequestBody CustomerDto customerDto,

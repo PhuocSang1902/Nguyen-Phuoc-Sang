@@ -1,8 +1,10 @@
 package com.backend.dto.security;
 
+import com.backend.dto.cart.CartTotal;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public class JwtResponse {
     private Long id;
@@ -90,4 +92,5 @@ public class JwtResponse {
     public void setRoles(Collection<? extends GrantedAuthority> roles) {
         this.roles = roles;
     }
+
 }

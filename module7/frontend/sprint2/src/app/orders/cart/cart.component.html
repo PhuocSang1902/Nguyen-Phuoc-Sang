@@ -1,12 +1,11 @@
-<div class="m-0">
-  <div class="row w-100" style="min-height: 34.5rem">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-10">
+<div class="m-0" *ngIf="flagDisplay != false; else elseBlock">
+  <div class="row w-100 px-5" style="min-height: 34.5rem">
+    <div class="col-lg-12">
       <div class="my-4">
-        <h3>Giỏ hàng</h3>
+        <h3>Giỏ hàng của bạn</h3>
       </div>
       <div class="row my-5">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
           <table>
             <tr>
               <th style="text-align: center; width: 30rem">Sản phẩm</th>
@@ -16,28 +15,35 @@
               <th style="text-align: center; width: 4rem">Xoá</th>
             </tr>
             ​
-            <tr *ngFor="let item of cartList">
-              <td><img
-                src="{{item.image}}"
-                style="height: 80px; width: 80px"
-                alt="No Image"/>
-                <span>
-                  {{item.name}}
-                </span>
+            <tr *ngFor="let item of cartList" style="min-height: 90px">
+              <td class="row d-flex justify-content-center align-items-center">
+                <div class="col-3">
+                  <a [routerLink]="['/product/detail', item.idProduct]">
+                    <img src="{{item.image}}" style="height: 75px; width: 75px" alt="No Image"/>
+                  </a>
+                </div>
+                <div class="col-9">
+                  <a [routerLink]="['/product/detail', item.idProduct]" style="color: black">
+                    <p>
+                      {{item.name | slice: 0: 130}}
+                    </p>
+                  </a>
+                </div>
               </td>
               <td style="text-align: right">{{item.cost | number}}</td>
               <td>
                 <div class="d-flex justify-content-center">
                   <button style="width: 30px" class="btn btn-outline-primary btn-sm me-2" type="button">-</button>
                   <label>
-                    <input style="width: 40px" type="text" class="form-control-sm text-center" value="{{item.numberOfProduct}}">
+                    <input style="width: 40px; border: solid 1px #3167eb" type="text" class="form-control-sm text-center"
+                           value="{{item.numberOfProduct}}">
                   </label>
                   <button style="width: 30px" class="btn btn-outline-primary btn-sm ms-2" type="button">+</button>
                 </div>
               </td>
-              <td style="text-align: right">181.000</td>
-              <td>
-                <button type="button" class="btn d-flex justify-content-center  align-items-center">
+              <td style="text-align: right">{{item.totalCost | number}}</td>
+              <td class="d-flex justify-content-center align-items-center">
+                <button type="button" class="btn d-flex justify-content-center  align-items-center" (click)="deleteCart(item.id)">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                        class="bi bi-trash"
                        viewBox="0 0 16 16">
@@ -53,7 +59,7 @@
           ​
         </div>
         ​
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           ​
           <div style="background-color: gainsboro; min-height: 17vh">
             <div class="row">
@@ -88,6 +94,15 @@
         ​
       </div>
     </div>
-    <div class="col-lg-1"></div>
   </div>
 </div>
+<ng-template #elseBlock>
+  <div class="row" style="height: 34.5rem; margin: 0; padding: 0">
+    <div class="d-flex align-items-center justify-content-center col-12">
+      <h2 class="text-primary">Không có sản phẩm nào trong giỏ hàng</h2>
+    </div>
+    <div class="d-flex justify-content-center col-12">
+      <a routerLink="/" type="button" class="text-primary" style="text-decoration: none">Trờ lại trang chủ</a>
+    </div>
+  </div>
+</ng-template>
