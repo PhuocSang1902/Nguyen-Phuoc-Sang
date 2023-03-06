@@ -22,13 +22,13 @@
     </header><!-- sect-heading -->
     <div class="row">
       <div class="row ">
-        <div class="col-md-3" *ngFor="let item of productList">
+        <div class="col-md-4 col-lg-3 col-sm-6" *ngFor="let item of productList">
           <div class="card card-product-grid">
             <a [routerLink]="['/product/detail', item.id]" class="img-wrap mt-4"> <img src="{{item.image}}"> </a>
             <figcaption class="info px-3 py-4">
               <a [routerLink]="['/product/detail', item.id]" class="title"
-                 style="height: 50px; text-decoration: none">{{item.name|slice:0:70}}</a>
-              <div class="row d-flex align-content-center justify-content-center mt-1" *ngIf="roles[0]=='ROLE_USER' && checkLogin">
+                 style="height: 5rem; text-decoration: none">{{item.name|slice:0:60}}</a>
+              <div class="row d-flex align-content-center justify-content-center mt-1" style="height: 2rem" *ngIf="roles[0]=='ROLE_USER' && checkLogin">
                 <h4 class="col-9 text-danger">{{item.cost|number:'.0-0'}} VND</h4>
                 <button class="col-2 btn btn-sm btn-outline-primary" (click)="addProductToCart(item)">
                   <i class="fa fa-cart-plus"></i>

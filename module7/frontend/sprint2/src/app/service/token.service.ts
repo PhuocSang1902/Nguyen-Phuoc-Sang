@@ -6,7 +6,6 @@ const ROLE_KEY = 'Role_key';
 const ID_KEY = 'Id_key';
 const EMAIL_KEY = 'Email_key';
 const AVATAR_KEY = 'Avatar_key';
-const CART_TOTAL_KEY = 'Cart_total_key';
 
 @Injectable({
   providedIn: 'root'

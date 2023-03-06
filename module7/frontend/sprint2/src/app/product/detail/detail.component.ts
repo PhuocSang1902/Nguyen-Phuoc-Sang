@@ -25,6 +25,7 @@ export class DetailComponent implements OnInit {
   roles: string[] = [];
   idAccount: string | null | undefined;
   cart: Cart = {};
+  email: string | null | undefined;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
@@ -50,6 +51,7 @@ export class DetailComponent implements OnInit {
       this.name = this.tokenService.getName();
       this.roles = this.tokenService.getRole();
       this.idAccount = this.tokenService.getId();
+      this.email = this.tokenService.getEmail();
     }
   }
 
@@ -94,10 +96,11 @@ export class DetailComponent implements OnInit {
     this.cart.numberOfProduct = this.numberOrder;
     this.cart.idAccount = Number(this.idAccount);
     this.ordersService.addProductToCart(this.cart).subscribe(data => {
-      this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.",'Thông báo',{timeOut:500});
+      this.ordersService.getTotalCart(this.email);
+      this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.", 'Thông báo', {timeOut: 500});
     }, error => {
       if (error.status == 400) {
-        this.toast.error("Thêm giỏ hàng không thành công",'Thông báo',{timeOut:500});
+        this.toast.error("Thêm giỏ hàng không thành công", 'Thông báo', {timeOut: 500});
       }
     }, () => {
     });

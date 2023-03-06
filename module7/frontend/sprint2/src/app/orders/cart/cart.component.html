@@ -33,12 +33,12 @@
               <td style="text-align: right">{{item.cost | number}}</td>
               <td>
                 <div class="d-flex justify-content-center">
-                  <button style="width: 30px" class="btn btn-outline-primary btn-sm me-2" type="button">-</button>
+                  <button style="width: 30px" class="btn btn-outline-primary btn-sm me-2" type="button" (click)="subNumberOfProduct(item)">-</button>
                   <label>
-                    <input style="width: 40px; border: solid 1px #3167eb" type="text" class="form-control-sm text-center"
+                    <input #numberOfProduct style="width: 40px; border: solid 1px #3167eb" type="text" class="form-control-sm text-center"
                            value="{{item.numberOfProduct}}">
                   </label>
-                  <button style="width: 30px" class="btn btn-outline-primary btn-sm ms-2" type="button">+</button>
+                  <button style="width: 30px" class="btn btn-outline-primary btn-sm ms-2" type="button" (click)="addNumberOfProduct(item)">+</button>
                 </div>
               </td>
               <td style="text-align: right">{{item.totalCost | number}}</td>
@@ -67,7 +67,7 @@
               <div class="col-lg-10 mt-2">
                 <div class="row">
                   <div class="col-lg-6">Tạm tính:</div>
-                  <div class="col-lg-6 text-end">274.000 VND</div>
+                  <div class="col-lg-6 text-end">{{totalCost | number}}</div>
                 </div>
                 <div class="row">
                   <div class="col-lg-6">Giảm giá:</div>
@@ -76,7 +76,7 @@
                 <hr>
                 <div class="row mb-2">
                   <div class="col-lg-6">Tổng tiền:</div>
-                  <div class="col-lg-6 text-end">274.000 VND</div>
+                  <div class="col-lg-6 text-end">{{totalCost | number}}</div>
                 </div>
               </div>
               <div class="col-lg-1"></div>

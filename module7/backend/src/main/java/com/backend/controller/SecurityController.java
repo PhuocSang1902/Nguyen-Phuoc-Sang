@@ -74,13 +74,13 @@ public class SecurityController {
         Account account = new Account();
         account.setName(customerDto.getName());
         account.setEmail(customerDto.getEmail());
-        if (customerDto.getAvatar()==null){
+        if (customerDto.getAvatar() == null) {
             account.setAvatar("https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png");
-        }else {
+        } else {
             account.setAvatar(customerDto.getAvatar());
         }
         account.setEncryptPassword(passwordEncoder.encode(customerDto.getEncryptPassword()));
-        Set<Role> roles = new   HashSet<>();
+        Set<Role> roles = new HashSet<>();
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("phuocsang1902@gmail.com");
         message.setTo(customerDto.getEmail());

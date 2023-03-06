@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TokenService} from "../../service/token.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ProductService} from "../../product/service/product.service";
+import {OrdersService} from "../../orders/service/orders.service";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class HeaderComponent implements OnInit {
   checkLogin = false;
@@ -17,11 +19,15 @@ export class HeaderComponent implements OnInit {
   searchForm: FormGroup;
   page = 0;
   kindOfBook = "";
+  totalProduct = 0;
+  email: string | null | undefined;
 
   constructor(private tokenService: TokenService,
               private router: Router,
               private fb: FormBuilder,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private ordersService: OrdersService,
+              private cd: ChangeDetectorRef) {
     this.searchForm = this.fb.group({
       search: [""]
     })
@@ -33,7 +39,9 @@ export class HeaderComponent implements OnInit {
       this.name = this.tokenService.getName();
       this.roles = this.tokenService.getRole();
       this.idAccount = this.tokenService.getId();
+      this.email = this.tokenService.getEmail();
     }
+    this.getTotalProduct();
   }
 
   logOut(): void {
@@ -102,5 +110,19 @@ export class HeaderComponent implements OnInit {
     this.kindOfBook = "Sách thiếu nhi"
     this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
     this.router.navigateByUrl("/")
+  }
+
+  getTotalProduct() {
+    this.ordersService.totalCartBehaviorSubject.subscribe(data => {
+      if (data != null) {
+        this.totalProduct = data;
+      } else {
+        this.totalProduct = 0;
+      }
+      this.cd.markForCheck();
+    }, error => {
+      this.totalProduct = 0;
+    }, () => {
+    })
   }
 }

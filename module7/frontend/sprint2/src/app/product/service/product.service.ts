@@ -43,7 +43,7 @@ export class ProductService {
     this.getListForHomePage(this.search, this.kindOfBook, page)
   }
 
-  showHomePageWithKindOfBook(kindOfBook: string){
+  showHomePageWithKindOfBook(kindOfBook: string) {
     this.getListForHomePage(this.search, kindOfBook, this.page)
   }
 }

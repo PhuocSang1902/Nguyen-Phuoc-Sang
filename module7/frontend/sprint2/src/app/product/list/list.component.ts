@@ -20,8 +20,6 @@ export class ListComponent implements OnInit {
   page: number = 0;
   totalPage: number = 0;
   productList: ProductHome[] = [];
-  search: string = "";
-  kindOfBook: string = "";
   flag = false;
   flagDisplay = false;
   checkLogin = false;
@@ -29,6 +27,7 @@ export class ListComponent implements OnInit {
   roles: string[] = [];
   idAccount: string | null | undefined;
   cart: Cart = {};
+  email: string | null | undefined;
 
   constructor(private productService: ProductService,
               private cd: ChangeDetectorRef,
@@ -45,6 +44,7 @@ export class ListComponent implements OnInit {
       this.name = this.tokenService.getName();
       this.roles = this.tokenService.getRole();
       this.idAccount = this.tokenService.getId();
+      this.email = this.tokenService.getEmail();
     }
     this.getList();
   }
@@ -87,6 +87,7 @@ export class ListComponent implements OnInit {
     this.cart.numberOfProduct = 1;
     this.cart.idAccount = Number(this.idAccount);
     this.ordersService.addProductToCart(this.cart).subscribe(data => {
+      this.ordersService.getTotalCart(this.email);
       this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.",'Thông báo',{timeOut:500});
     }, error => {
         this.toast.error("Thêm giỏ hàng không thành công",'Thông báo',{timeOut:500});
