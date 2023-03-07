@@ -4,14 +4,17 @@ import { CommonModule } from '@angular/common';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { ListComponent } from './list/list.component';
 import { CartComponent } from './cart/cart.component';
-import { CartForGuestComponent } from './cart-for-guest/cart-for-guest.component';
+import { CreateOrderComponent } from './create-order/create-order.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { PayComponent } from './pay/pay.component';
 
 
 @NgModule({
-  declarations: [ListComponent, CartComponent, CartForGuestComponent],
+  declarations: [ListComponent, CartComponent, CreateOrderComponent, PayComponent],
   imports: [
     CommonModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
   ]

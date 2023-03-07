@@ -1,0 +1,31 @@
+<div class="row w-100" style="min-height: 33.5rem">
+  <div class="col-2"></div>
+  <form [formGroup]="formCreate" (ngSubmit)="creareOder()" class="col-8 my-5">
+    <div class="mb-3 row">
+      <label for="name" class="col-sm-4 col-form-label">Họ tên người nhận hàng:</label>
+      <div class="col-sm-8">
+        <input type="text" readonly class="form-control-plaintext" id="name" value="{{customer.name}}">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="inputPhone" class="col-sm-4 col-form-label">Số điện thoại:</label>
+      <div class="col-sm-8">
+        <input type="text" formControlName="deliveryPhone" class="form-control" id="inputPhone">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="inputaddress" class="col-sm-4 col-form-label">Địa chỉ giao hàng:</label>
+      <div class="col-sm-8">
+        <input type="text" formControlName="deliveryAddress" class="form-control" id="inputaddress">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-sm-8"></div>
+      <div class="col-sm-4">
+        <button type="submit" class="btn btn-lg"
+           style="background-color: #008080; width: 100%">Thanh toán</button>
+      </div>
+    </div>
+  </form>
+  <div class="col-2"></div>
+</div>

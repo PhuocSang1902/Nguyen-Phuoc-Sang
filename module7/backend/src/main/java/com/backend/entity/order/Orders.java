@@ -10,6 +10,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -23,10 +24,9 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Long code;
-    private String orderDate;
-    private boolean status;
-    private boolean paymentStatus;
+    private String orderDate = LocalDate.now().toString();
+    private boolean status = true;
+    private boolean paymentStatus = false;
     private String deliveryAddress;
     private String deliveryPhone;
     private boolean flagDeleted = false;

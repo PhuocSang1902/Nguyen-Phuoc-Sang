@@ -30,7 +30,7 @@ export class OrdersService {
     return this.httpClient.post("http://localhost:8080/api/user/cart/add-product-to-cart", cart)
   }
 
-  getList(email: string | null): Observable<Cart[]> {
+  getListCart(email: string | null): Observable<Cart[]> {
     return this.httpClient.get<Cart[]>("http://localhost:8080/api/user/cart/list-cart?email=" + email);
   }
 

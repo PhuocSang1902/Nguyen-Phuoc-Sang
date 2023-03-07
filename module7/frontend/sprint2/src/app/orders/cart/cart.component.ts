@@ -22,13 +22,12 @@ export class CartComponent implements OnInit {
   mess = "";
   flagDisplay = false;
   totalCost = 0;
-  numberOfProduct = 0;
 
   constructor(private ordersService: OrdersService,
               private tokenService: TokenService,
               private title: Title,
               private toast: ToastrService) {
-    this.title.setTitle('Trang chủ')
+    this.title.setTitle('Trang chủ');
   }
 
   ngOnInit(): void {
@@ -44,7 +43,7 @@ export class CartComponent implements OnInit {
   }
 
   getList() {
-    this.ordersService.getList(this.email).subscribe(data => {
+    this.ordersService.getListCart(this.email).subscribe(data => {
       this.cartList = data;
       if (data != null) {
         this.flagDisplay = true;
