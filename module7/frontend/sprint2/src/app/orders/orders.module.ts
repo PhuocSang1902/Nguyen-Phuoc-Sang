@@ -7,10 +7,11 @@ import { CartComponent } from './cart/cart.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { PayComponent } from './pay/pay.component';
+import { ComfirmOrderComponent } from './comfirm-order/comfirm-order.component';
 
 
 @NgModule({
-  declarations: [ListComponent, CartComponent, CreateOrderComponent, PayComponent],
+  declarations: [ListComponent, CartComponent, CreateOrderComponent, PayComponent, ComfirmOrderComponent],
   imports: [
     CommonModule,
     OrdersRoutingModule,

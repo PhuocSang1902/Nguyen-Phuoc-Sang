@@ -6,7 +6,7 @@ export interface Cart {
   id?: number;
   productHome?: ProductHome;
   product?: ProductDetail;
-  idAccount?: number;
+  idCustomer?: number;
   numberOfProduct?: number;
   total?: number;
 }

@@ -113,6 +113,16 @@ public class SecurityController {
 
         String token = jwtProvider.createToken(authentication);
         AccountPrinciple accountPrinciple = (AccountPrinciple) authentication.getPrincipal();
+        Optional<Customer> customer = customerService.findByIdAccount(accountPrinciple.getId());
+        if (customer.isPresent()) {
+            return ResponseEntity.ok(new JwtResponse(token,
+                    accountPrinciple.getName(),
+                    accountPrinciple.getAuthorities(),
+                    accountPrinciple.getId(),
+                    accountPrinciple.getEmail(),
+                    accountPrinciple.getAvatar(),
+                    customer.get().getId()));
+        }
         return ResponseEntity.ok(new JwtResponse(token,
                 accountPrinciple.getName(),
                 accountPrinciple.getAuthorities(),

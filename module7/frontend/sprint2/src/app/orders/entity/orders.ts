@@ -9,4 +9,5 @@ export interface Orders {
   orderDetailSet?: OrderDetail[];
   idAccount?: number;
   customer?: Customer;
+  orderValue?: number;
 }

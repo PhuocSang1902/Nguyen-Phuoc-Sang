@@ -16,9 +16,9 @@ public class CustomerController {
     @Autowired
     ICustomerService customerService;
 
-    @GetMapping("find-customer-by-account")
-    public ResponseEntity<Customer> getCustomerByAccount(@RequestParam long id) {
-        Optional<Customer> customer = customerService.findByIdAccount(id);
+    @GetMapping("find-by-id")
+    public ResponseEntity<Customer> getCustomerByAccount(@RequestParam int id) {
+        Optional<Customer> customer = customerService.findById(id);
         if (customer.isPresent()) {
             return new ResponseEntity<>(customer.get(), HttpStatus.OK);
         }

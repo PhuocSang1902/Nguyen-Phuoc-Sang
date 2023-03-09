@@ -24,11 +24,6 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public List<CartList> findAllByIdAccount(Long id) {
-        return cartRepository.findCartByCustomerAccountId(id);
-    }
-
-    @Override
     public Optional<Cart> findById(int id) {
         return cartRepository.findById(id);
     }
@@ -44,7 +39,17 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public Optional<CartTotal> getTotal(Long id) {
-        return cartRepository.totalCartByIdAccount(id);
+    public Optional<CartTotal> getTotal(Customer customer) {
+        return cartRepository.totalCartByCustomer(customer.getId());
+    }
+
+    @Override
+    public List<CartList> findAllByCustomer(Customer customer) {
+        return cartRepository.findAllByCustomer(customer.getId());
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        cartRepository.deleteById(id);
     }
 }

@@ -8,4 +8,6 @@ public interface ICustomerService {
     void save(Customer customer);
 
     Optional<Customer> findByIdAccount(Long id);
+
+    Optional<Customer> findById(int idCustomer);
 }

@@ -12,13 +12,15 @@ import java.util.Optional;
 public interface ICartService {
     void save(Cart cart);
 
-    List<CartList> findAllByIdAccount(Long id);
-
     Optional<Cart> findById(int id);
 
     void removeById(int id);
 
     Optional<Cart> findByProductAndCustomer(Product product, Customer customer);
 
-    Optional<CartTotal> getTotal(Long id);
+    Optional<CartTotal> getTotal(Customer customer);
+
+    List<CartList> findAllByCustomer(Customer customer);
+
+    void deleteById(Integer id);
 }

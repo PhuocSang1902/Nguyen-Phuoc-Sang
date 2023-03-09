@@ -22,4 +22,9 @@ public class CustomerService implements ICustomerService {
     public Optional<Customer> findByIdAccount(Long id) {
         return customerRepository.findByAccount_IdAccount(id);
     }
+
+    @Override
+    public Optional<Customer> findById(int idCustomer) {
+        return customerRepository.findById(idCustomer);
+    }
 }

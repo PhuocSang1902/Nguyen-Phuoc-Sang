@@ -1,6 +1,7 @@
 package com.backend.entity.order;
 
 import com.backend.entity.product.Product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,8 @@ public class OrderDetail {
     @ManyToOne
     private Product product;
     @ManyToOne
+    @JsonBackReference
     private Orders orders;
-    private int amount;
+    private int numberOfProduct;
     private boolean flagDeleted = false;
 }

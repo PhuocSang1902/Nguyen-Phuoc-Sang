@@ -15,10 +15,7 @@ import {ToastrService} from "ngx-toastr";
 export class CartComponent implements OnInit {
   cartList: CartList[] = [];
   checkLogin = false;
-  name: string | null | undefined;
-  roles: string[] = [];
-  idAccount: string | null | undefined;
-  email: string | null = "";
+  idCustomer: string | null | undefined;
   mess = "";
   flagDisplay = false;
   totalCost = 0;
@@ -33,17 +30,14 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
       this.checkLogin = true;
-      this.name = this.tokenService.getName();
-      this.email = this.tokenService.getEmail();
-      this.roles = this.tokenService.getRole();
-      this.idAccount = this.tokenService.getId();
+      this.idCustomer = this.tokenService.getIdCustomer();
     }
     this.getList();
     this.getCostTotal();
   }
 
   getList() {
-    this.ordersService.getListCart(this.email).subscribe(data => {
+    this.ordersService.getListCart(this.idCustomer).subscribe(data => {
       this.cartList = data;
       if (data != null) {
         this.flagDisplay = true;
@@ -62,7 +56,7 @@ export class CartComponent implements OnInit {
       this.ordersService.deleteCart(id).subscribe(data => {
         if (data != null) {
           this.toast.info("Xoá thành công.", "Thông báo", {timeOut: 500});
-          this.ordersService.getTotalCart(this.email);
+          this.ordersService.getTotalCart(this.idCustomer);
           this.getList();
         } else {
           this.toast.error("Xoá không thành công.", "Thông báo", {timeOut: 500});
@@ -77,7 +71,7 @@ export class CartComponent implements OnInit {
   updateNumberOfProduct(cart: Cart) {
     if (cart != null) {
       this.ordersService.updateNumberOfProduct(cart).subscribe(data => {
-        this.ordersService.getTotalCart(this.email);
+        this.ordersService.getTotalCart(this.idCustomer);
         this.getList();
         this.getCostTotal();
         if (data == null) {

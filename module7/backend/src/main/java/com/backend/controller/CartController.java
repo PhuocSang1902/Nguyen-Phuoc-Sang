@@ -35,9 +35,9 @@ public class CartController {
 
     @PostMapping("add-product-to-cart")
     public ResponseEntity<Cart> addProductToCart(@RequestBody CreatCartDto creatCart) {
-        try{
+        try {
             Optional<Product> product = productService.findById(creatCart.getProductHome().getId());
-            Optional<Customer> customer = customerService.findByIdAccount(creatCart.getIdAccount());
+            Optional<Customer> customer = customerService.findById(creatCart.getIdCustomer());
             if (product.isPresent() && customer.isPresent()) {
                 Optional<Cart> cart = cartService.findByProductAndCustomer(product.get(), customer.get());
                 if (cart.isPresent()) {
@@ -47,7 +47,7 @@ public class CartController {
                     return new ResponseEntity<>(cartOld, HttpStatus.OK);
                 } else {
                     Cart cartNew = new Cart();
-                    BeanUtils.copyProperties(creatCart, cart);
+                    BeanUtils.copyProperties(creatCart, cartNew);
                     cartNew.setCustomer(customer.get());
                     cartNew.setProduct(product.get());
                     if (cartNew.getNumberOfProduct() <= 0) {
@@ -58,21 +58,18 @@ public class CartController {
                 }
             }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("list-cart")
-    public ResponseEntity<List<CartList>> getList(@RequestParam(defaultValue = "") String email) {
-        boolean checkEmail = accountService.existsByEmail(email);
-        if (checkEmail) {
-            Optional<Account> account = accountService.findByEmail(email);
-            if (account.isPresent()) {
-                List<CartList> cartList = cartService.findAllByIdAccount(account.get().getIdAccount());
-                if (!cartList.isEmpty()) {
-                    return new ResponseEntity<>(cartList, HttpStatus.OK);
-                }
+    public ResponseEntity<List<CartList>> getList(@RequestParam(defaultValue = "") int idCustomer) {
+        Optional<Customer> customerOptional = customerService.findById(idCustomer);
+        if (customerOptional.isPresent()) {
+            List<CartList> cartList = cartService.findAllByCustomer(customerOptional.get());
+            if (!cartList.isEmpty()) {
+                return new ResponseEntity<>(cartList, HttpStatus.OK);
             }
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -89,15 +86,12 @@ public class CartController {
     }
 
     @GetMapping("get-total")
-    public ResponseEntity<CartTotal> getTotal(@RequestParam(defaultValue = "") String email) {
-        boolean checkEmail = accountService.existsByEmail(email);
-        if (checkEmail) {
-            Optional<Account> account = accountService.findByEmail(email);
-            if (account.isPresent()) {
-                Optional<CartTotal> cartTotal = cartService.getTotal(account.get().getIdAccount());
-                if (cartTotal.isPresent()) {
-                    return new ResponseEntity<>(cartTotal.get(), HttpStatus.OK);
-                }
+    public ResponseEntity<CartTotal> getTotal(@RequestParam(defaultValue = "") int idCustomer) {
+        Optional<Customer> customerOptional = customerService.findById(idCustomer);
+        if (customerOptional.isPresent()) {
+            Optional<CartTotal> cartTotal = cartService.getTotal(customerOptional.get());
+            if (cartTotal.isPresent()) {
+                return new ResponseEntity<>(cartTotal.get(), HttpStatus.OK);
             }
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -4,6 +4,7 @@ import {Cart} from "../entity/cart";
 import {BehaviorSubject, Observable} from "rxjs";
 import {CartTotal} from "../entity/cart-total";
 import {TokenService} from "../../service/token.service";
+import {Orders} from "../entity/orders";
 
 @Injectable({
   providedIn: 'root'
@@ -14,32 +15,32 @@ export class OrdersService {
   totalProduct: number | undefined = 0;
   totalCost: number | undefined = 0;
   cartTotal: CartTotal = {};
-  email: string | null | undefined;
+  idCustomer: string | null | undefined;
 
   constructor(private httpClient: HttpClient,
               private tokenService: TokenService) {
     this.totalCartBehaviorSubject = new BehaviorSubject<any>(this.totalProduct);
     this.totalCostBehaviorSubject = new BehaviorSubject<any>(this.totalCost);
     if (this.tokenService.getToken()) {
-      this.email = this.tokenService.getEmail();
+      this.idCustomer = this.tokenService.getIdCustomer();
     }
-    this.getTotalCart(this.email);
+    this.getTotalCart(this.idCustomer);
   }
 
   addProductToCart(cart: Cart) {
     return this.httpClient.post("http://localhost:8080/api/user/cart/add-product-to-cart", cart)
   }
 
-  getListCart(email: string | null): Observable<Cart[]> {
-    return this.httpClient.get<Cart[]>("http://localhost:8080/api/user/cart/list-cart?email=" + email);
+  getListCart(idCustomer: string | null | undefined): Observable<Cart[]> {
+    return this.httpClient.get<Cart[]>("http://localhost:8080/api/user/cart/list-cart?idCustomer=" + idCustomer);
   }
 
   deleteCart(id: number): Observable<Cart> {
     return this.httpClient.delete("http://localhost:8080/api/user/cart/delete/" + id)
   }
 
-  getTotalCart(email: string | null | undefined) {
-    this.httpClient.get("http://localhost:8080/api/user/cart/get-total?email=" + email).subscribe(data => {
+  getTotalCart(idCustomer: string | null | undefined) {
+    this.httpClient.get("http://localhost:8080/api/user/cart/get-total?idCustomer=" + idCustomer).subscribe(data => {
       if (data != null) {
         this.cartTotal = data;
         this.totalProduct = this.cartTotal.totalProduct;
@@ -61,5 +62,14 @@ export class OrdersService {
 
   updateNumberOfProduct(cart: Cart) {
     return this.httpClient.patch("http://localhost:8080/api/user/cart/update-amount-product", cart);
+  }
+
+  createOrder(order: Orders) {
+    return this.httpClient.post("http://localhost:8080/api/user/order/create", order);
+  }
+
+  updatePaymentStatus(id: number | undefined) {
+    // @ts-ignore
+    return this.httpClient.patch("http://localhost:8080/api/user/order/pay-onl");
   }
 }

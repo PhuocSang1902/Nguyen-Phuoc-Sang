@@ -1,7 +1,5 @@
-package com.backend.dto.cart;
+package com.backend.dto.order;
 
-import com.backend.dto.product.ProductDetailDto;
-import com.backend.entity.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreatCartDto {
+public class OrderDetailDto {
     private Integer id;
-    private ProductDetailDto productHome;
-    private Integer idCustomer;
+    private Integer idProduct;
     private int numberOfProduct;
 }

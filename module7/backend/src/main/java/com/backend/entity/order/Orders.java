@@ -30,8 +30,8 @@ public class Orders {
     private String deliveryAddress;
     private String deliveryPhone;
     private boolean flagDeleted = false;
+    private double orderValue;
     @OneToMany(mappedBy = "orders")
-    @JsonBackReference
     private Set<OrderDetail> orderDetailSet;
     @ManyToOne
     private Customer customer;

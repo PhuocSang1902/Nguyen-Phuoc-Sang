@@ -21,11 +21,9 @@ export class DetailComponent implements OnInit {
   url: string | undefined = "";
   numberOrder: number = 1;
   checkLogin = false;
-  name: string | null | undefined;
   roles: string[] = [];
-  idAccount: string | null | undefined;
+  idCustomer: string | null | undefined;
   cart: Cart = {};
-  email: string | null | undefined;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
@@ -48,10 +46,8 @@ export class DetailComponent implements OnInit {
     })
     if (this.tokenService.getToken()) {
       this.checkLogin = true;
-      this.name = this.tokenService.getName();
       this.roles = this.tokenService.getRole();
-      this.idAccount = this.tokenService.getId();
-      this.email = this.tokenService.getEmail();
+      this.idCustomer = this.tokenService.getIdCustomer();
     }
   }
 
@@ -94,9 +90,10 @@ export class DetailComponent implements OnInit {
   addProductToCart(product: ProductDetail) {
     this.cart.productHome = product;
     this.cart.numberOfProduct = this.numberOrder;
-    this.cart.idAccount = Number(this.idAccount);
+    this.cart.idCustomer = Number(this.idCustomer);
+    console.log(this.cart);
     this.ordersService.addProductToCart(this.cart).subscribe(data => {
-      this.ordersService.getTotalCart(this.email);
+      this.ordersService.getTotalCart(this.idCustomer);
       this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.", 'Thông báo', {timeOut: 500});
     }, error => {
       if (error.status == 400) {

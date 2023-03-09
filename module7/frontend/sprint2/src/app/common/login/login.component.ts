@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
             this.tokenService.setEmail(data.email);
             this.tokenService.setId(data.id);
             this.tokenService.setAvatar(data.avatar);
+            this.tokenService.setIdCustomer(data.idCustomer)
             location.href="/"
             this.toast.info('Đăng nhập thành công.', 'Thông báo', {
               timeOut: 3000,

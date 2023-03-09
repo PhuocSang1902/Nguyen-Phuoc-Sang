@@ -23,11 +23,9 @@ export class ListComponent implements OnInit {
   flag = false;
   flagDisplay = false;
   checkLogin = false;
-  name: string | null | undefined;
   roles: string[] = [];
-  idAccount: string | null | undefined;
+  idCustomer: string | null | undefined;
   cart: Cart = {};
-  email: string | null | undefined;
 
   constructor(private productService: ProductService,
               private cd: ChangeDetectorRef,
@@ -41,10 +39,8 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
       this.checkLogin = true;
-      this.name = this.tokenService.getName();
       this.roles = this.tokenService.getRole();
-      this.idAccount = this.tokenService.getId();
-      this.email = this.tokenService.getEmail();
+      this.idCustomer = this.tokenService.getIdCustomer();
     }
     this.getList();
   }
@@ -85,9 +81,9 @@ export class ListComponent implements OnInit {
   addProductToCart(product: ProductDetail) {
     this.cart.productHome = product;
     this.cart.numberOfProduct = 1;
-    this.cart.idAccount = Number(this.idAccount);
+    this.cart.idCustomer = Number(this.idCustomer);
     this.ordersService.addProductToCart(this.cart).subscribe(data => {
-      this.ordersService.getTotalCart(this.email);
+      this.ordersService.getTotalCart(this.idCustomer);
       this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.",'Thông báo',{timeOut:500});
     }, error => {
         this.toast.error("Thêm giỏ hàng không thành công",'Thông báo',{timeOut:500});
