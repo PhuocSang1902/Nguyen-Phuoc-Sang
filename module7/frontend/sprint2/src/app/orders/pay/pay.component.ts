@@ -4,6 +4,7 @@ import {OrdersService} from "../service/orders.service";
 import {ToastrService} from "ngx-toastr";
 import {timeout} from "rxjs/operators";
 import {Orders} from "../entity/orders";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -12,20 +13,21 @@ import {Orders} from "../entity/orders";
   styleUrls: ['./pay.component.css']
 })
 export class PayComponent implements OnInit {
-  // @Input('order') order: Orders | undefined;
-
+  order: Orders = {};
+  cost: number | undefined = 0;
+  flagDisplay = false
   constructor(private ordersService: OrdersService,
-              private toast: ToastrService) {
-    render(
-      {
-        id: '#payments',
-        currency: 'USD',
-        value: '100',
-        onApprove: (details) => {
-          // this.updatePaymentStatus(this.order?.id);
-        }
+              private toast: ToastrService,
+              private activatedRoute: ActivatedRoute,
+              private route: Router) {
+    this.activatedRoute.paramMap.subscribe(result => {
+      const id = result.get('id');
+      if (id != null) {
+        this.getOrderById(parseInt(id));
       }
-    );
+    }, error => {
+    }, () => {
+    });
   }
 
   ngOnInit(): void {
@@ -38,5 +40,28 @@ export class PayComponent implements OnInit {
       this.toast.error("Thanh toán không thành công", "Thông báo", {timeOut: 500});
     }, () => {
     })
+  }
+
+  getOrderById(id: number) {
+    this.ordersService.findOrderByIdNotPay(id).subscribe(data => {
+      this.order = data;
+      // @ts-ignore
+      this.cost = (this.order.orderValue/24000).toFixed(2);
+      render(
+        {
+          id: "#payments",
+          currency: "USD",
+          value: '' + (this.cost),
+          onApprove: (details) => {
+            this.updatePaymentStatus(this.order?.id);
+            this.route.navigate(['/order/confirm', this.order.id]);
+          }
+        }
+      );
+      this.flagDisplay = true;
+    }, error => {
+      this.flagDisplay = false
+    }, () => {
+    });
   }
 }

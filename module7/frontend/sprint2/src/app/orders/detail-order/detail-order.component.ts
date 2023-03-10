@@ -1,17 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Orders} from "../entity/orders";
+import {OrderDetailList} from "../entity/order-detail-list";
 import {OrdersService} from "../service/orders.service";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute} from "@angular/router";
-import {Orders} from "../entity/orders";
-import {OrderDetail} from "../entity/order-detail";
-import {OrderDetailList} from "../entity/order-detail-list";
 
 @Component({
-  selector: 'app-comfirm-order',
-  templateUrl: './comfirm-order.component.html',
-  styleUrls: ['./comfirm-order.component.css']
+  selector: 'app-detail-order',
+  templateUrl: './detail-order.component.html',
+  styleUrls: ['./detail-order.component.css']
 })
-export class ComfirmOrderComponent implements OnInit {
+export class DetailOrderComponent implements OnInit {
   order: Orders = {};
   orderDetailList: OrderDetailList[] = [];
   flagDisplay = false;

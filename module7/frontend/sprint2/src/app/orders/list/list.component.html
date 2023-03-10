@@ -1,1 +1,76 @@
-<p>list works!</p>
+<div class="m-0" *ngIf="flagDisplay != false; else elseBlock">
+  <div class="row w-100 px-5" style="min-height: 34.5rem">
+    <div class="col-lg-12">
+      <div class="my-4">
+        <h2>Đơn đặt hàng của bạn</h2>
+      </div>
+      <div class="row my-2">
+        <table class="table table-striped container-fluid" style="min-height: 230px">
+          <thead class="container-fluid">
+          <tr>
+            <th style="text-align: center; width: 4rem">Mã</th>
+            <th style="width: 30rem">Địa chỉ giao hàng</th>
+            <th style="width: 8rem">Số điện thoại</th>
+            <th style="width: 8rem">Thành tiền</th>
+            <th style="width: 10rem">Ngày đặt hàng</th>
+            <th style="width: 10rem">Thanh toán</th>
+            <th style="width: 10rem">Trạng thái</th>
+            <th style="width: 5rem">Chi tiết</th>
+          </tr>
+          </thead>
+
+          <tbody class="container-fluid">
+          <tr *ngFor="let item of orderList | paginate:{itemsPerPage: 5, currentPage: page}" style="min-height: 90px">
+            <td style="text-align: center">
+              {{item.id}}
+            </td>
+            <td>{{item.deliveryAddress | slice: 0 : 60}}</td>
+            <td>
+              {{item.deliveryPhone}}
+            </td>
+            <td>{{item.orderValue | number}}</td>
+            <td>{{item.orderDate}}</td>
+            <td>
+              <span *ngIf="item.paymentStatus == false" style="color: red">
+                Chưa thanh toán
+              </span>
+              <span *ngIf="item.paymentStatus == true">
+                Đã thanh toán
+              </span>
+            </td>
+            <td>
+              <span *ngIf="item.status == false">
+                Không thành công
+              </span>
+              <span *ngIf="item.status == true">
+                Thành công
+              </span>
+            </td>
+            <td style="text-align: center">
+              <a [routerLink]="['order-detail',item.id]">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-end">
+        <pagination-controls (pageChange)="page = $event"
+                             previousLabel="Trước"
+                             nextLabel="Sau"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <div class="row" style="height: 34.5rem; margin: 0; padding: 0">
+    <div class="d-flex align-items-center justify-content-center col-12">
+      <h2 class="text-primary">Không có đơn đặt hàng</h2>
+    </div>
+    <div class="d-flex justify-content-center col-12">
+      <a routerLink="/" type="button" class="text-primary" style="text-decoration: none">Trờ lại trang chủ</a>
+    </div>
+  </div>
+</ng-template>

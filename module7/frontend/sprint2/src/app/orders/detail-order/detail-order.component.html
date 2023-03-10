@@ -1,8 +1,14 @@
 <div class="m-0" *ngIf="flagDisplay != false; else elseBlock">
   <div class="row w-100 px-5" style="min-height: 34.5rem">
     <div class="col-lg-12">
-      <div class="my-4">
-        <h3>Xác nhận đơn hàng</h3>
+      <div class="my-4 row">
+        <h3 class="col-8">Chi tiết đơn hàng</h3>
+        <div class="col-2">
+          <button class="btn btn-primary p-1 w-75"><a routerLink="/order" style="text-decoration: none; color: black">Trở lại</a></button>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-success p-1 w-75"><a href="" style="text-decoration: none; color: black">Trang chủ</a></button>
+        </div>
       </div>
       <div class="row my-5">
         <div class="col-lg-8">
@@ -66,14 +72,6 @@
               </div>
               <div class="col-lg-1"></div>
             </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-              <a type="button" routerLink="/" class="btn btn-lg"
-                 style="background-color: #008080; width: 100%">Tiếp tục mua sắm</a>
-            </div>
-            <div class="col-lg-1"></div>
           </div>
         </div>
         ​

@@ -1,6 +1,8 @@
 package com.backend.controller;
 
 import com.backend.dto.order.OrderDetailDto;
+import com.backend.dto.order.OrderDetailList;
+import com.backend.dto.order.OrderList;
 import com.backend.dto.order.OrdersDto;
 import com.backend.entity.cart.Cart;
 import com.backend.entity.customer.Customer;
@@ -10,7 +12,7 @@ import com.backend.service.cart.ICartService;
 import com.backend.service.customer.ICustomerService;
 import com.backend.service.order.IOrderDetailService;
 import com.backend.service.order.IOrderService;
-import org.aspectj.weaver.ast.Or;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -63,11 +66,50 @@ public class OrderController {
     }
 
     @PatchMapping("pay-onl")
-    public ResponseEntity<Orders> updatePaymentStatus(@RequestParam int id){
+    public ResponseEntity<Orders> updatePaymentStatus(@RequestBody int id){
         Optional<Orders> ordersOptional = orderService.findById(id);
         if (ordersOptional.isPresent()){
             ordersOptional.get().setPaymentStatus(true);
+            orderService.save(ordersOptional.get());
             return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("by-id/{id}")
+    public ResponseEntity<Orders> getById(@PathVariable int id){
+        Optional<Orders> ordersOptional = orderService.findById(id);
+        if (ordersOptional.isPresent()){
+            return new ResponseEntity<>(ordersOptional.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("detail-list/{id}")
+    public ResponseEntity<List<OrderDetailList>> getOrderDetailList(@PathVariable int id){
+        Optional<Orders> ordersOptional = orderService.findById(id);
+        if (ordersOptional.isPresent()){
+            List<OrderDetailList> orderDetailList = orderDetailService.getListByOrder(id);
+            return new ResponseEntity<>(orderDetailList, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("list/{id}")
+    public ResponseEntity<List<OrderList>> getOrderList(@PathVariable int id){
+        Optional<Customer> customerOptional = customerService.findById(id);
+        if (customerOptional.isPresent()){
+            List<OrderList> orderList = orderService.getListByIdCustomer(id);
+            return new ResponseEntity<>(orderList, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Orders> getOrderById(@PathVariable int id){
+        Optional<Orders> ordersOptional = orderService.findByIdPaymentStatus(id);
+        if (ordersOptional.isPresent()){
+            return new ResponseEntity<>(ordersOptional.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

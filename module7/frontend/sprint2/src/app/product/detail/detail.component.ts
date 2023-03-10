@@ -91,7 +91,6 @@ export class DetailComponent implements OnInit {
     this.cart.productHome = product;
     this.cart.numberOfProduct = this.numberOrder;
     this.cart.idCustomer = Number(this.idCustomer);
-    console.log(this.cart);
     this.ordersService.addProductToCart(this.cart).subscribe(data => {
       this.ordersService.getTotalCart(this.idCustomer);
       this.toast.info("Bạn đã thêm " + this.cart.productHome?.name + " thành công.", 'Thông báo', {timeOut: 500});

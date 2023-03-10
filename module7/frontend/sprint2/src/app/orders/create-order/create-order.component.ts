@@ -26,6 +26,7 @@ export class CreateOrderComponent implements OnInit {
   regexPhoneNumber: RegExp = /(09)\d{8}|(\+849)\d{8}/;
   flagDisplay = false;
   temp: Orders = {};
+  id = '';
 
   constructor(private fb: FormBuilder,
               private tokenService: TokenService,
@@ -87,13 +88,16 @@ export class CreateOrderComponent implements OnInit {
     this.order.customer = this.customer;
     this.order.orderDetailSet = this.orderDetailList;
     this.order.orderValue = this.totalCost;
+    console.log(this.order)
   }
 
   createOderWithPay() {
     this.setOrder();
     this.ordersService.createOrder(this.order).subscribe(data => {
       this.ordersService.getTotalCart(this.idCustomer);
-      this.route.navigateByUrl("/order/pay");
+      this.temp = data;
+      this.id = '' + this.temp.id;
+      this.route.navigate(['/order/pay', this.id]);
     }, error => {
       this.route.navigateByUrl("/order/cart");
     }, () => {
@@ -104,7 +108,9 @@ export class CreateOrderComponent implements OnInit {
     this.setOrder();
     this.ordersService.createOrder(this.order).subscribe(data => {
       this.ordersService.getTotalCart(this.idCustomer);
-      this.route.navigateByUrl("/order/confirm");
+      this.temp = data;
+      this.id = '' + this.temp.id;
+      this.route.navigate(['/order/confirm', this.id]);
     }, error => {
       this.route.navigateByUrl("/order/cart");
     }, () => {

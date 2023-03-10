@@ -69,7 +69,22 @@ export class OrdersService {
   }
 
   updatePaymentStatus(id: number | undefined) {
-    // @ts-ignore
-    return this.httpClient.patch("http://localhost:8080/api/user/order/pay-onl");
+    return this.httpClient.patch("http://localhost:8080/api/user/order/pay-onl", id);
+  }
+
+  findOrderById(id: number): Observable<Orders> {
+    return this.httpClient.get("http://localhost:8080/api/user/order/by-id/" + id);
+  }
+
+  getOrderDetailList(id: number): Observable<any> {
+    return this.httpClient.get("http://localhost:8080/api/user/order/detail-list/" + id);
+  }
+
+  getOrderList(id: number): Observable<any> {
+    return this.httpClient.get("http://localhost:8080/api/user/order/list/" + id);
+  }
+
+  findOrderByIdNotPay(id: number): Observable<any> {
+    return this.httpClient.get("http://localhost:8080/api/user/order/" + id);
   }
 }

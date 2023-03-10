@@ -36,7 +36,7 @@
                 <a class="dropdown-item" href="#" *ngIf="roles[0]=='ROLE_ADMIN' && checkLogin">Nhân viên</a>
                 <a class="dropdown-item" href="#" *ngIf="roles[0]=='ROLE_ADMIN' && checkLogin">Đơn hàng chờ phê
                   duyệt</a>
-                <a class="dropdown-item" href="#" *ngIf="roles[0]=='ROLE_USER' && checkLogin">Đơn hàng của tôi</a>
+                <a class="dropdown-item" routerLink="/order" *ngIf="roles[0]=='ROLE_USER' && checkLogin">Đơn hàng của tôi</a>
                 <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout">Đăng xuất</a>
               </div>
             </div>
