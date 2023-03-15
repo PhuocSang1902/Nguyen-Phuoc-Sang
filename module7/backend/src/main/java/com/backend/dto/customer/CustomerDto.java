@@ -25,10 +25,6 @@ public class CustomerDto {
     @NotBlank(message = "Không được để trống.")
     private String birthday;
     private boolean gender;
-    private boolean flagDeleted;
-    private Account account;
-
     private String avatar;
-
     private String encryptPassword;
 }

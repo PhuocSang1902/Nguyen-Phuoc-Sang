@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
 
   search() {
     this.productService.getListForHomePage(this.searchForm.controls.search.value, this.kindOfBook, this.page);
-    // this.router.navigateByUrl("/")
+    this.router.navigateByUrl("/")
   }
 
   home() {

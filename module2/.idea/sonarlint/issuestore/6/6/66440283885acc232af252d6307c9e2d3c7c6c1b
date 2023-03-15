@@ -1,0 +1,14 @@
+
+a
+java:S1301"KReplace this "switch" statement by "if" statements to increase readability.(¨ÕÉ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Æ¯êııÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ŞìÔêÿÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(»“Ğëşÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ÌÓ õùÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(šñâÄùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(•éõ«
+7	java:S131""Add a default case to this switch.(¨ÕÉ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ÿ ü—ıÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(§¯¼•üÿÿÿÿ
+M	java:S106!"9Replace this use of System.out or System.err by a logger.(…™ÆX
+S	java:S106#"9Replace this use of System.out or System.err by a logger.(©‹Çèüÿÿÿÿ

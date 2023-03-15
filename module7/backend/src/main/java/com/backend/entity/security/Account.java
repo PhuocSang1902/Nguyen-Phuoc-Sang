@@ -22,7 +22,7 @@ public class Account {
     private Long idAccount;
 
     private String name;
-
+    @Column(columnDefinition = "text")
     private String avatar;
 
     private String email;

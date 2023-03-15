@@ -1,0 +1,50 @@
+
+7
+java:S1643"Use a StringBuilder instead.(µ‚ƒ…ÿÿÿÿÿ
+2
+java:S1643"Use a StringBuilder instead.(‹ÖÅ
+7
+java:S1643 "Use a StringBuilder instead.(µ‚ƒ…ÿÿÿÿÿ
+2
+java:S1643""Use a StringBuilder instead.(‹ÖÅ
+7
+java:S1643)"Use a StringBuilder instead.(µ‚ƒ…ÿÿÿÿÿ
+2
+java:S1643+"Use a StringBuilder instead.(‹ÖÅ
+2
+java:S16433"Use a StringBuilder instead.(­şÀ
+7
+java:S16435"Use a StringBuilder instead.(µ‚ƒ…ÿÿÿÿÿ
+2
+java:S16438"Use a StringBuilder instead.(‹ÖÅ
+2
+java:S1643>"Use a StringBuilder instead.(­şÀ
+7
+java:S1643@"Use a StringBuilder instead.(µ‚ƒ…ÿÿÿÿÿ
+2
+java:S1643C"Use a StringBuilder instead.(‹ÖÅ
+2
+java:S1643M"Use a StringBuilder instead.(­şÀ
+7
+java:S1643O"Use a StringBuilder instead.(µ‚ƒ…ÿÿÿÿÿ
+2
+java:S1643R"Use a StringBuilder instead.(‹ÖÅ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(·Ìê‚øÿÿÿÿ
+=
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 63 to the 15 allowed.(Çµí‘
+S	java:S106"9Replace this use of System.out or System.err by a logger.(éŠ‘ãùÿÿÿÿ
+S	java:S106	"9Replace this use of System.out or System.err by a logger.(ïª’¾úÿÿÿÿ
+N	java:S106
+"9Replace this use of System.out or System.err by a logger.(ñ³ä˜
+N	java:S106"9Replace this use of System.out or System.err by a logger.(™¬Ç•
+N	java:S106"9Replace this use of System.out or System.err by a logger.(•éõ«
+f	java:S128W"LEnd this switch case with an unconditional break, return or throw statement.(µ»ïşıÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¥¥ˆº
+N	java:S106"9Replace this use of System.out or System.err by a logger.(”“î€
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¥¥ˆº
+N	java:S106E"9Replace this use of System.out or System.err by a logger.(”“î€
+N	java:S106H"9Replace this use of System.out or System.err by a logger.(¨æÍ‹
+N	java:S106U"9Replace this use of System.out or System.err by a logger.(”“î€
+N	java:S106Z"9Replace this use of System.out or System.err by a logger.(‚¯ä¦

@@ -12,7 +12,6 @@ import java.util.Set;
 @Entity
 @SQLDelete(sql = "UPDATE customer SET flag_remove = false WHERE id = ?")
 @Where(clause = "flag_remove = true")
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor

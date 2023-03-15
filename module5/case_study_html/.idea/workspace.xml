@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="218c8e88-2acd-43f3-8141-7811337ecf91" name="Default Changelist" comment="" />
+    <list default="true" id="218c8e88-2acd-43f3-8141-7811337ecf91" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +22,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../case-study" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../module6/[C0722G1]_Prototype_SangNP" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -33,6 +35,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672200957684</updated>
       <workItem from="1672200958854" duration="31000" />
+      <workItem from="1673332568004" duration="2121000" />
     </task>
     <servers />
   </component>
@@ -40,9 +43,9 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1672200988820">
+    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1673340793497">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1672200988820" />
+    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1673340793497" />
   </component>
 </project>

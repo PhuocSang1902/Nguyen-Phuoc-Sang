@@ -1,0 +1,120 @@
+<div class="card ">
+  <article class="card-body mx-auto" style="max-width: 600px;">
+    <h1 class="card-title mt-3 text-center">Tạo Mới Tài Khoản</h1>
+    <form [formGroup]="createCustomer" (ngSubmit)="create()">
+      <div class="form-group">
+        <label class="form-label" for="name" style="width: 190px"> Tên đầy đủ </label>
+        <input formControlName="name" id="name" style="width: 340px" class="form-control" placeholder="Tên đầy đủ"
+               type="text">
+        <div class="text-danger"
+             *ngIf="createCustomer.controls.name.invalid && createCustomer.controls.name.touched else elseBlock">
+          <span *ngIf="createCustomer.controls.name.hasError('required')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Tên không được để trống.</span>
+          <span *ngIf="createCustomer.controls.name.hasError('pattern')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Tên không đúng định dạng. VD: Nguyên Tấn Minh</span>
+          <span *ngIf="createCustomer.controls.name.hasError('minlength')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Tên không nhỏ hơn 3 ký tự.</span>
+          <span *ngIf="createCustomer.controls.name.hasError('maxlength')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Tên không được quá 100 ký tự.</span>
+        </div>
+        <ng-template #elseBlock><br></ng-template>
+      </div>
+      <!-- form-group// -->
+      <div class="form-group">
+        <label class="form-label" for="email"> Email </label>
+        <input formControlName="email" id="email" class="form-control" placeholder="Địa chỉ email"
+               type="text">
+        <div class="text-danger"
+             *ngIf="createCustomer.controls.email.invalid && createCustomer.controls.email.touched else elseBlock">
+          <span *ngIf="createCustomer.controls.email.hasError('required')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Email không được để trống.</span>
+          <span *ngIf="createCustomer.controls.email.hasError('pattern')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Email không đúng định dạng. VD: nguyentanminh@gmailcom</span>
+          <span *ngIf="createCustomer.controls.email.hasError('minlength')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Email không nhỏ hơn 5 ký tự.</span>
+          <span *ngIf="createCustomer.controls.email.hasError('maxlength')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Email không được quá 100 ký tự.</span>
+        </div>
+        <ng-template #elseBlock><br></ng-template>
+      </div> <!-- form-group// -->
+      <div class="form-group">
+        <label class="form-label" for="address"> Địa chỉ</label>
+        <input formControlName="address" id="address" class="form-control" placeholder="Địa chỉ"
+               type="text">
+        <div class="text-danger"
+             *ngIf="createCustomer.controls.address.invalid && createCustomer.controls.address.touched else elseBlock">
+          <span *ngIf="createCustomer.controls.address.hasError('required')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Địa chỉ không được để trống.</span>
+          <span *ngIf="createCustomer.controls.address.hasError('pattern')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Địa chỉ không đúng định dạng. VD: 43 Trưng Nữ Vương, Đà Nẵng</span>
+          <span *ngIf="createCustomer.controls.address.hasError('minlength')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Địa chỉ không nhỏ hơn 5 ký tự.</span>
+          <span *ngIf="createCustomer.controls.address.hasError('maxlength')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Địa chỉ không được quá 100 ký tự.</span>
+        </div>
+        <ng-template #elseBlock><br></ng-template>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="gender"> Giới tính </label>
+        <select formControlName="gender" id="gender" class="form-select">
+          <option value="">--Xin chọn giới tính--</option>
+          <option value=true>Nam</option>
+          <option value=false>Nữ</option>
+        </select>
+        <div class="text-danger"
+             *ngIf="createCustomer.controls.gender.invalid && createCustomer.controls.gender.touched else elseBlock">
+          <span *ngIf="createCustomer.controls.gender.hasError('required')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Giới tính không được để trống.</span>
+        </div>
+        <ng-template #elseBlock><br></ng-template>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="birthday"> Ngày tháng năm sinh </label>
+        <input formControlName="birthday" id="birthday" class="form-control"
+               type="date">
+        <div class="text-danger"
+             *ngIf="createCustomer.controls.birthday.invalid && createCustomer.controls.birthday.touched else elseBlock">
+          <span *ngIf="createCustomer.controls.birthday.hasError('required')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Ngày sinh không được để trống.</span>
+          <span *ngIf="createCustomer.controls.birthday.hasError('greaterThan18')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Ngày sinh phải lớn hơn 18 tuổi.</span>
+        </div>
+        <ng-template #elseBlock><br></ng-template>
+      </div>
+      <div class="form-group">
+        <label for="phone" class="form-label"> Số điện thoại </label>
+        <input formControlName="phone" id="phone" class="form-control" placeholder="Số điện thoại"
+               type="text">
+        <div class="text-danger"
+             *ngIf="createCustomer.controls.phone.invalid && createCustomer.controls.phone.touched else elseBlock">
+          <span *ngIf="createCustomer.controls.phone.hasError('required')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Số điện thoại không được để trống.</span>
+          <span *ngIf="createCustomer.controls.phone.hasError('pattern')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Số điện thoại không đúng định dạng. VD: 0934 736 732</span>
+        </div>
+        <ng-template #elseBlock><br></ng-template>
+      </div> <!-- form-group// -->
+      <!-- form-group end.// -->
+      <div class="form-group">
+        <label class="form-label" for="encryptPassword"> Mật khẩu </label>
+        <input class="form-control" id="encryptPassword" formControlName="encryptPassword" placeholder="Mật khẩu"
+               type="password">
+        <div class="text-danger"
+             *ngIf="createCustomer.controls.encryptPassword.invalid && createCustomer.controls.encryptPassword.touched else elseBlock">
+          <span *ngIf="createCustomer.controls.encryptPassword.hasError('required')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Mật khẩu không được để trống.</span>
+          <span *ngIf="createCustomer.controls.encryptPassword.hasError('minlength')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Mật khẩu không được nhỏ hơn 3 ký tự</span>
+          <span *ngIf="createCustomer.controls.encryptPassword.hasError('maxlength')"><i
+            class="fa-solid fa-triangle-exclamation"></i>&nbsp;Mật khẩu không được lớn hơn 100 ký tự</span>
+        </div>
+        <ng-template #elseBlock><br></ng-template>
+      </div> <!-- form-group// -->
+      <div class="form-group d-flex justify-content-center my-2">
+        <button type="submit" class="btn btn-primary btn-block"> Tạo mới tài khoản</button>
+      </div> <!-- form-group// -->
+      <p class="text-center my-4">Bạn đã có tài khoản? <a style="color: #1d37fd" routerLink="/login">Đăng nhập
+        ngay</a></p>
+    </form>
+  </article>
+</div> <!-- card.// -->

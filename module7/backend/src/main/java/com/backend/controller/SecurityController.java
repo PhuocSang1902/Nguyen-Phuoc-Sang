@@ -63,45 +63,37 @@ public class SecurityController {
     private ICartService cartService;
 
     @PostMapping(value = "/signup")
-    public ResponseEntity<Customer> register(@Valid @RequestBody CustomerDto customerDto,
-                                             BindingResult bindingResult) {
+    public ResponseEntity<?> register(@Valid @RequestBody CustomerDto customerDto,
+                                      BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<Customer>((Customer) bindingResult.getFieldErrors(),
+            return new ResponseEntity<>(bindingResult.getFieldErrors(),
                     HttpStatus.BAD_REQUEST);
         }
-        Customer customer = new Customer();
-        BeanUtils.copyProperties(customerDto, customer);
-        Account account = new Account();
-        account.setName(customerDto.getName());
-        account.setEmail(customerDto.getEmail());
-        if (customerDto.getAvatar() == null) {
-            account.setAvatar("https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png");
+//        if (accountService.existsByEmail(customerDto.getEmail())) {
+//            return new ResponseEntity<>(new ResponseMessage("Email đã được đăng ký."), HttpStatus.CONFLICT);
+//        }
+        if (!accountService.existsByEmail(customerDto.getEmail())) {
+            Customer customer = new Customer();
+            BeanUtils.copyProperties(customerDto, customer);
+            Account account = new Account();
+            account.setName(customerDto.getName());
+            account.setEmail(customerDto.getEmail());
+            if (customerDto.getAvatar() == null || customerDto.getAvatar().trim().isEmpty()) {
+                account.setAvatar("https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/192275406_2914709508745440_8981882595411494044_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=9zAXeOiPSG0AX--Zoj9&_nc_ht=scontent.fdad1-2.fna&oh=00_AfCWcgq7aOxNzbyKJGkuzqVSUGoLykco7Mv8XThFV22ElA&oe=63F5DC03");
+            }
+            account.setEncryptPassword(passwordEncoder.encode(customerDto.getEncryptPassword()));
+            Set<Role> roles = new HashSet<>();
+            Role customerRole = roleService.findByName(RoleName.ROLE_USER).orElse(new Role());
+            roles.add(customerRole);
+            account.setRoles(roles);
+            accountService.save(account);
+            customer.setAccount(account);
+            customerService.save(customer);
+//            sendMail.SendEmailToCustomer(customerDto);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            account.setAvatar(customerDto.getAvatar());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        account.setEncryptPassword(passwordEncoder.encode(customerDto.getEncryptPassword()));
-        Set<Role> roles = new HashSet<>();
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("phuocsang1902@gmail.com");
-        message.setTo(customerDto.getEmail());
-        String mailSubject = "Đã gửi một email đến " + customerDto.getEmail();
-        String mailContent = "Người gửi: " + "Tri Thức Shop" + "\n";
-        mailContent += "Sender E-mail: " + "phuocsang1902@gmail.com" + "\n";
-        mailContent += "Subject: " + "Thư phản hồi đăng ký" + "\n";
-        mailContent += "Content: " + "Chào mừng bạn đến với Tri Thức Shop" + "\n";
-        mailContent += "Username: " + customerDto.getEmail() + "\n";
-        mailContent += "Password: " + customerDto.getEncryptPassword() + "\n";
-        mailContent += "Content: " + "Vui lòng đăng nhập để tiếp tục." + "\n";
-        message.setSubject(mailSubject);
-        message.setText(mailContent);
-        javaMailSender.send(message);
-        Role customerRole = roleService.findByName(RoleName.ROLE_USER).orElse(new Role());
-        roles.add(customerRole);
-        account.setRoles(roles);
-        accountService.save(account);
-        customer.setAccount(account);
-        customerService.save(customer);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/signin")
