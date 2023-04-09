@@ -1,0 +1,36 @@
+
+^
+java:S1192‹"GDefine a constant instead of duplicating this literal "search" 3 times.(äõŒ…
+c
+java:S1192E"HDefine a constant instead of duplicating this literal "nowDate" 3 times.(¹óÇ÷ûÿÿÿÿ
+l
+java:S1192I"QDefine a constant instead of duplicating this literal "customerTypeList" 3 times.(¢éŞÂúÿÿÿÿ
+j
+java:S1192F"ODefine a constant instead of duplicating this literal "nowDateEndYear" 3 times.(¸ıèŠúÿÿÿÿ
+P
+java:S1161":Add the "@Override" annotation above this method signature(‹¨¯¿
+<	java:S131$""Add a default case to this switch.(ë´åİşÿÿÿÿ
+Z
+java:S2147P"DCombine this catch with the one at line 78, which has the same body.(ï­£Ä
+U
+java:S1161{":Add the "@Override" annotation above this method signature(Ïû©Öûÿÿÿÿ
+\
+java:S2147£"ECombine this catch with the one at line 161, which has the same body.(ï­£Ä
+\
+java:S2147¯"ECombine this catch with the one at line 173, which has the same body.(ï­£Ä
+\
+java:S2147¼"ECombine this catch with the one at line 186, which has the same body.(ï­£Ä
+\
+java:S2147Ñ"ECombine this catch with the one at line 207, which has the same body.(ï­£Ä
+\
+java:S2147ã"ECombine this catch with the one at line 225, which has the same body.(ï­£Ä
+\
+java:S2147ï"ECombine this catch with the one at line 237, which has the same body.(ï­£Ä
+\
+java:S2147ù"ECombine this catch with the one at line 247, which has the same body.(ï­£Ä
+n
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(¯û
+s
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(àµ‘ûÿÿÿÿ
+s
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(Òæÿ™ùÿÿÿÿ

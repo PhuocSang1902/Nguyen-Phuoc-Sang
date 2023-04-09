@@ -1,0 +1,9 @@
+
+cWeb:DoctypePresenceCheck
+":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ
+Z	Web:S5254
+"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ
+MWeb:TableWithoutCaptionCheckS" Add a description to this table.(µøğèıÿÿÿÿ
+g Web:TableHeaderHasIdOrScopeCheckh";Add either an 'id' or a 'scope' attribute to this <th> tag.(½ªÉ”
+>	Web:S1827Æ"(Remove this deprecated "name" attribute.(©Èÿ 
+C	Web:S1827È"(Remove this deprecated "name" attribute.(îöÁÿÿÿÿÿ
