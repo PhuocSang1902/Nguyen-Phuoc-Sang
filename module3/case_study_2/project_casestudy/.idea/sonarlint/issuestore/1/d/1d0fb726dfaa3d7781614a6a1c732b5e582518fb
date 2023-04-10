@@ -1,10 +1,10 @@
 
-e
-java:S2095Q"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(“Ðƒ›
-j
-java:S2095:"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(…ÑÒŸÿÿÿÿÿ
 j
 java:S2095""OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(ªŽ†êøÿÿÿÿ
+j
+java:S2095:"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(…ÑÒŸÿÿÿÿÿ
+e
+java:S2095Q"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(“Ðƒ›
 I
 java:S1128"4Remove this unused import 'model.Facility.Facility'.(¥†Û[
 J
