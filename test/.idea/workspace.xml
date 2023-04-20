@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18846a5a-65ec-4893-9682-905ab393b381" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../module2/src/ss2_loops/exercise/Lesson3DisplayPrimesLessThan100.java" beforeDir="false" afterPath="$PROJECT_DIR$/../module2/src/ss2_loops/exercise/Lesson3DisplayPrimesLessThan100.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../module2/src/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../module2/src/test/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../module4/case_study/project/src/main/java/com/case_study/model/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../module4/case_study/project/src/main/java/com/case_study/model/customer/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../module5/case_study_html/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../module5/case_study_html/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../module6/5.6.1. Xem danh sách bất động sản/5.1.4.Header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../module6/5.6.1. Xem danh sách bất động sản/5.1.5.Footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../module6/5.6.1. Xem danh sách bất động sản/5.6.1.XemDanhSachBatDongSan.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../module6/5.6.1. Xem danh sách bất động sản/logo/z4028034056705_a0107c09c984b5b9ba1c7fcf6d764c86.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../module6/[C0722G1]_Prototype_SangNP/logo/logoSang.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/4/94daecdffe4003a70f02ee8989295b32f50da2be" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web-servlet-maven/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../web-servlet-maven/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +25,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Module7/test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -42,6 +37,8 @@
       <updated>1676601981916</updated>
       <workItem from="1676601983213" duration="78000" />
       <workItem from="1677493083919" duration="41000" />
+      <workItem from="1681739857654" duration="802000" />
+      <workItem from="1681828967265" duration="1325000" />
     </task>
     <servers />
   </component>
