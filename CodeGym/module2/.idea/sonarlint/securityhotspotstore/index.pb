@@ -1,0 +1,3 @@
+
+i
+9src/ss2_loops/exercise/Lesson1DisplayTypeOfGeometric.java,2\f\2f70f9842b6ed214c127cca81fcac9b05d4c85ba
