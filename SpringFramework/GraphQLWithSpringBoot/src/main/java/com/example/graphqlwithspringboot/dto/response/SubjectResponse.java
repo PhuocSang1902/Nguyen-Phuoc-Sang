@@ -1,6 +1,6 @@
-package com.example.dto.response;
+package com.example.graphqlwithspringboot.dto.response;
 
-import com.example.entity.Subject;
+import com.example.graphqlwithspringboot.entity.Subject;
 
 import lombok.Getter;
 import lombok.Setter;

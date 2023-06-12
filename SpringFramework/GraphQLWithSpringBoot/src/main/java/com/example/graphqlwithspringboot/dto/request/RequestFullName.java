@@ -1,4 +1,4 @@
-package com.example.dto.request;
+package com.example.graphqlwithspringboot.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

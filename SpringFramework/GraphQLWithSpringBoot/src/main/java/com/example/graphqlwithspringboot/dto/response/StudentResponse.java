@@ -1,10 +1,8 @@
-package com.example.dto.response;
+package com.example.graphqlwithspringboot.dto.response;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.example.entity.Student;
-import com.example.entity.Subject;
+import com.example.graphqlwithspringboot.entity.Student;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +27,8 @@ public class StudentResponse {
 
 	//This is for internal use. Do not put in schema
 	private Student student;
+
+	private String fullName;
 	
 	public StudentResponse (Student student) {
 		this.student = student;
