@@ -45,9 +45,9 @@ public class StudentService {
 
 		List<Subject> subjectsList = new ArrayList<Subject>();
 
-		if(createStudentRequest.getSubjectsLearning() != null) {
+		if(createStudentRequest.getLearningSubjects() != null) {
 			for (CreateSubjectRequest createSubjectRequest :
-					createStudentRequest.getSubjectsLearning()) {
+					createStudentRequest.getLearningSubjects()) {
 				Subject subject = new Subject();
 				subject.setSubjectName(createSubjectRequest.getSubjectName());
 				subject.setMarksObtained(createSubjectRequest.getMarksObtained());

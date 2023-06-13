@@ -2,6 +2,11 @@ type Mutation {
     createStudent(createStudentRequest : CreateStudentRequest) : StudentResponse
 }
 
+input CreateSubjectRequest {
+	subjectName : String
+	marksObtained : Float
+}
+
 input CreateStudentRequest {
 	firstName : String
 	lastName : String
@@ -9,9 +14,4 @@ input CreateStudentRequest {
 	street : String
 	city : String
 	learningSubjects: [CreateSubjectRequest]
-}
-
-type CreateSubjectRequest {
-	subjectName : String
-	marksObtained : Float
 }
