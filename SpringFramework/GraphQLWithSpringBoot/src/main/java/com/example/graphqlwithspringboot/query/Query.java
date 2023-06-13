@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.example.graphqlwithspringboot.dto.request.RequestFullName;
 
+import java.util.List;
+
 @Component
 public class Query implements GraphQLQueryResolver {
 
@@ -28,5 +30,4 @@ public class Query implements GraphQLQueryResolver {
     public StudentResponse getStudent(Long id){
         return new StudentResponse(studentService.getStudentById(id));
     }
-
 }
