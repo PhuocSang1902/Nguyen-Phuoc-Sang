@@ -2,7 +2,7 @@ type Query {
     firstQuery : String
     secondQuery : String
     fullName(request : RequestFullName) : String
-    student(id : Long) : StudentResponse
+    student(id : Int) : StudentResponse
 }
 
 input RequestFullName {
@@ -11,7 +11,7 @@ input RequestFullName {
 }
 
 type StudentResponse {
-	id : Long
+	id : Int
 	firstName : String
 	lastName : String
 	email : String
@@ -22,7 +22,7 @@ type StudentResponse {
 }
 
 type SubjectResponse {
-    id : Long
+    id : Int
     subjectName : String
     marksObtained : Float
 }

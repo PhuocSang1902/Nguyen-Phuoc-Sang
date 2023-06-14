@@ -6,6 +6,7 @@ import com.example.graphqlwithspringboot.entity.Address;
 import com.example.graphqlwithspringboot.entity.Subject;
 import com.example.graphqlwithspringboot.repository.AddressRepository;
 import com.example.graphqlwithspringboot.repository.SubjectRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import com.example.graphqlwithspringboot.repository.StudentRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class StudentService {
 
@@ -28,10 +30,14 @@ public class StudentService {
 	StudentRepository studentRepository;
 	
 	public Student getStudentById (long id) {
+		log.info("get student by id");
+
 		return studentRepository.findById(id).get();
 	}
 
 	public Student createStudent (CreateStudentRequest createStudentRequest) {
+		log.info("create student");
+
 		Student student = new Student(createStudentRequest);
 
 		Address address = new Address();

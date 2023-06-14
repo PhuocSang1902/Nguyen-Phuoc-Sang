@@ -1,10 +1,10 @@
 package com.example.graphqlwithspringboot.resolve;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.example.graphqlwithspringboot.dto.response.StudentResponse;
 import com.example.graphqlwithspringboot.dto.response.SubjectResponse;
 import com.example.graphqlwithspringboot.entity.Subject;
 import com.example.graphqlwithspringboot.enums.SubjectNameFilter;
+import graphql.kickstart.tools.GraphQLResolver;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

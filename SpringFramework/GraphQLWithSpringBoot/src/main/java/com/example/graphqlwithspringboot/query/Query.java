@@ -1,8 +1,8 @@
 package com.example.graphqlwithspringboot.query;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.example.graphqlwithspringboot.dto.response.StudentResponse;
 import com.example.graphqlwithspringboot.service.StudentService;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.example.graphqlwithspringboot.dto.request.RequestFullName;
