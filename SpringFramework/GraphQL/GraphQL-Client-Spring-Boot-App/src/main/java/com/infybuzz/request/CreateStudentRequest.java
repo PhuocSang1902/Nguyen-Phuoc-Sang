@@ -19,6 +19,6 @@ public class CreateStudentRequest {
 
 	private String city;
 
-	private List<CreateSubjectRequest> subjectsLearning;
+	private List<CreateSubjectRequest> learningSubjects;
 
 }
