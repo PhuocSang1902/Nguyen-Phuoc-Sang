@@ -1,4 +1,4 @@
-package com;
+package com.enumvalidate;
 
 import java.util.Arrays;
 
