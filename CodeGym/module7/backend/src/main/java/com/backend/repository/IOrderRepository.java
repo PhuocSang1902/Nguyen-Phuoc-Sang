@@ -3,7 +3,6 @@ package com.backend.repository;
 import com.backend.dto.order.OrderList;
 import com.backend.entity.order.OrderDetail;
 import com.backend.entity.order.Orders;
-import jdk.nashorn.internal.runtime.options.Option;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
