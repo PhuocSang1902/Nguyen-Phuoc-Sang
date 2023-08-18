@@ -1,11 +1,6 @@
-function greet() {
-    console.log('hi');
-}
-greet();
+var express = require('express');
+var app = express();
 
-//function are first class
-function logGreeting(fn) {
-    fn();
-}
+var port = process.env.PORT || 3000;
 
-logGreeting(greet);
+app.listen(port);
