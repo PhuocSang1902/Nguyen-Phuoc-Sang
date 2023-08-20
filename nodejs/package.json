@@ -1,14 +1,17 @@
 {
   "name": "nodejs-test-app",
   "version": "1.0.0",
-  "description": "App test nodejs",
+  "description": "NodeJS Test App",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Sang Phuoc",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "body-parser": "^1.14.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "mysql": "^2.18.1"
   }
 }
