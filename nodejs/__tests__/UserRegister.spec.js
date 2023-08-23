@@ -39,38 +39,38 @@ describe('User Registration', () => {
         done();
       });
   });
-});
 
-it('saves the user to database', (done) => {
-  request(app)
-    .post('/api/1.0/users')
-    .send({
-      username: 'user1',
-      email: 'user1@gmail.com',
-      password: 'password',
-    })
-    .then(() => {
-      User.findAll().then((userList) => {
-        expect(userList.length).toBe(1);
-        done();
+  it('saves the user to database', (done) => {
+    request(app)
+      .post('/api/1.0/users')
+      .send({
+        username: 'user1',
+        email: 'user1@gmail.com',
+        password: 'password',
+      })
+      .then(() => {
+        User.findAll().then((userList) => {
+          expect(userList.length).toBe(1);
+          done();
+        });
       });
-    });
-});
+  });
 
-it('saves the username and email to database', (done) => {
-  request(app)
-    .post('/api/1.0/users')
-    .send({
-      username: 'user1',
-      email: 'user1@gmail.com',
-      password: 'password',
-    })
-    .then(() => {
-      User.findAll().then((userList) => {
-        const savedUser = userList[0];
-        expect(savedUser.username).toBe('user1');
-        expect(savedUser.email).toBe('user1@gmail.com');
-        done();
+  it('saves the username and email to database', (done) => {
+    request(app)
+      .post('/api/1.0/users')
+      .send({
+        username: 'user1',
+        email: 'user1@gmail.com',
+        password: 'password',
+      })
+      .then(() => {
+        User.findAll().then((userList) => {
+          const savedUser = userList[0];
+          expect(savedUser.username).toBe('user1');
+          expect(savedUser.email).toBe('user1@gmail.com');
+          done();
+        });
       });
-    });
+  });
 });
