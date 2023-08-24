@@ -82,17 +82,29 @@ describe('User Registration', () => {
   });
 
   it.each`
-    field         | expectedMessage
-    ${'username'} | ${'Username cannot be null'}
-    ${'email'}    | ${'E-mail cannot be null'}
-    ${'password'} | ${'Password cannot be null'}
-  `('return $expectedMessage when $field is null', async ({ field, expectedMessage }) => {
+    field         | value              | expectedMessage
+    ${'username'} | ${null}            | ${'Username cannot be null'}
+    ${'username'} | ${'usr'}           | ${'Must have min 4 and max 32 characters'}
+    ${'username'} | ${'a'.repeat(33)}  | ${'Must have min 4 and max 32 characters'}
+    ${'email'}    | ${null}            | ${'E-mail cannot be null'}
+    ${'email'}    | ${'mail.com'}      | ${'E-mail is not valid'}
+    ${'email'}    | ${'user.mail.com'} | ${'E-mail is not valid'}
+    ${'email'}    | ${'user@mail'}     | ${'E-mail is not valid'}
+    ${'password'} | ${null}            | ${'Password cannot be null'}
+    ${'password'} | ${'Pass'}          | ${'Password must be at least 6 characters'}
+    ${'password'} | ${'allowercase'}   | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters'}
+    ${'password'} | ${'ADADAFDASFA'}   | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters'}
+    ${'password'} | ${'12345657633'}   | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters'}
+    ${'password'} | ${'lowerJDAKFD'}   | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters'}
+    ${'password'} | ${'DFASDF12344'}   | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters'}
+    ${'password'} | ${'afdsf111111'}   | ${'Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters'}
+  `('return $expectedMessage when $field is $value', async ({ field, value, expectedMessage }) => {
     const user = {
       username: 'user1',
       email: 'user1@gmail.com',
       password: 'password',
     };
-    user[field] = null;
+    user[field] = value;
     const response = await postUser(user);
     const body = response.body;
     expect(body.validationErrors[field]).toBe(expectedMessage);
