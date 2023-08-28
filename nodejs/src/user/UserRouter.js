@@ -4,6 +4,8 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const { max } = require('./User');
 
+var Regex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/);
+
 router.post(
   '/api/1.0/users',
   check('username')
@@ -23,7 +25,7 @@ router.post(
     .isLength({ min: 6 })
     .withMessage('Password must be at least 6 characters')
     .bail()
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)
+    .matches(Regex ,"i")
     .withMessage('Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters'),
   async (req, res) => {
     const errors = validationResult(req);
