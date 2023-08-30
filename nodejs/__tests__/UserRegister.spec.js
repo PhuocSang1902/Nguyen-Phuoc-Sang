@@ -2,14 +2,38 @@ const request = require('supertest');
 const app = require('../src/app');
 const User = require('../src/user/User');
 const sequelize = require('../src/config/database');
-const nodemailerStub = require('nodemailer-stub');
-const EmailService = require('../src/email/EmailService');
+const SMTPServer = require('smtp-server').SMTPServer;
 
-beforeAll(() => {
-  return sequelize.sync();
+let lastMail, server;
+let simulateSmtpFailure = false;
+
+beforeAll(async () => {
+  server = new SMTPServer({
+    authOptional: true,
+    onData(stream, session, callback) {
+      let mailBody;
+      stream.on('data', (data) => {
+        mailBody += data.toString();
+      });
+      stream.on('end', () => {
+        if (simulateSmtpFailure) {
+          const error = new Error('Invalid mailbox');
+          error.responseCode = 553;
+          return callback(error);
+        }
+        lastMail = mailBody;
+        callback();
+      });
+    },
+  });
+
+  await server.listen(8587, 'localhost');
+
+  await sequelize.sync();
 });
 
 beforeEach(() => {
+  simulateSmtpFailure = false;
   return User.destroy({ truncate: true });
 });
 
@@ -167,20 +191,29 @@ describe('User Registration', () => {
 
   it('sends an Account activation email with activationToken', async () => {
     await postUser();
-    const lastMail = nodemailerStub.interactsWithMail.lastMail();
-    expect(lastMail.to[0]).toBe('user1@gmail.com');
     const users = await User.findAll();
     const savedUser = users[0];
-    expect(lastMail.content).toContain(savedUser.activationToken);
+    expect(lastMail).toContain('user1@gmail.com');
+    expect(lastMail).toContain(savedUser.activationToken);
   });
 
   it('returns 502 Bad Gateway when sending email fails', async () => {
-    const mockSendAccountActivation = jest
-      .spyOn(EmailService, 'sendAccountActivation')
-      .mockRejectedValue({ message: 'Failed to deliver email' });
+    simulateSmtpFailure = true;
     const response = await postUser();
     expect(response.status).toBe(502);
-    mockSendAccountActivation.mockRestore();
+  });
+
+  it('returns Email failure message when sending email fails', async () => {
+    simulateSmtpFailure = true;
+    const response = await postUser();
+    expect(response.body.message).toBe('E-mail failure');
+  });
+
+  it('does not save user to database if activation email fails', async () => {
+    simulateSmtpFailure = true;
+    await postUser();
+    const users = await User.findAll();
+    expect(users.length).toBe(0);
   });
 });
 
@@ -194,7 +227,7 @@ describe('Internationalization', () => {
   const password_invalid = 'Password phai co it nhat mot tu viet hoa, 1 tu viet thuong, 1 so';
   const email_inuse = 'E-mail da duoc su dung';
   const user_created_success = 'Nguoi dung da duoc tao thanh cong';
-
+  const email_failure = 'E-mail khong dung';
   it.each`
     field         | value              | expectedMessage
     ${'username'} | ${null}            | ${username_null}
@@ -236,5 +269,11 @@ describe('Internationalization', () => {
   it(`returns success message ${user_created_success} when signup request is valid and language set vietnam`, async () => {
     const response = await postUser({ ...validUser }, { language: 'vn' });
     expect(response.body.message).toBe(user_created_success);
+  });
+
+  it(`returns ${email_failure} message when sending email fails a language is set as vietnam`, async () => {
+    simulateSmtpFailure = true;
+    const response = await postUser({ ...validUser }, { language: 'vn' });
+    expect(response.body.message).toBe(email_failure);
   });
 });

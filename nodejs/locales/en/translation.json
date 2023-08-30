@@ -7,5 +7,6 @@
   "password_invalid": "Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters",
   "username_null": "Username cannot be null",
   "email_inuse": "E-mail in use",
-  "user_created_success": "User created"
+  "user_created_success": "User created",
+  "email_failure": "E-mail failure"
 }
