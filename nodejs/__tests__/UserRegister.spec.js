@@ -2,6 +2,8 @@ const request = require('supertest');
 const app = require('../src/app');
 const User = require('../src/user/User');
 const sequelize = require('../src/config/database');
+const nodemailerStub = require('nodemailer-stub');
+const EmailService = require('../src/email/EmailService');
 
 beforeAll(() => {
   return sequelize.sync();
@@ -16,8 +18,12 @@ const validUser = {
   email: 'user1@gmail.com',
   password: 'Password1',
 };
-function postUser(user = validUser) {
-  return request(app).post('/api/1.0/users').send(user);
+function postUser(user = validUser, option = {}) {
+  const agent = request(app).post('/api/1.0/users');
+  if (option.language) {
+    agent.set('Accept-Language', option.language);
+  }
+  return agent.send(user);
 }
 
 describe('User Registration', () => {
@@ -136,12 +142,49 @@ describe('User Registration', () => {
     const body = response.body;
     expect(Object.keys(body.validationErrors)).toEqual(['username', 'email']);
   });
-});
-describe('Internationalization', () => {
-  function postUser(user = validUser) {
-    return request(app).post('/api/1.0/users').set('Accept-Language', 'vn').send(user);
-  }
 
+  it('creates user in inactive mode', async () => {
+    await postUser();
+    const users = await User.findAll();
+    const savedUser = users[0];
+    expect(savedUser.inactive).toBe(true);
+  });
+
+  it('creates user in inactive mode even the request body contains inactive if false', async () => {
+    const newUser = { ...validUser, inactive: false };
+    await postUser(newUser);
+    const users = await User.findAll();
+    const savedUser = users[0];
+    expect(savedUser.inactive).toBe(true);
+  });
+
+  it('creates an activationToken for user', async () => {
+    await postUser();
+    const users = await User.findAll();
+    const savedUser = users[0];
+    expect(savedUser.activationToken).toBeTruthy();
+  });
+
+  it('sends an Account activation email with activationToken', async () => {
+    await postUser();
+    const lastMail = nodemailerStub.interactsWithMail.lastMail();
+    expect(lastMail.to[0]).toBe('user1@gmail.com');
+    const users = await User.findAll();
+    const savedUser = users[0];
+    expect(lastMail.content).toContain(savedUser.activationToken);
+  });
+
+  it('returns 502 Bad Gateway when sending email fails', async () => {
+    const mockSendAccountActivation = jest
+      .spyOn(EmailService, 'sendAccountActivation')
+      .mockRejectedValue({ message: 'Failed to deliver email' });
+    const response = await postUser();
+    expect(response.status).toBe(502);
+    mockSendAccountActivation.mockRestore();
+  });
+});
+
+describe('Internationalization', () => {
   const username_null = 'Ten nguoi dung khong duoc null';
   const username_size = 'Phai co it nhat 4 va nhieu nhat 32 ky tu';
   const email_null = 'E-mail khong duoc null';
@@ -150,6 +193,7 @@ describe('Internationalization', () => {
   const password_size = 'Password phai co it nhat 6 ky tu';
   const password_invalid = 'Password phai co it nhat mot tu viet hoa, 1 tu viet thuong, 1 so';
   const email_inuse = 'E-mail da duoc su dung';
+  const user_created_success = 'Nguoi dung da duoc tao thanh cong';
 
   it.each`
     field         | value              | expectedMessage
@@ -177,7 +221,7 @@ describe('Internationalization', () => {
         password: 'password',
       };
       user[field] = value;
-      const response = await postUser(user);
+      const response = await postUser(user, { language: 'vn' });
       const body = response.body;
       expect(body.validationErrors[field]).toBe(expectedMessage);
     },
@@ -185,7 +229,12 @@ describe('Internationalization', () => {
 
   it(`return ${email_inuse} when same email is already in use`, async () => {
     await User.create({ ...validUser });
-    const response = await postUser();
+    const response = await postUser({ ...validUser }, { language: 'vn' });
     expect(response.body.validationErrors.email).toBe(email_inuse);
+  });
+
+  it(`returns success message ${user_created_success} when signup request is valid and language set vietnam`, async () => {
+    const response = await postUser({ ...validUser }, { language: 'vn' });
+    expect(response.body.message).toBe(user_created_success);
   });
 });

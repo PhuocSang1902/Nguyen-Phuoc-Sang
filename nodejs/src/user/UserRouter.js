@@ -45,12 +45,16 @@ router.post(
     if (!errors.isEmpty()) {
       const validationErrors = {};
       errors.array().forEach((element) => {
-        validationErrors[element.path] = element.msg;
+        validationErrors[element.path] = req.t(element.msg);
       });
       return res.status(400).send({ validationErrors: validationErrors });
     }
-    await UserService.save(req.body);
-    return res.send({ message: 'User created' });
+    try {
+      await UserService.save(req.body);
+      return res.send({ message: req.t('user_created_success') });
+    } catch (error) {
+      return res.status(502).send();
+    }
   },
 );
 
