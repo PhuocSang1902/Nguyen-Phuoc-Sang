@@ -1,0 +1,10 @@
+{
+  "username_null" : "Ten nguoi dung khong duoc null",
+  "username_size" : "Phai co it nhat 4 va nhieu nhat 32 ky tu",
+  "email_null" : "E-mail khong duoc null",
+  "email_invalid" : "E-mail khong dung dinh dang",
+  "password_null" : "Password khong duoc null",
+  "password_size" : "Password phai co it nhat 6 ky tu",
+  "password_invalid" : "Password phai co it nhat mot tu viet hoa, 1 tu viet thuong, 1 so",
+  "email_inuse" : "E-mail da duoc su dung"
+}

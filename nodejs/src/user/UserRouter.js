@@ -1,4 +1,5 @@
 const express = require('express');
+const User = require('./User');
 const UserService = require('./UserService');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
@@ -10,23 +11,35 @@ router.post(
   '/api/1.0/users',
   check('username')
     .notEmpty()
-    .withMessage('Username cannot be null')
+    .withMessage('username_null')
     .bail()
     .isLength({ min: 4, max: 32 })
-    .withMessage('Must have min 4 and max 32 characters'),
-  check('email').notEmpty().withMessage('E-mail cannot be null').bail().isEmail().withMessage('E-mail is not valid'),
+    .withMessage('username_size')
+    .bail(),
+  check('email')
+    .notEmpty()
+    .withMessage('email_null')
+    .bail()
+    .isEmail()
+    .withMessage('email_invalid')
+    .bail()
+    .custom(async (email) => {
+      const user = await UserService.findByEmail(email);
+      if (user) {
+        throw new Error('email_inuse');
+      }
+    })
+    .bail(),
   check('password')
     .notEmpty()
-    .withMessage('Password cannot be null')
+    .withMessage('password_null')
     .bail()
     .isLength({ min: 6 })
-    .withMessage('Password must be at least 6 characters')
+    .withMessage('password_size')
     .bail()
-    .isLength({ min: 6 })
-    .withMessage('Password must be at least 6 characters')
-    .bail()
-    .matches(Regex ,"i")
-    .withMessage('Password must have at least 1 uppercase, 1 lowercase letter and 1 number characters'),
+    .matches(Regex)
+    .withMessage('password_invalid')
+    .bail(),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
