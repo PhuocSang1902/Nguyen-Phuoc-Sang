@@ -8,5 +8,7 @@
   "username_null": "Username cannot be null",
   "email_inuse": "E-mail in use",
   "user_created_success": "User created",
-  "email_failure": "E-mail failure"
+  "email_failure": "E-mail failure",
+  "account_activation_failure": "This account is either active or the token is invalid",
+  "account_activation_success": "Account is activated"
 }

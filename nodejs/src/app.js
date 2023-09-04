@@ -27,4 +27,16 @@ app.use(express.json());
 
 app.use(UserRouter);
 
+app.use((err, req, res, next) => {
+  const { status, message, errors } = err;
+  let validationErrors;
+  if (errors) {
+    validationErrors = {};
+    errors.forEach((error) => {
+      validationErrors[error.param] = req.t(error.msg);
+    });
+  }
+  res.status(status).send({ message: req.t(message), validationErrors });
+});
+
 module.exports = app;

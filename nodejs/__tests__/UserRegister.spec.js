@@ -37,6 +37,10 @@ beforeEach(() => {
   return User.destroy({ truncate: true });
 });
 
+afterAll(async () => {
+  await server.close();
+});
+
 const validUser = {
   username: 'user1',
   email: 'user1@gmail.com',
@@ -276,4 +280,68 @@ describe('Internationalization', () => {
     const response = await postUser({ ...validUser }, { language: 'vn' });
     expect(response.body.message).toBe(email_failure);
   });
+});
+
+describe('Account activation', () => {
+  it('actives the account when correct token is sent', async () => {
+    await postUser();
+    let users = await User.findAll();
+    const token = users[0].activationToken;
+
+    await request(app)
+      .post('/api/1.0/users/token/' + token)
+      .send();
+    users = await User.findAll();
+    expect(users[0].inactive).toBe(false);
+  });
+  it('removes the token from the user table after successful activation', async () => {
+    await postUser();
+    let users = await User.findAll();
+    const token = users[0].activationToken;
+
+    await request(app)
+      .post('/api/1.0/users/token/' + token)
+      .send();
+    users = await User.findAll();
+    expect(users[0].activationToken).toBeFalsy();
+  });
+  it('does not activate the account when token is wrong', async () => {
+    await postUser();
+    const token = 'This-token-does-not-exist';
+    await request(app)
+      .post('/api/1.0/users/token/' + token)
+      .send();
+    const users = await User.findAll();
+    expect(users[0].inactive).toBe(true);
+  });
+  it('returns bad request when token is wrong', async () => {
+    await postUser();
+    const token = 'This token does not exist';
+    const response = await request(app)
+      .post('/api/1.0/users/token/' + token)
+      .send();
+    expect(response.status).toBe(400);
+  });
+  it.each`
+    language | tokenStratus | message
+    ${'vn'}  | ${'wrong'}   | ${'Tài khoản này đang hoạt động hoặc mã thông báo không hợp lệ'}
+    ${'en'}  | ${'wrong'}   | ${'This account is either active or the token is invalid'}
+    ${'vn'}  | ${'correct'} | ${'Tài khoản được kích hoạt'}
+    ${'en'}  | ${'correct'} | ${'Account is activated'}
+  `(
+    'returns $message when token is $tokenStratus token is sent and language is $language',
+    async ({ language, message, tokenStratus }) => {
+      await postUser();
+      let token = 'This token does not exist';
+      if (tokenStratus === 'correct') {
+        let users = await User.findAll();
+        token = users[0].activationToken;
+      }
+      const response = await request(app)
+        .post('/api/1.0/users/token/' + token)
+        .set('Accept-language', language)
+        .send();
+      expect(response.body.message).toBe(message);
+    },
+  );
 });
