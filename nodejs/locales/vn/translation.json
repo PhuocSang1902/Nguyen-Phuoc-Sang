@@ -10,5 +10,6 @@
   "user_created_success": "Nguoi dung da duoc tao thanh cong",
   "email_failure": "E-mail khong dung",
   "account_activation_failure": "Tài khoản này đang hoạt động hoặc mã thông báo không hợp lệ",
-  "account_activation_success": "Tài khoản được kích hoạt"
+  "account_activation_success": "Tài khoản được kích hoạt",
+  "validation_failure": "Xác thực thất bại"
 }

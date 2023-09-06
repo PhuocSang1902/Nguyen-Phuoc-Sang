@@ -219,6 +219,15 @@ describe('User Registration', () => {
     const users = await User.findAll();
     expect(users.length).toBe(0);
   });
+
+  it('return Validation Failure message in error response body when validation fails', async () => {
+    const response = await postUser({
+      username: null,
+      email: validUser.email,
+      password: 'Password1',
+    });
+    expect(response.body.message).toBe('Validation Failure');
+  });
 });
 
 describe('Internationalization', () => {
@@ -232,6 +241,7 @@ describe('Internationalization', () => {
   const email_inuse = 'E-mail da duoc su dung';
   const user_created_success = 'Nguoi dung da duoc tao thanh cong';
   const email_failure = 'E-mail khong dung';
+  const validation_failure = 'Xác thực thất bại';
   it.each`
     field         | value              | expectedMessage
     ${'username'} | ${null}            | ${username_null}
@@ -279,6 +289,18 @@ describe('Internationalization', () => {
     simulateSmtpFailure = true;
     const response = await postUser({ ...validUser }, { language: 'vn' });
     expect(response.body.message).toBe(email_failure);
+  });
+
+  it(`return ${validation_failure} message in error response body when validation fails`, async () => {
+    const response = await postUser(
+      {
+        username: null,
+        email: validUser.email,
+        password: 'Password1',
+      },
+      { language: 'vn' },
+    );
+    expect(response.body.message).toBe(validation_failure);
   });
 });
 
@@ -339,9 +361,17 @@ describe('Account activation', () => {
       }
       const response = await request(app)
         .post('/api/1.0/users/token/' + token)
-        .set('Accept-language', language)
+        .set('Accept-Language', language)
         .send();
       expect(response.body.message).toBe(message);
     },
   );
+});
+
+describe('Error Model', () => {
+  it('returns path, timestamp, message and validationErrors in response when validation failure', async () => {
+    const response = await postUser({ ...validUser, username: null });
+    const body = response.body;
+    expect(Object.keys(body)).toEqual(['path', 'timestamp', 'message', 'validationErrors']);
+  });
 });
