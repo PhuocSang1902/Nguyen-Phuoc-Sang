@@ -6,8 +6,8 @@ module.exports = (err, req, res, next) => {
     errors.forEach((error) => (validationErrors[error.param] = req.t(error.msg)));
   }
   res.status(status).send({
-    path: '',
-    timestamp: '',
+    path: req.originalUrl,
+    timestamp: new Date().getTime(),
     message: req.t(message),
     validationErrors,
   });
