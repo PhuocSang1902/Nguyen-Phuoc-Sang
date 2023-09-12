@@ -11,5 +11,6 @@
   "email_failure": "E-mail khong dung",
   "account_activation_failure": "Tài khoản này đang hoạt động hoặc mã thông báo không hợp lệ",
   "account_activation_success": "Tài khoản được kích hoạt",
-  "validation_failure": "Xác thực thất bại"
+  "validation_failure": "Xác thực thất bại",
+  "user_not_found": "Không tìm thấy người dùng"
 }
