@@ -1,12 +1,9 @@
 const express = require('express');
-const User = require('./User');
 const UserService = require('./UserService');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const ValidationException = require('../error/ValidationException');
 const pagination = require('../middleware/pagination');
-const UserNotFoundException = require('./UserNotFoundException');
-const InvalidTokeException = require('./InvalidTokeException');
 
 var Regex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/);
 
