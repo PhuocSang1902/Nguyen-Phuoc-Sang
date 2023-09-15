@@ -3,6 +3,8 @@ const app = require('../src/app');
 const User = require('../src/user/User');
 const sequelize = require('../src/config/database');
 const bcrypt = require('bcrypt');
+const en = require('../locales/en/translation.json');
+const vn = require('../locales/vn/translation.json');
 
 beforeAll(async () => {
   await sequelize.sync();
@@ -61,8 +63,8 @@ describe('Authentication', () => {
   });
   it.each`
     language | message
-    ${'vn'}  | ${'Thông tin xác thực không chính xác'}
-    ${'en'}  | ${'Incorrect credentials'}
+    ${'vn'}  | ${vn.authentication_failure}
+    ${'en'}  | ${en.authentication_failure}
   `('return $message for authentication fail when language is set to $language', async ({ language, message }) => {
     const response = await postAuthentication(
       { email: 'user1@gmail.com', password: 'Password1' },
@@ -91,8 +93,8 @@ describe('Authentication', () => {
   });
   it.each`
     language | message
-    ${'vn'}  | ${'Tài khoản không hoạt động'}
-    ${'en'}  | ${'Account is inactive'}
+    ${'vn'}  | ${vn.inactive_authentication_failure}
+    ${'en'}  | ${en.inactive_authentication_failure}
   `(
     'return $message when authentication fails for iactive account and language is set to $language',
     async ({ language, message }) => {

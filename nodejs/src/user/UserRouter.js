@@ -3,7 +3,9 @@ const UserService = require('./UserService');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const ValidationException = require('../error/ValidationException');
+const ForbiddenException = require('../error/ForbiddenException');
 const pagination = require('../middleware/pagination');
+const basicAuthentication = require('../middleware/basicAuthentication');
 
 var Regex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/);
 
@@ -77,6 +79,15 @@ router.get('/api/1.0/users/:id', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+router.put('/api/1.0/users/:id', basicAuthentication, async (req, res, next) => {
+  const authenticatedUser = req.authenticatedUser;
+  if (!authenticatedUser || authenticatedUser.id != req.params.id) {
+    return next(new ForbiddenException('unauthorized_user_update'));
+  }
+  await UserService.updateUser(req.params.id, req.body);
+  return res.send();
 });
 
 module.exports = router;

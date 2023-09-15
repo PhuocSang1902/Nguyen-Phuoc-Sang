@@ -1,8 +1,8 @@
-// const nodemailer = require('nodemailer');
-// const config = require('config');
+const nodemailer = require('nodemailer');
+const config = require('config');
 
-// const mailConfig = config.get('mail');
+const mailConfig = config.get('mail');
 
-// const transporter = nodemailer.createTransport({...mailConfig});
+const transporter = nodemailer.createTransport({ ...mailConfig });
 
-// module.exports = transporter;
+module.exports = transporter;
