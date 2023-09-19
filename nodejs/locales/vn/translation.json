@@ -15,5 +15,7 @@
   "user_not_found": "Không tìm thấy người dùng",
   "authentication_failure": "Thông tin xác thực không chính xác",
   "inactive_authentication_failure": "Tài khoản không hoạt động",
-  "unauthorized_user_update": "Bạn không được phép cập nhật người dùng"
+  "unauthorized_user_update": "Bạn không được phép cập nhật người dùng",
+  "unauthorized_user_delete": "Bạn không được phép xóa người dùng",
+  "email_not_inuse": "Không tìm thấy email"
 }

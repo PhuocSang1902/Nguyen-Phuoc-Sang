@@ -11,7 +11,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  return User.destroy({ truncate: true });
+  await User.destroy({ truncate: { cascade: true } });
 });
 
 const activeUser = {
@@ -27,14 +27,26 @@ const addUser = async (user = { ...activeUser }) => {
   return await User.create(user);
 };
 
-const putUser = (id = 5, body = null, option = {}) => {
-  const agent = request(app).put('/api/1.0/users/' + id);
-  if (option.language) {
-    agent.set('Accept-Language', option.language);
+const putUser = async (id = 5, body = null, options = {}) => {
+  let agent = request(app);
+
+  let token;
+  if (options.auth) {
+    const response = await agent.post('/api/1.0/auth').send(options.auth);
+    token = response.body.token;
   }
-  if (option.auth) {
-    const { email, password } = option.auth;
-    agent.auth(email, password);
+
+  agent = request(app).put('/api/1.0/users/' + id);
+  if (options.language) {
+    agent.set('Accept-Language', options.language);
+  }
+
+  if (token) {
+    agent.set('Authorization', `Bearer ${token}`);
+  }
+
+  if (options.token) {
+    agent.set('Authorization', `Bearer ${options.token}`);
   }
   return agent.send(body);
 };
@@ -94,10 +106,14 @@ describe('User update', () => {
   it('update user in database  when valid update request is sent from authorized user', async () => {
     const savedUser = await addUser();
     const validUpdate = { username: 'user1-update' };
-    const response = await putUser(savedUser.id, validUpdate, {
+    await putUser(savedUser.id, validUpdate, {
       auth: { email: savedUser.email, password: 'Password1' },
     });
     const inDBUser = await User.findOne({ where: { id: savedUser.id } });
     expect(inDBUser.username).toBe(validUpdate.username);
+  });
+  it('returns 403 when token is not valid', async () => {
+    const response = await putUser(5, null, { token: '123' });
+    expect(response.status).toBe(403);
   });
 });
