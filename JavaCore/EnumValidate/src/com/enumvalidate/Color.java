@@ -23,7 +23,7 @@ public class Color {
         if (getStatus() == ColorStatus.RED){
             return true;
         }
-        return false;
+        return false   ;
     }
 
     public ColorStatus getStatus() {
