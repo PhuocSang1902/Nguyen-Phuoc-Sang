@@ -1,7 +1,0 @@
-{
-  "name": "empty-project",
-  "version": "1.0.0",
-  "dependencies": {
-    "typescript": "^4.9.4"
-  }
-}
