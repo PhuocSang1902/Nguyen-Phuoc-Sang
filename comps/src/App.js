@@ -1,5 +1,13 @@
+import Button from './Button';
+
 function App() {
-  return <div>App</div>
+  return (
+    <div>
+      <div>
+        <Button success rounded outline>Click</Button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
