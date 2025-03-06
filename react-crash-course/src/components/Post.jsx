@@ -1,4 +1,4 @@
-function Post(props: { author: string; body: string }) {
+function Post(props) {
   return (
     <div>
       <p>{props.author}</p>
