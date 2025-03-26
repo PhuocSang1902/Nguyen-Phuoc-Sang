@@ -139,6 +139,7 @@ export interface User {
 export interface Media {
   id: string;
   alt: string;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -158,26 +159,8 @@ export interface Media {
 export interface Page {
   id: string;
   name: string;
-  slug: string;
-  layout: (
-    | {
-        heading?: string | null;
-        text?: string | null;
-        backgroundImage?: (string | null) | Media;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'hero';
-      }
-    | {
-        heading?: string | null;
-        text?: string | null;
-        image?: (string | null) | Media;
-        direction?: ('default' | 'reverse') | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'twoColumn';
-      }
-  )[];
+  slug?: string | null;
+  layout?: unknown[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -263,6 +246,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -282,29 +266,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface PagesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
-  layout?:
-    | T
-    | {
-        hero?:
-          | T
-          | {
-              heading?: T;
-              text?: T;
-              backgroundImage?: T;
-              id?: T;
-              blockName?: T;
-            };
-        twoColumn?:
-          | T
-          | {
-              heading?: T;
-              text?: T;
-              image?: T;
-              direction?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
+  layout?: T | {};
   updatedAt?: T;
   createdAt?: T;
 }
