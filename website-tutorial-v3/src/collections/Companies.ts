@@ -2,7 +2,18 @@ import { CollectionConfig } from 'payload'
 
 export const Companies: CollectionConfig = {
   slug: 'companies',
+  admin: {
+    useAsTitle: 'label',
+  },
   fields: [
+    {
+      name: 'generateLabel',
+      type: 'ui',
+      admin: {
+        components: { Field: '/src/components/GenerateCompanyLable' },
+      },
+    },
+    { name: 'label', label: 'Label', type: 'text', admin: { hidden: true mm} },
     {
       name: 'name',
       label: 'Name',
@@ -13,20 +24,17 @@ export const Companies: CollectionConfig = {
       name: 'description',
       label: 'Description',
       type: 'richText',
-      required: true,
     },
     {
       name: 'logo',
       label: 'Logo',
       type: 'upload',
       relationTo: 'media',
-      required: true,
     },
     {
       name: 'website',
       label: 'Website',
       type: 'text',
-      required: true,
     },
     {
       name: 'address',
@@ -57,6 +65,11 @@ export const Companies: CollectionConfig = {
           ],
         },
       ],
+      admin: {
+        components: {
+          Cell: '/src/components/cells/AddressCell',
+        },
+      },
     },
   ],
 }

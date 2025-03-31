@@ -9,5 +9,18 @@ export const Users: CollectionConfig = {
   fields: [
     // Email added by default
     // Add more fields as needed
+    {
+      name: 'name',
+      label: 'Name',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'company',
+      label: 'Company',
+      type: 'relationship',
+      relationTo: 'companies',
+      hasMany: true,
+    },
   ],
 }

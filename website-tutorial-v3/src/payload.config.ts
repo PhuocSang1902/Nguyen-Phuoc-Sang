@@ -20,8 +20,8 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
-    importMap: {
-      baseDir: path.resolve(dirname),
+    components: {
+      beforeDashboard: ['/src/components/WelcomeMessage'],
     },
   },
   collections: [Users, Media, Pages, Companies],
