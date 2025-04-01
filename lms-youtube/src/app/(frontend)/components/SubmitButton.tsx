@@ -5,7 +5,7 @@ export default function SubmitButton({ loading, text }: { loading: boolean; text
   return (
     <button
       type="submit"
-      className="bg-black relative text-white rounded-md p-2 w-full"
+      className="bg-white relative text-black rounded-md p-2 w-full"
       disabled={loading}
     >
       {text}
