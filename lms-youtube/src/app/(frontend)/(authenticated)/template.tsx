@@ -3,11 +3,11 @@ import React, { ReactNode } from 'react'
 import { getUser } from './actions/getUser'
 import Navbar from './components/Navbar'
 
-interface Props {
+interface TemplateProps {
   children: ReactNode
 }
 
-const Layout = async ({ children }: Props) => {
+const Template = async ({ children }: TemplateProps) => {
   const user = await getUser()
   if (!user) {
     redirect('/login')
@@ -20,4 +20,4 @@ const Layout = async ({ children }: Props) => {
   )
 }
 
-export default Layout
+export default Template
