@@ -1,0 +1,5 @@
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
