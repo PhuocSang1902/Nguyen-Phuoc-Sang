@@ -22,6 +22,10 @@ export default buildConfig({
     user: Users.slug,
     components: {
       beforeDashboard: ['/src/components/WelcomeMessage'],
+      graphics: {
+        Logo: '/components/payload/Logo',
+        Icon: '/components/payload/Icon',
+      },
     },
   },
   collections: [Users, Media, Pages, Companies],
