@@ -6,7 +6,6 @@ import configPromise from '@payload-config'
 import Image from 'next/image'
 import { Course } from '@/payload-types'
 import Link from 'next/link'
-import { getUser } from '../actions/getUser'
 
 const page = async () => {
   const payload = await getPayload({ config: configPromise })
@@ -21,8 +20,6 @@ const page = async () => {
     overrideAccess: false,
     user: user,
   })
-
-  console.log(coursesRes)
 
   // get courses
   let courses: Course[] = coursesRes.docs
