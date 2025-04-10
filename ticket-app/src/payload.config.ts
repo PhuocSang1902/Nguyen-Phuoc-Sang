@@ -15,6 +15,7 @@ import Genres from './collections/Genres'
 import Segments from './collections/Segments'
 import SubGenres from './collections/SubGenres'
 import Venues from './collections/Venues'
+import { startCronJobs } from './cronjob/cronScheduler'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -40,4 +41,8 @@ export default buildConfig({
     payloadCloudPlugin(),
     // storage-adapter-placeholder
   ],
+  onInit: (cms) => {
+    console.log('Payload CMS initialized')
+    startCronJobs(cms)
+  },
 })
