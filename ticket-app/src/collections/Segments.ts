@@ -12,9 +12,20 @@ const Segments: CollectionConfig = {
     // Mối quan hệ với Genres
     {
       name: 'genres',
-      type: 'relationship',
-      relationTo: 'genres',
-      hasMany: true,
+      type: 'array',
+      fields: [
+        { name: 'id', type: 'text', required: true },
+        { name: 'name', type: 'text', required: true },
+        // Lưu trữ subGenres như một array lồng nhau
+        {
+          name: 'subGenres',
+          type: 'array',
+          fields: [
+            { name: 'id', type: 'text', required: true },
+            { name: 'name', type: 'text', required: true },
+          ],
+        },
+      ],
     },
   ],
 }

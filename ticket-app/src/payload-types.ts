@@ -71,9 +71,7 @@ export interface Config {
     media: Media;
     attractions: Attraction;
     events: Event;
-    genres: Genre;
     segments: Segment;
-    'sub-genres': SubGenre;
     venues: Venue;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -85,9 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     attractions: AttractionsSelect<false> | AttractionsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
-    genres: GenresSelect<false> | GenresSelect<true>;
     segments: SegmentsSelect<false> | SegmentsSelect<true>;
-    'sub-genres': SubGenresSelect<false> | SubGenresSelect<true>;
     venues: VenuesSelect<false> | VenuesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -277,33 +273,23 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "genres".
- */
-export interface Genre {
-  id: string;
-  name: string;
-  subGenres?: (string | SubGenre)[] | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sub-genres".
- */
-export interface SubGenre {
-  id: string;
-  name: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "segments".
  */
 export interface Segment {
   id: string;
   name: string;
-  genres?: (string | Genre)[] | null;
+  genres?:
+    | {
+        id: string | null;
+        name: string;
+        subGenres?:
+          | {
+              id: string | null;
+              name: string;
+            }[]
+          | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -331,16 +317,8 @@ export interface PayloadLockedDocument {
         value: string | Event;
       } | null)
     | ({
-        relationTo: 'genres';
-        value: string | Genre;
-      } | null)
-    | ({
         relationTo: 'segments';
         value: string | Segment;
-      } | null)
-    | ({
-        relationTo: 'sub-genres';
-        value: string | SubGenre;
       } | null)
     | ({
         relationTo: 'venues';
@@ -461,33 +439,23 @@ export interface EventsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "genres_select".
- */
-export interface GenresSelect<T extends boolean = true> {
-  id?: T;
-  name?: T;
-  subGenres?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "segments_select".
  */
 export interface SegmentsSelect<T extends boolean = true> {
   id?: T;
   name?: T;
-  genres?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sub-genres_select".
- */
-export interface SubGenresSelect<T extends boolean = true> {
-  id?: T;
-  name?: T;
+  genres?:
+    | T
+    | {
+        id?: T;
+        name?: T;
+        subGenres?:
+          | T
+          | {
+              id?: T;
+              name?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }

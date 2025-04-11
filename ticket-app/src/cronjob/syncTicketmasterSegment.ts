@@ -30,12 +30,16 @@ export async function syncTicketmasterSegment(payload: Payload): Promise<void> {
 
   try {
     const response = await axios.get(url)
-    const classifications: any[] = response.data._embedded?.classifications || []
+    const classifications: { segment: Segment }[] = response.data._embedded?.classifications || []
+    console.log('classifications', classifications)
 
     for (const classification of classifications) {
       const segment: Segment = classification?.segment
+      if (!segment) {
+        continue
+      }
+
       // Kiểm tra xem sự kiện đã tồn tại chưa
-      console.log('segment', JSON.stringify(segment, null, 2))
       const existingSegment = await payload.find({
         collection: 'segments',
         where: {
@@ -45,11 +49,21 @@ export async function syncTicketmasterSegment(payload: Payload): Promise<void> {
 
       if (existingSegment.docs.length === 0) {
         // Nếu chưa tồn tại, tạo mới
+
+        const genres = segment._embedded.genres.map((genre) => {
+          console.log('subgenres', genre._embedded.subGenres)
+          return {
+            id: genre.id,
+            name: genre.name,
+          }
+        })
+
         await payload.create({
           collection: 'segments',
           data: {
             id: segment.id,
             name: segment.name,
+            genres: genres,
           },
         })
         console.log(`Created segment: ${segment.name}`)

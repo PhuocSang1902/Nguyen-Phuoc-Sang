@@ -11,9 +11,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import Attractions from './collections/Attractions'
 import Events from './collections/Events'
-import Genres from './collections/Genres'
 import Segments from './collections/Segments'
-import SubGenres from './collections/SubGenres'
 import Venues from './collections/Venues'
 import { startCronJobs } from './cronjob/cronScheduler'
 
@@ -27,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Attractions, Events, Genres, Segments, SubGenres, Venues],
+  collections: [Users, Media, Attractions, Events, Segments, Venues],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
