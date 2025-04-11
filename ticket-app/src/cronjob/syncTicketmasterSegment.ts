@@ -9,7 +9,7 @@ interface Segment {
       id: string
       name: string
       _embedded: {
-        subGenres: {
+        subgenres: {
           id: string
           name: string
         }[]
@@ -31,13 +31,14 @@ export async function syncTicketmasterSegment(payload: Payload): Promise<void> {
   try {
     const response = await axios.get(url)
     const classifications: { segment: Segment }[] = response.data._embedded?.classifications || []
-    console.log('classifications', classifications)
 
     for (const classification of classifications) {
       const segment: Segment = classification?.segment
       if (!segment) {
         continue
       }
+
+      console.log('subGenres', segment._embedded?.genres[0]._embedded?.subgenres)
 
       // Kiểm tra xem sự kiện đã tồn tại chưa
       const existingSegment = await payload.find({
@@ -50,8 +51,7 @@ export async function syncTicketmasterSegment(payload: Payload): Promise<void> {
       if (existingSegment.docs.length === 0) {
         // Nếu chưa tồn tại, tạo mới
 
-        const genres = segment._embedded.genres.map((genre) => {
-          console.log('subgenres', genre._embedded.subGenres)
+        const genres = segment._embedded?.genres?.map((genre) => {
           return {
             id: genre.id,
             name: genre.name,
