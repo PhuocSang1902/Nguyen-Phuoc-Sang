@@ -165,63 +165,119 @@ export interface Attraction {
   id: string;
   name: string;
   type?: string | null;
-  images?: (string | Media)[] | null;
   url?: string | null;
+  locale?: string | null;
+  externalLinks?: {
+    youtube?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    twitter?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    itunes?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    lastfm?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    spotify?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    facebook?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    wiki?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    instagram?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    musicbrainz?:
+      | {
+          id?: string | null;
+          url?: string | null;
+        }[]
+      | null;
+    homepage?:
+      | {
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  aliases?:
+    | {
+        alias?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  images?:
+    | {
+        ratio?: string | null;
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+        fallback?: boolean | null;
+        attribution?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   classifications?:
     | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  locale?: string | null;
-  venues?: (string | Venue)[] | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "venues".
- */
-export interface Venue {
-  id: string;
-  name: string;
-  type?: string | null;
-  locale?: string | null;
-  url?: string | null;
-  location?: string | null;
-  extensions?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  source?: string | null;
-  markets?:
-    | {
-        market?: string | null;
+        primary?: boolean | null;
+        segment?: {
+          id?: string | null;
+          name?: string | null;
+        };
+        genre?: {
+          id?: string | null;
+          name?: string | null;
+        };
+        subGenre?: {
+          id?: string | null;
+          name?: string | null;
+        };
+        type?: {
+          id?: string | null;
+          name?: string | null;
+        };
+        subType?: {
+          id?: string | null;
+          name?: string | null;
+        };
+        family?: boolean | null;
         id?: string | null;
       }[]
     | null;
-  timeZone?: string | null;
-  address?: string | null;
-  city?: string | null;
-  country?: string | null;
-  state?: string | null;
-  postalCode?: string | null;
-  dmas?:
-    | {
-        dma?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  events?: (string | Event)[] | null;
-  attractions?: (string | Attraction)[] | null;
+  links?: {
+    self?: {
+      href?: string | null;
+    };
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -233,6 +289,7 @@ export interface Event {
   id: string;
   name: string;
   type?: string | null;
+  test?: boolean | null;
   locale?: string | null;
   url?: string | null;
   sales?:
@@ -255,9 +312,27 @@ export interface Event {
     | null;
   attractions?: (string | Attraction)[] | null;
   pleaseNote?: string | null;
-  promoter?: string | null;
+  promoter?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   venue?: (string | null) | Venue;
-  images?: (string | Media)[] | null;
+  images?:
+    | {
+        ratio?: string | null;
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+        fallback?: boolean | null;
+        attribution?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   info?: string | null;
   classifications?:
     | {
@@ -268,6 +343,128 @@ export interface Event {
     | number
     | boolean
     | null;
+  seatmap?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  accessibility?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  ticketLimit?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  ageRestrictions?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "venues".
+ */
+export interface Venue {
+  id: string;
+  name: string;
+  type?: string | null;
+  locale?: string | null;
+  url?: string | null;
+  aliases?:
+    | {
+        alias?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  location?: {
+    longitude?: string | null;
+    latitude?: string | null;
+  };
+  images?:
+    | {
+        ratio?: string | null;
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+        fallback?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  extensions?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  source?: string | null;
+  markets?:
+    | {
+        name?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timeZone?: string | null;
+  address?: {
+    line1?: string | null;
+  };
+  city?: string | null;
+  country?: {
+    name?: string | null;
+    countryCode?: string | null;
+  };
+  state?: {
+    name?: string | null;
+    stateCode?: string | null;
+  };
+  postalCode?: string | null;
+  dmas?:
+    | {
+        id?: string | null;
+      }[]
+    | null;
+  social?: {
+    twitter?: {
+      handle?: string | null;
+    };
+  };
+  boxOfficeInfo?: {
+    phoneNumberDetail?: string | null;
+    openHoursDetail?: string | null;
+    acceptedPaymentDetail?: string | null;
+    willCallDetail?: string | null;
+  };
+  parkingDetail?: string | null;
+  generalInfo?: {
+    generalRule?: string | null;
+    childRule?: string | null;
+  };
+  events?: (string | Event)[] | null;
+  attractions?: (string | Attraction)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -407,11 +604,135 @@ export interface AttractionsSelect<T extends boolean = true> {
   id?: T;
   name?: T;
   type?: T;
-  images?: T;
   url?: T;
-  classifications?: T;
   locale?: T;
-  venues?: T;
+  externalLinks?:
+    | T
+    | {
+        youtube?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+        twitter?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+        itunes?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+        lastfm?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+        spotify?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+        facebook?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+        wiki?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+        instagram?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+        musicbrainz?:
+          | T
+          | {
+              id?: T;
+              url?: T;
+            };
+        homepage?:
+          | T
+          | {
+              url?: T;
+              id?: T;
+            };
+      };
+  aliases?:
+    | T
+    | {
+        alias?: T;
+        id?: T;
+      };
+  images?:
+    | T
+    | {
+        ratio?: T;
+        url?: T;
+        width?: T;
+        height?: T;
+        fallback?: T;
+        attribution?: T;
+        id?: T;
+      };
+  classifications?:
+    | T
+    | {
+        primary?: T;
+        segment?:
+          | T
+          | {
+              id?: T;
+              name?: T;
+            };
+        genre?:
+          | T
+          | {
+              id?: T;
+              name?: T;
+            };
+        subGenre?:
+          | T
+          | {
+              id?: T;
+              name?: T;
+            };
+        type?:
+          | T
+          | {
+              id?: T;
+              name?: T;
+            };
+        subType?:
+          | T
+          | {
+              id?: T;
+              name?: T;
+            };
+        family?: T;
+        id?: T;
+      };
+  links?:
+    | T
+    | {
+        self?:
+          | T
+          | {
+              href?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -423,6 +744,7 @@ export interface EventsSelect<T extends boolean = true> {
   id?: T;
   name?: T;
   type?: T;
+  test?: T;
   locale?: T;
   url?: T;
   sales?: T;
@@ -431,9 +753,23 @@ export interface EventsSelect<T extends boolean = true> {
   pleaseNote?: T;
   promoter?: T;
   venue?: T;
-  images?: T;
+  images?:
+    | T
+    | {
+        ratio?: T;
+        url?: T;
+        width?: T;
+        height?: T;
+        fallback?: T;
+        attribution?: T;
+        id?: T;
+      };
   info?: T;
   classifications?: T;
+  seatmap?: T;
+  accessibility?: T;
+  ticketLimit?: T;
+  ageRestrictions?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -469,26 +805,84 @@ export interface VenuesSelect<T extends boolean = true> {
   type?: T;
   locale?: T;
   url?: T;
-  location?: T;
+  aliases?:
+    | T
+    | {
+        alias?: T;
+        id?: T;
+      };
+  location?:
+    | T
+    | {
+        longitude?: T;
+        latitude?: T;
+      };
+  images?:
+    | T
+    | {
+        ratio?: T;
+        url?: T;
+        width?: T;
+        height?: T;
+        fallback?: T;
+        id?: T;
+      };
   extensions?: T;
   source?: T;
   markets?:
     | T
     | {
-        market?: T;
+        name?: T;
         id?: T;
       };
   timeZone?: T;
-  address?: T;
+  address?:
+    | T
+    | {
+        line1?: T;
+      };
   city?: T;
-  country?: T;
-  state?: T;
+  country?:
+    | T
+    | {
+        name?: T;
+        countryCode?: T;
+      };
+  state?:
+    | T
+    | {
+        name?: T;
+        stateCode?: T;
+      };
   postalCode?: T;
   dmas?:
     | T
     | {
-        dma?: T;
         id?: T;
+      };
+  social?:
+    | T
+    | {
+        twitter?:
+          | T
+          | {
+              handle?: T;
+            };
+      };
+  boxOfficeInfo?:
+    | T
+    | {
+        phoneNumberDetail?: T;
+        openHoursDetail?: T;
+        acceptedPaymentDetail?: T;
+        willCallDetail?: T;
+      };
+  parkingDetail?: T;
+  generalInfo?:
+    | T
+    | {
+        generalRule?: T;
+        childRule?: T;
       };
   events?: T;
   attractions?: T;

@@ -38,8 +38,6 @@ export async function syncTicketmasterSegment(payload: Payload): Promise<void> {
         continue
       }
 
-      console.log('subGenres', segment._embedded?.genres[0]._embedded?.subgenres)
-
       // Kiểm tra xem sự kiện đã tồn tại chưa
       const existingSegment = await payload.find({
         collection: 'segments',
@@ -52,9 +50,16 @@ export async function syncTicketmasterSegment(payload: Payload): Promise<void> {
         // Nếu chưa tồn tại, tạo mới
 
         const genres = segment._embedded?.genres?.map((genre) => {
+          const subGenres = genre._embedded?.subgenres?.map((subGenre) => {
+            return {
+              id: subGenre.id,
+              name: subGenre.name,
+            }
+          })
           return {
             id: genre.id,
             name: genre.name,
+            subGenres: subGenres,
           }
         })
 
