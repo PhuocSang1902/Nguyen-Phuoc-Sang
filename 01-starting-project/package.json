@@ -1,5 +1,5 @@
 {
-  "name": "routing-rendering",
+  "name": "mutation",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "better-sqlite3": "^11.9.1",
+    "better-sqlite3": "^9.4.3",
+    "cloudinary": "^2.0.2",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18"
