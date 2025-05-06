@@ -2,8 +2,8 @@
 
 import React, { ReactElement, useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
-import SubmitButton from '../../components/SubmitButton'
-import { login, LoginResponse } from '../actions/login'
+import SubmitButton from '../../_components/SubmitButton'
+import { login, LoginResponse } from '../_actions/login'
 
 export default function LoginForm(): ReactElement {
   const [error, setError] = useState<string | null>(null)
