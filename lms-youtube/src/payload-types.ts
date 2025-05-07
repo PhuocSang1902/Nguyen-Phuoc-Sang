@@ -217,13 +217,10 @@ export interface Course {
     | {
         title: string;
         questions: {
-          question: {
-            question: string;
-            answers: {
-              answer: string;
-              correct: boolean;
-              id?: string | null;
-            }[];
+          question: string;
+          answers: {
+            answer: string;
+            correct: boolean;
             id?: string | null;
           }[];
           id?: string | null;
@@ -403,17 +400,12 @@ export interface CoursesSelect<T extends boolean = true> {
               questions?:
                 | T
                 | {
-                    question?:
+                    question?: T;
+                    answers?:
                       | T
                       | {
-                          question?: T;
-                          answers?:
-                            | T
-                            | {
-                                answer?: T;
-                                correct?: T;
-                                id?: T;
-                              };
+                          answer?: T;
+                          correct?: T;
                           id?: T;
                         };
                     id?: T;

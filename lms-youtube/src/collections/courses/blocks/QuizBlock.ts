@@ -19,30 +19,22 @@ export const QuizBlock: Block = {
         {
           name: 'question',
           label: 'Question',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'answers',
+          label: 'Answers',
           type: 'array',
           required: true,
           fields: [
             {
-              name: 'question',
-              label: 'Question',
+              name: 'answer',
+              label: 'Answer',
               type: 'text',
               required: true,
             },
-            {
-              name: 'answers',
-              label: 'Answers',
-              type: 'array',
-              required: true,
-              fields: [
-                {
-                  name: 'answer',
-                  label: 'Answer',
-                  type: 'text',
-                  required: true,
-                },
-                { name: 'correct', label: 'Correct', type: 'checkbox', required: true },
-              ],
-            },
+            { name: 'correct', label: 'Correct', type: 'checkbox', required: true },
           ],
         },
       ],
