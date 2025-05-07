@@ -37,7 +37,7 @@ const page = async () => {
   }
 
   return (
-    <div className="flex flex-col mx-auto w-full max-w-4xl p-4 gap-4">
+    <div className="flex flex-col min-h-screen mx-auto w-full max-w-4xl p-4 gap-4">
       <div className="text-xl">
         Welcome <span className="text-gray-400">{user?.email}</span>
       </div>
