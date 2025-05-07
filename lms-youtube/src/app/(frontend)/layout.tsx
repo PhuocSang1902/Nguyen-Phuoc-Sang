@@ -9,11 +9,5 @@ export const metadata = {
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
-  return (
-    <html lang="en">
-      <body>
-        <main className="bg-black text-white">{children}</main>
-      </body>
-    </html>
-  )
+  return <main className="bg-black text-white">{children}</main>
 }
