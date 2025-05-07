@@ -6,7 +6,7 @@ export const Courses: CollectionConfig = {
   slug: 'courses',
   access: {
     read: ({ req: { user } }) => {
-      return !!user
+      return Boolean(user)
     },
     create: ({ req: { user } }) => {
       return user?.collection === 'users'
