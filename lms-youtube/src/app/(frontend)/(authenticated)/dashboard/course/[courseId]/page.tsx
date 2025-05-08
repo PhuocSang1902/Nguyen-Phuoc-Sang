@@ -7,6 +7,7 @@ import { HiArrowLeft, HiPencilAlt, HiVideoCamera } from 'react-icons/hi'
 import Image from 'next/image'
 import StartCourseButton from './_components/StartCourseButton'
 import { Participation } from '../../../../../../payload-types'
+import ResumeButton from './_components/ResumeButton'
 
 const CoursePage = async ({ params }: { params: Promise<{ courseId: string }> }) => {
   const { courseId } = await params
@@ -112,7 +113,11 @@ const CoursePage = async ({ params }: { params: Promise<{ courseId: string }> })
         </div>
       </div>
 
-      {participation ? <div>Resume Course</div> : <StartCourseButton courseId={course.id} />}
+      {participation ? (
+        <ResumeButton participation={participation} />
+      ) : (
+        <StartCourseButton courseId={course.id} />
+      )}
     </div>
   )
 }

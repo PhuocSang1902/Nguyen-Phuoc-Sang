@@ -3,7 +3,7 @@ import LoginForm from './_components/LoginForm'
 
 export default function page() {
   return (
-    <div className="h-[calc(100vh-3rem)] bg-black text-white">
+    <div className="h-[calc(100vh-3rem)] bg-black text-white min-h-screen">
       <LoginForm />
     </div>
   )
