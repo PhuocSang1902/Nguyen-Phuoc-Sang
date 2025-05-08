@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { HiArrowLeft, HiPencilAlt, HiVideoCamera } from 'react-icons/hi'
 import Image from 'next/image'
 import StartCourseButton from './_components/StartCourseButton'
+import { Participation } from '../../../../../../payload-types'
 
 const CoursePage = async ({ params }: { params: Promise<{ courseId: string }> }) => {
   const { courseId } = await params
@@ -33,6 +34,28 @@ const CoursePage = async ({ params }: { params: Promise<{ courseId: string }> })
 
   if (!course) {
     return notFound()
+  }
+
+  let participation: Participation | null = null
+
+  try {
+    const res = await payload.find({
+      collection: 'participation',
+      where: {
+        course: {
+          equals: courseId,
+        },
+        customer: {
+          equals: user?.id,
+        },
+      },
+      overrideAccess: false,
+      user: user,
+    })
+
+    participation = res?.docs[0] || null
+  } catch (error) {
+    console.error(error)
   }
 
   return (
@@ -88,7 +111,8 @@ const CoursePage = async ({ params }: { params: Promise<{ courseId: string }> })
           })}
         </div>
       </div>
-      <StartCourseButton courseId={course.id} />
+
+      {participation ? <div>Resume Course</div> : <StartCourseButton courseId={course.id} />}
     </div>
   )
 }
