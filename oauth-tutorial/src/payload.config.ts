@@ -9,18 +9,25 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { adminAuthPlugin } from 'payload-auth-plugin'
+import { GoogleAuthProvider } from 'payload-auth-plugin/providers'
+import { Accounts } from './collections/Accounts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
   admin: {
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      afterLogin: ['/components/AuthButton'],
+    },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Accounts],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -31,7 +38,14 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    adminAuthPlugin({
+      providers: [
+        GoogleAuthProvider({
+          client_id: process.env.GOOGLE_CLIENT_ID || '',
+          client_secret: process.env.GOOGLE_CLIENT_SECRET || '',
+        }),
+      ],
+      accountsCollectionSlug: 'accounts',
+    }),
   ],
 })
