@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Participation } from '@/payload-types'
 import NextButton from './NextButton'
+import { markProgress } from '../_actions/markProgress'
 
 interface VideoModuleProps {
   module: any
@@ -11,11 +12,17 @@ interface VideoModuleProps {
 }
 
 export default function VideoModule({ module, participation, onCompleted }: VideoModuleProps) {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   async function handleNextModule() {
     setLoading(true)
     try {
+      const updatedParticipation = await markProgress(participation)
+      if (updatedParticipation?.progress) {
+        onCompleted(updatedParticipation.progress)
+      } else {
+        console.error('Failed to update participation progress')
+      }
     } catch (err) {
       console.error(err)
     } finally {

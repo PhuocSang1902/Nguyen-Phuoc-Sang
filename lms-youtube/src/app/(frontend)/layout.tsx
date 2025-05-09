@@ -11,8 +11,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en" className="mdl-js">
-      <body>
-        <main className="bg-black text-white">{children}</main>
+      <body className="bg-black text-white">
+        <main>{children}</main>
       </body>
     </html>
   )

@@ -1,5 +1,5 @@
 import { Course } from '@/payload-types'
-import { HiPencilAlt, HiVideoCamera } from 'react-icons/hi'
+import { HiFlag, HiPencilAlt, HiVideoCamera } from 'react-icons/hi'
 
 export default function Curriculum({
   course,
@@ -33,11 +33,22 @@ export default function Curriculum({
         if (block.blockType === 'quiz') {
           return (
             <div key={index} className={classNames}>
-              <div className="flex items-center gap-2 text-teal-400 font-semibold">
+              <div className="flex items-center gap-2 text-yellow-400 font-semibold">
                 <HiPencilAlt className="text-xl" />
                 {block.title}
               </div>
               <div className="text-sm text-gray-400">Questions: {block.questions?.length || 0}</div>
+            </div>
+          )
+        }
+
+        if (block.blockType === 'finish') {
+          return (
+            <div key={index} className={classNames}>
+              <div className="flex items-center gap-2 text-green-400 font-semibold">
+                <HiFlag className="text-xl" />
+                Certificate
+              </div>
             </div>
           )
         }

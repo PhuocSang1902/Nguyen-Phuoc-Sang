@@ -229,6 +229,15 @@ export interface Course {
         blockName?: string | null;
         blockType: 'quiz';
       }
+    | {
+        /**
+         * The template for the certificate
+         */
+        template: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'finish';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -410,6 +419,13 @@ export interface CoursesSelect<T extends boolean = true> {
                         };
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        finish?:
+          | T
+          | {
+              template?: T;
               id?: T;
               blockName?: T;
             };

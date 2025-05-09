@@ -1,17 +1,14 @@
 'use client'
 
-import { useState, MouseEvent } from 'react'
-import { AiOutlineCheckCircle, AiOutlineLoading } from 'react-icons/ai'
-import { HiExclamation, HiPlay } from 'react-icons/hi'
-import { participate } from '../../../../_actions/participate'
-import { useRouter } from 'next/navigation'
-import { Course, Participation } from '../../../../../../../payload-types'
+import { HiPlay } from 'react-icons/hi'
+import { Course, Participation } from '@/payload-types'
 import Link from 'next/link'
 
 export default function ResumeButton({ participation }: { participation: Participation }) {
-  const course: Course = participation.course
+  const course: Course = participation.course as Course
   const courseLength = course.curriculum.length
-  const progress = participation.progress ?? 0
+  let progress = participation.progress ?? 0
+  progress = progress + 1
   const progressPercentage = Math.round((progress / courseLength) * 100)
 
   return (
