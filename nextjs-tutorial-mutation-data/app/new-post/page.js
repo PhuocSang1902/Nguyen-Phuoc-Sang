@@ -2,11 +2,12 @@ import { storePost } from '@/lib/posts';
 
 export default function NewPostPage() {
   async function createPost(formData) {
-    "use server";
+    'use server';
     const title = formData.get('title');
     const image = formData.get('image');
     const content = formData.get('content');
 
+    console.log({ title, image, content });
     storePost({
       imageUrl: '',
       title,
