@@ -1,3 +1,5 @@
+'use client';
+
 import { formatDate } from '@/lib/format';
 import LikeButton from './like-icon';
 import { togglePostLikeStatus } from '@/actions/post';
