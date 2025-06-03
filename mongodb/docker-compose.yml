@@ -8,6 +8,7 @@ services:
       - '27017:27017'
     environment:
       MONGO_INITDB_DATABASE: example-payload-website
+      MONGO_INITDB_DATABASE_2: livestream
     volumes:
       - mongodb_data:/data/db
     networks:
