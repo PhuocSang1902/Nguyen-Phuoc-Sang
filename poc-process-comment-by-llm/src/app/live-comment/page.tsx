@@ -18,7 +18,7 @@ export default function LiveCommentsPage() {
 
   useEffect(() => {
     const eventSource = new EventSource(
-      `/api/live-comments?live_video_id=${LIVE_VIDEO_ID}`
+      `/api/live-comment?live_video_id=${LIVE_VIDEO_ID}`
     );
 
     eventSource.onmessage = (event) => {

@@ -80,3 +80,43 @@ Assistant response:
 
   return response.data.response;
 }
+
+export async function processCommentLocalBatch(
+  comments: { id: string; message: string }[]
+) {
+  const inventoryString = inventoryToPrompt(inventory);
+
+  const prompt = `
+You are a professional livestream sales assistant.
+
+Task:
+- For each customer comment below, classify the comment into one of the following categories:
+  1. Order: Customer wants to place an order.
+  2. Interested: Customer shows interest in the product (asking about price, size, color, stock).
+  3. Other: Anything else (spam, compliment, irrelevant).
+
+Rules:
+- Only classify, do not reply or modify the comment.
+- Output in JSON array format: [{"id": "comment_id", "type": "Order"}, ...]
+
+Inventory for reference:
+${inventoryString}
+
+Customer comments:
+${comments.map((c) => `- [${c.id}]: ${c.message}`).join('\n')}
+
+Assistant response (JSON array only):
+  `;
+
+  const response = await axios.post('http://localhost:11434/api/generate', {
+    model: 'llama3',
+    prompt: prompt,
+    temperature: 0.2,
+    top_p: 0.8,
+    repetition_penalty: 1.2,
+    stream: false,
+  });
+
+  const jsonResponse = JSON.parse(response.data.response);
+  return jsonResponse; // [{ id: "xxx", type: "Order" }, ...]
+}

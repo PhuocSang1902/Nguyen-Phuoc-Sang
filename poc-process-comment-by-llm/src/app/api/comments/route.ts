@@ -1,63 +1,22 @@
-export async function GET() {
-  const mockComments = [
-    'Áo này còn size M không?',
-    'Chốt đơn 2 cái áo thun trắng size L',
-    'Sao mắc vậy trời',
-    'Inbox giá đi shop',
-    'Đẹp quá, like mạnh',
-    'Tui spam nè hahahaha',
-    'Size XL còn hàng không shop ơi?',
-    'Gửi hình chi tiết cho mình nha',
-    'Mã A123 còn không shop?',
-    'Chốt mã B456, màu đen, size M nhé',
-    'Áo mã C789 có khuyến mãi không?',
-    'Lấy giùm em 3 cái mã D101',
-    'Chốt A123, sđt 0987654321',
-    'Đã inbox page mà chưa thấy rep',
-    'Cần tư vấn thêm về chất vải',
-    'Mã E202 còn đủ size L ko shop?',
-    'Sản phẩm có freeship không vậy shop?',
-    'Đặt 2 áo mã G303 và 1 quần mã H404',
-    'Chốt đơn mã I505, ship về Quận 1 nhé',
-    'Quần jeans mã J606 còn hàng không?',
-    'Chất lượng có tốt không shop?',
-    'Chốt B456 - màu xanh dương',
-    'Mình đã mua lần trước rất ưng ý, lần này chốt tiếp mã D101',
-    'Sao chưa thấy ai rep đơn vậy?',
-    'Comment thử 😅😅😅',
-    '❤️❤️❤️ đẹp xuất sắc',
-    'Chốt đơn B789, tên Ngọc, số 0912345678',
-    'Chốt giùm mình mã K707 nha shop',
-    'Đơn cũ mình chốt chưa vậy shop ơi?',
-    'Is size M still available?',
-    'Can I order 2 T-shirts, color black, size L?',
-    'How much is it?',
-    'Is product code A123 still in stock?',
-    'Please inbox me the price!',
-    "I'd like to place an order for code B456.",
-    'Is shipping free?',
-    'Send me more photos of item C789.',
-    'I love your products! ❤️',
-    'Can I get a discount if I buy 3 items?',
-    'Is there a warranty for these products?',
-    'Size M have?',
-    'Chot don code A123 plz',
-    'How much price?',
-    'Ship free or not?',
-    'Give me two item color blue',
-    'Still have code B456?',
-    'I want buy size L shirt',
-    'Good good shop ❤️',
-    'Price pls now',
-    'Order B789 fast fast',
-    'Chốt đơn code A123, size M, color đen',
-    'Ship free no shop?',
-    'Đặt 2 item size L, màu trắng',
-    'Chốt 3 quần jeans mã J606, blue',
-    'Còn size XL không? Price pls',
-    'Inbox for me nha shop ơi',
-  ];
+// src/app/api/comments/route.ts
+import { NextRequest } from 'next/server';
+import { connectMongo } from '@/lib/mongodb';
+import { Comment } from '@/models/comment';
 
-  const randomIndex = Math.floor(Math.random() * mockComments.length);
-  return new Response(JSON.stringify({ comment: mockComments[randomIndex] }));
+export async function GET(req: NextRequest) {
+  await connectMongo();
+
+  const { searchParams } = new URL(req.url);
+  const type = searchParams.get('type');
+
+  if (!type) {
+    return new Response('Missing type parameter', { status: 400 });
+  }
+
+  const comments = await Comment.find({ type })
+    .populate('customer', 'name fb_id')
+    .sort({ created_time: -1 })
+    .lean();
+
+  return Response.json(comments);
 }
