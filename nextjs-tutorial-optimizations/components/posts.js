@@ -10,8 +10,8 @@ import { togglePostLikeStatus } from '@/actions/posts';
 function imageLoader(config) {
   const urlStart = config.src.split('upload/')[0];
   const urlEnd = config.src.split('upload/')[1];
-  const transformations = `w_200,h_150`;
-  return config.src;
+  const transformations = `w_200,h_150,q_${config.quality}`;
+  return `${urlStart}upload/${transformations}/${urlEnd}`;
 }
 
 function Post({ post, action }) {
