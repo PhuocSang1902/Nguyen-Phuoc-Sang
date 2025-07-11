@@ -4,27 +4,41 @@
       <h1>My Friends</h1>
     </header>
     <ul>
-      <li v-for="friend in friend" :key="friend.id">{{ friend.name }}</li>
+      <FriendContact
+        v-for="friend in friends"
+        :key="friend.id"
+        :name="friend.name"
+        :phone-number="friend.phone"
+        :email-address="friend.email"
+        :is-favorite="true"
+      ></FriendContact>
     </ul>
   </section>
 </template>
 
 <script>
+import FriendContact from './components/FriendContact.vue';
+
 export default {
+  components: {
+    FriendContact,
+  },
   data() {
     return {
-      friend: [
+      friends: [
         {
           id: 'manuel',
           name: 'Manuel Lorenz',
           phone: '0176 34578901',
           email: 'manuel@localhost.com',
+          isFavorite: 1,
         },
         {
           id: 'julie',
           name: 'Julie Jones',
           phone: '0987 654321',
           email: 'julie@localhost.com',
+          isFavorite: 0,
         },
       ],
     };
