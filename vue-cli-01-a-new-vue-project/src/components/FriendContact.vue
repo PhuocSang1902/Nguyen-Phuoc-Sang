@@ -38,6 +38,16 @@ export default {
       default: false,
     },
   },
+  emits: {
+    'toggle-favorite': (id) => {
+      if (id) {
+        return true;
+      } else {
+        console.warn('id is required');
+        return false;
+      }
+    },
+  },
   data() {
     return {
       detailsAreVisible: false,
