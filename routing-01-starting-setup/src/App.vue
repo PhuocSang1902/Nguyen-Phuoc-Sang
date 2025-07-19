@@ -1,7 +1,7 @@
 <template>
   <the-navigation @set-page="setActivePage"></the-navigation>
   <main>
-    <router-view> </router-view>
+    <router-view></router-view>
   </main>
 </template>
 
