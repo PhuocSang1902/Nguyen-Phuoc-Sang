@@ -2,32 +2,51 @@
   <form @submit.prevent="saveData">
     <div class="form-control">
       <label for="first-name">First Name</label>
-      <input type="text" id="first-name" v-model="firstName" />
+      <input type="text" id="first-name" v-model="firstName.value" />
     </div>
     <div class="form-control">
       <label for="last-name">Last Name</label>
-      <input type="text" id="last-name" v-model="lastName" />
+      <input type="text" id="last-name" v-model="lastName.value" />
     </div>
     <div class="form-control">
       <label for="description">Description</label>
-      <textarea id="description" rows="5" v-model="description"></textarea>
+      <textarea
+        id="description"
+        rows="5"
+        v-model="description.value"
+      ></textarea>
     </div>
     <div class="form-control">
       <label for="rate">Hourly Rate (EUR)</label>
-      <input type="number" id="rate" v-model.number="hourlyRate" />
+      <input type="number" id="rate" v-model.number="hourlyRate.value" />
     </div>
     <div class="form-control">
       <h3>Areas of Expertise</h3>
       <div>
-        <input type="checkbox" id="frontend" value="frontend" v-model="areas" />
+        <input
+          type="checkbox"
+          id="frontend"
+          value="frontend"
+          v-model="areas.value"
+        />
         <label for="frontend">Frontend</label>
       </div>
       <div>
-        <input type="checkbox" id="backend" value="backend" v-model="areas" />
+        <input
+          type="checkbox"
+          id="backend"
+          value="backend"
+          v-model="areas.value"
+        />
         <label for="backend">Backend</label>
       </div>
       <div>
-        <input type="checkbox" id="career" value="career" v-model="areas" />
+        <input
+          type="checkbox"
+          id="career"
+          value="career"
+          v-model="areas.value"
+        />
         <label for="career">Career</label>
       </div>
     </div>
@@ -40,15 +59,59 @@ export default {
   emits: ['save-data'],
   data() {
     return {
-      firstName: '',
-      lastName: '',
-      description: '',
-      hourlyRate: null,
-      areas: [],
+      firstName: {
+        value: '',
+        isValid: true,
+      },
+      lastName: {
+        value: '',
+        isValid: true,
+      },
+      description: {
+        value: '',
+        isValid: true,
+      },
+      hourlyRate: {
+        value: null,
+        isValid: true,
+      },
+      areas: {
+        value: [],
+        isValid: true,
+      },
+      formIsValid: true,
     };
   },
   methods: {
+    validateForm() {
+      this.formIsValid = true;
+      if (this.firstName.value === '') {
+        this.firstName.isValid = false;
+        this.formIsValid = false;
+      }
+      if (this.lastName.value === '') {
+        this.lastName.isValid = false;
+        this.formIsValid = false;
+      }
+      if (this.description.value === '') {
+        this.description.isValid = false;
+        this.formIsValid = false;
+      }
+      if (!this.hourlyRate.value || this.hourlyRate.value < 0) {
+        this.hourlyRate.isValid = false;
+        this.formIsValid = false;
+      }
+      if (this.areas.value.length === 0) {
+        this.areas.isValid = false;
+        this.formIsValid = false;
+      }
+    },
     saveData() {
+      this.validateForm();
+      if (!this.formIsValid) {
+        return;
+      }
+
       const formData = {
         firstName: this.firstName,
         lastName: this.lastName,
