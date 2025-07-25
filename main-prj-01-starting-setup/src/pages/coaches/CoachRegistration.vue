@@ -2,7 +2,7 @@
   <section>
     <base-card>
       <h2>Register as a Coach</h2>
-      <coach-form></coach-form>
+      <coach-form @save-data="saveData"></coach-form>
     </base-card>
   </section>
 </template>
@@ -14,6 +14,11 @@ export default {
   components: {
     CoachForm,
   },
+  computed: {
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
+    },
+  }, 
   data() {
     return {
       firstName: '',
@@ -21,6 +26,12 @@ export default {
       description: '',
       hourlyRate: null,
     };
+  },
+  methods: {
+    saveData(data) {
+      this.$store.dispatch('coaches/registerCoach', data);
+      this.$router.replace('/coaches');
+    },
   },
 };
 </script>
