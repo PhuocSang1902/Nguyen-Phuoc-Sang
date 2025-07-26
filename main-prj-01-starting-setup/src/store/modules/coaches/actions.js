@@ -5,8 +5,11 @@ export default {
       ...payload,
     };
 
+    const token = context.rootGetters.token;
+    const userId = context.rootGetters.userId;
+
     const response = await fetch(
-      `https://vue-http-demo-b1c68-default-rtdb.asia-southeast1.firebasedatabase.app/coaches/${context.rootGetters.userId}.json`,
+      `https://vue-http-demo-b1c68-default-rtdb.asia-southeast1.firebasedatabase.app/coaches/${userId}.json?auth=${token}`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData),
