@@ -6,7 +6,7 @@ export default {
     };
 
     const response = await fetch(
-      `https://vue-http-demo-123-default-rtdb.firebaseio.com/coaches/${context.rootGetters.userId}.json`,
+      `https://vue-http-demo-b1c68-default-rtdb.asia-southeast1.firebasedatabase.app/coaches/${context.rootGetters.userId}.json`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData),
@@ -25,7 +25,7 @@ export default {
       return;
     }
     const response = await fetch(
-      `https://vue-http-demo-123-default-rtdb.firebaseio.com/coaches.json`
+      `https://vue-http-demo-b1c68-default-rtdb.asia-southeast1.firebasedatabase.app/coaches.json`
     );
 
     const responseData = await response.json();
