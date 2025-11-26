@@ -1,5 +1,0 @@
-@import 'tailwindcss';
-
-.textInput {
-  @apply bg-black text-white border border-1 border-white rounded p-2;
-}
