@@ -793,15 +793,15 @@ module.exports = {
 ## Checklist học tập
 
 ### Setup & Basics
-- [ ] Chạy PostgreSQL, Backend, Frontend thành công
-- [ ] Đăng nhập Admin Dashboard
-- [ ] Xem được products, orders trong Admin
-- [ ] Test storefront (browse products, add to cart)
+- [x] Chạy PostgreSQL, Backend, Frontend thành công
+- [x] Đăng nhập Admin Dashboard
+- [x] Xem được products, orders trong Admin
+- [x] Test storefront (browse products, add to cart)
 
 ### Backend Development
-- [ ] Tạo custom API endpoint đầu tiên
-- [ ] Hiểu workflow architecture
-- [ ] Tạo subscriber để handle events
+- [x] Tạo custom API endpoint đầu tiên
+- [x] Hiểu workflow architecture
+- [x] Tạo subscriber để handle events
 - [ ] Query database trực tiếp
 
 ### Frontend Development
@@ -874,4 +874,117 @@ docker exec -it ecommerce-postgres psql -U postgres -d medusa-v2
 
 **Chúc bạn học tốt MedusaJS!**
 
-_Last updated: 2025-11-28_
+---
+
+## Progress Log (for AI context)
+
+### 2025-12-01: Backend API Basics Completed
+
+**Completed:**
+- Setup: Docker PostgreSQL, Backend (port 9000), Frontend (port 8000)
+- Custom API: `/store/hello`, `/store/featured-products`, `/store/greet`
+- Subscriber: `product-created.ts` (listen product.created event)
+- Workflow: `hello-workflow.ts` with rollback/compensation
+
+**Files created:**
+```
+my-medusa-store/src/
+├── api/store/
+│   ├── hello/route.ts
+│   ├── featured-products/route.ts
+│   └── greet/route.ts
+├── subscribers/
+│   └── product-created.ts
+└── workflows/
+    └── hello-workflow.ts
+```
+
+**Key learnings:**
+- All `/store/*` routes require `x-publishable-api-key` header (including custom routes)
+- Test API on Windows: use Git Bash or `curl.exe` (PowerShell `curl` is alias)
+- Workflow rollback: use `StepResponse(output, compensationData)` + compensation function
+- `ContainerRegistrationKeys.QUERY` = built-in service for database queries
+
+**Next steps (2025-12-02):**
+- [ ] Frontend customization (Next.js storefront)
+- [ ] Create custom module (Product Reviews/Wishlist)
+- [ ] Stripe payment integration
+
+---
+
+### Chuẩn bị cho buổi học tiếp theo
+
+**Lựa chọn tiếp theo (chọn 1):**
+
+**Option A: Frontend Customization**
+- Tùy chỉnh storefront Next.js
+- Thêm featured products vào homepage
+- Tạo custom component
+
+**Option B: Custom Module - Product Reviews**
+- Tạo module mới với database table
+- API: thêm/xem reviews
+- Link với Product
+
+**Option C: Custom Module - Wishlist**
+- Tạo wishlist cho customer
+- API: add/remove/list wishlist items
+- Persist trong database
+
+**Khi bắt đầu buổi học mới, nói với Claude:**
+> "Tiếp tục học MedusaJS, đọc file MEDUSA_LEARNING_GUIDE.md để biết progress. Tôi muốn học [Option A/B/C]"
+
+---
+
+## Quick Reference (for AI)
+
+### API Key requirement
+```
+/store/*  → ALWAYS needs x-publishable-api-key header
+/admin/*  → Needs JWT token
+```
+
+### Test API (Git Bash)
+```bash
+# GET
+curl -H "x-publishable-api-key: pk_xxx" http://localhost:9000/store/hello
+
+# POST with JSON
+curl -X POST -H "Content-Type: application/json" -H "x-publishable-api-key: pk_xxx" -d '{"name": "Test"}' http://localhost:9000/store/greet
+```
+
+### Workflow with rollback
+```typescript
+const myStep = createStep(
+  "step-name",
+  async (input) => {
+    // Main logic
+    return new StepResponse(output, compensationData)
+  },
+  async (compensationData) => {
+    // Rollback logic - runs when ANY later step throws Error
+  }
+)
+```
+
+### Subscriber
+```typescript
+export default async function handler({ event, container }: SubscriberArgs<{ id: string }>) {
+  console.log("Event:", event.name, "Data:", event.data)
+}
+export const config: SubscriberConfig = { event: "product.created" }
+```
+
+### Query database
+```typescript
+const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
+const { data } = await query.graph({
+  entity: "product",
+  fields: ["id", "title", "variants.*"],
+  pagination: { take: 10 }
+})
+```
+
+---
+
+_Last updated: 2025-12-01_
