@@ -1008,14 +1008,15 @@ curl -H "x-publishable-api-key: pk_xxx" http://localhost:9000/store/reviews/prod
 
 **Còn lại (theo thứ tự):**
 
-| # | Nội dung | Thời gian | Status |
-|---|----------|-----------|--------|
-| 1 | Form Submit Review | ~30 phút | Tiếp theo |
-| 2 | Custom Module - Wishlist | ~1 giờ | Pending |
-| 3 | Module Links (Reviews ↔ Product) | ~30 phút | Pending |
-| 4 | Stripe Payment Integration | ~1-2 giờ | Pending |
-| 5 | Admin UI Extension | ~1-2 giờ | Pending |
-| 6 | Deploy (Backend + Frontend) | ~1-2 giờ | Pending |
+| # | Nội dung | Thời gian | Mô tả |
+|---|----------|-----------|-------|
+| 1 | Form Submit Review | ~30 phút | Client component, form validation, gọi API |
+| 2 | Custom Module - Wishlist | ~1 giờ | Module với authentication, customer data |
+| 3 | Module Links | ~30 phút | Liên kết dữ liệu giữa các modules |
+| 4 | Stripe Payment | ~1-2 giờ | Tích hợp thanh toán, webhooks |
+| 5 | Admin UI Extension | ~1-2 giờ | Custom widgets, pages trong Admin Dashboard |
+
+**Tổng thời gian còn lại:** ~4-6 giờ
 
 **Khi bắt đầu buổi học mới, nói với Claude:**
 > "Tiếp tục học MedusaJS, đọc file MEDUSA_LEARNING_GUIDE.md để biết progress"
