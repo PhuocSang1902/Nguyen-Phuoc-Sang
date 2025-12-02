@@ -9,6 +9,8 @@ import ProductInfo from "@modules/products/templates/product-info"
 import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-related-products"
 import { notFound } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
+import ProductReviews from "@modules/products/components/product-reviews"
+import { getProductReviews } from "@lib/data/reviews"
 
 import ProductActionsWrapper from "./product-actions-wrapper"
 
@@ -19,20 +21,22 @@ type ProductTemplateProps = {
   images: HttpTypes.StoreProductImage[]
 }
 
-const ProductTemplate: React.FC<ProductTemplateProps> = ({
+const ProductTemplate = async ({
   product,
   region,
   countryCode,
   images,
-}) => {
+}: ProductTemplateProps) => {
   if (!product || !product.id) {
     return notFound()
   }
 
+  const reviews = await getProductReviews(product.id)
+
   return (
     <>
       <div
-        className="content-container  flex flex-col small:flex-row small:items-start py-6 relative"
+        className="content-container flex flex-col small:flex-row small:items-start py-6 relative"
         data-testid="product-container"
       >
         <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
@@ -56,6 +60,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             <ProductActionsWrapper id={product.id} region={region} />
           </Suspense>
         </div>
+      </div>
+      <div className="content-container my-16">
+        <ProductReviews reviews={reviews} />
       </div>
       <div
         className="content-container my-16 small:my-32"

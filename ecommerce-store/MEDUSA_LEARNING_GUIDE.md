@@ -906,33 +906,119 @@ my-medusa-store/src/
 - `ContainerRegistrationKeys.QUERY` = built-in service for database queries
 
 **Next steps (2025-12-02):**
-- [ ] Frontend customization (Next.js storefront)
+- [x] Frontend customization (Next.js storefront) ✅
 - [ ] Create custom module (Product Reviews/Wishlist)
 - [ ] Stripe payment integration
 
 ---
 
-### Chuẩn bị cho buổi học tiếp theo
+### 2025-12-02: Frontend Customization Completed
 
-**Lựa chọn tiếp theo (chọn 1):**
+**Completed:**
+- Hiểu cấu trúc Homepage (page.tsx, Hero, FeaturedProducts)
+- Hiểu luồng Region/Multi-currency (middleware.ts, getRegion)
+- Tạo Collection trong Admin Dashboard để test UI
+- Tạo component NewArrivals hiển thị 4 sản phẩm mới nhất
+- Tích hợp NewArrivals vào Homepage
 
-**Option A: Frontend Customization**
-- Tùy chỉnh storefront Next.js
-- Thêm featured products vào homepage
-- Tạo custom component
+**Files created/modified:**
+```
+my-medusa-store-storefront/src/
+├── modules/home/components/
+│   └── new-arrivals/
+│       └── index.tsx         ← TẠO MỚI
+└── app/[countryCode]/(main)/
+    └── page.tsx              ← CHỈNH SỬA (thêm import + NewArrivals)
+```
 
-**Option B: Custom Module - Product Reviews**
-- Tạo module mới với database table
-- API: thêm/xem reviews
-- Link với Product
+**Key learnings:**
+- **Server Components**: Dùng `async function` để fetch data trên server
+- **Medusa Data Layer**: `listProducts({ regionId, queryParams })` để lấy products
+- **Region detection**: middleware.ts tự động detect country từ URL/IP/DEFAULT_REGION
+- **Next.js Cache**: Hard refresh `Ctrl+Shift+R` khi data thay đổi ở Admin
+- **Tailwind responsive**: `grid-cols-2 small:grid-cols-4` cho mobile/desktop
 
-**Option C: Custom Module - Wishlist**
-- Tạo wishlist cho customer
-- API: add/remove/list wishlist items
-- Persist trong database
+**Tips:**
+- Seed data không tạo collections → FeaturedProducts trống
+- DEFAULT_REGION=us nhưng không có US region → fallback country đầu tiên trong map
+- Tạo collection trong Admin: Products → Collections → Create
+
+---
+
+### 2025-12-02: Custom Module - Product Reviews Completed
+
+**Completed:**
+- Tạo Custom Module product-review với đầy đủ: types, model, service, migrations
+- Tạo API endpoints: POST /store/reviews, GET /store/reviews/:productId
+- Tích hợp hiển thị reviews trên trang chi tiết sản phẩm (storefront)
+
+**Files created (Backend - my-medusa-store/src/):**
+```
+modules/product-review/
+├── index.ts              # Module definition
+├── models/review.ts      # Database model
+├── service.ts            # Business logic (CRUD)
+├── types/index.ts        # TypeScript interfaces
+└── migrations/           # Database migrations
+
+api/store/reviews/
+├── route.ts              # POST - tạo review
+└── [productId]/route.ts  # GET - lấy reviews theo product
+```
+
+**Files created (Frontend - my-medusa-store-storefront/src/):**
+```
+lib/data/reviews.ts                           # Fetch reviews từ API
+modules/products/components/product-reviews/  # Component hiển thị reviews
+modules/products/templates/index.tsx          # Tích hợp vào product page
+```
+
+**Key learnings:**
+- **Custom Module structure**: types → model → service → index.ts → register in medusa-config.ts
+- **MedusaService**: Tự động generate CRUD methods (createReviews, listReviews, retrieveReview, updateReviews, deleteReviews)
+- **Migrations**: `db:generate moduleName` tạo migration + snapshot, `db:migrate` chạy migrations
+- **Modular architecture**: Mỗi module có migrations riêng, có thể tái sử dụng/publish npm
+- **API routes**: Dùng `req.scope.resolve(MODULE_NAME)` để lấy service
+
+**Test API (Git Bash):**
+```bash
+# POST - Tạo review
+curl -X POST http://localhost:9000/store/reviews \
+  -H "Content-Type: application/json" \
+  -H "x-publishable-api-key: pk_xxx" \
+  -d '{"product_id": "prod_xxx", "customer_name": "Name", "rating": 5, "title": "Great!", "content": "Love it"}'
+
+# GET - Lấy reviews
+curl -H "x-publishable-api-key: pk_xxx" http://localhost:9000/store/reviews/prod_xxx
+```
+
+---
+
+### Lộ trình Research đầy đủ MedusaJS
+
+**Mục tiêu:** Hiểu sâu MedusaJS
+
+**Đã hoàn thành:**
+- [x] Setup & Cấu trúc dự án
+- [x] Custom API endpoints
+- [x] Subscribers (event listeners)
+- [x] Workflows với rollback
+- [x] Frontend Customization (NewArrivals)
+- [x] Custom Module - Product Reviews (Backend + Frontend hiển thị)
+
+**Còn lại (theo thứ tự):**
+
+| # | Nội dung | Thời gian | Status |
+|---|----------|-----------|--------|
+| 1 | Form Submit Review | ~30 phút | Tiếp theo |
+| 2 | Custom Module - Wishlist | ~1 giờ | Pending |
+| 3 | Module Links (Reviews ↔ Product) | ~30 phút | Pending |
+| 4 | Stripe Payment Integration | ~1-2 giờ | Pending |
+| 5 | Admin UI Extension | ~1-2 giờ | Pending |
+| 6 | Deploy (Backend + Frontend) | ~1-2 giờ | Pending |
 
 **Khi bắt đầu buổi học mới, nói với Claude:**
-> "Tiếp tục học MedusaJS, đọc file MEDUSA_LEARNING_GUIDE.md để biết progress. Tôi muốn học [Option A/B/C]"
+> "Tiếp tục học MedusaJS, đọc file MEDUSA_LEARNING_GUIDE.md để biết progress"
 
 ---
 
@@ -987,4 +1073,73 @@ const { data } = await query.graph({
 
 ---
 
-_Last updated: 2025-12-01_
+### Frontend Component Pattern
+```typescript
+// Server Component - fetch data on server
+export default async function MyComponent({
+  region,
+}: {
+  region: HttpTypes.StoreRegion
+}) {
+  // Fetch data
+  const { response: { products } } = await listProducts({
+    regionId: region.id,
+    queryParams: { limit: 4 },
+  })
+
+  // Early return if no data
+  if (!products?.length) return null
+
+  // Render UI
+  return (
+    <div className="content-container">
+      {products.map((p) => <ProductPreview key={p.id} product={p} region={region} />)}
+    </div>
+  )
+}
+```
+
+---
+
+### Custom Module Pattern
+```typescript
+// 1. types/index.ts - Define interfaces
+export interface Review {
+  id: string
+  product_id: string
+  rating: number
+  // ...
+}
+
+// 2. models/review.ts - Database model
+import { model } from "@medusajs/framework/utils"
+const Review = model.define("review", {
+  id: model.id().primaryKey(),
+  product_id: model.text(),
+  rating: model.number(),
+})
+export default Review
+
+// 3. service.ts - Business logic
+import { MedusaService } from "@medusajs/framework/utils"
+import Review from "./models/review"
+class ProductReviewService extends MedusaService({ Review }) {}
+export default ProductReviewService
+
+// 4. index.ts - Module definition
+import { Module } from "@medusajs/framework/utils"
+import ProductReviewService from "./service"
+export const PRODUCT_REVIEW_MODULE = "productReview"
+export default Module(PRODUCT_REVIEW_MODULE, { service: ProductReviewService })
+
+// 5. medusa-config.ts - Register module
+modules: [{ resolve: "./src/modules/product-review" }]
+
+// 6. Run migrations
+// npx medusa db:generate productReview
+// npx medusa db:migrate
+```
+
+---
+
+_Last updated: 2025-12-02_
